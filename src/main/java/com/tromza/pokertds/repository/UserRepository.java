@@ -1,6 +1,7 @@
-package com.tms.repository;
+package com.tromza.pokertds.repository;
 
-import com.tms.domain.User;
+
+import com.tromza.pokertds.domain.User;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;

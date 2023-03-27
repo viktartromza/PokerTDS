@@ -1,10 +1,8 @@
-package com.tms.domain;
+package com.tromza.pokertds.domain;
 
-import jdk.jfr.DataAmount;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;

@@ -1,4 +1,4 @@
-<%@ page import="com.tms.domain.User" %><%--
+<%@ page import="com.tromza.pokertds.domain.User" %><%--
   Created by IntelliJ IDEA.
   User: Viktar
   Date: 07.02.2023

@@ -1,8 +1,7 @@
-package com.tms.controller;
+package com.tromza.pokertds.controller;
 
-import com.tms.annotation.GetTimeAnnotation;
-import com.tms.domain.User;
-import com.tms.service.UserService;
+import com.tromza.pokertds.domain.User;
+import com.tromza.pokertds.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +22,7 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }// конструктор контроллера
-@GetTimeAnnotation
+
     @GetMapping("/{id}")// указываем на какой метод откликается в HandlerMappinge и /доп для значения @PathVariable
     public String getUserById(@PathVariable int id, Model model) {
         //    log.info("doing/user Get method!");

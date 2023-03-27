@@ -1,17 +1,11 @@
-package com.tms.service;
+package com.tromza.pokertds.service;
 
-import com.tms.annotation.GetTimeAnnotation;
-import com.tms.domain.User;
-import com.tms.domain.Wallet;
-import com.tms.repository.UserRepository;
+
+import com.tromza.pokertds.annotation.GetTimeAnnotation;
+import com.tromza.pokertds.domain.User;
+import com.tromza.pokertds.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import java.beans.SimpleBeanInfo;
-import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 @Service
 public class UserService {

@@ -1,4 +1,4 @@
-package com.tms.domain;
+package com.tromza.pokertds.domain;
 
 public class PaymentCard {
     private long id;

@@ -1,4 +1,4 @@
-package com.tms.annotation;
+package com.tromza.pokertds.annotation;
 
 public @interface GetTimeAnnotation {
 }

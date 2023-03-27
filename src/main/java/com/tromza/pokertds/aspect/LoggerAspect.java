@@ -1,11 +1,10 @@
-package com.tms.aspect;
+package com.tromza.pokertds.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalTime;
@@ -23,7 +22,7 @@ public class LoggerAspect {
 
 
    // @Around("f()||ff()")
-    @Around("@annotation(com.tms.annotation.GetTimeAnnotation)")
+    @Around("@annotation(com.tromza.pokertds.annotation.GetTimeAnnotation)")
     public void getLogAround(ProceedingJoinPoint joinPoint) throws Throwable {
         LocalTime start = LocalTime.now();
         log.info("Time start...");
@@ -33,7 +32,7 @@ public class LoggerAspect {
         log.info("Method worked"+"   "+(end.getNano()-start.getNano())/1000000 +"  milisec");
     }
 
-    @Before("within(com.tms.controller.*)")
+    @Before("within(com.tromza.pokertds.controller.*)")
     public void getLogBefore(JoinPoint joinPoint){
         log.info("Method" + joinPoint.getSignature() + "started!");
     }
