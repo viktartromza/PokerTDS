@@ -1,0 +1,52 @@
+2023-03-27 16:33:56.181  INFO 8332 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on NOTE with PID 8332 (C:\Users\ITkomp\IdeaProjects\PokerTDS\target\classes started by ITkomp in C:\Users\ITkomp\IdeaProjects\PokerTDS)
+2023-03-27 16:33:56.186  INFO 8332 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-27 16:33:58.643  INFO 8332 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-27 16:33:58.657  INFO 8332 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-27 16:33:58.658  INFO 8332 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-27 16:33:59.032  INFO 8332 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-27 16:33:59.040  INFO 8332 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-27 16:33:59.040  INFO 8332 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2711 ms
+2023-03-27 16:34:00.769  INFO 8332 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-27 16:34:02.424  INFO 8332 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-27 16:34:02.523  INFO 8332 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-27 16:44:20.071  INFO 8332 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-27 16:44:20.079  INFO 8332 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-27 16:44:20.135  INFO 8332 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 55 ms
+2023-03-27 16:44:20.585  INFO 8332 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodString com.tromza.pokertds.controller.UserController.createUser(User,BindingResult)started!
+2023-03-27 16:44:22.678  WARN 8332 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [124] milliseconds.
+2023-03-27 16:45:36.433  INFO 8332 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodString com.tromza.pokertds.controller.UserController.getUserById(int,Model)started!
+2023-03-27 16:46:14.042  INFO 8332 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodString com.tromza.pokertds.controller.UserController.updateUser(User)started!
+2023-03-27 16:46:57.871  INFO 8332 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodString com.tromza.pokertds.controller.UserController.getUserById(int,Model)started!
+2023-03-27 19:23:33.387  INFO 2764 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on NOTE with PID 2764 (C:\Users\ITkomp\IdeaProjects\PokerTDS\target\classes started by ITkomp in C:\Users\ITkomp\IdeaProjects\PokerTDS)
+2023-03-27 19:23:33.428  INFO 2764 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-27 19:23:45.545  INFO 2764 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-27 19:23:45.571  INFO 2764 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-27 19:23:45.573  INFO 2764 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-27 19:23:46.076  INFO 2764 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-27 19:23:46.096  INFO 2764 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-27 19:23:46.096  INFO 2764 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 11296 ms
+2023-03-27 19:23:49.708  INFO 2764 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-27 19:23:52.442  INFO 2764 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-27 19:23:53.231  INFO 2764 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-27 19:23:53.276  INFO 2764 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 23.428 seconds (JVM running for 28.255)
+2023-03-27 19:55:38.564  INFO 2764 --- [http-nio-8080-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-27 19:55:38.566  INFO 2764 --- [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-27 19:55:38.569  INFO 2764 --- [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-03-27 19:55:38.751  INFO 2764 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodString com.tromza.pokertds.controller.UserController.createUser(User,BindingResult)started!
+2023-03-27 21:51:35.134  INFO 4352 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on NOTE with PID 4352 (C:\Users\ITkomp\IdeaProjects\PokerTDS\target\classes started by ITkomp in C:\Users\ITkomp\IdeaProjects\PokerTDS)
+2023-03-27 21:51:35.165  INFO 4352 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-27 21:51:39.352  INFO 4352 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-27 21:51:39.371  INFO 4352 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-27 21:51:39.372  INFO 4352 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-27 21:51:39.909  INFO 4352 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-27 21:51:39.917  INFO 4352 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-27 21:51:39.917  INFO 4352 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4547 ms
+2023-03-27 21:51:42.365  INFO 4352 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-03-27 21:51:44.508  INFO 4352 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-27 21:51:44.683  INFO 4352 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-27 21:51:44.714  INFO 4352 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 10.894 seconds (JVM running for 14.714)
+2023-03-27 21:52:23.854  INFO 4352 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-27 21:52:23.858  INFO 4352 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-27 21:52:23.862  INFO 4352 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-03-27 21:52:24.005  INFO 4352 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodString com.tromza.pokertds.controller.StartController.getStart()started!
+2023-03-27 21:52:25.151  WARN 4352 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [110] milliseconds.
