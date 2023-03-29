@@ -20,7 +20,7 @@ import java.sql.Date;
         @SecondaryTable( name="wallets"),})
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     @Column(name = "login")
     @Pattern(regexp = "[A-z0-9_-]*")
