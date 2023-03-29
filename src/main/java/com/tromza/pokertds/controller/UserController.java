@@ -28,11 +28,12 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }// конструктор контроллера
-/*
+
     @GetMapping
     public ResponseEntity<ArrayList<User>> getAllUsers() {
-        return new ResponseEntity<>(UserService.getAllUsers(), HttpStatus.ALREADY_REPORTED);
-    }*/
+        Optional<ArrayList<User>> allUsers = UserService.getAllUsers();
+        return allUsers.map(value->new ResponseEntity<>(value, HttpStatus.ALREADY_REPORTED)).orElseGet(()->new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable int id) {

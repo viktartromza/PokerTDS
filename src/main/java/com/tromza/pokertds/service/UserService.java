@@ -24,8 +24,9 @@ public class UserService {
     public static Optional<User> getUserById(int id) {
         return userRepository.getUserById(id);
     }
-/*
-    public static ArrayList<User> getAllUsers()  {return userRepository.getAllUsers();}
+
+    public static Optional<ArrayList<User>> getAllUsers()  {return userRepository.getAllUsers();}
+    /*
     public boolean createUser(User user) {
         return userRepository.createUser(user);
     }

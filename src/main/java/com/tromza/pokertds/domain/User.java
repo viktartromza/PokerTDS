@@ -1,26 +1,23 @@
 package com.tromza.pokertds.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.sql.Date;
+import java.sql.Timestamp;
 
-@Component
+
 @Data
 @Entity
 @Table(name = "users")
-@SecondaryTable(name = "users_data")
+@SecondaryTable(name = "users_data",pkJoinColumns=@PrimaryKeyJoinColumn(name="user_id"))
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "users_id_seq_gen")
-    @SequenceGenerator(name="users_id_seq_gen", sequenceName = "users_table_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_seq_gen")
+    @SequenceGenerator(name = "users_id_seq_gen", sequenceName = "users_table_id_seq", allocationSize = 1)
     private int id;
     @Column(name = "login")
     @Pattern(regexp = "[A-z0-9_-]*")
@@ -36,60 +33,21 @@ public class User {
     private String email;
     @Column(name = "score")
     private int score;
-@Column(table = "users_data",name = "first_name")
+    @Column(table = "users_data", name = "first_name")
     private String firstName;
-    @Column(table = "users_data",name = "last_name")
+    @Column(table = "users_data", name = "last_name")
     private String lastName;
-    @Column(table = "users_data",name = "country")
+    @Column(table = "users_data", name = "country")
     private String country;
-    @Column(table = "users_data",name = "date_of_birth")
-    private String birthDay;
-    @Column(table = "users_data",name = "phone_number")
+    @Column(table = "users_data", name = "date_of_birth")
+    private Date birthDay;
+    @Column(table = "users_data", name = "phone_number")
     private String telephone;
-@JsonManagedReference
-@OneToOne(cascade = CascadeType.ALL)
-@JoinColumn(name = "id",referencedColumnName = "user_id")
+    @Column(table = "users_data", name = "changed")
+    private Timestamp changed;
+    @JsonManagedReference
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "user_id")
     private Wallet wallet;
-
-    public User() {
-    }
-
-    public User(String login, String password, String email) {
-        this.login = login;
-        this.password = password;
-        this.email = email;
-    }
-
-    public User(int id, String firstName, String lastName, String country, String birthDay, String telephone) {
-        this.id=id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.country = country;
-        this.birthDay = birthDay;
-        this.telephone = telephone;
-    }
-
-    public User(int id, String login, String password, Date regDate, String email, int score, String firstName, String lastName, String country, String birthDay, String telephone) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-        this.regDate = regDate;
-        this.email = email;
-        this.score = score;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.country = country;
-        this.birthDay = birthDay;
-        this.telephone = telephone;
-    }
-
-    public User(Wallet wallet) {
-        this.wallet = wallet;
-    }
-
-    @Autowired
-    public void setWallet(Wallet wallet) {
-        this.wallet = wallet;
-    }
 }
 

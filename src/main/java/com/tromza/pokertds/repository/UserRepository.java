@@ -2,20 +2,13 @@ package com.tromza.pokertds.repository;
 
 
 import com.tromza.pokertds.domain.User;
-import com.tromza.pokertds.utils.UserMapper;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -33,38 +26,32 @@ public class UserRepository {
 
 
     public Optional<User> getUserById(int id) {
-        Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from User u where u.id=:userId");
-        query.setParameter("userId", id);
-        Optional<User> user = Optional.ofNullable((User) query.getSingleResult());
-        return user;
+        try {
+            Session session = sessionFactory.openSession();
+            Query query = session.createQuery("from User u where u.id=:userId");
+            query.setParameter("userId", id);
+            Optional<User> user = Optional.ofNullable((User) query.getSingleResult());
+            return user;
+        } catch (NoResultException e) {
+            return Optional.empty();
+        }
+    }
 
-        // try {
-        //     return Optional.of(template.queryForObject("SELECT u.id, u.login, u.password, u.registration_date, u.email, u.score,ud.first_name,ud.last_name, ud.country, ud.date_of_birth, ud.phone_number  FROM users as u JOIN users_data as ud ON u.id=ud.user_id WHERE u.id=?", new UserMapper(), id));
-        // } catch (DataAccessException e){
-        //     return Optional.empty();
-        // }
+
+    public Optional<ArrayList<User>> getAllUsers() {
+
+        try {
+            Session session = sessionFactory.openSession();
+            Query query = session.createQuery("from User");
+            Optional<ArrayList<User>> allUsers = Optional.of((ArrayList<User>) query.getResultList());
+            return allUsers;
+        } catch (NoResultException e) {
+            return Optional.empty();
+        }
     }
 }
-/*
-    public ArrayList<User> getAllUsers() {
-        ArrayList<User> allUsers = new ArrayList<>();
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/PokerAppDB", "postgres", "root")) {
-            PreparedStatement statement = connection.prepareStatement("SELECT u.id, u.login, u.password, u.registration_date, u.email, u.score,ud.first_name, ud.last_name, ud.country, ud.date_of_birth, ud.phone_number  FROM users as u JOIN users_data as ud ON u.id=ud.user_id");
-            ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                allUsers.add(new User(resultSet.getInt("id"), resultSet.getString("login"), resultSet.getString("password"),
-                        resultSet.getDate("registration_date"), resultSet.getString("email"), resultSet.getInt("score"), resultSet.getString("first_name"),
-                        resultSet.getString("last_name"), resultSet.getString("country"), resultSet.getTimestamp("date_of_birth").toString(), resultSet.getString("phone_number")));
-            }
-        } catch (SQLException e) {
-            System.out.println("something wrong....");
-        }
-        return (ArrayList<User>) template.query("SELECT u.id, u.login, u.password, u.registration_date, u.email, u.score,ud.first_name, ud.last_name, ud.country, ud.date_of_birth, ud.phone_number  FROM users as u JOIN users_data as ud ON u.id=ud.user_id", new UserMapper());
-    }
-
-    @Transactional
+  /*  @Transactional
     public boolean createUser(User user) {
 
         template.update("INSERT INTO users (id, login, password, email, registration_date, score) VALUES (DEFAULT, ?, ?, ?, ?, DEFAULT)", new Object[]{user.getLogin(), user.getPassword(), user.getEmail(), new Date((new java.util.Date()).getTime())});
