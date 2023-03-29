@@ -37,15 +37,12 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable int id) {
         Optional<User> user = UserService.getUserById(id);
-        if (user.isPresent()) {
-            return new ResponseEntity<>(user.get(), HttpStatus.ALREADY_REPORTED);
-        } else
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return user.map(value -> new ResponseEntity<>(value, HttpStatus.ALREADY_REPORTED)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     //@ResponseStatus(value=HttpStatus.CREATED)
     @PostMapping("/create")
-    public ResponseEntity createUser(@RequestBody @Valid User user, BindingResult bindingResult) {
+    public ResponseEntity<HttpStatus> createUser(@RequestBody @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             for (ObjectError o : bindingResult.getAllErrors()) {
                 log.warn("We have validation error: " + o);
@@ -58,8 +55,8 @@ public class UserController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity updateUser(@RequestBody User user) throws ParseException {
+    public ResponseEntity<HttpStatus> updateUser(@RequestBody User user) throws ParseException {
         userService.updateUser(user);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -1108,3 +1108,18 @@ java.lang.IllegalArgumentException: Invalid character found in method name [0x16
 
 2023-03-29 15:12:56.817  INFO 13304 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.createUser(User,BindingResult)started!
 2023-03-29 15:12:56.817  WARN 13304 --- [http-nio-8080-exec-5] c.t.pokertds.controller.UserController   : We have validation error: Field error in object 'user' on field 'password': rejected value [free]; codes [Size.user.password,Size.password,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.password,password]; arguments []; default message [password],2147483647,5]; default message [size must be between 5 and 2147483647]
+2023-03-29 15:26:39.315  INFO 8920 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 8920 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-03-29 15:26:39.317  INFO 8920 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-29 15:26:40.209  INFO 8920 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-29 15:26:40.214  INFO 8920 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-29 15:26:40.215  INFO 8920 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-29 15:26:40.356  INFO 8920 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-29 15:26:40.360  INFO 8920 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-29 15:26:40.360  INFO 8920 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1018 ms
+2023-03-29 15:26:41.736  INFO 8920 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-29 15:26:41.777  INFO 8920 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-29 15:26:41.787  INFO 8920 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 2.681 seconds (JVM running for 3.017)
+2023-03-29 15:26:41.882  INFO 8920 --- [RMI TCP Connection(1)-169.254.123.151] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-29 15:26:41.882  INFO 8920 --- [RMI TCP Connection(1)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-29 15:26:41.883  INFO 8920 --- [RMI TCP Connection(1)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-29 15:26:58.528  INFO 8920 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.getUserById(int)started!
