@@ -1,6 +1,7 @@
 package com.tromza.pokertds.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,12 +16,11 @@ import java.sql.Date;
 @Data
 @Entity
 @Table(name = "users")
-@SecondaryTables({
-        @SecondaryTable( name = "users_data"),
-        @SecondaryTable( name="wallets"),})
+@SecondaryTable(name = "users_data")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "users_id_seq_gen")
+    @SequenceGenerator(name="users_id_seq_gen", sequenceName = "users_table_id_seq", allocationSize = 1)
     private int id;
     @Column(name = "login")
     @Pattern(regexp = "[A-z0-9_-]*")
@@ -46,8 +46,9 @@ public class User {
     private String birthDay;
     @Column(table = "users_data",name = "phone_number")
     private String telephone;
-
-@Column(table = "wallets")
+@JsonManagedReference
+@OneToOne(cascade = CascadeType.ALL)
+@JoinColumn(name = "id",referencedColumnName = "user_id")
     private Wallet wallet;
 
     public User() {

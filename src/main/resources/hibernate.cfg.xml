@@ -11,12 +11,13 @@
         <property name="connection.password">root</property>
 
         <property name="dialect">org.hibernate.dialect.PostgreSQL82Dialect</property>
-        <property name="hbm2ddl.auto">none</property>
+        <property name="hbm2ddl.auto">update</property>
 
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
 
         <mapping class="com.tromza.pokertds.domain.User"/>
+        <mapping class="com.tromza.pokertds.domain.Wallet"/>
 
     </session-factory>
 </hibernate-configuration>

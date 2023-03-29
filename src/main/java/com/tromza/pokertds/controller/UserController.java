@@ -28,18 +28,18 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }// конструктор контроллера
-
+/*
     @GetMapping
     public ResponseEntity<ArrayList<User>> getAllUsers() {
         return new ResponseEntity<>(UserService.getAllUsers(), HttpStatus.ALREADY_REPORTED);
-    }
+    }*/
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable int id) {
         Optional<User> user = UserService.getUserById(id);
         return user.map(value -> new ResponseEntity<>(value, HttpStatus.ALREADY_REPORTED)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-
+/*
     //@ResponseStatus(value=HttpStatus.CREATED)
     @PostMapping("/create")
     public ResponseEntity<HttpStatus> createUser(@RequestBody @Valid User user, BindingResult bindingResult) {
@@ -59,4 +59,5 @@ public class UserController {
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+}*/
 }
