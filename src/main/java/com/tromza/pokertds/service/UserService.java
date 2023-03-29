@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -20,7 +21,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public static User getUserById(int id) {
+    public static Optional<User> getUserById(int id) {
         return userRepository.getUserById(id);
     }
 

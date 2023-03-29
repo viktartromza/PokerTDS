@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 @RestController // указываем, что контроллер в MVC
@@ -28,29 +30,36 @@ public class UserController {
     }// конструктор контроллера
 
     @GetMapping
-    public ArrayList<User> getAllUsers() {
-        return UserService.getAllUsers();
+    public ResponseEntity<ArrayList<User>> getAllUsers() {
+        return new ResponseEntity<>(UserService.getAllUsers(), HttpStatus.ALREADY_REPORTED);
     }
 
-    @GetMapping("/{id}")// указываем на какой метод откликается в HandlerMappinge и /доп для значения @PathVariable
-    public User getUserById(@PathVariable int id) {
-        //    log.info("doing/user Get method!");
-        return UserService.getUserById(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable int id) {
+        Optional<User> user = UserService.getUserById(id);
+        if (user.isPresent()) {
+            return new ResponseEntity<>(user.get(), HttpStatus.ALREADY_REPORTED);
+        } else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     //@ResponseStatus(value=HttpStatus.CREATED)
     @PostMapping("/create")
-    public void createUser(@RequestBody @Valid User user, BindingResult bindingResult) {
+    public ResponseEntity createUser(@RequestBody @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             for (ObjectError o : bindingResult.getAllErrors()) {
                 log.warn("We have validation error: " + o);
             }
-        }
-        else userService.createUser(user);
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        } else if(userService.createUser(user)){
+        return  new ResponseEntity<>(HttpStatus.CREATED);}
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @PutMapping("/update")
-    public void updateUser(@RequestBody User user) throws ParseException {
+    public ResponseEntity updateUser(@RequestBody User user) throws ParseException {
         userService.updateUser(user);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }
