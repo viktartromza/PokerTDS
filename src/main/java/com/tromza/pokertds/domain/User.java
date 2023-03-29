@@ -1,5 +1,6 @@
 package com.tromza.pokertds.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ public class User {
     @Pattern(regexp = "[A-z0-9_-]*")
     private String login;
     @Size(min = 5)
+    //@JsonIgnore
     private String password;
     private Date regDate;
     @Email
@@ -41,6 +43,20 @@ public class User {
 
     public User(int id, String firstName, String lastName, String country, String birthDay, String telephone) {
         this.id=id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.country = country;
+        this.birthDay = birthDay;
+        this.telephone = telephone;
+    }
+
+    public User(int id, String login, String password, Date regDate, String email, int score, String firstName, String lastName, String country, String birthDay, String telephone) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.regDate = regDate;
+        this.email = email;
+        this.score = score;
         this.firstName = firstName;
         this.lastName = lastName;
         this.country = country;

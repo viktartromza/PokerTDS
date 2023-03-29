@@ -2,91 +2,85 @@ package com.tromza.pokertds.repository;
 
 
 import com.tromza.pokertds.domain.User;
+import com.tromza.pokertds.utils.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 @Repository
+
 public class UserRepository {
+   public JdbcTemplate template;
+       @Autowired
+       public UserRepository(JdbcTemplate template) {
+        this.template = template;
+  }
+
 
     public User getUserById(int id) {
-        User user = new User();
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/PokerAppDB", "postgres", "root")) {
-            PreparedStatement statementAcc = connection.prepareStatement("SELECT * FROM users WHERE id=?");
-            statementAcc.setInt(1, id);
-            ResultSet resultSet = statementAcc.executeQuery();
 
-            resultSet.next();
-            user.setId(resultSet.getInt("id"));
-            user.setLogin(resultSet.getString("login"));
-            user.setPassword(resultSet.getString("password"));
-            user.setEmail(resultSet.getString("email"));
-            user.setRegDate(resultSet.getDate("registration_date"));
-            user.setScore(resultSet.getInt("score"));
-
-            PreparedStatement statementUserData = connection.prepareStatement("SELECT * FROM users_data WHERE user_id=?");
-            statementUserData.setInt(1, id);
-            ResultSet resultSetUD = statementUserData.executeQuery();
-
-            resultSetUD.next();
-            user.setFirstName(resultSetUD.getString("first_name"));
-            user.setLastName(resultSetUD.getString("last_name"));
-            user.setBirthDay(resultSetUD.getDate("date_of_birth").toString());
-            user.setTelephone(resultSetUD.getString("phone_number"));
-
-        } catch (SQLException e) {
-            System.out.println("something wrong....");
-        }
+        User user = template.queryForObject("SELECT u.id, u.login, u.password, u.registration_date, u.email, u.score,ud.first_name,ud.last_name, ud.country, ud.date_of_birth, ud.phone_number  FROM users as u JOIN users_data as ud ON u.id=ud.user_id WHERE u.id=?", new UserMapper(), id);
         return user;
     }
-    public boolean createUser(User user) {
-        int result = 0;
+
+    public ArrayList<User> getAllUsers() {
+        ArrayList<User> allUsers = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/PokerAppDB", "postgres", "root")) {
-            connection.setAutoCommit(false);
+            PreparedStatement statement = connection.prepareStatement("SELECT u.id, u.login, u.password, u.registration_date, u.email, u.score,ud.first_name, ud.last_name, ud.country, ud.date_of_birth, ud.phone_number  FROM users as u JOIN users_data as ud ON u.id=ud.user_id");
+            ResultSet resultSet = statement.executeQuery();
 
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (id, login, password, email, registration_date, score) VALUES (DEFAULT, ?, ?, ?, ?, DEFAULT)");
-            statement.setString(1, user.getLogin());
-            statement.setString(2, user.getPassword());
-            statement.setString(3, user.getEmail());
-            statement.setDate(4, new Date((new java.util.Date()).getTime()));
-            statement.executeUpdate();
-
-            PreparedStatement statementId = connection.prepareStatement("SELECT currval('users_id_seq')");
-            ResultSet resultSetId = statementId.executeQuery();
-            resultSetId.next();
-            int id = resultSetId.getInt(1);
-            System.out.println(id);
-
-            PreparedStatement statementChanged = connection.prepareStatement("INSERT INTO users_data (user_id, changed) VALUES (?,?)");
-            statementChanged.setInt(1, id);
-            statementChanged.setTimestamp(2, new Timestamp((new java.util.Date()).getTime()));
-            result = statementChanged.executeUpdate();
-            connection.commit();
+            while (resultSet.next()) {
+                allUsers.add(new User(resultSet.getInt("id"), resultSet.getString("login"), resultSet.getString("password"),
+                        resultSet.getDate("registration_date"), resultSet.getString("email"), resultSet.getInt("score"), resultSet.getString("first_name"),
+                        resultSet.getString("last_name"), resultSet.getString("country"), resultSet.getTimestamp("date_of_birth").toString(), resultSet.getString("phone_number")));
+            }
         } catch (SQLException e) {
             System.out.println("something wrong....");
         }
+        return (ArrayList<User>) template.query("SELECT u.id, u.login, u.password, u.registration_date, u.email, u.score,ud.first_name, ud.last_name, ud.country, ud.date_of_birth, ud.phone_number  FROM users as u JOIN users_data as ud ON u.id=ud.user_id",new UserMapper());
+    }
+             @Transactional
+    public boolean createUser(User user) {
+
+        template.update("INSERT INTO users (id, login, password, email, registration_date, score) VALUES (DEFAULT, ?, ?, ?, ?, DEFAULT)",new Object[]{user.getLogin(),user.getPassword(),user.getEmail(),new Date((new java.util.Date()).getTime())});
+        int id = template.queryForObject("SELECT currval('users_id_seq')", Integer.class);
+        System.out.println(id);
+        int result = template.update("INSERT INTO users_data (user_id, changed) VALUES (?,?)",new Object[]{id,new Timestamp((new java.util.Date()).getTime())});
         return result == 1;
     }
-    public boolean updateUser(User user) {
-        int result = 0;
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/PokerAppDB", "postgres", "root")) {
-            PreparedStatement statement = connection.prepareStatement("UPDATE users_data SET first_name=?, last_name=?, country=?, phone_number=?, date_of_birth=?, changed=? WHERE user_id=?");
-            statement.setString(1, user.getFirstName());
-            statement.setString(2, user.getLastName());
-            statement.setString(3, user.getCountry());
-            statement.setString(4, user.getTelephone());
-            statement.setTimestamp(5, new Timestamp(new SimpleDateFormat("dd/MM/yyyy").parse(user.getBirthDay()).getTime())); //TODO: CHANGE DATE
-            statement.setTimestamp(6, new Timestamp((new java.util.Date().getTime())));
-            statement.setInt(7, user.getId());
 
-            result = statement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("something wrong....");
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        return result == 1;
+    public boolean updateUser(User user) throws ParseException {
+        int result = 0;
+        System.out.println(user);
+       result =  template.update("UPDATE users_data SET first_name=?, last_name=?, country=?, phone_number=?, date_of_birth=?, changed=? WHERE user_id=?",new Object[]{user.getFirstName(),user.getLastName(),user.getCountry(),user.getTelephone(), new Timestamp(new SimpleDateFormat("yyyy-MM-dd").parse(user.getBirthDay()).getTime()), new Timestamp((new java.util.Date().getTime())), user.getId()});
+        //try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/PokerAppDB", "postgres", "root")) {
+           // PreparedStatement statement = connection.prepareStatement("UPDATE users_data SET first_name=?, last_name=?, country=?, phone_number=?, date_of_birth=?, changed=? WHERE user_id=?");
+           // statement.setString(1, user.getFirstName());
+           // statement.setString(2, user.getLastName());
+           // statement.setString(3, user.getCountry());
+           // statement.setString(4, user.getTelephone());
+           // statement.setTimestamp(5, new Timestamp(new SimpleDateFormat("dd/MM/yyyy").parse(user.getBirthDay()).getTime())); //TODO: CHANGE DATE without sec
+           // statement.setTimestamp(6, new Timestamp((new java.util.Date().getTime())));
+           // statement.setInt(7, user.getId());
+           // statement.executeUpdate();
+
+           // PreparedStatement statementLogin = connection.prepareStatement("SELECT login FROM users WHERE id=?");
+           // statementLogin.setInt(1, user.getId());
+           // ResultSet resultSet = statementLogin.executeQuery();
+           // resultSet.next();
+           // result = resultSet.getString("login");
+        //} catch (SQLException e) {
+         //   System.out.println("something wrong....");
+        //} catch (ParseException e) {
+         //   throw new RuntimeException(e);
+       // }
+        return result==0;
     }
 }

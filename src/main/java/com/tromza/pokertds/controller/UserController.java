@@ -2,20 +2,24 @@ package com.tromza.pokertds.controller;
 
 import com.tromza.pokertds.domain.User;
 import com.tromza.pokertds.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.util.ArrayList;
 
 
-@Controller // указываем, что контроллер в MVC
+@RestController // указываем, что контроллер в MVC
 @RequestMapping("/user") // указываем, на какой url откликается в HandlerMappinge
 public class UserController {
-
+    Logger log = LoggerFactory.getLogger(this.getClass());
     UserService userService;
 
     @Autowired
@@ -23,32 +27,30 @@ public class UserController {
         this.userService = userService;
     }// конструктор контроллера
 
-    @GetMapping("/{id}")// указываем на какой метод откликается в HandlerMappinge и /доп для значения @PathVariable
-    public String getUserById(@PathVariable int id, Model model) {
-        //    log.info("doing/user Get method!");
-        User user = UserService.getUserById(id);
-        model.addAttribute("user", user);
-        return "singleUser";
+    @GetMapping
+    public ArrayList<User> getAllUsers() {
+        return UserService.getAllUsers();
     }
 
+    @GetMapping("/{id}")// указываем на какой метод откликается в HandlerMappinge и /доп для значения @PathVariable
+    public User getUserById(@PathVariable int id) {
+        //    log.info("doing/user Get method!");
+        return UserService.getUserById(id);
+    }
+
+    //@ResponseStatus(value=HttpStatus.CREATED)
     @PostMapping("/create")
-    public String createUser(@ModelAttribute @Valid User user, BindingResult bindingResult) {
+    public void createUser(@RequestBody @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             for (ObjectError o : bindingResult.getAllErrors()) {
-                System.out.println(o);
+                log.warn("We have validation error: " + o);
             }
-            return "unsuccessfully";
-        } else if (userService.createUser(user)) {
-            return "successfully";
-        } else
-            return "unsuccessfully";
+        }
+        else userService.createUser(user);
     }
 
     @PutMapping("/update")
-    public String updateUser(@ModelAttribute User user) {
-        if (userService.updateUser(user))
-            return "successfully";
-        else
-            return "unsuccessfully";
+    public void updateUser(@RequestBody User user) throws ParseException {
+        userService.updateUser(user);
     }
 }

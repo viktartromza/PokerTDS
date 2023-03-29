@@ -7,6 +7,9 @@ import com.tromza.pokertds.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+
 @Service
 public class UserService {
 
@@ -16,16 +19,17 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-@GetTimeAnnotation
+
     public static User getUserById(int id) {
         return userRepository.getUserById(id);
     }
 
+    public static ArrayList<User> getAllUsers()  {return userRepository.getAllUsers();}
     public boolean createUser(User user) {
         return userRepository.createUser(user);
     }
 
-    public boolean updateUser(User user) {
+    public boolean updateUser(User user) throws ParseException {
         return userRepository.updateUser(user);
     }
     //
