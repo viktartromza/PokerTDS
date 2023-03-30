@@ -40,7 +40,7 @@ public class UserController {
         Optional<User> user = UserService.getUserById(id);
         return user.map(value -> new ResponseEntity<>(value, HttpStatus.ALREADY_REPORTED)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-/*
+
     //@ResponseStatus(value=HttpStatus.CREATED)
     @PostMapping("/create")
     public ResponseEntity<HttpStatus> createUser(@RequestBody @Valid User user, BindingResult bindingResult) {
@@ -54,11 +54,9 @@ public class UserController {
         else
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
-
     @PutMapping("/update")
     public ResponseEntity<HttpStatus> updateUser(@RequestBody User user) throws ParseException {
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-}*/
 }

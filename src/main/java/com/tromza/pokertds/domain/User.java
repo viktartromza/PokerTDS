@@ -17,19 +17,20 @@ import java.sql.Timestamp;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_seq_gen")
-    @SequenceGenerator(name = "users_id_seq_gen", sequenceName = "users_table_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "users_id_seq_gen", sequenceName = "users_id_seq", allocationSize = 1)
     private int id;
-    @Column(name = "login")
+    @Column(name = "login",updatable = false)
     @Pattern(regexp = "[A-z0-9_-]*")
     private String login;
     @Size(min = 5)
-    @Column(name = "password")
+    @Column(name = "password", updatable = false)
     //@JsonIgnore
     private String password;
-    @Column(name = "registration_date")
+    @Column(name = "registration_date",updatable = false)
     private Date regDate;
     @Email
-    @Column(name = "email")
+    @Column(name = "email",updatable = false)
+
     private String email;
     @Column(name = "score")
     private int score;
@@ -45,9 +46,9 @@ public class User {
     private String telephone;
     @Column(table = "users_data", name = "changed")
     private Timestamp changed;
-    @JsonManagedReference
+   /*
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "user_id")
-    private Wallet wallet;
+    private Wallet wallet;*/
 }
 

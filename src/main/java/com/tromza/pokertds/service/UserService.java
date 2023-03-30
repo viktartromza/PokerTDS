@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public static Optional<ArrayList<User>> getAllUsers()  {return userRepository.getAllUsers();}
-    /*
+
     public boolean createUser(User user) {
         return userRepository.createUser(user);
     }
@@ -34,6 +34,7 @@ public class UserService {
     public boolean updateUser(User user) throws ParseException {
         return userRepository.updateUser(user);
     }
+    /*
     //
     //public boolean deleteUser(int id) {
     //    int result = 0;

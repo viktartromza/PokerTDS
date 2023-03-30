@@ -85,3 +85,439 @@ java.lang.IllegalArgumentException: Invalid character found in method name [0x16
 2023-03-30 00:21:31.923  INFO 16248 --- [RMI TCP Connection(3)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2023-03-30 00:21:31.923  INFO 16248 --- [RMI TCP Connection(3)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
 2023-03-30 00:22:09.477  INFO 16248 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.getAllUsers()started!
+2023-03-30 11:02:19.361  INFO 21476 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 21476 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-03-30 11:02:19.363  INFO 21476 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-30 11:02:20.351  INFO 21476 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30 11:02:20.357  INFO 21476 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30 11:02:20.358  INFO 21476 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-30 11:02:20.513  INFO 21476 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-30 11:02:20.517  INFO 21476 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30 11:02:20.517  INFO 21476 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1126 ms
+2023-03-30 11:02:20.764  INFO 21476 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-30 11:02:21.001  INFO 21476 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-30 11:02:21.060  WARN 21476 --- [main] org.hibernate.orm.connections.pooling    : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2023-03-30 11:02:21.060  INFO 21476 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/PokerAppDB]
+2023-03-30 11:02:21.061  INFO 21476 --- [main] org.hibernate.orm.connections.pooling    : HHH10001001: Connection properties: {password=****, user=postgres}
+2023-03-30 11:02:21.061  INFO 21476 --- [main] org.hibernate.orm.connections.pooling    : HHH10001003: Autocommit mode: false
+2023-03-30 11:02:21.062  INFO 21476 --- [main] .c.i.DriverManagerConnectionProviderImpl : HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-03-30 11:02:21.165  INFO 21476 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL82Dialect
+2023-03-30 11:02:21.596  INFO 21476 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30 11:02:22.762  INFO 21476 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-30 11:02:22.802  INFO 21476 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30 11:02:22.813  INFO 21476 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 3.674 seconds (JVM running for 4.067)
+2023-03-30 11:02:23.026  INFO 21476 --- [RMI TCP Connection(1)-169.254.123.151] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30 11:02:23.026  INFO 21476 --- [RMI TCP Connection(1)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30 11:02:23.027  INFO 21476 --- [RMI TCP Connection(1)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-30 11:03:01.950  INFO 21476 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.getAllUsers()started!
+2023-03-30 11:03:41.735  INFO 21476 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.getUserById(int)started!
+2023-03-30 11:15:15.185  INFO 19044 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 19044 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-03-30 11:15:15.187  INFO 19044 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-30 11:15:16.125  INFO 19044 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30 11:15:16.130  INFO 19044 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30 11:15:16.131  INFO 19044 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-30 11:15:16.285  INFO 19044 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-30 11:15:16.290  INFO 19044 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30 11:15:16.290  INFO 19044 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1076 ms
+2023-03-30 11:15:16.534  INFO 19044 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-30 11:15:16.768  INFO 19044 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-30 11:15:16.826  WARN 19044 --- [main] org.hibernate.orm.connections.pooling    : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2023-03-30 11:15:16.827  INFO 19044 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/PokerAppDB]
+2023-03-30 11:15:16.827  INFO 19044 --- [main] org.hibernate.orm.connections.pooling    : HHH10001001: Connection properties: {password=****, user=postgres}
+2023-03-30 11:15:16.827  INFO 19044 --- [main] org.hibernate.orm.connections.pooling    : HHH10001003: Autocommit mode: false
+2023-03-30 11:15:16.829  INFO 19044 --- [main] .c.i.DriverManagerConnectionProviderImpl : HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-03-30 11:15:16.924  INFO 19044 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL82Dialect
+2023-03-30 11:15:17.330  INFO 19044 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30 11:15:18.491  INFO 19044 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-30 11:15:18.529  INFO 19044 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30 11:15:18.540  INFO 19044 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 3.562 seconds (JVM running for 3.935)
+2023-03-30 11:15:18.771  INFO 19044 --- [RMI TCP Connection(3)-169.254.123.151] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30 11:15:18.771  INFO 19044 --- [RMI TCP Connection(3)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30 11:15:18.772  INFO 19044 --- [RMI TCP Connection(3)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-30 11:17:10.836  WARN 19044 --- [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2023-03-30 11:18:48.034  INFO 22400 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 22400 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-03-30 11:18:48.035  INFO 22400 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-30 11:18:48.966  INFO 22400 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30 11:18:48.972  INFO 22400 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30 11:18:48.973  INFO 22400 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-30 11:18:49.127  INFO 22400 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-30 11:18:49.132  INFO 22400 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30 11:18:49.132  INFO 22400 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1068 ms
+2023-03-30 11:18:49.399  INFO 22400 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-30 11:18:49.638  INFO 22400 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-30 11:18:49.697  WARN 22400 --- [main] org.hibernate.orm.connections.pooling    : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2023-03-30 11:18:49.698  INFO 22400 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/PokerAppDB]
+2023-03-30 11:18:49.698  INFO 22400 --- [main] org.hibernate.orm.connections.pooling    : HHH10001001: Connection properties: {password=****, user=postgres}
+2023-03-30 11:18:49.698  INFO 22400 --- [main] org.hibernate.orm.connections.pooling    : HHH10001003: Autocommit mode: false
+2023-03-30 11:18:49.700  INFO 22400 --- [main] .c.i.DriverManagerConnectionProviderImpl : HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-03-30 11:18:49.798  INFO 22400 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL82Dialect
+2023-03-30 11:18:50.219  INFO 22400 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30 11:18:51.399  INFO 22400 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-30 11:18:51.439  INFO 22400 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30 11:18:51.450  INFO 22400 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 3.63 seconds (JVM running for 3.997)
+2023-03-30 11:18:51.579  INFO 22400 --- [RMI TCP Connection(2)-169.254.123.151] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30 11:18:51.579  INFO 22400 --- [RMI TCP Connection(2)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30 11:18:51.580  INFO 22400 --- [RMI TCP Connection(2)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-30 11:19:07.308  WARN 22400 --- [http-nio-8080-exec-2] .c.j.MappingJackson2HttpMessageConverter : Failed to evaluate Jackson deserialization for type [[simple type, class com.tromza.pokertds.domain.User]]: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot handle managed/back reference 'defaultReference': no back reference property found from type `com.tromza.pokertds.domain.Wallet`
+2023-03-30 11:19:07.309  WARN 22400 --- [http-nio-8080-exec-2] .c.j.MappingJackson2HttpMessageConverter : Failed to evaluate Jackson deserialization for type [[simple type, class com.tromza.pokertds.domain.User]]: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot handle managed/back reference 'defaultReference': no back reference property found from type `com.tromza.pokertds.domain.Wallet`
+2023-03-30 11:19:07.310  WARN 22400 --- [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/json;charset=UTF-8' not supported]
+2023-03-30 11:21:10.284  WARN 22400 --- [http-nio-8080-exec-5] .c.j.MappingJackson2HttpMessageConverter : Failed to evaluate Jackson deserialization for type [[simple type, class com.tromza.pokertds.domain.User]]: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot handle managed/back reference 'defaultReference': no back reference property found from type `com.tromza.pokertds.domain.Wallet`
+2023-03-30 11:21:10.285  WARN 22400 --- [http-nio-8080-exec-5] .c.j.MappingJackson2HttpMessageConverter : Failed to evaluate Jackson deserialization for type [[simple type, class com.tromza.pokertds.domain.User]]: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Cannot handle managed/back reference 'defaultReference': no back reference property found from type `com.tromza.pokertds.domain.Wallet`
+2023-03-30 11:21:10.286  WARN 22400 --- [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/json;charset=UTF-8' not supported]
+2023-03-30 11:22:57.151  INFO 13112 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 13112 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-03-30 11:22:57.153  INFO 13112 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-30 11:22:58.068  INFO 13112 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30 11:22:58.074  INFO 13112 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30 11:22:58.074  INFO 13112 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-30 11:22:58.229  INFO 13112 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-30 11:22:58.233  INFO 13112 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30 11:22:58.233  INFO 13112 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1053 ms
+2023-03-30 11:22:58.473  INFO 13112 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-30 11:22:58.703  INFO 13112 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-30 11:22:58.761  WARN 13112 --- [main] org.hibernate.orm.connections.pooling    : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2023-03-30 11:22:58.762  INFO 13112 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/PokerAppDB]
+2023-03-30 11:22:58.762  INFO 13112 --- [main] org.hibernate.orm.connections.pooling    : HHH10001001: Connection properties: {password=****, user=postgres}
+2023-03-30 11:22:58.762  INFO 13112 --- [main] org.hibernate.orm.connections.pooling    : HHH10001003: Autocommit mode: false
+2023-03-30 11:22:58.765  INFO 13112 --- [main] .c.i.DriverManagerConnectionProviderImpl : HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-03-30 11:22:58.862  INFO 13112 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL82Dialect
+2023-03-30 11:22:59.265  INFO 13112 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30 11:23:00.405  INFO 13112 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-30 11:23:00.445  INFO 13112 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30 11:23:00.456  INFO 13112 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 3.512 seconds (JVM running for 3.88)
+2023-03-30 11:23:00.890  INFO 13112 --- [RMI TCP Connection(1)-169.254.123.151] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30 11:23:00.890  INFO 13112 --- [RMI TCP Connection(1)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30 11:23:00.891  INFO 13112 --- [RMI TCP Connection(1)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-30 11:23:09.291  INFO 13112 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.createUser(User,BindingResult)started!
+2023-03-30 11:25:00.063  INFO 13112 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.createUser(User,BindingResult)started!
+2023-03-30 11:28:57.340  INFO 12648 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 12648 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-03-30 11:28:57.342  INFO 12648 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-30 11:28:58.256  INFO 12648 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30 11:28:58.262  INFO 12648 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30 11:28:58.262  INFO 12648 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-30 11:28:58.416  INFO 12648 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-30 11:28:58.420  INFO 12648 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30 11:28:58.420  INFO 12648 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1050 ms
+2023-03-30 11:28:58.647  INFO 12648 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-30 11:28:58.885  INFO 12648 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-30 11:28:58.944  WARN 12648 --- [main] org.hibernate.orm.connections.pooling    : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2023-03-30 11:28:58.944  INFO 12648 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/PokerAppDB]
+2023-03-30 11:28:58.944  INFO 12648 --- [main] org.hibernate.orm.connections.pooling    : HHH10001001: Connection properties: {password=****, user=postgres}
+2023-03-30 11:28:58.944  INFO 12648 --- [main] org.hibernate.orm.connections.pooling    : HHH10001003: Autocommit mode: false
+2023-03-30 11:28:58.946  INFO 12648 --- [main] .c.i.DriverManagerConnectionProviderImpl : HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-03-30 11:28:59.042  INFO 12648 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL82Dialect
+2023-03-30 11:28:59.443  INFO 12648 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30 11:29:00.609  INFO 12648 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-30 11:29:00.649  INFO 12648 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30 11:29:00.660  INFO 12648 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 3.529 seconds (JVM running for 3.892)
+2023-03-30 11:29:00.903  INFO 12648 --- [RMI TCP Connection(3)-169.254.123.151] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30 11:29:00.903  INFO 12648 --- [RMI TCP Connection(3)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30 11:29:00.904  INFO 12648 --- [RMI TCP Connection(3)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-30 11:29:22.138  INFO 17324 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 17324 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-03-30 11:29:22.139  INFO 17324 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-30 11:29:23.072  INFO 17324 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30 11:29:23.077  INFO 17324 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30 11:29:23.078  INFO 17324 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-30 11:29:23.235  INFO 17324 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-30 11:29:23.239  INFO 17324 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30 11:29:23.240  INFO 17324 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1072 ms
+2023-03-30 11:29:23.472  INFO 17324 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-30 11:29:23.701  INFO 17324 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-30 11:29:23.759  WARN 17324 --- [main] org.hibernate.orm.connections.pooling    : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2023-03-30 11:29:23.760  INFO 17324 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/PokerAppDB]
+2023-03-30 11:29:23.760  INFO 17324 --- [main] org.hibernate.orm.connections.pooling    : HHH10001001: Connection properties: {password=****, user=postgres}
+2023-03-30 11:29:23.760  INFO 17324 --- [main] org.hibernate.orm.connections.pooling    : HHH10001003: Autocommit mode: false
+2023-03-30 11:29:23.761  INFO 17324 --- [main] .c.i.DriverManagerConnectionProviderImpl : HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-03-30 11:29:23.855  INFO 17324 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL82Dialect
+2023-03-30 11:29:24.256  INFO 17324 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30 11:29:25.403  INFO 17324 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-30 11:29:25.442  INFO 17324 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30 11:29:25.452  INFO 17324 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 3.522 seconds (JVM running for 3.874)
+2023-03-30 11:29:25.703  INFO 17324 --- [RMI TCP Connection(3)-169.254.123.151] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30 11:29:25.703  INFO 17324 --- [RMI TCP Connection(3)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30 11:29:25.703  INFO 17324 --- [RMI TCP Connection(3)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-03-30 11:29:46.575  INFO 17324 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.createUser(User,BindingResult)started!
+2023-03-30 11:29:46.654  WARN 17324 --- [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 23502
+2023-03-30 11:29:46.654 ERROR 17324 --- [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : ОШИБКА: значение NULL в столбце "registration_date" отношения "users" нарушает ограничение NOT NULL
+  Detail: Ошибочная строка содержит (3, MrFirst, 1111111, adam@edem.ok, null, 0).
+2023-03-30 11:29:46.655  INFO 17324 --- [http-nio-8080-exec-1] o.h.e.j.b.internal.AbstractBatchImpl     : HHH000010: On release of batch it still contained JDBC statements
+2023-03-30 11:29:46.663 ERROR 17324 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is javax.persistence.PersistenceException: org.hibernate.exception.ConstraintViolationException: could not execute statement] with root cause
+
+org.postgresql.util.PSQLException: ОШИБКА: значение NULL в столбце "registration_date" отношения "users" нарушает ограничение NOT NULL
+  Detail: Ошибочная строка содержит (3, MrFirst, 1111111, adam@edem.ok, null, 0).
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675) ~[postgresql-42.3.8.jar:42.3.8]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365) ~[postgresql-42.3.8.jar:42.3.8]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355) ~[postgresql-42.3.8.jar:42.3.8]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490) ~[postgresql-42.3.8.jar:42.3.8]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408) ~[postgresql-42.3.8.jar:42.3.8]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:167) ~[postgresql-42.3.8.jar:42.3.8]
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135) ~[postgresql-42.3.8.jar:42.3.8]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:46) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3375) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3937) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:107) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:729) ~[na:na]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:344) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1407) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:489) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3303) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2438) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:449) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
+	at com.tromza.pokertds.repository.UserRepository.createUser(UserRepository.java:60) ~[classes/:na]
+	at com.tromza.pokertds.repository.UserRepository$$FastClassBySpringCGLIB$$26a89dd3.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708) ~[spring-aop-5.3.26.jar:5.3.26]
+	at com.tromza.pokertds.repository.UserRepository$$EnhancerBySpringCGLIB$$5ad97a9a.createUser(<generated>) ~[classes/:na]
+	at com.tromza.pokertds.service.UserService.createUser(UserService.java:31) ~[classes/:na]
+	at com.tromza.pokertds.controller.UserController.createUser(UserController.java:52) ~[classes/:na]
+	at com.tromza.pokertds.controller.UserController$$FastClassBySpringCGLIB$$6060af93.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708) ~[spring-aop-5.3.26.jar:5.3.26]
+	at com.tromza.pokertds.controller.UserController$$EnhancerBySpringCGLIB$$44fe02f4.createUser(<generated>) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:528) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96) ~[spring-boot-actuator-2.7.10.jar:2.7.10]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.base/java.lang.Thread.run(Thread.java:1589) ~[na:na]
+
+2023-03-30 11:38:48.787  INFO 6724 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 6724 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-03-30 11:38:48.788  INFO 6724 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-30 11:38:49.764  INFO 6724 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30 11:38:49.771  INFO 6724 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30 11:38:49.771  INFO 6724 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-30 11:38:49.946  INFO 6724 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-30 11:38:49.950  INFO 6724 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30 11:38:49.950  INFO 6724 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1134 ms
+2023-03-30 11:38:50.193  INFO 6724 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-30 11:38:50.427  INFO 6724 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-30 11:38:50.486  WARN 6724 --- [main] org.hibernate.orm.connections.pooling    : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2023-03-30 11:38:50.486  INFO 6724 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/PokerAppDB]
+2023-03-30 11:38:50.486  INFO 6724 --- [main] org.hibernate.orm.connections.pooling    : HHH10001001: Connection properties: {password=****, user=postgres}
+2023-03-30 11:38:50.486  INFO 6724 --- [main] org.hibernate.orm.connections.pooling    : HHH10001003: Autocommit mode: false
+2023-03-30 11:38:50.488  INFO 6724 --- [main] .c.i.DriverManagerConnectionProviderImpl : HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-03-30 11:38:50.578  INFO 6724 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL82Dialect
+2023-03-30 11:38:50.981  INFO 6724 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30 11:38:52.192  INFO 6724 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-30 11:38:52.232  INFO 6724 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30 11:38:52.242  INFO 6724 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 3.666 seconds (JVM running for 4.109)
+2023-03-30 11:38:52.760  INFO 6724 --- [RMI TCP Connection(3)-169.254.123.151] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30 11:38:52.760  INFO 6724 --- [RMI TCP Connection(3)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30 11:38:52.761  INFO 6724 --- [RMI TCP Connection(3)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-30 11:38:58.428  INFO 6724 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.createUser(User,BindingResult)started!
+2023-03-30 11:45:18.886  INFO 4356 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 4356 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-03-30 11:45:18.888  INFO 4356 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-30 11:45:19.797  INFO 4356 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30 11:45:19.803  INFO 4356 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30 11:45:19.803  INFO 4356 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-30 11:45:19.960  INFO 4356 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-30 11:45:19.965  INFO 4356 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30 11:45:19.965  INFO 4356 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1050 ms
+2023-03-30 11:45:20.224  INFO 4356 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-30 11:45:20.464  INFO 4356 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-30 11:45:20.523  WARN 4356 --- [main] org.hibernate.orm.connections.pooling    : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2023-03-30 11:45:20.523  INFO 4356 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/PokerAppDB]
+2023-03-30 11:45:20.523  INFO 4356 --- [main] org.hibernate.orm.connections.pooling    : HHH10001001: Connection properties: {password=****, user=postgres}
+2023-03-30 11:45:20.524  INFO 4356 --- [main] org.hibernate.orm.connections.pooling    : HHH10001003: Autocommit mode: false
+2023-03-30 11:45:20.526  INFO 4356 --- [main] .c.i.DriverManagerConnectionProviderImpl : HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-03-30 11:45:20.620  INFO 4356 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL82Dialect
+2023-03-30 11:45:21.026  INFO 4356 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30 11:45:22.168  INFO 4356 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-30 11:45:22.207  INFO 4356 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30 11:45:22.217  INFO 4356 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 3.541 seconds (JVM running for 3.928)
+2023-03-30 11:45:22.414  INFO 4356 --- [RMI TCP Connection(1)-169.254.123.151] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30 11:45:22.414  INFO 4356 --- [RMI TCP Connection(1)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30 11:45:22.415  INFO 4356 --- [RMI TCP Connection(1)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-30 11:46:04.199  INFO 4356 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.createUser(User,BindingResult)started!
+2023-03-30 12:03:13.910  INFO 4356 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.createUser(User,BindingResult)started!
+2023-03-30 12:03:13.910  WARN 4356 --- [http-nio-8080-exec-3] c.t.pokertds.controller.UserController   : We have validation error: Field error in object 'user' on field 'password': rejected value [22]; codes [Size.user.password,Size.password,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.password,password]; arguments []; default message [password],2147483647,5]; default message [size must be between 5 and 2147483647]
+2023-03-30 12:12:41.383  INFO 13712 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 13712 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-03-30 12:12:41.385  INFO 13712 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-30 12:12:42.300  INFO 13712 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30 12:12:42.306  INFO 13712 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30 12:12:42.306  INFO 13712 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-30 12:12:42.464  INFO 13712 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-30 12:12:42.468  INFO 13712 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30 12:12:42.469  INFO 13712 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1057 ms
+2023-03-30 12:12:42.702  INFO 13712 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-30 12:12:42.936  INFO 13712 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-30 12:12:42.994  WARN 13712 --- [main] org.hibernate.orm.connections.pooling    : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2023-03-30 12:12:42.995  INFO 13712 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/PokerAppDB]
+2023-03-30 12:12:42.995  INFO 13712 --- [main] org.hibernate.orm.connections.pooling    : HHH10001001: Connection properties: {password=****, user=postgres}
+2023-03-30 12:12:42.995  INFO 13712 --- [main] org.hibernate.orm.connections.pooling    : HHH10001003: Autocommit mode: false
+2023-03-30 12:12:42.998  INFO 13712 --- [main] .c.i.DriverManagerConnectionProviderImpl : HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-03-30 12:12:43.093  INFO 13712 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL82Dialect
+2023-03-30 12:12:43.490  INFO 13712 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30 12:12:44.631  INFO 13712 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-30 12:12:44.671  INFO 13712 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30 12:12:44.681  INFO 13712 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 3.507 seconds (JVM running for 3.915)
+2023-03-30 12:12:44.862  INFO 13712 --- [RMI TCP Connection(2)-169.254.123.151] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30 12:12:44.863  INFO 13712 --- [RMI TCP Connection(2)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30 12:12:44.863  INFO 13712 --- [RMI TCP Connection(2)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-03-30 12:16:28.439  INFO 15660 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 15660 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-03-30 12:16:28.440  INFO 15660 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-30 12:16:29.364  INFO 15660 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30 12:16:29.370  INFO 15660 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30 12:16:29.370  INFO 15660 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-30 12:16:29.526  INFO 15660 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-30 12:16:29.531  INFO 15660 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30 12:16:29.531  INFO 15660 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1062 ms
+2023-03-30 12:16:29.774  INFO 15660 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-30 12:16:30.019  INFO 15660 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-30 12:16:30.078  WARN 15660 --- [main] org.hibernate.orm.connections.pooling    : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2023-03-30 12:16:30.078  INFO 15660 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/PokerAppDB]
+2023-03-30 12:16:30.078  INFO 15660 --- [main] org.hibernate.orm.connections.pooling    : HHH10001001: Connection properties: {password=****, user=postgres}
+2023-03-30 12:16:30.079  INFO 15660 --- [main] org.hibernate.orm.connections.pooling    : HHH10001003: Autocommit mode: false
+2023-03-30 12:16:30.081  INFO 15660 --- [main] .c.i.DriverManagerConnectionProviderImpl : HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-03-30 12:16:30.177  INFO 15660 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL82Dialect
+2023-03-30 12:16:30.586  INFO 15660 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30 12:16:31.764  INFO 15660 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-30 12:16:31.804  INFO 15660 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30 12:16:31.814  INFO 15660 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 3.591 seconds (JVM running for 3.976)
+2023-03-30 12:16:31.958  INFO 15660 --- [RMI TCP Connection(1)-169.254.123.151] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30 12:16:31.958  INFO 15660 --- [RMI TCP Connection(1)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30 12:16:31.959  INFO 15660 --- [RMI TCP Connection(1)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-30 12:18:12.632  WARN 15660 --- [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' not supported]
+2023-03-30 12:19:02.530  INFO 15840 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 15840 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-03-30 12:19:02.532  INFO 15840 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-30 12:19:03.496  INFO 15840 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30 12:19:03.502  INFO 15840 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30 12:19:03.503  INFO 15840 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-30 12:19:03.662  INFO 15840 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-30 12:19:03.667  INFO 15840 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30 12:19:03.667  INFO 15840 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1103 ms
+2023-03-30 12:19:03.899  INFO 15840 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-30 12:19:04.135  INFO 15840 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-30 12:19:04.193  WARN 15840 --- [main] org.hibernate.orm.connections.pooling    : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2023-03-30 12:19:04.193  INFO 15840 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/PokerAppDB]
+2023-03-30 12:19:04.193  INFO 15840 --- [main] org.hibernate.orm.connections.pooling    : HHH10001001: Connection properties: {password=****, user=postgres}
+2023-03-30 12:19:04.193  INFO 15840 --- [main] org.hibernate.orm.connections.pooling    : HHH10001003: Autocommit mode: false
+2023-03-30 12:19:04.195  INFO 15840 --- [main] .c.i.DriverManagerConnectionProviderImpl : HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-03-30 12:19:04.289  INFO 15840 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL82Dialect
+2023-03-30 12:19:04.691  INFO 15840 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30 12:19:05.851  INFO 15840 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-30 12:19:05.901  INFO 15840 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30 12:19:05.916  INFO 15840 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 3.602 seconds (JVM running for 4.004)
+2023-03-30 12:19:06.029  INFO 15840 --- [RMI TCP Connection(1)-169.254.123.151] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30 12:19:06.029  INFO 15840 --- [RMI TCP Connection(1)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30 12:19:06.030  INFO 15840 --- [RMI TCP Connection(1)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-30 12:19:14.212  INFO 15840 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.updateUser(User)started!
+2023-03-30 12:21:19.069  INFO 19032 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 19032 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-03-30 12:21:19.070  INFO 19032 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-30 12:21:20.000  INFO 19032 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30 12:21:20.005  INFO 19032 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30 12:21:20.006  INFO 19032 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-30 12:21:20.161  INFO 19032 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-30 12:21:20.166  INFO 19032 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30 12:21:20.166  INFO 19032 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1067 ms
+2023-03-30 12:21:20.399  INFO 19032 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-30 12:21:20.641  INFO 19032 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-30 12:21:20.700  WARN 19032 --- [main] org.hibernate.orm.connections.pooling    : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2023-03-30 12:21:20.700  INFO 19032 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/PokerAppDB]
+2023-03-30 12:21:20.700  INFO 19032 --- [main] org.hibernate.orm.connections.pooling    : HHH10001001: Connection properties: {password=****, user=postgres}
+2023-03-30 12:21:20.700  INFO 19032 --- [main] org.hibernate.orm.connections.pooling    : HHH10001003: Autocommit mode: false
+2023-03-30 12:21:20.702  INFO 19032 --- [main] .c.i.DriverManagerConnectionProviderImpl : HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-03-30 12:21:20.798  INFO 19032 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL82Dialect
+2023-03-30 12:21:21.207  INFO 19032 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30 12:21:22.367  INFO 19032 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-30 12:21:22.406  INFO 19032 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30 12:21:22.414  INFO 19032 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 3.561 seconds (JVM running for 3.959)
+2023-03-30 12:21:22.592  INFO 19032 --- [RMI TCP Connection(2)-169.254.123.151] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30 12:21:22.592  INFO 19032 --- [RMI TCP Connection(2)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30 12:21:22.593  INFO 19032 --- [RMI TCP Connection(2)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-30 12:21:41.078  INFO 19032 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.updateUser(User)started!
+2023-03-30 12:25:34.561  INFO 16320 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 16320 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-03-30 12:25:34.563  INFO 16320 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-03-30 12:25:35.533  INFO 16320 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-30 12:25:35.540  INFO 16320 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-30 12:25:35.540  INFO 16320 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-03-30 12:25:35.693  INFO 16320 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-03-30 12:25:35.697  INFO 16320 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-30 12:25:35.697  INFO 16320 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1104 ms
+2023-03-30 12:25:35.937  INFO 16320 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-30 12:25:36.177  INFO 16320 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-30 12:25:36.234  WARN 16320 --- [main] org.hibernate.orm.connections.pooling    : HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2023-03-30 12:25:36.235  INFO 16320 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/PokerAppDB]
+2023-03-30 12:25:36.235  INFO 16320 --- [main] org.hibernate.orm.connections.pooling    : HHH10001001: Connection properties: {password=****, user=postgres}
+2023-03-30 12:25:36.235  INFO 16320 --- [main] org.hibernate.orm.connections.pooling    : HHH10001003: Autocommit mode: false
+2023-03-30 12:25:36.236  INFO 16320 --- [main] .c.i.DriverManagerConnectionProviderImpl : HHH000115: Hibernate connection pool size: 20 (min=1)
+2023-03-30 12:25:36.333  INFO 16320 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL82Dialect
+2023-03-30 12:25:36.741  INFO 16320 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-30 12:25:37.910  INFO 16320 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-03-30 12:25:37.952  INFO 16320 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-30 12:25:37.963  INFO 16320 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 3.616 seconds (JVM running for 4.01)
+2023-03-30 12:25:38.089  INFO 16320 --- [RMI TCP Connection(2)-169.254.123.151] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-30 12:25:38.089  INFO 16320 --- [RMI TCP Connection(2)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-30 12:25:38.090  INFO 16320 --- [RMI TCP Connection(2)-169.254.123.151] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-30 12:25:45.295  INFO 16320 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.updateUser(User)started!
+2023-03-30 12:36:30.631  INFO 16320 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.getUserById(int)started!
+2023-03-30 12:36:36.085  INFO 16320 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.getAllUsers()started!

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -37,9 +39,7 @@ public class UserRepository {
         }
     }
 
-
     public Optional<ArrayList<User>> getAllUsers() {
-
         try {
             Session session = sessionFactory.openSession();
             Query query = session.createQuery("from User");
@@ -49,22 +49,30 @@ public class UserRepository {
             return Optional.empty();
         }
     }
-}
 
-  /*  @Transactional
     public boolean createUser(User user) {
-
-        template.update("INSERT INTO users (id, login, password, email, registration_date, score) VALUES (DEFAULT, ?, ?, ?, ?, DEFAULT)", new Object[]{user.getLogin(), user.getPassword(), user.getEmail(), new Date((new java.util.Date()).getTime())});
-        int id = template.queryForObject("SELECT currval('users_id_seq')", Integer.class);
-        System.out.println(id);
-        int result = template.update("INSERT INTO users_data (user_id, changed) VALUES (?,?)", new Object[]{id, new Timestamp((new java.util.Date()).getTime())});
-        return result == 1;
+        //System.out.println(user);
+        user.setRegDate(new Date(System.currentTimeMillis()));
+        user.setChanged(new Timestamp(System.currentTimeMillis()));
+        Session session = sessionFactory.openSession();
+        session.save(user);
+        session.close();
+        return true;
     }
 
-    public boolean updateUser(User user) throws ParseException {
-        int result = 0;
-        System.out.println(user);
-        result = template.update("UPDATE users_data SET first_name=?, last_name=?, country=?, phone_number=?, date_of_birth=?, changed=? WHERE user_id=?", new Object[]{user.getFirstName(), user.getLastName(), user.getCountry(), user.getTelephone(), new Timestamp(new SimpleDateFormat("yyyy-MM-dd").parse(user.getBirthDay()).getTime()), new Timestamp((new java.util.Date().getTime())), user.getId()});
+    public boolean updateUser(User user) {
+        String name = user.getFirstName();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        user.setChanged(new Timestamp(System.currentTimeMillis()));
+        user.setFirstName(name);
+        session.update(user);
+        session.getTransaction().commit();
+        session.close();
+        return true;
+        // int result = 0;
+        // System.out.println(user);
+        // result = template.update("UPDATE users_data SET first_name=?, last_name=?, country=?, phone_number=?, date_of_birth=?, changed=? WHERE user_id=?", new Object[]{user.getFirstName(), user.getLastName(), user.getCountry(), user.getTelephone(), new Timestamp(new SimpleDateFormat("yyyy-MM-dd").parse(user.getBirthDay()).getTime()), new Timestamp((new java.util.Date().getTime())), user.getId()});
         //try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/PokerAppDB", "postgres", "root")) {
         // PreparedStatement statement = connection.prepareStatement("UPDATE users_data SET first_name=?, last_name=?, country=?, phone_number=?, date_of_birth=?, changed=? WHERE user_id=?");
         // statement.setString(1, user.getFirstName());
@@ -86,7 +94,5 @@ public class UserRepository {
         //} catch (ParseException e) {
         //   throw new RuntimeException(e);
         // }
-        return result == 0;
     }
 }
-*/
