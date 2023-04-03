@@ -7,13 +7,16 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
-@Component
 @Entity
 @Table(name = "wallets")
 public class Wallet {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "wallets_id_seq_gen")
     private int id;
-    private int userId;
+
+    @Column(name = "balance")
     private BigDecimal balance;
+    @OneToOne(mappedBy = "wallet")
+    private User user;
+
 }

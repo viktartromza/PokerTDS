@@ -48,9 +48,9 @@ public class User {
     @Column(table = "users_data", name = "changed")
     private Timestamp changed;
 
-      /*
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "user_id")
-    private Wallet wallet;*/
+    @JoinColumn(name = "wallet_id", referencedColumnName = "id")
+    private Wallet wallet;
 }
 
