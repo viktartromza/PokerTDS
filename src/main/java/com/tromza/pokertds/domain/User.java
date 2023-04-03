@@ -2,6 +2,9 @@ package com.tromza.pokertds.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
@@ -13,6 +16,8 @@ import java.sql.Timestamp;
 @Data
 @Entity
 @Table(name = "users")
+@ToString(exclude = "wallet")
+@EqualsAndHashCode(exclude = "wallet")
 @SecondaryTable(name = "users_data",pkJoinColumns=@PrimaryKeyJoinColumn(name="user_id"))
 public class User {
 
@@ -48,7 +53,7 @@ public class User {
     @Column(table = "users_data", name = "changed")
     private Timestamp changed;
 
-
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "wallet_id", referencedColumnName = "id")
     private Wallet wallet;
