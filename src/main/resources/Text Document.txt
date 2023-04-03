@@ -1,4 +1,13 @@
 
+create sequence users_table_id_seq;
+
+alter sequence users_table_id_seq owner to postgres;
+
+create sequence wallets_id_seq_gen
+    increment by 50;
+
+alter sequence wallets_id_seq_gen owner to postgres;
+
 create table users
 (
     id                bigserial
@@ -19,7 +28,7 @@ alter table users
 create table users_data
 (
     id            bigserial
-        primary key,
+        unique,
     user_id       bigint                                                               not null
         unique
         constraint users_data_fk
@@ -28,10 +37,52 @@ create table users_data
     last_name     varchar   default 'unknown'::bpchar,
     country       varchar   default 'unknown'::bpchar,
     phone_number  varchar   default 'unknown'::bpchar,
-    date_of_birth timestamp default '2000-01-01 00:00:00'::timestamp without time zone,
+    date_of_birth date      default '2000-01-01 00:00:00'::timestamp without time zone,
     changed       timestamp default '2000-01-01 00:00:00'::timestamp without time zone not null
 );
 
 alter table users_data
+    owner to postgres;
+
+create table wallets
+(
+    id      bigserial
+        unique,
+    user_id integer
+        unique
+        constraint wallets_users_id_fk
+            references users,
+    balance numeric default 0.00
+);
+
+alter table wallets
+    owner to postgres;
+
+create table games
+(
+    id          bigserial
+        unique,
+    type        varchar   not null,
+    time_create timestamp not null,
+    finish      timestamp,
+    status      varchar
+);
+
+alter table games
+    owner to postgres;
+
+create table users_games
+(
+    id      bigserial
+        unique,
+    game_id integer not null
+        constraint users_games_games_id_fk
+            references games (id),
+    user_id integer not null
+        constraint users_games_users_id_fk
+            references users
+);
+
+alter table users_games
     owner to postgres;
 

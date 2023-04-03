@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 @Table(name = "users")
 @SecondaryTable(name = "users_data",pkJoinColumns=@PrimaryKeyJoinColumn(name="user_id"))
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_seq_gen")
     @SequenceGenerator(name = "users_id_seq_gen", sequenceName = "users_id_seq", allocationSize = 1)
@@ -46,7 +47,8 @@ public class User {
     private String telephone;
     @Column(table = "users_data", name = "changed")
     private Timestamp changed;
-   /*
+
+      /*
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "user_id")
     private Wallet wallet;*/

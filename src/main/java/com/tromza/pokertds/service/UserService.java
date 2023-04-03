@@ -2,6 +2,7 @@ package com.tromza.pokertds.service;
 
 
 import com.tromza.pokertds.annotation.GetTimeAnnotation;
+import com.tromza.pokertds.domain.Game;
 import com.tromza.pokertds.domain.User;
 import com.tromza.pokertds.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class UserService {
     public boolean updateUser(User user) throws ParseException {
         return userRepository.updateUser(user);
     }
+    public  Optional<ArrayList<Game>> getGamesForSingleUser(User user)  {return userRepository.getGamesForSingleUser(user);}
+
+    public void addGameToUser (User user, Game game) { userRepository.addGameToUser(user, game);}
     /*
     //
     //public boolean deleteUser(int id) {

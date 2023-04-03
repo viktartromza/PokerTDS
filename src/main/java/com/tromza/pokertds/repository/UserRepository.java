@@ -1,10 +1,13 @@
 package com.tromza.pokertds.repository;
 
 
+import com.tromza.pokertds.domain.Game;
 import com.tromza.pokertds.domain.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
@@ -25,7 +28,7 @@ public class UserRepository {
         this.sessionFactory = new Configuration().configure().buildSessionFactory();
         // this.template = template;
     }
-
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     public Optional<User> getUserById(int id) {
         try {
@@ -43,29 +46,32 @@ public class UserRepository {
         try {
             Session session = sessionFactory.openSession();
             Query query = session.createQuery("from User");
-            Optional<ArrayList<User>> allUsers = Optional.of((ArrayList<User>) query.getResultList());
-            return allUsers;
+            return Optional.of((ArrayList<User>) query.getResultList());
         } catch (NoResultException e) {
             return Optional.empty();
         }
     }
 
     public boolean createUser(User user) {
-        //System.out.println(user);
+        System.out.println(user);
         user.setRegDate(new Date(System.currentTimeMillis()));
         user.setChanged(new Timestamp(System.currentTimeMillis()));
+        System.out.println(user);
         Session session = sessionFactory.openSession();
+        session.beginTransaction();
         session.save(user);
+        session.getTransaction().commit();
+        System.out.println(user);
         session.close();
         return true;
     }
 
     public boolean updateUser(User user) {
-        String name = user.getFirstName();
+        //String name = user.getFirstName();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         user.setChanged(new Timestamp(System.currentTimeMillis()));
-        user.setFirstName(name);
+        //user.setFirstName(name);
         session.update(user);
         session.getTransaction().commit();
         session.close();
@@ -94,5 +100,33 @@ public class UserRepository {
         //} catch (ParseException e) {
         //   throw new RuntimeException(e);
         // }
+
+
     }
+
+    public Optional<ArrayList<Game>> getGamesForSingleUser(User user) {
+        try {
+            Session session = sessionFactory.openSession();
+            Query query = session.createNativeQuery("SELECT g.id, g.type, g.time_create, g.finish, g.status FROM users_games JOIN games as g ON users_games.game_id = g.id WHERE users_games.user_id=:userId");
+            query.setParameter("userId", user.getId());
+            Optional<ArrayList<Game>> games = Optional.of((ArrayList<Game>) query.getResultList());
+            session.close();
+            return games;
+        } catch (NoResultException e) {
+            return Optional.empty();
+        }
+    }
+
+    public void addGameToUser (User user, Game game){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Query query = session.createNativeQuery("INSERT INTO users_games (id, game_id, user_id) VALUES (DEFAULT, :gameId, :userId)");
+        query.setParameter("gameId",game.getId());
+        query.setParameter("userId", user.getId());
+        int result = query.executeUpdate();
+        session.getTransaction().commit();
+        session.close();
+        log.info("Game with id: " + game.getId() + " added to user with id:" + user.getId() + "result: "+ result);
+    }
+
 }
