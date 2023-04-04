@@ -1,15 +1,18 @@
 package com.tromza.pokertds.service;
 
 
-import com.tromza.pokertds.annotation.GetTimeAnnotation;
 import com.tromza.pokertds.domain.Game;
 import com.tromza.pokertds.domain.User;
 import com.tromza.pokertds.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,19 +26,23 @@ public class UserService {
     }
 
     public static Optional<User> getUserById(int id) {
-        return userRepository.getUserById(id);
+        return userRepository.findById(id);
     }
 
-    public static Optional<ArrayList<User>> getAllUsers()  {return userRepository.getAllUsers();}
-
-    public boolean createUser(User user) {
-        return userRepository.createUser(user);
+    public static List<User> getAllUsers()  {return userRepository.findAll();}
+@Transactional
+    public User createUser(User user) {
+        user.setRegDate(new Date(System.currentTimeMillis()));
+        user.setChanged(new Timestamp(System.currentTimeMillis()));
+        return userRepository.save(user);
     }
-
-    public boolean updateUser(User user) throws ParseException {
-        return userRepository.updateUser(user);
+@Transactional
+    public User updateUser(User user) throws ParseException {
+    user.setChanged(new Timestamp(System.currentTimeMillis()));
+        return userRepository.saveAndFlush(user);
     }
-    public  Optional<ArrayList<Game>> getGamesForSingleUser(User user)  {return userRepository.getGamesForSingleUser(user);}
+    /*public  Optional<ArrayList<Game>> getGamesForSingleUser(User user)  {
+        return userRepository.getGamesForSingleUser(user);}
 
     public void addGameToUser (User user, Game game) { userRepository.addGameToUser(user, game);}
     /*

@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
@@ -18,9 +19,9 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Repository
-public class UserRepository {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
-    private final SessionFactory sessionFactory;
+    /*private final SessionFactory sessionFactory;
     // public JdbcTemplate template;
 
 
@@ -128,5 +129,5 @@ public class UserRepository {
         session.close();
         log.info("Game with id: " + game.getId() + " added to user with id:" + user.getId() + "result: "+ result);
     }
-
+*/
 }

@@ -24,7 +24,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_seq_gen")
     @SequenceGenerator(name = "users_id_seq_gen", sequenceName = "users_id_seq", allocationSize = 1)
-    private int id;
+    private Integer id;
     @Column(name = "login",updatable = false)
     @Pattern(regexp = "[A-z0-9_-]*")
     private String login;

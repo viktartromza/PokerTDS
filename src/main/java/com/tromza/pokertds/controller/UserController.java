@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -30,9 +31,9 @@ public class UserController {
     }// конструктор контроллера
 
     @GetMapping
-    public ResponseEntity<ArrayList<User>> getAllUsers() {
-        Optional<ArrayList<User>> allUsers = UserService.getAllUsers();
-        return allUsers.map(value->new ResponseEntity<>(value, HttpStatus.ALREADY_REPORTED)).orElseGet(()->new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> allUsers = UserService.getAllUsers();
+        return new ResponseEntity<>(allUsers, HttpStatus.ALREADY_REPORTED);
     }
 
     @GetMapping("/{id}")
@@ -49,17 +50,16 @@ public class UserController {
                 log.warn("We have validation error: " + o);
             }
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        } else if(userService.createUser(user)){
+        } else {userService.createUser(user);
         return  new ResponseEntity<>(HttpStatus.CREATED);}
-        else
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+
     }
     @PutMapping("/update")
     public ResponseEntity<HttpStatus> updateUser(@RequestBody User user) throws ParseException {
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-        @GetMapping("/games")
+       /* @GetMapping("/games")
         public ResponseEntity<ArrayList<Game>> getGamesForSingleUser(@RequestBody User user) throws ParseException {
             Optional<ArrayList<Game>> games = userService.getGamesForSingleUser(user);
             return games.map(value->new ResponseEntity<> (value, HttpStatus.ALREADY_REPORTED)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -73,5 +73,5 @@ public class UserController {
         userService.addGameToUser(user,game);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
+*/
 }
