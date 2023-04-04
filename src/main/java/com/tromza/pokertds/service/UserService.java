@@ -41,8 +41,9 @@ public class UserService {
     user.setChanged(new Timestamp(System.currentTimeMillis()));
         return userRepository.saveAndFlush(user);
     }
-    /*public  Optional<ArrayList<Game>> getGamesForSingleUser(User user)  {
-        return userRepository.getGamesForSingleUser(user);}
+
+
+    /*
 
     public void addGameToUser (User user, Game game) { userRepository.addGameToUser(user, game);}
     /*

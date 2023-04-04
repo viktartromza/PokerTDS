@@ -6,14 +6,22 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 @Repository
-public class GameRepository {
+public interface GameRepository extends JpaRepository<Game,Integer> {
 
-    private final SessionFactory sessionFactory;
+    @Query(value = "SELECT g.id, g.type, g.time_create, g.finish, g.status FROM users_games JOIN games as g ON users_games.game_id = g.id WHERE users_games.user_id=:userId", nativeQuery = true)
+    Optional<ArrayList<Game>> getGamesForSingleUser(@Param("userId") int id);
+
+   /* private final SessionFactory sessionFactory;
     // public JdbcTemplate template;
 
 
@@ -33,4 +41,6 @@ public class GameRepository {
         log.info("Game with id: " + game.getId() + " created at " + new Date(System.currentTimeMillis()));
         session.close();
     }
+
+    */
 }

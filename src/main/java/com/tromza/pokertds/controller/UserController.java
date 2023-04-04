@@ -59,11 +59,8 @@ public class UserController {
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-       /* @GetMapping("/games")
-        public ResponseEntity<ArrayList<Game>> getGamesForSingleUser(@RequestBody User user) throws ParseException {
-            Optional<ArrayList<Game>> games = userService.getGamesForSingleUser(user);
-            return games.map(value->new ResponseEntity<> (value, HttpStatus.ALREADY_REPORTED)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+
+    /*
     @PostMapping("/game/{user_id},{game_id}")
     public ResponseEntity<HttpStatus> addGameToUser (@PathVariable int user_id, @PathVariable int game_id){
         User user = new User();
