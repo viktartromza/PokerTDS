@@ -17,13 +17,13 @@ public class BetRoulette {
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
     private BetType type;
-
     @Column(name = "amount")
     private double amount;
-    @Column (name = "player_choise")
-    private String playerChoice;
     @Column(name = "roulette_number")
     private int rouletteNumber;
-
+    @Column (name = "player_choise")
+    private String playerChoice;
+    @Column(name ="winning_amount")
+    private double winAmount;
 
 }

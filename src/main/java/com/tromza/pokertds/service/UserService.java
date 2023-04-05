@@ -43,9 +43,7 @@ public class UserService {
     }
 
 
-    /*
-
-    public void addGameToUser (User user, Game game) { userRepository.addGameToUser(user, game);}
+    public void addGameToUser (User user, Game game) {userRepository.addGameToUser(game.getId(),user.getId());}
     /*
     //
     //public boolean deleteUser(int id) {

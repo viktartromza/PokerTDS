@@ -1,12 +1,11 @@
 package com.tromza.pokertds.controller;
 
-import com.tromza.pokertds.GameLogic.Roulette;
+
 import com.tromza.pokertds.domain.*;
-import com.tromza.pokertds.request.RoulettePlayRequest;
+import com.tromza.pokertds.request.RouletteWithBet;
 import com.tromza.pokertds.service.GameService;
 import com.tromza.pokertds.service.RouletteService;
 import com.tromza.pokertds.service.UserService;
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +26,10 @@ public class RouletteController {
     }
 
 
-
+    /**
+     * @param user
+     * @return new roulette game
+     */
     @PostMapping("/")
     public ResponseEntity<RouletteGame> createRoulette(@RequestBody User user) {
         Game game = new Game();
@@ -35,18 +37,20 @@ public class RouletteController {
         game = gameService.createGame(game);
         RouletteGame rouletteGame = new RouletteGame();
         rouletteGame.setGameId(game.getId());
-
-        //userService.addGameToUser;TODO вносить запись в линковочную базу
+        userService.addGameToUser(user, game);
         return new ResponseEntity<>(rouletteService.createRouletteGame(rouletteGame), HttpStatus.CREATED);
     }
 
-    @PostMapping("/play")
-    public ResponseEntity<RouletteGame> playingGame(@RequestBody BetRoulette bet) {
-        RouletteGame rouletteGame = rouletteService.getRouletteGameById(bet.getGameId()).orElseGet(null);
+    @PutMapping("/")
+    public ResponseEntity<RouletteWithBet> playingGame(@RequestBody BetRoulette bet) {
+        RouletteGame rouletteGame = rouletteService.getRouletteGameByGameId(bet.getGameId()).orElseGet(null);
         rouletteService.saveBetRoulette(bet);
-//TODO
+        RouletteWithBet rouletteWithBet = new RouletteWithBet(rouletteGame, bet);
+        RouletteWithBet updRouletteWithBet = rouletteService.play(rouletteWithBet);
+        rouletteService.updateRouletteGame(updRouletteWithBet.getRouletteGame());
+        rouletteService.updateBetRoulette(updRouletteWithBet.getBetRoulette());
 
-        return new ResponseEntity<>(rouletteGame, HttpStatus.CREATED);
+        return new ResponseEntity<>(updRouletteWithBet, HttpStatus.ACCEPTED);
 
     }
 }

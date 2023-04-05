@@ -60,7 +60,6 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    /*
     @PostMapping("/game/{user_id},{game_id}")
     public ResponseEntity<HttpStatus> addGameToUser (@PathVariable int user_id, @PathVariable int game_id){
         User user = new User();
@@ -70,5 +69,4 @@ public class UserController {
         userService.addGameToUser(user,game);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-*/
 }
