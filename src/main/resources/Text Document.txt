@@ -1,14 +1,14 @@
+create table public.wallets
+(
+    id      bigserial
+        unique,
+    balance numeric default 0.00
+);
 
-create sequence users_table_id_seq;
+alter table public.wallets
+    owner to postgres;
 
-alter sequence users_table_id_seq owner to postgres;
-
-create sequence wallets_id_seq_gen
-    increment by 50;
-
-alter sequence wallets_id_seq_gen owner to postgres;
-
-create table users
+create table public.users
 (
     id                bigserial
         primary key
@@ -19,20 +19,24 @@ create table users
     email             varchar not null
         unique,
     registration_date date    not null,
-    score             numeric default 0.00
+    score             numeric default 0.00,
+    wallet_id         integer
+        constraint users_wallets_id_fk
+            references public.wallets (id)
+            on update cascade on delete cascade
 );
 
-alter table users
+alter table public.users
     owner to postgres;
 
-create table users_data
+create table public.users_data
 (
     id            bigserial
         unique,
     user_id       bigint                                                               not null
         unique
         constraint users_data_fk
-            references users,
+            references public.users,
     first_name    varchar   default 'unknown'::bpchar,
     last_name     varchar   default 'unknown'::bpchar,
     country       varchar   default 'unknown'::bpchar,
@@ -41,24 +45,10 @@ create table users_data
     changed       timestamp default '2000-01-01 00:00:00'::timestamp without time zone not null
 );
 
-alter table users_data
+alter table public.users_data
     owner to postgres;
 
-create table wallets
-(
-    id      bigserial
-        unique,
-    user_id integer
-        unique
-        constraint wallets_users_id_fk
-            references users,
-    balance numeric default 0.00
-);
-
-alter table wallets
-    owner to postgres;
-
-create table games
+create table public.games
 (
     id          bigserial
         unique,
@@ -68,21 +58,55 @@ create table games
     status      varchar
 );
 
-alter table games
+alter table public.games
     owner to postgres;
 
-create table users_games
+create table public.users_games
 (
     id      bigserial
         unique,
     game_id integer not null
         constraint users_games_games_id_fk
-            references games (id),
+            references public.games (id),
     user_id integer not null
         constraint users_games_users_id_fk
-            references users
+            references public.users
 );
 
-alter table users_games
+alter table public.users_games
+    owner to postgres;
+
+create table public.roulette_games
+(
+    id      bigserial
+        unique,
+    game_id integer not null
+        unique
+        constraint roulette_games_games_id_fk
+            references public.games (id),
+    spin    integer,
+    wins    integer,
+    losses  integer,
+    result  numeric
+);
+
+alter table public.roulette_games
+    owner to postgres;
+
+create table public.bets_roulette
+(
+    id              bigserial
+        unique,
+    game_id         integer not null
+        constraint bets_roulette_roulette_games_game_id_fk
+            references public.roulette_games (game_id),
+    type            varchar not null,
+    amount          numeric,
+    roulette_number integer,
+    player_choise   varchar,
+    winning_amount  numeric default 0
+);
+
+alter table public.bets_roulette
     owner to postgres;
 
