@@ -1,8 +1,11 @@
 package com.tromza.pokertds.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -22,5 +25,10 @@ public class RouletteGame {
     private int losses;
     @Column(name = "result")
     private double result;
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private GameStatus status;
+    @Column(name = "changed")
+    private Timestamp changed;
 
 }

@@ -18,8 +18,15 @@ import java.util.Optional;
 @Repository
 public interface GameRepository extends JpaRepository<Game,Integer> {
 
-    @Query(value = "SELECT g.id, g.type, g.time_create, g.finish, g.status FROM users_games JOIN games as g ON users_games.game_id = g.id WHERE users_games.user_id=:userId", nativeQuery = true)
-    Optional<ArrayList<Game>> getGamesForSingleUser(@Param("userId") int id);
+    @Query(value = "SELECT g.id, g.type, g.time_create, g.finish, g.status, g.result FROM users_games JOIN games as g ON users_games.game_id = g.id WHERE users_games.user_id=:userId", nativeQuery = true)
+    ArrayList<Game> getGamesForSingleUser(@Param("userId") int id);
+
+
+    Optional<Game> getGameById(int id);
+
+    @Query(value = "SELECT g.id, g.type, g.time_create, g.finish, g.status, g.result FROM users_games JOIN games as g ON users_games.game_id = g.id WHERE users_games.user_id=:userId AND g.type='ROULETTE_EU' AND g.status='IN_PROCESS'", nativeQuery = true)
+    Optional <Game> getRouletteGameInProcess (@Param("userId") int id);
+
 
    /* private final SessionFactory sessionFactory;
     // public JdbcTemplate template;

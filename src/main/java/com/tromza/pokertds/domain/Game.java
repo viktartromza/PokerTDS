@@ -26,5 +26,6 @@ public class Game {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private GameStatus status;
-
+    @Column(name = "result")
+    private Double result;
    }

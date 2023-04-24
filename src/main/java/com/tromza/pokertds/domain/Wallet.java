@@ -11,8 +11,8 @@ import java.math.BigDecimal;
 
 @Data
 @Entity
-@ToString(exclude = {"user"})
-@EqualsAndHashCode(exclude = {"user"})
+//@ToString(exclude = {"user"})
+//@EqualsAndHashCode(exclude = {"user"})
 @Table(name = "wallets")
 public class Wallet {
     @Id
@@ -21,8 +21,8 @@ public class Wallet {
 
     @Column(name = "balance")
     private BigDecimal balance;
-    @JsonBackReference
-    @OneToOne(mappedBy = "wallet")
-    private User user;
+
+    @Column(name = "user_id")
+    private int userId;
 
 }

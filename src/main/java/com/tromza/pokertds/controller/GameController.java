@@ -2,23 +2,19 @@ package com.tromza.pokertds.controller;
 
 
 import com.tromza.pokertds.domain.Game;
-
-import com.tromza.pokertds.domain.User;
+import com.tromza.pokertds.response.ResponseGameInfo;
 import com.tromza.pokertds.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.text.ParseException;
+import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Optional;
+
 
 @RestController
-@RequestMapping("/game")
+@RequestMapping("/games")
 public class GameController {
     GameService gameService;
 
@@ -27,15 +23,20 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<HttpStatus> createGame(@RequestBody Game game) {
-
-        gameService.createGame(game);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    @GetMapping("/")
+    public ResponseEntity<ArrayList<Game>> getGamesForAnotherUser(@RequestParam(value = "userId") int id) {
+        ArrayList<Game> games = gameService.getGamesForSingleUserById(id);
+        return new ResponseEntity<>(games, HttpStatus.ALREADY_REPORTED);
     }
-    @GetMapping("/user")
-    public ResponseEntity<ArrayList<Game>> getGamesForSingleUser(@RequestBody User user) throws ParseException {
-        Optional<ArrayList<Game>> games = gameService.getGamesForSingleUser(user);
-        return games.map(value->new ResponseEntity<> (value, HttpStatus.ALREADY_REPORTED)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
+    @GetMapping("/info")
+    public ResponseEntity<ArrayList<Game>> getGamesForUser(Principal principal) {
+        ArrayList<Game> games = gameService.getGamesForSingleUser(principal);
+        return new ResponseEntity<>(games, HttpStatus.ALREADY_REPORTED);
+    }
+
+    @GetMapping("/info/{id}")
+    public ResponseEntity<ResponseGameInfo> getGameInfo(@PathVariable int id) {
+        return new ResponseEntity<>(gameService.getGameInfoById(id), HttpStatus.ALREADY_REPORTED);
     }
 }

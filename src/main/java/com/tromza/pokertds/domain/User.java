@@ -1,5 +1,6 @@
 package com.tromza.pokertds.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,28 +19,33 @@ import java.sql.Timestamp;
 @Table(name = "users")
 @ToString(exclude = "wallet")
 @EqualsAndHashCode(exclude = "wallet")
-@SecondaryTable(name = "users_data",pkJoinColumns=@PrimaryKeyJoinColumn(name="user_id"))
+@SecondaryTable(name = "users_data", pkJoinColumns = @PrimaryKeyJoinColumn(name = "user_id"))
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_seq_gen")
     @SequenceGenerator(name = "users_id_seq_gen", sequenceName = "users_id_seq", allocationSize = 1)
     private Integer id;
-    @Column(name = "login",updatable = false)
-    @Pattern(regexp = "[A-z0-9_-]*")
+    @Column(name = "login", updatable = false)
     private String login;
-    @Size(min = 5)
+    @JsonIgnore
     @Column(name = "password", updatable = false)
     //@JsonIgnore
     private String password;
-    @Column(name = "registration_date",updatable = false)
+    @Column(name = "registration_date", updatable = false)
     private Date regDate;
-    @Email
-    @Column(name = "email",updatable = false)
-
+    @Column(name = "email", updatable = false)
     private String email;
     @Column(name = "score")
-    private int score;
+    private double score;
+    @JsonIgnore
+    @Column(name = "role")
+    private String role;
+    @JsonIgnore
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
+
+
     @Column(table = "users_data", name = "first_name")
     private String firstName;
     @Column(table = "users_data", name = "last_name")
@@ -50,12 +56,13 @@ public class User {
     private Date birthDay;
     @Column(table = "users_data", name = "phone_number")
     private String telephone;
+    @JsonIgnore
     @Column(table = "users_data", name = "changed")
     private Timestamp changed;
 
-    @JsonManagedReference
+  /*  @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "wallet_id", referencedColumnName = "id")
-    private Wallet wallet;
+    private Wallet wallet;*/
 }
 
