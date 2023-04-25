@@ -32,32 +32,14 @@ public class WalletController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<HttpStatus> createWalletForUser(Principal principal) {
-        String res = walletService.createWalletForPrincipal(principal);
-        HttpStatus httpStatus;
-        switch (res) {
-            case "User don't found":
-                httpStatus = HttpStatus.NOT_FOUND;
-                break;
-            case "Wallet has already been!":
-                httpStatus = HttpStatus.CONFLICT;
-                break;
-            case "User data isn't enough":
-                httpStatus = HttpStatus.FORBIDDEN;
-                break;
-            case "Done":
-                httpStatus = HttpStatus.CREATED;
-                break;
-            default:
-                httpStatus = HttpStatus.EXPECTATION_FAILED;
-                break;
-        }
-        return new ResponseEntity<>(httpStatus);
-    }
+    public ResponseEntity<Wallet> createWalletForUser(Principal principal){
 
+            return new ResponseEntity<>(walletService.createWalletForPrincipal(principal), HttpStatus.CREATED);
+
+    }
     @PutMapping("/")
-    public  ResponseEntity<Wallet> transferWallet (@RequestBody UserMoneyAmount userMoney) {
-         Wallet wallet = walletService.updateWallet(userMoney);
-         return new ResponseEntity<>(wallet,HttpStatus.OK);
+    public ResponseEntity<Wallet> transferWallet(@RequestBody UserMoneyAmount userMoney) {
+        Wallet wallet = walletService.updateWallet(userMoney);
+        return new ResponseEntity<>(wallet, HttpStatus.OK);
     }
 }

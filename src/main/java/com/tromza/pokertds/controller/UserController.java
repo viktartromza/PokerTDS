@@ -14,15 +14,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 
-@RestController // указываем, что контроллер в MVC
-@RequestMapping("/users") // указываем, на какой url откликается в HandlerMappinge
+@RestController
+@RequestMapping("/users")
 public class UserController {
     Logger log = LoggerFactory.getLogger(this.getClass());
     private final UserService userService;
@@ -51,12 +51,14 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<User> createUser(@RequestBody @Valid RequestUserRegistration userRegistration, BindingResult bindingResult) {
+    public ResponseEntity createUser(@RequestBody @Valid RequestUserRegistration userRegistration, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            List<String> errors = new ArrayList<>();
             for (ObjectError o : bindingResult.getAllErrors()) {
                 log.warn("We have validation error: " + o);
+                errors.add(o.getDefaultMessage());
             }
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(errors,HttpStatus.NOT_ACCEPTABLE);
         } else {
             return new ResponseEntity<>(userService.createUser(userRegistration), HttpStatus.CREATED);
         }

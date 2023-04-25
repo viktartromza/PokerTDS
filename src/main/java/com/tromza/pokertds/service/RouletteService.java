@@ -3,11 +3,13 @@ package com.tromza.pokertds.service;
 import com.tromza.pokertds.domain.*;
 import com.tromza.pokertds.repository.BetRepository;
 import com.tromza.pokertds.repository.RouletteRepository;
+import com.tromza.pokertds.repository.UserRepository;
 import com.tromza.pokertds.request.RouletteWithBet;
 import com.tromza.pokertds.request.UserMoneyAmount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -25,14 +27,18 @@ public class RouletteService {
     WalletService walletService;
     GameService gameService;
     UserService userService;
+    UserRepository userRepository;
+    EmailService emailService;
 
     @Autowired
-    public RouletteService(BetRepository betRepository, RouletteRepository rouletteRepository, WalletService walletService, GameService gameService, UserService userService) {
+    public RouletteService(BetRepository betRepository, RouletteRepository rouletteRepository, WalletService walletService, GameService gameService, UserService userService, UserRepository userRepository, EmailService emailService) {
         this.betRepository = betRepository;
         this.rouletteRepository = rouletteRepository;
         this.walletService = walletService;
         this.gameService = gameService;
         this.userService = userService;
+        this.userRepository = userRepository;
+        this.emailService = emailService;
     }
 
     public Optional<RouletteGame> getRouletteGameById(int id) {
@@ -118,10 +124,9 @@ public class RouletteService {
         } else {
             rouletteGame.setStatus(GameStatus.COMPLETED);
             rouletteGame.setChanged(new Timestamp(System.currentTimeMillis()));
-            game.setStatus(GameStatus.COMPLETED);
-            game.setFinish(new Timestamp(System.currentTimeMillis()));
             game.setResult(rouletteGame.getResult());
             user.setScore(user.getScore() + rouletteGame.getResult());
+            gameService.finishGame(game);
             userService.saveUser(user);
             walletService.updateWallet(new UserMoneyAmount(user.getId(), BigDecimal.valueOf(rouletteGame.getResult())));
             return updateRouletteGame(rouletteGame);
@@ -133,16 +138,54 @@ public class RouletteService {
         return finishRouletteGame(rouletteGame, principal);
     }
 
-    @Scheduled(cron = "${interval-in-cron}")
+    public void finishRouletteGameAutomatically(RouletteGame rouletteGame){
+        Game game = gameService.getGameById(rouletteGame.getGameId()).orElseThrow(()->new NoSuchElementException("Game not found!"));
+        User user = userRepository.findUserIdByGameId(rouletteGame.getGameId()).map(userId->userRepository.findById(userId)).get().orElseThrow(()->new NoSuchElementException("User not found"));
+        rouletteGame.setStatus(GameStatus.COMPLETED);
+        rouletteGame.setChanged(new Timestamp(System.currentTimeMillis()));
+        game.setResult(rouletteGame.getResult());
+        user.setScore(user.getScore() + rouletteGame.getResult());
+        gameService.finishGame(game);
+        userService.saveUser(user);
+        walletService.updateWallet(new UserMoneyAmount(user.getId(), BigDecimal.valueOf(rouletteGame.getResult())));
+        updateRouletteGame(rouletteGame);
+        log.info("Roulette-game" +rouletteGame.getId()+ "was finished automatically");
+        String email = rouletteRepository.findEmailByGameId(rouletteGame.getGameId());
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(email);
+        mailMessage.setSubject("Your game was finished automatically");
+        mailMessage.setText("Dear player, your roulette-game was finished automatically");
+        emailService.sendEmail(mailMessage);
+        //TODO email
+    }
+
+    @Scheduled(cron = "${interval-in-cron-check}")
     public void findNoPlayedRouletteGames() {
         Timestamp time = new Timestamp(System.currentTimeMillis() - 3600000);
         ArrayList<RouletteGame> rouletteGames = rouletteRepository.findAllByStatusIsInProcessAndChangedBefore(time);
         if (rouletteGames.isEmpty()) {
             log.info("There aren't roulette that not changed more than 1 hour!");
         } else {
-            rouletteGames.forEach(roulette -> {log.info("RouletteGame with id" + roulette.getId() + " haven't been changed more than 1 hour!");
-            log.info("email " + rouletteRepository.findEmailByGameId(roulette.getGameId()));
-            });//TODO
+            rouletteGames.forEach(roulette -> {
+                log.info("RouletteGame with id" + roulette.getId() + " haven't been changed more than 1 hour!");
+                String email = rouletteRepository.findEmailByGameId(roulette.getGameId());
+                SimpleMailMessage mailMessage = new SimpleMailMessage();
+                mailMessage.setTo(email);
+                mailMessage.setSubject("Your game will be finished automatically");
+                mailMessage.setText("Dear player, your roulette-game will be finished automatically");
+                emailService.sendEmail(mailMessage);
+            });//TODO email
+        }
+    }
+
+    @Scheduled(cron = "${interval-in-cron-finish}")
+    public void finishNoPlayedRouletteGames() {
+        Timestamp time = new Timestamp(System.currentTimeMillis() - 5400000);
+        ArrayList<RouletteGame> rouletteGames = rouletteRepository.findAllByStatusIsInProcessAndChangedBefore(time);
+        if (rouletteGames.isEmpty()) {
+            log.info("There aren't roulette that not changed more than 1,5 hour!");
+        } else {
+            rouletteGames.forEach(this::finishRouletteGameAutomatically);
         }
     }
 

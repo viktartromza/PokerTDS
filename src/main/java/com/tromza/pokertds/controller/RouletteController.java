@@ -1,6 +1,5 @@
 package com.tromza.pokertds.controller;
 
-
 import com.tromza.pokertds.domain.*;
 import com.tromza.pokertds.request.RouletteWithBet;
 import com.tromza.pokertds.service.GameService;
@@ -13,9 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Optional;

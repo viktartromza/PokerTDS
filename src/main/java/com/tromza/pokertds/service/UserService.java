@@ -3,26 +3,19 @@ package com.tromza.pokertds.service;
 
 import com.tromza.pokertds.domain.Game;
 import com.tromza.pokertds.domain.User;
-import com.tromza.pokertds.domain.Wallet;
 import com.tromza.pokertds.repository.UserRepository;
-import com.tromza.pokertds.repository.WalletRepository;
 import com.tromza.pokertds.request.RequestUserRegistration;
 import com.tromza.pokertds.request.RequestUserUpdate;
 import com.tromza.pokertds.response.ResponseOtherUserInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.security.Principal;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 

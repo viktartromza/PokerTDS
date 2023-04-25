@@ -5,10 +5,8 @@ import com.tromza.pokertds.domain.Wallet;
 import com.tromza.pokertds.repository.UserRepository;
 import com.tromza.pokertds.repository.WalletRepository;
 import com.tromza.pokertds.request.UserMoneyAmount;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.NoSuchElementException;
@@ -43,21 +41,19 @@ public class WalletService {
         return walletRepository.save(wallet);
     }
 
-    public String createWalletForPrincipal(Principal principal) {
-
+    public Wallet createWalletForPrincipal(Principal principal){
         Optional<User> user = userRepository.findUserByLogin(principal.getName());
         if (user.isEmpty()) {
-            return "User don't found";
+            throw new UsernameNotFoundException("User with login " + principal.getName() + " not found!");
         } else if (walletRepository.findWalletByUserId(user.get().getId()).isPresent()) {
-            return "Wallet has already been!";
-        } else if (user.get().getFirstName()==null || user.get().getLastName()==null || user.get().getCountry()==null || user.get().getTelephone()==null) {
-            return "User data isn't enough";
+            throw new UnsupportedOperationException("Wallet has already been!");
+        } else if (user.get().getFirstName() == null || user.get().getLastName() == null || user.get().getCountry() == null || user.get().getTelephone() == null) {
+            throw new SecurityException("User data isn't enough");
         } else {
             Wallet wallet = new Wallet();
             wallet.setUserId(user.get().getId());
             wallet.setBalance(BigDecimal.valueOf(0));
-            walletRepository.save(wallet);
-            return "Done";
+            return walletRepository.save(wallet);
         }
     }
 
@@ -85,7 +81,11 @@ public class WalletService {
     public Wallet withdrawWallet(UserMoneyAmount userMoney) {
         Wallet wallet = getWalletByUserId(userMoney.getUserId()).orElseThrow(() -> new NoSuchElementException("User hasn't wallet!!!"));
         BigDecimal oldBalance = wallet.getBalance();
-        wallet.setBalance(oldBalance.add(userMoney.getAmount()));
-        return walletRepository.saveAndFlush(wallet);
+        if (oldBalance.compareTo(userMoney.getAmount().negate()) < 0) {
+throw new UnsupportedOperationException("Wallet has only "+ oldBalance + "$");
+        } else {
+            wallet.setBalance(oldBalance.add(userMoney.getAmount()));
+            return walletRepository.saveAndFlush(wallet);
+        }
     }
 }

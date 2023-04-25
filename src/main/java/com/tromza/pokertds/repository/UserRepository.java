@@ -24,4 +24,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     void addGameToUser(@Param("gameId") int gameId, @Param("userId") int userId);
 
     Optional<User> findUserByLogin(String login);
+
+    @Query(value = "SELECT user_id FROM users_games WHERE users_games.game_id=:gameId", nativeQuery = true)
+    Optional<Integer> findUserIdByGameId(@Param("gameId") int gameId);
     }
