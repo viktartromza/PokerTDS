@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 public class Wallet {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "wallets_id_seq_gen")
+    @SequenceGenerator(name = "wallets_id_seq_gen", sequenceName = "wallets_id_seq", allocationSize = 1)
     private int id;
 
     @Column(name = "balance")

@@ -65,4 +65,8 @@ public class GameService {
         return gameRepository.getRouletteGameInProcess(userId);
     }
 
+    public Optional<Game> findTexasHoldemGameInProcess(int userId) {
+        return gameRepository.getTexasHoldemGameInProcess(userId);
+    }
+
 }
