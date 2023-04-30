@@ -1,4 +1,4 @@
-package com.tromza.pokertds.request;
+package com.tromza.pokertds.response;
 
 import com.tromza.pokertds.domain.BetRoulette;
 import com.tromza.pokertds.domain.RouletteGame;

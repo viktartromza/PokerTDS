@@ -4,5 +4,4 @@ public enum BetType {
     EVEN,
     ODD,
     NUMBER
-
 }

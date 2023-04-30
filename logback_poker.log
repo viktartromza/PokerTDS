@@ -1,353 +1,338 @@
-2023-04-25 00:14:39.869  INFO 20336 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 20336 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
-2023-04-25 00:14:39.873  INFO 20336 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
-2023-04-25 00:14:40.511  INFO 20336 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-04-25 00:14:40.559  INFO 20336 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 5 JPA repository interfaces.
-2023-04-25 00:14:41.199  INFO 20336 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-04-25 00:14:41.207  INFO 20336 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-04-25 00:14:41.208  INFO 20336 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2023-04-25 00:14:41.437  INFO 20336 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2023-04-25 00:14:41.447  INFO 20336 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-04-25 00:14:41.448  INFO 20336 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1543 ms
-2023-04-25 00:14:41.873  INFO 20336 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-04-25 00:14:41.920  INFO 20336 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-04-25 00:14:42.045  INFO 20336 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-04-25 00:14:42.179  INFO 20336 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2023-04-25 00:14:42.703  INFO 20336 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-04-25 00:14:42.710  INFO 20336 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 00:14:43.396  INFO 20336 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6a77953c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1c294a17, org.springframework.security.web.context.SecurityContextPersistenceFilter@75937998, org.springframework.security.web.header.HeaderWriterFilter@578483bd, org.springframework.security.web.authentication.logout.LogoutFilter@163cd4a6, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@365eaef, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3b863b4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@130bd00e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7a458c73, org.springframework.security.web.session.SessionManagementFilter@58e9e852, org.springframework.security.web.access.ExceptionTranslationFilter@34d644b5, org.springframework.security.web.access.intercept.AuthorizationFilter@701a79b]
-2023-04-25 00:14:43.464  WARN 20336 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-04-25 00:14:44.523  INFO 20336 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
-2023-04-25 00:14:44.567  INFO 20336 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-04-25 00:14:44.580  INFO 20336 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 4.991 seconds (JVM running for 5.466)
-2023-04-25 00:14:44.924  INFO 20336 --- [RMI TCP Connection(3)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-04-25 00:14:44.927  INFO 20336 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-04-25 00:14:44.929  INFO 20336 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2023-04-25 00:16:00.129  INFO 20336 --- [scheduling-1] c.t.pokertds.service.RouletteService     : RouletteGame with id1 haven't been changed more than 1 hour!
-2023-04-25 00:16:00.285  INFO 20336 --- [scheduling-1] c.t.pokertds.service.RouletteService     : email brsm@mail.ru
-2023-04-25 00:16:00.285  INFO 20336 --- [scheduling-1] c.t.pokertds.service.RouletteService     : RouletteGame with id3 haven't been changed more than 1 hour!
-2023-04-25 00:16:00.324  INFO 20336 --- [scheduling-1] c.t.pokertds.service.RouletteService     : email vitya_2000@tut.by
-2023-04-25 00:16:00.324  INFO 20336 --- [scheduling-1] c.t.pokertds.service.RouletteService     : RouletteGame with id2 haven't been changed more than 1 hour!
-2023-04-25 00:16:00.367  INFO 20336 --- [scheduling-1] c.t.pokertds.service.RouletteService     : email vitya_2000@tut.by
-2023-04-25 00:17:00.608 ERROR 20336 --- [scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+2023-04-30 00:37:40.024  INFO 17568 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 17568 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-04-30 00:37:40.031  INFO 17568 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-04-30 00:37:40.748  INFO 17568 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-30 00:37:40.801  INFO 17568 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 6 JPA repository interfaces.
+2023-04-30 00:37:41.460  INFO 17568 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-30 00:37:41.467  INFO 17568 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-30 00:37:41.467  INFO 17568 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-04-30 00:37:41.668  INFO 17568 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-04-30 00:37:41.673  INFO 17568 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-30 00:37:41.673  INFO 17568 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1608 ms
+2023-04-30 00:37:42.195  INFO 17568 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-30 00:37:42.245  INFO 17568 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-04-30 00:37:42.393  INFO 17568 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-30 00:37:42.530  INFO 17568 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-04-30 00:37:43.041  INFO 17568 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-30 00:37:43.047  INFO 17568 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-30 00:37:43.796  INFO 17568 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5dc90de7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3071d086, org.springframework.security.web.context.SecurityContextPersistenceFilter@597084b7, org.springframework.security.web.header.HeaderWriterFilter@7c424dfe, org.springframework.security.web.authentication.logout.LogoutFilter@7e113065, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@31773d5b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@a6fc2e1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@11b234aa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@20711b02, org.springframework.security.web.session.SessionManagementFilter@4a234e1f, org.springframework.security.web.access.ExceptionTranslationFilter@4ac2b4c6, org.springframework.security.web.access.intercept.AuthorizationFilter@6eb6750f]
+2023-04-30 00:37:43.879  WARN 17568 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-30 00:37:44.973  INFO 17568 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-04-30 00:37:45.019  INFO 17568 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-30 00:37:45.034  INFO 17568 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 5.282 seconds (JVM running for 5.801)
+2023-04-30 00:37:45.130  INFO 17568 --- [RMI TCP Connection(3)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-30 00:37:45.130  INFO 17568 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-04-30 00:37:45.131  INFO 17568 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-04-30 00:38:14.937  INFO 17568 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.createTexasHoldem(Principal)started!
+2023-04-30 00:38:15.014  INFO 17568 --- [http-nio-8080-exec-4] c.t.pokertds.service.TexasHoldemService  : User with id: 52 has texas holdem in process
+2023-04-30 00:38:15.017  WARN 17568 --- [http-nio-8080-exec-4] c.t.p.exceptions.ExceptionResolver       : class java.util.NoSuchElementExceptionNo value present
+2023-04-30 00:39:42.511  INFO 17568 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-30 00:39:47.796  INFO 10868 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 10868 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-04-30 00:39:47.798  INFO 10868 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-04-30 00:39:48.298  INFO 10868 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-30 00:39:48.345  INFO 10868 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 6 JPA repository interfaces.
+2023-04-30 00:39:48.888  INFO 10868 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-30 00:39:48.893  INFO 10868 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-30 00:39:48.893  INFO 10868 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-04-30 00:39:49.064  INFO 10868 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-04-30 00:39:49.068  INFO 10868 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-30 00:39:49.068  INFO 10868 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1240 ms
+2023-04-30 00:39:49.407  INFO 10868 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-30 00:39:49.440  INFO 10868 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-04-30 00:39:49.539  INFO 10868 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-30 00:39:49.653  INFO 10868 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-04-30 00:39:50.084  INFO 10868 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-30 00:39:50.090  INFO 10868 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-30 00:39:50.790  INFO 10868 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@130a99fe, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@31773d5b, org.springframework.security.web.context.SecurityContextPersistenceFilter@7c424dfe, org.springframework.security.web.header.HeaderWriterFilter@50165a6d, org.springframework.security.web.authentication.logout.LogoutFilter@65689000, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@61c98f5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6d4bb60f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@23c0fcf0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5bbf8daa, org.springframework.security.web.session.SessionManagementFilter@2c555efb, org.springframework.security.web.access.ExceptionTranslationFilter@6e43c01f, org.springframework.security.web.access.intercept.AuthorizationFilter@3678f32e]
+2023-04-30 00:39:50.867  WARN 10868 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-30 00:39:51.914  INFO 10868 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-04-30 00:39:51.960  INFO 10868 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-30 00:39:51.972  INFO 10868 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 4.383 seconds (JVM running for 4.745)
+2023-04-30 00:39:52.486  INFO 10868 --- [RMI TCP Connection(3)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-30 00:39:52.486  INFO 10868 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-04-30 00:39:52.487  INFO 10868 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-04-30 00:40:11.378  INFO 10868 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.createTexasHoldem(Principal)started!
+2023-04-30 00:40:11.438  INFO 10868 --- [http-nio-8080-exec-1] c.t.pokertds.service.TexasHoldemService  : User with id: 52 has texas holdem in process
+2023-04-30 00:43:24.751  WARN 10868 --- [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'text/plain;charset=UTF-8' not supported]
+2023-04-30 00:44:11.532  INFO 10868 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.playingGame(Principal,BetPoker,BindingResult)started!
+2023-04-30 00:44:11.590 ERROR 10868 --- [http-nio-8080-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "String.isEmpty()" because the return value of "com.tromza.pokertds.domain.TexasHoldemGame.getFlop()" is null] with root cause
 
-java.util.NoSuchElementException: User hasn't wallet!!!
-	at com.tromza.pokertds.service.WalletService.lambda$withdrawWallet$0(WalletService.java:86) ~[classes/:na]
-	at java.base/java.util.Optional.orElseThrow(Optional.java:403) ~[na:na]
-	at com.tromza.pokertds.service.WalletService.withdrawWallet(WalletService.java:86) ~[classes/:na]
-	at com.tromza.pokertds.service.WalletService.updateWallet(WalletService.java:66) ~[classes/:na]
-	at com.tromza.pokertds.service.RouletteService.finishRouletteGameAutomatically(RouletteService.java:149) ~[classes/:na]
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
-	at com.tromza.pokertds.service.RouletteService.finishNoPlayedRouletteGames(RouletteService.java:175) ~[classes/:na]
+java.lang.NullPointerException: Cannot invoke "String.isEmpty()" because the return value of "com.tromza.pokertds.domain.TexasHoldemGame.getFlop()" is null
+	at com.tromza.pokertds.service.TexasHoldemService.playTexasHoldem(TexasHoldemService.java:123) ~[classes/:na]
+	at com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(TexasHoldemService.java:89) ~[classes/:na]
+	at com.tromza.pokertds.controller.TexasHoldemController.playingGame(TexasHoldemController.java:49) ~[classes/:na]
+	at com.tromza.pokertds.controller.TexasHoldemController$$FastClassBySpringCGLIB$$9d025610.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708) ~[spring-aop-5.3.26.jar:5.3.26]
+	at com.tromza.pokertds.controller.TexasHoldemController$$EnhancerBySpringCGLIB$$fe7d36a7.playingGame(<generated>) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:578) ~[na:na]
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) ~[spring-context-5.3.26.jar:5.3.26]
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-5.3.26.jar:5.3.26]
-	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95) ~[spring-context-5.3.26.jar:5.3.26]
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577) ~[na:na]
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:531) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:337) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:96) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:198) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:112) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:82) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:221) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:186) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96) ~[spring-boot-actuator-2.7.10.jar:2.7.10]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
 	at java.base/java.lang.Thread.run(Thread.java:1589) ~[na:na]
 
-2023-04-25 00:24:44.849  INFO 20336 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.WalletController.getWalletForUser(Principal)started!
-2023-04-25 00:24:56.071  INFO 20336 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.WalletController.transferWallet(UserMoneyAmount)started!
-2023-04-25 00:25:06.153  INFO 20336 --- [http-nio-8080-exec-8] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.createRoulette(Principal)started!
-2023-04-25 00:25:16.163  INFO 20336 --- [http-nio-8080-exec-9] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 00:25:46.903  INFO 20336 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 00:26:52.671  INFO 20336 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 10:40:58.451  INFO 12216 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 12216 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
-2023-04-25 10:40:58.457  INFO 12216 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
-2023-04-25 10:40:59.134  INFO 12216 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-04-25 10:40:59.186  INFO 12216 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44 ms. Found 5 JPA repository interfaces.
-2023-04-25 10:40:59.867  INFO 12216 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-04-25 10:40:59.874  INFO 12216 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-04-25 10:40:59.875  INFO 12216 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2023-04-25 10:41:00.090  INFO 12216 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2023-04-25 10:41:00.096  INFO 12216 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-04-25 10:41:00.096  INFO 12216 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1610 ms
-2023-04-25 10:41:00.641  INFO 12216 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-04-25 10:41:00.701  INFO 12216 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-04-25 10:41:00.840  INFO 12216 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-04-25 10:41:00.990  INFO 12216 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2023-04-25 10:41:01.551  INFO 12216 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-04-25 10:41:01.558  INFO 12216 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 10:41:02.335  INFO 12216 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@cec1ce2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4d82ded2, org.springframework.security.web.context.SecurityContextPersistenceFilter@1611ce1c, org.springframework.security.web.header.HeaderWriterFilter@541d8a9e, org.springframework.security.web.authentication.logout.LogoutFilter@76ac8c3d, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@365c8a47, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2802caa2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6f45be42, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@655875bb, org.springframework.security.web.session.SessionManagementFilter@59bf79f3, org.springframework.security.web.access.ExceptionTranslationFilter@7212d3df, org.springframework.security.web.access.intercept.AuthorizationFilter@7893b8c]
-2023-04-25 10:41:02.411  WARN 12216 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-04-25 10:41:03.569  INFO 12216 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
-2023-04-25 10:41:03.620  INFO 12216 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-04-25 10:41:03.635  INFO 12216 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 5.469 seconds (JVM running for 6.06)
-2023-04-25 10:41:03.904  INFO 12216 --- [RMI TCP Connection(2)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-04-25 10:41:03.904  INFO 12216 --- [RMI TCP Connection(2)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-04-25 10:41:03.905  INFO 12216 --- [RMI TCP Connection(2)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-04-25 10:41:13.999  WARN 12216 --- [RMI TCP Connection(1)-169.254.123.93] o.s.b.a.health.HealthEndpointSupport     : Health contributor org.springframework.boot.actuate.mail.MailHealthIndicator (mail) took 10024ms to respond
-2023-04-25 10:46:00.646  INFO 12216 --- [scheduling-1] c.t.pokertds.service.RouletteService     : Roulette-game7was finished automatically
-2023-04-25 11:11:14.097  INFO 12216 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 11:18:50.349  INFO 3180 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 3180 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
-2023-04-25 11:18:50.350  INFO 3180 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
-2023-04-25 11:18:50.938  INFO 3180 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-04-25 11:18:50.976  INFO 3180 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 34 ms. Found 5 JPA repository interfaces.
-2023-04-25 11:18:51.527  INFO 3180 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-04-25 11:18:51.532  INFO 3180 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-04-25 11:18:51.533  INFO 3180 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2023-04-25 11:18:51.705  INFO 3180 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2023-04-25 11:18:51.709  INFO 3180 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-04-25 11:18:51.709  INFO 3180 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1331 ms
-2023-04-25 11:18:52.187  INFO 3180 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-04-25 11:18:52.220  INFO 3180 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-04-25 11:18:52.321  INFO 3180 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-04-25 11:18:52.440  INFO 3180 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2023-04-25 11:18:52.917  INFO 3180 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-04-25 11:18:52.923  INFO 3180 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 11:18:53.631  INFO 3180 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@135f760a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@36e9fd4f, org.springframework.security.web.context.SecurityContextPersistenceFilter@5ab7e997, org.springframework.security.web.header.HeaderWriterFilter@5e7fc012, org.springframework.security.web.authentication.logout.LogoutFilter@12544a50, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3f3abe67, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@dc28d74, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2edc6690, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@730611a0, org.springframework.security.web.session.SessionManagementFilter@39adf4e6, org.springframework.security.web.access.ExceptionTranslationFilter@1142843c, org.springframework.security.web.access.intercept.AuthorizationFilter@72b60be8]
-2023-04-25 11:18:53.707  WARN 3180 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-04-25 11:18:54.803  INFO 3180 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
-2023-04-25 11:18:54.851  INFO 3180 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-04-25 11:18:54.863  INFO 3180 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 4.735 seconds (JVM running for 5.142)
-2023-04-25 11:18:55.379  INFO 3180 --- [RMI TCP Connection(1)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-04-25 11:18:55.379  INFO 3180 --- [RMI TCP Connection(1)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-04-25 11:18:55.380  INFO 3180 --- [RMI TCP Connection(1)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-04-25 11:20:07.906  INFO 3180 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.WalletController.getWalletForUser(Principal)started!
-2023-04-25 11:20:20.922  INFO 3180 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.createRoulette(Principal)started!
-2023-04-25 11:20:33.918  INFO 3180 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:39.430  INFO 3180 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:40.996  INFO 3180 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:41.918  INFO 3180 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:42.713  INFO 3180 --- [http-nio-8080-exec-8] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:43.611  INFO 3180 --- [http-nio-8080-exec-9] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:44.454  INFO 3180 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:45.434  INFO 3180 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:46.356  INFO 3180 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:47.577  INFO 3180 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:48.385  INFO 3180 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:49.203  INFO 3180 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:49.997  INFO 3180 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:50.803  INFO 3180 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:51.597  INFO 3180 --- [http-nio-8080-exec-8] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:52.375  INFO 3180 --- [http-nio-8080-exec-9] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:53.090  INFO 3180 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:53.970  INFO 3180 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:54.731  INFO 3180 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:20:55.524  INFO 3180 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:21:25.110  INFO 3180 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.finishRouletteGameById(int,Principal)started!
-2023-04-25 11:21:46.339  INFO 3180 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.createRoulette(Principal)started!
-2023-04-25 11:21:54.402  INFO 3180 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:21:56.531  INFO 3180 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:21:57.303  INFO 3180 --- [http-nio-8080-exec-8] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:21:58.065  INFO 3180 --- [http-nio-8080-exec-9] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:21:58.832  INFO 3180 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:21:59.580  INFO 3180 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:22:00.521  INFO 3180 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:22:01.221  INFO 3180 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:22:02.030  INFO 3180 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:22:02.931  INFO 3180 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.RouletteController.playingGame(Principal,BetRoulette,BindingResult)started!
-2023-04-25 11:24:42.809  INFO 3180 --- [http-nio-8080-exec-8] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.GameController.getGamesForUser(Principal)started!
-2023-04-25 11:25:22.908  INFO 3180 --- [http-nio-8080-exec-9] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.GameController.getGameInfo(int)started!
-2023-04-25 11:25:40.449  INFO 3180 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.GameController.getGamesForAnotherUser(int)started!
-2023-04-25 11:46:00.053  INFO 3180 --- [scheduling-1] c.t.pokertds.service.RouletteService     : There aren't roulette that not changed more than 1,5 hour!
-2023-04-25 12:16:00.047  INFO 3180 --- [scheduling-1] c.t.pokertds.service.RouletteService     : There aren't roulette that not changed more than 1 hour!
-2023-04-25 12:46:00.044  INFO 3180 --- [scheduling-1] c.t.pokertds.service.RouletteService     : There aren't roulette that not changed more than 1,5 hour!
-2023-04-25 13:16:00.048  INFO 3180 --- [scheduling-1] c.t.pokertds.service.RouletteService     : RouletteGame with id9 haven't been changed more than 1 hour!
-2023-04-25 13:46:00.400  INFO 3180 --- [scheduling-1] c.t.pokertds.service.RouletteService     : Roulette-game9was finished automatically
-2023-04-25 14:16:00.166  INFO 3180 --- [scheduling-1] c.t.pokertds.service.RouletteService     : There aren't roulette that not changed more than 1 hour!
-2023-04-25 14:46:00.055  INFO 3180 --- [scheduling-1] c.t.pokertds.service.RouletteService     : There aren't roulette that not changed more than 1,5 hour!
-2023-04-25 15:16:00.053  INFO 3180 --- [scheduling-1] c.t.pokertds.service.RouletteService     : There aren't roulette that not changed more than 1 hour!
-2023-04-25 15:21:11.026  INFO 3180 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 15:21:16.551  INFO 21560 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 21560 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
-2023-04-25 15:21:16.553  INFO 21560 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
-2023-04-25 15:21:17.144  INFO 21560 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-04-25 15:21:17.184  INFO 21560 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 5 JPA repository interfaces.
-2023-04-25 15:21:17.745  INFO 21560 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-04-25 15:21:17.753  INFO 21560 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-04-25 15:21:17.753  INFO 21560 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2023-04-25 15:21:17.966  INFO 21560 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2023-04-25 15:21:17.970  INFO 21560 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-04-25 15:21:17.970  INFO 21560 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1392 ms
-2023-04-25 15:21:18.352  INFO 21560 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-04-25 15:21:18.400  INFO 21560 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-04-25 15:21:18.527  INFO 21560 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-04-25 15:21:18.664  INFO 21560 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2023-04-25 15:21:19.187  INFO 21560 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-04-25 15:21:19.192  INFO 21560 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 15:21:19.880  INFO 21560 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@43945480, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1b72f9a, org.springframework.security.web.context.SecurityContextPersistenceFilter@52e44f71, org.springframework.security.web.header.HeaderWriterFilter@7271320c, org.springframework.security.web.authentication.logout.LogoutFilter@2c40e456, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6d224921, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5bb24266, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6cf34b88, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@d96f413, org.springframework.security.web.session.SessionManagementFilter@731bdcca, org.springframework.security.web.access.ExceptionTranslationFilter@672c4e24, org.springframework.security.web.access.intercept.AuthorizationFilter@66ca8882]
-2023-04-25 15:21:19.955  WARN 21560 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-04-25 15:21:21.039  INFO 21560 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
-2023-04-25 15:21:21.083  INFO 21560 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-04-25 15:21:21.097  INFO 21560 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 4.773 seconds (JVM running for 5.301)
-2023-04-25 15:21:21.427  INFO 21560 --- [RMI TCP Connection(3)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-04-25 15:21:21.427  INFO 21560 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-04-25 15:21:21.428  INFO 21560 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-04-25 15:21:43.222  INFO 21560 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.WalletController.createWalletForUser(Principal)started!
-2023-04-25 15:22:46.680  INFO 21560 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 15:22:51.976  INFO 23196 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 23196 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
-2023-04-25 15:22:51.977  INFO 23196 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
-2023-04-25 15:22:52.493  INFO 23196 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-04-25 15:22:52.538  INFO 23196 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 5 JPA repository interfaces.
-2023-04-25 15:22:53.083  INFO 23196 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-04-25 15:22:53.089  INFO 23196 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-04-25 15:22:53.089  INFO 23196 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2023-04-25 15:22:53.245  INFO 23196 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2023-04-25 15:22:53.255  INFO 23196 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-04-25 15:22:53.255  INFO 23196 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1249 ms
-2023-04-25 15:22:53.615  INFO 23196 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-04-25 15:22:53.645  INFO 23196 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-04-25 15:22:53.742  INFO 23196 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-04-25 15:22:53.856  INFO 23196 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2023-04-25 15:22:54.318  INFO 23196 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-04-25 15:22:54.324  INFO 23196 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 15:22:55.010  INFO 23196 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@137a70f1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f1bd673, org.springframework.security.web.context.SecurityContextPersistenceFilter@3380313d, org.springframework.security.web.header.HeaderWriterFilter@6f404bc6, org.springframework.security.web.authentication.logout.LogoutFilter@664c0466, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@feb57b4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2e1b1d22, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@32cda33c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@54351197, org.springframework.security.web.session.SessionManagementFilter@56c26b21, org.springframework.security.web.access.ExceptionTranslationFilter@30e734a1, org.springframework.security.web.access.intercept.AuthorizationFilter@308f18c0]
-2023-04-25 15:22:55.080  WARN 23196 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-04-25 15:22:56.142  INFO 23196 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
-2023-04-25 15:22:56.186  INFO 23196 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-04-25 15:22:56.198  INFO 23196 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 4.432 seconds (JVM running for 4.797)
-2023-04-25 15:22:56.548  INFO 23196 --- [RMI TCP Connection(1)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-04-25 15:22:56.548  INFO 23196 --- [RMI TCP Connection(1)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-04-25 15:22:56.549  INFO 23196 --- [RMI TCP Connection(1)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-04-25 15:23:06.146  INFO 23196 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.WalletController.createWalletForUser(Principal)started!
-2023-04-25 15:23:06.193  WARN 23196 --- [http-nio-8080-exec-2] c.t.p.exceptions.ExceptionResolver       : class java.lang.UnsupportedOperationExceptionWallet has already been!
-2023-04-25 15:24:00.036  INFO 23196 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 15:27:21.307  INFO 14088 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 14088 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
-2023-04-25 15:27:21.311  INFO 14088 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
-2023-04-25 15:27:21.825  INFO 14088 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-04-25 15:27:21.874  INFO 14088 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 5 JPA repository interfaces.
-2023-04-25 15:27:22.420  INFO 14088 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-04-25 15:27:22.425  INFO 14088 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-04-25 15:27:22.426  INFO 14088 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2023-04-25 15:27:22.579  INFO 14088 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2023-04-25 15:27:22.589  INFO 14088 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-04-25 15:27:22.589  INFO 14088 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1253 ms
-2023-04-25 15:27:22.965  INFO 14088 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-04-25 15:27:22.997  INFO 14088 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-04-25 15:27:23.101  INFO 14088 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-04-25 15:27:23.216  INFO 14088 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2023-04-25 15:27:23.701  INFO 14088 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-04-25 15:27:23.708  INFO 14088 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 15:27:24.403  INFO 14088 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@739500b8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@e8ce5b1, org.springframework.security.web.context.SecurityContextPersistenceFilter@5d7f4cbb, org.springframework.security.web.header.HeaderWriterFilter@1142843c, org.springframework.security.web.authentication.logout.LogoutFilter@27f43664, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3bd1c7f0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@59bf79f3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1ddf9fd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@301b89e1, org.springframework.security.web.session.SessionManagementFilter@52e44f71, org.springframework.security.web.access.ExceptionTranslationFilter@11703cc8, org.springframework.security.web.access.intercept.AuthorizationFilter@1fdbba0d]
-2023-04-25 15:27:24.478  WARN 14088 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-04-25 15:27:25.567  INFO 14088 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
-2023-04-25 15:27:25.612  INFO 14088 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-04-25 15:27:25.626  INFO 14088 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 4.53 seconds (JVM running for 4.894)
-2023-04-25 15:27:25.863  INFO 14088 --- [RMI TCP Connection(2)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-04-25 15:27:25.864  INFO 14088 --- [RMI TCP Connection(2)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-04-25 15:27:25.865  INFO 14088 --- [RMI TCP Connection(2)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-04-25 15:27:30.778  INFO 14088 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.WalletController.createWalletForUser(Principal)started!
-2023-04-25 15:27:30.827  WARN 14088 --- [http-nio-8080-exec-2] c.t.p.exceptions.ExceptionResolver       : class java.lang.UnsupportedOperationExceptionWallet has already been!
-2023-04-25 15:28:18.573  INFO 14088 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.WalletController.transferWallet(UserMoneyAmount)started!
-2023-04-25 15:28:31.225  INFO 14088 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.WalletController.transferWallet(UserMoneyAmount)started!
-2023-04-25 15:28:49.298  INFO 14088 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 15:34:32.140  INFO 21848 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 21848 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
-2023-04-25 15:34:32.142  INFO 21848 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
-2023-04-25 15:34:32.666  INFO 21848 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-04-25 15:34:32.713  INFO 21848 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 5 JPA repository interfaces.
-2023-04-25 15:34:33.267  INFO 21848 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-04-25 15:34:33.273  INFO 21848 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-04-25 15:34:33.274  INFO 21848 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2023-04-25 15:34:33.431  INFO 21848 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2023-04-25 15:34:33.441  INFO 21848 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-04-25 15:34:33.441  INFO 21848 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1274 ms
-2023-04-25 15:34:33.807  INFO 21848 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-04-25 15:34:33.840  INFO 21848 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-04-25 15:34:33.943  INFO 21848 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-04-25 15:34:34.173  INFO 21848 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2023-04-25 15:34:34.659  INFO 21848 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-04-25 15:34:34.667  INFO 21848 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 15:34:35.388  INFO 21848 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@56c39949, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@41f3f64, org.springframework.security.web.context.SecurityContextPersistenceFilter@63437af4, org.springframework.security.web.header.HeaderWriterFilter@56c26b21, org.springframework.security.web.authentication.logout.LogoutFilter@47d7e8b5, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@4303511e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@445d4517, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@f1d5f3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@454f6cc5, org.springframework.security.web.session.SessionManagementFilter@5e2ab1c, org.springframework.security.web.access.ExceptionTranslationFilter@7a458c73, org.springframework.security.web.access.intercept.AuthorizationFilter@453de9d0]
-2023-04-25 15:34:35.461  WARN 21848 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-04-25 15:34:36.540  INFO 21848 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
-2023-04-25 15:34:36.582  INFO 21848 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-04-25 15:34:36.595  INFO 21848 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 4.668 seconds (JVM running for 5.048)
-2023-04-25 15:34:36.698  INFO 21848 --- [RMI TCP Connection(4)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-04-25 15:34:36.698  INFO 21848 --- [RMI TCP Connection(4)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-04-25 15:34:36.699  INFO 21848 --- [RMI TCP Connection(4)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-04-25 15:35:10.098  INFO 21848 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.WalletController.transferWallet(UserMoneyAmount)started!
-2023-04-25 15:35:10.143  WARN 21848 --- [http-nio-8080-exec-2] c.t.p.exceptions.ExceptionResolver       : class java.lang.UnsupportedOperationExceptionWallet has only 140.0$
-2023-04-25 15:35:23.411  INFO 21848 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.WalletController.transferWallet(UserMoneyAmount)started!
-2023-04-25 15:44:17.506  INFO 21848 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.createUser(RequestUserRegistration,BindingResult)started!
-2023-04-25 15:44:17.510  WARN 21848 --- [http-nio-8080-exec-6] c.t.pokertds.controller.UserController   : We have validation error: Field error in object 'requestUserRegistration' on field 'password': rejected value [123]; codes [Size.requestUserRegistration.password,Size.password,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [requestUserRegistration.password,password]; arguments []; default message [password],2147483647,5]; default message [size must be between 5 and 2147483647]
-2023-04-25 15:44:17.510  WARN 21848 --- [http-nio-8080-exec-6] c.t.pokertds.controller.UserController   : We have validation error: Field error in object 'requestUserRegistration' on field 'email': rejected value [123]; codes [Email.requestUserRegistration.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [requestUserRegistration.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@45563e40,.*]; default message [must be a well-formed email address]
-2023-04-25 15:46:00.078  INFO 21848 --- [scheduling-1] c.t.pokertds.service.RouletteService     : There aren't roulette that not changed more than 1,5 hour!
-2023-04-25 15:46:06.367  INFO 21848 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 15:46:11.700  INFO 12168 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 12168 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
-2023-04-25 15:46:11.701  INFO 12168 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
-2023-04-25 15:46:12.233  INFO 12168 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-04-25 15:46:12.273  INFO 12168 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 5 JPA repository interfaces.
-2023-04-25 15:46:12.832  INFO 12168 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-04-25 15:46:12.838  INFO 12168 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-04-25 15:46:12.839  INFO 12168 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2023-04-25 15:46:13.005  INFO 12168 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2023-04-25 15:46:13.015  INFO 12168 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-04-25 15:46:13.015  INFO 12168 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1285 ms
-2023-04-25 15:46:13.386  INFO 12168 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-04-25 15:46:13.419  INFO 12168 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-04-25 15:46:13.522  INFO 12168 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-04-25 15:46:13.637  INFO 12168 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2023-04-25 15:46:14.179  INFO 12168 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-04-25 15:46:14.186  INFO 12168 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 15:46:14.910  INFO 12168 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@301b89e1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3f3abe67, org.springframework.security.web.context.SecurityContextPersistenceFilter@5e7fc012, org.springframework.security.web.header.HeaderWriterFilter@4407f129, org.springframework.security.web.authentication.logout.LogoutFilter@2f154d9b, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@17e2ad13, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@f1d5f3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@37e15055, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@64f1e9f8, org.springframework.security.web.session.SessionManagementFilter@653c0c9c, org.springframework.security.web.access.ExceptionTranslationFilter@2f6ede9, org.springframework.security.web.access.intercept.AuthorizationFilter@708f238f]
-2023-04-25 15:46:14.990  WARN 12168 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-04-25 15:46:16.112  INFO 12168 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
-2023-04-25 15:46:16.159  INFO 12168 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-04-25 15:46:16.172  INFO 12168 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 4.692 seconds (JVM running for 5.059)
-2023-04-25 15:46:16.240  INFO 12168 --- [RMI TCP Connection(3)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-04-25 15:46:16.240  INFO 12168 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-04-25 15:46:16.241  INFO 12168 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-04-25 15:46:26.983  INFO 12168 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.createUser(RequestUserRegistration,BindingResult)started!
-2023-04-25 15:46:26.987  WARN 12168 --- [http-nio-8080-exec-2] c.t.pokertds.controller.UserController   : We have validation error: class org.springframework.validation.beanvalidation.SpringValidatorAdapter$ViolationFieldError
-2023-04-25 15:46:26.987  WARN 12168 --- [http-nio-8080-exec-2] c.t.pokertds.controller.UserController   : We have validation error: class org.springframework.validation.beanvalidation.SpringValidatorAdapter$ViolationFieldError
-2023-04-25 15:50:59.381  INFO 12168 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 15:51:04.731  INFO 13356 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 13356 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
-2023-04-25 15:51:04.733  INFO 13356 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
-2023-04-25 15:51:05.282  INFO 13356 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-04-25 15:51:05.327  INFO 13356 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 5 JPA repository interfaces.
-2023-04-25 15:51:05.888  INFO 13356 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-04-25 15:51:05.894  INFO 13356 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-04-25 15:51:05.894  INFO 13356 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2023-04-25 15:51:06.055  INFO 13356 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2023-04-25 15:51:06.063  INFO 13356 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-04-25 15:51:06.063  INFO 13356 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1301 ms
-2023-04-25 15:51:06.434  INFO 13356 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-04-25 15:51:06.467  INFO 13356 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-04-25 15:51:06.576  INFO 13356 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-04-25 15:51:06.693  INFO 13356 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2023-04-25 15:51:07.204  INFO 13356 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-04-25 15:51:07.210  INFO 13356 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 15:51:07.928  INFO 13356 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@57cfb4d8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@d4f2f3d, org.springframework.security.web.context.SecurityContextPersistenceFilter@11efa76e, org.springframework.security.web.header.HeaderWriterFilter@7f588bc6, org.springframework.security.web.authentication.logout.LogoutFilter@3380313d, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@332fc35c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3e9e7a70, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@33602729, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@e5bce8e, org.springframework.security.web.session.SessionManagementFilter@7672dd7a, org.springframework.security.web.access.ExceptionTranslationFilter@3dc5eb8f, org.springframework.security.web.access.intercept.AuthorizationFilter@77e4ffe5]
-2023-04-25 15:51:08.011  WARN 13356 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-04-25 15:51:09.111  INFO 13356 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
-2023-04-25 15:51:09.155  INFO 13356 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-04-25 15:51:09.171  INFO 13356 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 4.658 seconds (JVM running for 5.03)
-2023-04-25 15:51:09.391  INFO 13356 --- [RMI TCP Connection(3)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-04-25 15:51:09.391  INFO 13356 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-04-25 15:51:09.392  INFO 13356 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-04-25 15:51:25.287  INFO 13356 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.createUser(RequestUserRegistration,BindingResult)started!
-2023-04-25 15:51:25.291  WARN 13356 --- [http-nio-8080-exec-1] c.t.pokertds.controller.UserController   : We have validation error: class org.springframework.validation.beanvalidation.SpringValidatorAdapter$ViolationFieldError
-2023-04-25 15:51:25.291  WARN 13356 --- [http-nio-8080-exec-1] c.t.pokertds.controller.UserController   : We have validation error: class org.springframework.validation.beanvalidation.SpringValidatorAdapter$ViolationFieldError
-2023-04-25 15:56:50.776  INFO 13356 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 15:56:56.106  INFO 1424 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 1424 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
-2023-04-25 15:56:56.108  INFO 1424 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
-2023-04-25 15:56:56.638  INFO 1424 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-04-25 15:56:56.684  INFO 1424 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 5 JPA repository interfaces.
-2023-04-25 15:56:57.231  INFO 1424 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-04-25 15:56:57.238  INFO 1424 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-04-25 15:56:57.238  INFO 1424 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
-2023-04-25 15:56:57.397  INFO 1424 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2023-04-25 15:56:57.407  INFO 1424 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-04-25 15:56:57.407  INFO 1424 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1271 ms
-2023-04-25 15:56:57.774  INFO 1424 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-04-25 15:56:57.807  INFO 1424 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-04-25 15:56:57.919  INFO 1424 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-04-25 15:56:58.039  INFO 1424 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
-2023-04-25 15:56:58.519  INFO 1424 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-04-25 15:56:58.525  INFO 1424 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-04-25 15:56:59.230  INFO 1424 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7d8c264, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@19993ed, org.springframework.security.web.context.SecurityContextPersistenceFilter@9e2b199, org.springframework.security.web.header.HeaderWriterFilter@5fc76532, org.springframework.security.web.authentication.logout.LogoutFilter@3993cecb, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@dc28d74, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@11efa76e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@124b8fe9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7479cdf7, org.springframework.security.web.session.SessionManagementFilter@3fe7c87c, org.springframework.security.web.access.ExceptionTranslationFilter@5f92e5eb, org.springframework.security.web.access.intercept.AuthorizationFilter@25131637]
-2023-04-25 15:56:59.313  WARN 1424 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-04-25 15:57:00.449  INFO 1424 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
-2023-04-25 15:57:00.495  INFO 1424 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-04-25 15:57:00.507  INFO 1424 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 4.619 seconds (JVM running for 4.989)
-2023-04-25 15:57:00.646  INFO 1424 --- [RMI TCP Connection(3)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-04-25 15:57:00.646  INFO 1424 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-04-25 15:57:00.647  INFO 1424 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-04-25 15:57:01.556  INFO 1424 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.createUser(RequestUserRegistration,BindingResult)started!
-2023-04-25 15:57:01.559  WARN 1424 --- [http-nio-8080-exec-2] c.t.pokertds.controller.UserController   : We have validation error: Field error in object 'requestUserRegistration' on field 'password': rejected value [123]; codes [Size.requestUserRegistration.password,Size.password,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [requestUserRegistration.password,password]; arguments []; default message [password],2147483647,5]; default message [size must be between 5 and 2147483647]
-2023-04-25 15:57:01.560  WARN 1424 --- [http-nio-8080-exec-2] c.t.pokertds.controller.UserController   : We have validation error: Field error in object 'requestUserRegistration' on field 'email': rejected value [123]; codes [Email.requestUserRegistration.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [requestUserRegistration.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@742283fe,.*]; default message [must be a well-formed email address]
-2023-04-25 16:10:00.050  INFO 1424 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-30 00:45:30.923  INFO 10868 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-30 00:49:04.195  INFO 2548 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 2548 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-04-30 00:49:04.200  INFO 2548 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-04-30 00:49:04.711  INFO 2548 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-30 00:49:04.755  INFO 2548 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 6 JPA repository interfaces.
+2023-04-30 00:49:05.292  INFO 2548 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-30 00:49:05.298  INFO 2548 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-30 00:49:05.298  INFO 2548 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-04-30 00:49:05.461  INFO 2548 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-04-30 00:49:05.465  INFO 2548 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-30 00:49:05.465  INFO 2548 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1240 ms
+2023-04-30 00:49:05.813  INFO 2548 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-30 00:49:05.846  INFO 2548 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-04-30 00:49:05.951  INFO 2548 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-30 00:49:06.180  INFO 2548 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-04-30 00:49:06.621  INFO 2548 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-30 00:49:06.627  INFO 2548 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-30 00:49:07.329  INFO 2548 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@475753dd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@9203db8, org.springframework.security.web.context.SecurityContextPersistenceFilter@3bdf6d63, org.springframework.security.web.header.HeaderWriterFilter@10ecf244, org.springframework.security.web.authentication.logout.LogoutFilter@683218c8, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@722e1bff, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@60a4595e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@504a9352, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@64d0b8e3, org.springframework.security.web.session.SessionManagementFilter@21553c3a, org.springframework.security.web.access.ExceptionTranslationFilter@6441da2c, org.springframework.security.web.access.intercept.AuthorizationFilter@85eabca]
+2023-04-30 00:49:07.402  WARN 2548 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-30 00:49:08.455  INFO 2548 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-04-30 00:49:08.498  INFO 2548 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-30 00:49:08.510  INFO 2548 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 4.522 seconds (JVM running for 4.877)
+2023-04-30 00:49:08.772  INFO 2548 --- [RMI TCP Connection(1)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-30 00:49:08.772  INFO 2548 --- [RMI TCP Connection(1)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-04-30 00:49:08.773  INFO 2548 --- [RMI TCP Connection(1)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-04-30 00:49:15.849  INFO 2548 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.createTexasHoldem(Principal)started!
+2023-04-30 00:49:15.909  INFO 2548 --- [http-nio-8080-exec-2] c.t.pokertds.service.TexasHoldemService  : User with id: 52 has texas holdem in process
+2023-04-30 00:49:29.627  INFO 2548 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.playingGame(Principal,BetPoker,BindingResult)started!
+2023-04-30 00:49:29.675 ERROR 2548 --- [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2] with root cause
+
+java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2
+	at com.tromza.pokertds.pokerLogic.Chanses.evalCombination(Chanses.java:77) ~[classes/:na]
+	at com.tromza.pokertds.service.TexasHoldemService.playTexasHoldem(TexasHoldemService.java:126) ~[classes/:na]
+	at com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(TexasHoldemService.java:89) ~[classes/:na]
+	at com.tromza.pokertds.controller.TexasHoldemController.playingGame(TexasHoldemController.java:49) ~[classes/:na]
+	at com.tromza.pokertds.controller.TexasHoldemController$$FastClassBySpringCGLIB$$9d025610.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.26.jar:5.3.26]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708) ~[spring-aop-5.3.26.jar:5.3.26]
+	at com.tromza.pokertds.controller.TexasHoldemController$$EnhancerBySpringCGLIB$$d9c7ffd4.playingGame(<generated>) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:531) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:337) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:96) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:198) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:112) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:82) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:221) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:186) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96) ~[spring-boot-actuator-2.7.10.jar:2.7.10]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.base/java.lang.Thread.run(Thread.java:1589) ~[na:na]
+
+2023-04-30 00:55:11.935  INFO 2548 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-30 00:55:17.290  INFO 15920 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 15920 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-04-30 00:55:17.291  INFO 15920 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-04-30 00:55:17.799  INFO 15920 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-30 00:55:17.850  INFO 15920 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 6 JPA repository interfaces.
+2023-04-30 00:55:18.390  INFO 15920 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-30 00:55:18.395  INFO 15920 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-30 00:55:18.396  INFO 15920 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-04-30 00:55:18.569  INFO 15920 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-04-30 00:55:18.573  INFO 15920 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-30 00:55:18.573  INFO 15920 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1254 ms
+2023-04-30 00:55:18.923  INFO 15920 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-30 00:55:18.954  INFO 15920 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-04-30 00:55:19.056  INFO 15920 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-30 00:55:19.174  INFO 15920 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-04-30 00:55:19.613  INFO 15920 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-30 00:55:19.620  INFO 15920 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-30 00:55:20.321  INFO 15920 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7e584f3c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f113867, org.springframework.security.web.context.SecurityContextPersistenceFilter@7aecff85, org.springframework.security.web.header.HeaderWriterFilter@452ea8f0, org.springframework.security.web.authentication.logout.LogoutFilter@5ec921f1, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3f54fabc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6db64abf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3e866323, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@72cf159f, org.springframework.security.web.session.SessionManagementFilter@487f025, org.springframework.security.web.access.ExceptionTranslationFilter@a642c54, org.springframework.security.web.access.intercept.AuthorizationFilter@735d7b99]
+2023-04-30 00:55:20.398  WARN 15920 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-30 00:55:21.469  INFO 15920 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-04-30 00:55:21.513  INFO 15920 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-30 00:55:21.526  INFO 15920 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 4.451 seconds (JVM running for 4.827)
+2023-04-30 00:55:21.835  INFO 15920 --- [RMI TCP Connection(3)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-30 00:55:21.835  INFO 15920 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-04-30 00:55:21.836  INFO 15920 --- [RMI TCP Connection(3)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-04-30 00:55:31.658  INFO 15920 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.createTexasHoldem(Principal)started!
+2023-04-30 00:55:31.719  INFO 15920 --- [http-nio-8080-exec-2] c.t.pokertds.service.TexasHoldemService  : User with id: 52 has texas holdem in process
+2023-04-30 00:55:35.694  INFO 15920 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.playingGame(Principal,BetPoker,BindingResult)started!
+2023-04-30 00:58:04.133  INFO 15920 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'

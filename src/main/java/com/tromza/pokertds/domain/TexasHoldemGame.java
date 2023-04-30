@@ -21,6 +21,8 @@ public class TexasHoldemGame {
     private int gameId;
     @Column(name = "bank")
     private double bank;
+    @Column(name = "player_deposit")
+    private double playerDeposit;
     @Column(name = "player_preflop")
     private String playerPreflop;
     @Column(name = "casino_preflop")
@@ -39,5 +41,8 @@ public class TexasHoldemGame {
     private GameStatus status;
     @Column(name = "changed")
     private Timestamp changed;
+    @Column(name = "winner")
+    @Enumerated(EnumType.STRING)
+    private Winner winner;
 
 }

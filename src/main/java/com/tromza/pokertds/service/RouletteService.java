@@ -4,7 +4,7 @@ import com.tromza.pokertds.domain.*;
 import com.tromza.pokertds.repository.BetRepository;
 import com.tromza.pokertds.repository.RouletteRepository;
 import com.tromza.pokertds.repository.UserRepository;
-import com.tromza.pokertds.request.RouletteWithBet;
+import com.tromza.pokertds.response.RouletteWithBet;
 import com.tromza.pokertds.request.UserMoneyAmount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -171,7 +171,7 @@ public class RouletteService {
                 mailMessage.setSubject("Your game will be finished automatically");
                 mailMessage.setText("Dear player, your roulette-game will be finished automatically");
                 emailService.sendEmail(mailMessage);
-            });//TODO email
+            });
         }
     }
 
@@ -185,7 +185,6 @@ public class RouletteService {
             rouletteGames.forEach(this::finishRouletteGameAutomatically);
         }
     }
-
 
     public RouletteWithBet play(RouletteWithBet rouletteWithBet) {
 

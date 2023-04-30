@@ -1,10 +1,8 @@
 package com.tromza.pokertds.controller;
 
 import com.tromza.pokertds.domain.*;
-import com.tromza.pokertds.request.RouletteWithBet;
-import com.tromza.pokertds.service.GameService;
+import com.tromza.pokertds.response.RouletteWithBet;
 import com.tromza.pokertds.service.RouletteService;
-import com.tromza.pokertds.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
