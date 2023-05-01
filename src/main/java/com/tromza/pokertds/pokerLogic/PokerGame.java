@@ -1,18 +1,9 @@
 package com.tromza.pokertds.pokerLogic;
 
-import com.tromza.pokertds.domain.BetPoker;
-import com.tromza.pokertds.domain.BetPokerType;
-import com.tromza.pokertds.domain.TexasHoldemGame;
-import org.springframework.beans.factory.annotation.Value;
-
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class PokerGame {
-    @Value("${blind}")
-    private Double BLIND;
-
     public static ArrayList<String> getPreflops() {
         Deck deck = new Deck();
         ArrayList<String> thisDeck = deck.get();
@@ -37,17 +28,43 @@ public class PokerGame {
         Deck deck = new Deck();
         ArrayList<String> thisDeck = deck.get();
         Random random = new Random();
-String flop = "";
+        String flop = "";
         for (int i = 0; i < 2; i++) {
             thisDeck.remove(casinoPreflop[i]);
             thisDeck.remove(playerPreflop[i]);
         }
-        String card ="";
+        String card;
         for (int i = 0; i < 3; i++) {
             card = thisDeck.get(random.nextInt(thisDeck.size() - i));
             flop = flop.concat(card);
             thisDeck.remove(card);
         }
         return flop;
+    }
+
+    public static String getTern(String[] casinoPreflop, String[] playerPreflop, String[] board) {
+        Deck deck = new Deck();
+        ArrayList<String> thisDeck = deck.get();
+        Random random = new Random();
+        for (int i = 0; i < 2; i++) {
+            thisDeck.remove(casinoPreflop[i]);
+            thisDeck.remove(playerPreflop[i]);
+            thisDeck.remove(board[i]);
+        }
+        thisDeck.remove(board[2]);
+        return thisDeck.get(random.nextInt(thisDeck.size()));
+    }
+
+    public static String getRiver(String[] casinoPreflop, String[] playerPreflop, String[] board) {
+        Deck deck = new Deck();
+        ArrayList<String> thisDeck = deck.get();
+        Random random = new Random();
+        for (int i = 0; i < 2; i++) {
+            thisDeck.remove(casinoPreflop[i]);
+            thisDeck.remove(playerPreflop[i]);
+            thisDeck.remove(board[i]);
+            thisDeck.remove(board[i + 2]);
+        }
+        return thisDeck.get(random.nextInt(thisDeck.size()));
     }
 }

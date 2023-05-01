@@ -2,7 +2,6 @@ package com.tromza.pokertds.controller;
 
 import com.tromza.pokertds.domain.BetPoker;
 import com.tromza.pokertds.domain.TexasHoldemGame;
-import com.tromza.pokertds.response.RouletteWithBet;
 import com.tromza.pokertds.response.TexasHoldemGameWithBetPoker;
 import com.tromza.pokertds.service.TexasHoldemService;
 import org.slf4j.Logger;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -37,7 +35,7 @@ Logger log = LoggerFactory.getLogger(this.getClass());
     }
 
     @PutMapping("/")
-    public ResponseEntity playingGame(Principal principal, @RequestBody @Valid BetPoker bet, BindingResult bindingResult) {
+    public ResponseEntity playingGame(Principal principal, @RequestBody @Valid BetPoker bet, BindingResult bindingResult) throws InterruptedException {
         if (bindingResult.hasErrors()) {
             List<String> errors = new ArrayList<>();
             for (ObjectError o : bindingResult.getAllErrors()) {

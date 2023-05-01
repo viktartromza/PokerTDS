@@ -4,6 +4,7 @@ import com.tromza.pokertds.domain.Game;
 import com.tromza.pokertds.domain.GameStatus;
 import com.tromza.pokertds.repository.GameRepository;
 import com.tromza.pokertds.repository.RouletteRepository;
+import com.tromza.pokertds.repository.TexasHoldemRepository;
 import com.tromza.pokertds.response.ResponseGameInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,12 +20,13 @@ public class GameService {
     private final GameRepository gameRepository;
     private final UserService userService;
     private final RouletteRepository rouletteRepository;
-
-    @Autowired
-    public GameService(GameRepository gameRepository, UserService userService, RouletteRepository rouletteRepository) {
+    private final TexasHoldemRepository texasHoldemRepository;
+@Autowired
+    public GameService(GameRepository gameRepository, UserService userService, RouletteRepository rouletteRepository, TexasHoldemRepository texasHoldemRepository) {
         this.gameRepository = gameRepository;
         this.userService = userService;
         this.rouletteRepository = rouletteRepository;
+        this.texasHoldemRepository = texasHoldemRepository;
     }
 
     public Game createGame(Game game) {
@@ -42,15 +44,17 @@ public class GameService {
         switch (game.getType()) {
             case ROULETTE_EU:
                 return new ResponseGameInfo(rouletteRepository.findRouletteGameByGameId(id).orElseThrow(() -> new NoSuchElementException("Roulette-game not found!")));
+            case TEXAS_HOLDEM:
+                return new ResponseGameInfo(texasHoldemRepository.findTexasHoldemGameByGameId(id).orElseThrow(() -> new NoSuchElementException("TexasHoldem-game not found!")));
             default:
                 throw new NoSuchElementException("Game not found!");
         }
     }
 
-    public Game finishGame(Game game) {
+    public void finishGame(Game game) {
         game.setFinish(new Timestamp(System.currentTimeMillis()));
         game.setStatus(GameStatus.COMPLETED);
-        return gameRepository.saveAndFlush(game);
+        gameRepository.saveAndFlush(game);
     }
 
     public ArrayList<Game> getGamesForSingleUserById(int id) {
@@ -68,5 +72,4 @@ public class GameService {
     public Optional<Game> findTexasHoldemGameInProcess(int userId) {
         return gameRepository.getTexasHoldemGameInProcess(userId);
     }
-
 }

@@ -8,23 +8,16 @@ import lombok.Data;
 public class TexasHoldemGameWithBetPoker {
     private TexasHoldemGame texasHoldemGame;
     private BetPoker betPoker;
+    private String casinoCards;
 
-    public TexasHoldemGameWithBetPoker(TexasHoldemGame texasHoldemGame, BetPoker bet) {
-    }
-
-    public TexasHoldemGame getTexasHoldemGame() {
-        return texasHoldemGame;
-    }
-
-    public void setTexasHoldemGame(TexasHoldemGame texasHoldemGame) {
+    public TexasHoldemGameWithBetPoker(TexasHoldemGame texasHoldemGame, BetPoker betPoker) {
         this.texasHoldemGame = texasHoldemGame;
-    }
-
-    public BetPoker getBetPoker() {
-        return betPoker;
-    }
-
-    public void setBetPoker(BetPoker betPoker) {
         this.betPoker = betPoker;
     }
-}
+
+    public TexasHoldemGameWithBetPoker(TexasHoldemGame texasHoldemGame, BetPoker betPoker, String casinoCards) {
+        this.texasHoldemGame = texasHoldemGame;
+        this.betPoker = betPoker;
+        this.casinoCards = casinoCards;
+    }
+  }

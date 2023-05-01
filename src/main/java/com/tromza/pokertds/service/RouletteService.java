@@ -2,6 +2,7 @@ package com.tromza.pokertds.service;
 
 import com.tromza.pokertds.domain.*;
 import com.tromza.pokertds.repository.BetRepository;
+import com.tromza.pokertds.repository.GameRepository;
 import com.tromza.pokertds.repository.RouletteRepository;
 import com.tromza.pokertds.repository.UserRepository;
 import com.tromza.pokertds.response.RouletteWithBet;
@@ -13,7 +14,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.sql.Timestamp;
@@ -23,16 +23,17 @@ import java.util.*;
 public class RouletteService {
     Logger log = LoggerFactory.getLogger(this.getClass());
     private final BetRepository betRepository;
+    private final GameRepository gameRepository;
     private final RouletteRepository rouletteRepository;
     private final WalletService walletService;
     private final GameService gameService;
     private final UserService userService;
     private final UserRepository userRepository;
     private final EmailService emailService;
-
-    @Autowired
-    public RouletteService(BetRepository betRepository, RouletteRepository rouletteRepository, WalletService walletService, GameService gameService, UserService userService, UserRepository userRepository, EmailService emailService) {
+@Autowired
+    public RouletteService(BetRepository betRepository, GameRepository gameRepository, RouletteRepository rouletteRepository, WalletService walletService, GameService gameService, UserService userService, UserRepository userRepository, EmailService emailService) {
         this.betRepository = betRepository;
+        this.gameRepository = gameRepository;
         this.rouletteRepository = rouletteRepository;
         this.walletService = walletService;
         this.gameService = gameService;
@@ -106,12 +107,12 @@ public class RouletteService {
         }
     }
 
-    public BetRoulette saveBetRoulette(BetRoulette betRoulette) {
-        return betRepository.save(betRoulette);
+    public void saveBetRoulette(BetRoulette betRoulette) {
+        betRepository.save(betRoulette);
     }
 
-    public BetRoulette updateBetRoulette(BetRoulette betRoulette) {
-        return betRepository.saveAndFlush(betRoulette);
+    public void updateBetRoulette(BetRoulette betRoulette) {
+       betRepository.saveAndFlush(betRoulette);
     }
 
     public RouletteGame finishRouletteGame(RouletteGame rouletteGame, Principal principal) {
@@ -148,7 +149,7 @@ public class RouletteService {
         walletService.updateWallet(new UserMoneyAmount(user.getId(), BigDecimal.valueOf(rouletteGame.getResult())));
         updateRouletteGame(rouletteGame);
         log.info("Roulette-game" + rouletteGame.getId() + "was finished automatically");
-        String email = rouletteRepository.findEmailByGameId(rouletteGame.getGameId());
+        String email = gameRepository.findEmailByGameId(rouletteGame.getGameId());
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(email);
         mailMessage.setSubject("Your game was finished automatically");
@@ -165,7 +166,7 @@ public class RouletteService {
         } else {
             rouletteGames.forEach(roulette -> {
                 log.info("RouletteGame with id" + roulette.getId() + " haven't been changed more than 1 hour!");
-                String email = rouletteRepository.findEmailByGameId(roulette.getGameId());
+                String email = gameRepository.findEmailByGameId(roulette.getGameId());
                 SimpleMailMessage mailMessage = new SimpleMailMessage();
                 mailMessage.setTo(email);
                 mailMessage.setSubject("Your game will be finished automatically");
@@ -187,7 +188,6 @@ public class RouletteService {
     }
 
     public RouletteWithBet play(RouletteWithBet rouletteWithBet) {
-
         Random generator = new Random();
         int rouletteNumber = generator.nextInt(37);
         rouletteWithBet.getBetRoulette().setRouletteNumber(rouletteNumber);
@@ -196,8 +196,6 @@ public class RouletteService {
         double result = rouletteWithBet.getRouletteGame().getResult();
         int wins = rouletteWithBet.getRouletteGame().getWins();
         int losses = rouletteWithBet.getRouletteGame().getLosses();
-
-
         if (rouletteWithBet.getBetRoulette().getType() == BetType.NUMBER) {
             if (rouletteNumber == Integer.parseInt(rouletteWithBet.getBetRoulette().getPlayerChoice())) {
                 rouletteWithBet.getBetRoulette().setWinAmount(36 * amount);
