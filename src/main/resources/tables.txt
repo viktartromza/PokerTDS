@@ -1,12 +1,4 @@
-create sequence users_table_id_seq;
-
-alter sequence users_table_id_seq owner to postgres;
-
-create sequence wallets_id_seq_gen;
-
-alter sequence wallets_id_seq_gen owner to postgres;
-
-create table users
+create table public.users
 (
     id                bigserial
         primary key
@@ -22,17 +14,17 @@ create table users
     is_deleted        boolean default false                     not null
 );
 
-alter table users
+alter table public.users
     owner to postgres;
 
-create table users_data
+create table public.users_data
 (
     id            bigserial
         unique,
     user_id       bigint                                                               not null
         unique
         constraint users_data_fk
-            references users,
+            references public.users,
     first_name    varchar   default 'unknown'::bpchar,
     last_name     varchar   default 'unknown'::bpchar,
     country       varchar   default 'unknown'::bpchar,
@@ -41,10 +33,10 @@ create table users_data
     changed       timestamp default '2000-01-01 00:00:00'::timestamp without time zone not null
 );
 
-alter table users_data
+alter table public.users_data
     owner to postgres;
 
-create table wallets
+create table public.wallets
 (
     id      bigserial
         unique,
@@ -52,13 +44,13 @@ create table wallets
     user_id integer not null
         unique
         constraint wallets_users_id_fk
-            references users
+            references public.users
 );
 
-alter table wallets
+alter table public.wallets
     owner to postgres;
 
-create table games
+create table public.games
 (
     id          bigserial
         unique,
@@ -69,32 +61,32 @@ create table games
     result      numeric
 );
 
-alter table games
+alter table public.games
     owner to postgres;
 
-create table users_games
+create table public.users_games
 (
     id      bigserial
         unique,
     game_id integer not null
         constraint users_games_games_id_fk
-            references games (id),
+            references public.games (id),
     user_id integer not null
         constraint users_games_users_id_fk
-            references users
+            references public.users
 );
 
-alter table users_games
+alter table public.users_games
     owner to postgres;
 
-create table roulette_games
+create table public.roulette_games
 (
     id      bigserial
         unique,
     game_id integer not null
         unique
         constraint roulette_games_games_id_fk
-            references games (id)
+            references public.games (id)
             on update cascade on delete cascade,
     spin    integer,
     wins    integer,
@@ -104,16 +96,16 @@ create table roulette_games
     changed timestamp
 );
 
-alter table roulette_games
+alter table public.roulette_games
     owner to postgres;
 
-create table bets_roulette
+create table public.bets_roulette
 (
     id              bigserial
         unique,
     game_id         integer not null
         constraint bets_roulette_roulette_games_game_id_fk
-            references roulette_games (game_id)
+            references public.roulette_games (game_id)
             on update cascade on delete cascade,
     type            varchar not null,
     amount          numeric,
@@ -122,27 +114,46 @@ create table bets_roulette
     winning_amount  numeric default 0
 );
 
-alter table bets_roulette
+alter table public.bets_roulette
     owner to postgres;
 
-create table texasholdem_games
+create table public.texasholdem_games
 (
     id             bigserial
         unique,
     game_id        integer                               not null
         constraint texasholdem_games_games_id_fk
-            references games (id),
+            references public.games (id),
     bank           numeric default 0.00                  not null,
     player_preflop varchar default ''::character varying not null,
     casino_preflop varchar default ''::character varying not null,
-    flop           varchar default ''::character varying not null,
-    tern           varchar default ''::character varying not null,
-    river          varchar default ''::character varying not null,
+    flop           varchar default ''::character varying,
+    tern           varchar default ''::character varying,
+    river          varchar default ''::character varying,
     result         numeric default 0.00,
     status         varchar                               not null,
-    changed        timestamp
+    changed        timestamp,
+    player_deposit numeric                               not null,
+    winner         varchar
 );
 
-alter table texasholdem_games
+alter table public.texasholdem_games
+    owner to postgres;
+
+create table public.bets_poker
+(
+    id            bigserial
+        unique,
+    game_id       integer not null
+        constraint bets_poker_games_id_fk
+            references public.games (id),
+    type_player   varchar not null,
+    type_casino   varchar,
+    player_amount numeric,
+    round         integer not null,
+    casino_amount numeric
+);
+
+alter table public.bets_poker
     owner to postgres;
 
