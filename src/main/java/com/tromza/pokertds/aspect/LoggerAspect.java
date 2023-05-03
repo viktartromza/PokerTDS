@@ -2,53 +2,49 @@ package com.tromza.pokertds.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import javax.validation.constraints.NotNull;
 
-import java.time.LocalTime;
 
 @Aspect
 @Component
 public class LoggerAspect {
+
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-  //  @Around("within(com.tms.*)")
-//@Pointcut("execution(public * com.tms.*.*()))")
-//public void f(){}
 
-//@Pointcut("execution(public * com.tms.*.*(String)))")
-//public void ff(){}
+    @Pointcut("execution(public * *(..))")
+    private void anyPublicOperation() {}
 
+    @Pointcut("within(com.tromza.pokertds.controller..*)")
+    private void inController() {}
 
-   // @Around("f()||ff()")
-    @Around("@annotation(com.tromza.pokertds.annotation.GetTimeAnnotation)")
-    public void getLogAround(ProceedingJoinPoint joinPoint) throws Throwable {
-        LocalTime start = LocalTime.now();
-        log.info("Time start...");
-        joinPoint.proceed();
-        LocalTime end = LocalTime.now();
-        log.info("Time end...");
-        log.info("Method worked"+"   "+(end.getNano()-start.getNano())/1000000 +"  milisec");
-    }
+    @Pointcut("within(com.tromza.pokertds.service..*)")
+    private void inService() {}
 
-    @Before("within(com.tromza.pokertds.controller.*)")
-    public void getLogBefore(JoinPoint joinPoint){
+    @Before("anyPublicOperation() && inController() || inService()")
+    public void getLogBefore(JoinPoint joinPoint) {
         log.info("Method" + joinPoint.getSignature() + "started!");
     }
-/*
-    @After("within(com.tms.*)")
-    public void getLogAfter(){
-        log.info("Method finished!");
+
+    @After("anyPublicOperation() && inController() || inService()")
+    public void getLogAfter(JoinPoint joinPoint) {
+        log.info("Method" + joinPoint.getSignature() + "finished!");
     }
 
-    @AfterReturning(value = "within(com.tms.*)",returning = "result")
-    public void getLogAfterReturning(Object result){
-        log.info("Log after returning!" + result);
+    @Around("@annotation(com.tromza.pokertds.annotation.GetTimeAnnotation)")
+    public Object getLogAround(@NotNull ProceedingJoinPoint joinPoint) throws Throwable {
+        long start = System.currentTimeMillis();
+        Object retVal = joinPoint.proceed();
+        long end = System.currentTimeMillis();
+        long time = end - start;
+        log.info("Method " + joinPoint.getSignature() + " worked " + time + " millisecond");
+        return retVal;
     }
-
-    @AfterThrowing(value = "within(com.tms.*)",throwing ="err")
-    public void getLogAfterThrowing(Throwable err){
-        log.warn("WE HAVE THROW" + err);
-    }*/
 }

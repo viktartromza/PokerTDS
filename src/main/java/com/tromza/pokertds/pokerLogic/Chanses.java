@@ -1,12 +1,14 @@
 package com.tromza.pokertds.pokerLogic;
 
+import com.tromza.pokertds.annotation.GetTimeAnnotation;
+
 import java.util.ArrayList;
 
 
 public class Chanses {
     static final int QUANTITYALLCOMBINATIONS = 2598960;
     static final double AVERAGEPOWER = 0.43505781564375623;
-
+    @GetTimeAnnotation
     static int[] genCombinations(int[] arr, int k, int n) {//3 из 5, k=3, n=5
         if (arr == null) {
             arr = new int[k];
@@ -25,7 +27,7 @@ public class Chanses {
         }
         return null;
     }
-
+    @GetTimeAnnotation
     public static double compCombinations(String[] hand, String[] board) {
         Deck deck = new Deck();
         ArrayList<String> thisDeck = deck.get();
@@ -74,7 +76,7 @@ public class Chanses {
             return max * up / count;
         }
     }
-
+    @GetTimeAnnotation
     public static double evalCombination(String[] handWithBoard) {
         String combination;
         int[] arr = null;
@@ -86,7 +88,7 @@ public class Chanses {
         }
         return handValue.stream().mapToDouble(x -> x).max().getAsDouble();
     }
-
+    @GetTimeAnnotation
     public static double evalCombinationByHandAndBoard(String[] hand, String[] board) {
         String[] handWithBoard = new String[hand.length + board.length];
         System.arraycopy(hand, 0, handWithBoard, 0, 2);
@@ -101,7 +103,7 @@ public class Chanses {
         }
         return handValue.stream().mapToDouble(x -> x).max().getAsDouble();
     }
-
+    @GetTimeAnnotation
     public static double compCombinationsPlayer(String[] hand, String[] board) {
         Deck deck = new Deck();
         ArrayList<String> thisDeck = deck.get();

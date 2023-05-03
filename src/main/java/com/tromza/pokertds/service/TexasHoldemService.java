@@ -1,5 +1,6 @@
 package com.tromza.pokertds.service;
 
+import com.tromza.pokertds.annotation.GetTimeAnnotation;
 import com.tromza.pokertds.domain.*;
 import com.tromza.pokertds.pokerLogic.Chanses;
 import com.tromza.pokertds.pokerLogic.PokerGame;
@@ -79,7 +80,7 @@ public class TexasHoldemService {
             }
         }
     }
-
+@GetTimeAnnotation
     public TexasHoldemGameWithBetPoker playingTexasHoldem(BetPoker bet, Principal principal) throws InterruptedException {
         Game game = gameService.findTexasHoldemGameInProcess(userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!")).getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
         User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!"));
