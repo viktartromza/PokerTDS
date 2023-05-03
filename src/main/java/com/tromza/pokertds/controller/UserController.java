@@ -1,6 +1,5 @@
 package com.tromza.pokertds.controller;
 
-import com.tromza.pokertds.domain.Game;
 import com.tromza.pokertds.domain.User;
 import com.tromza.pokertds.request.RequestUserRegistration;
 import com.tromza.pokertds.request.RequestUserUpdate;
@@ -30,7 +29,7 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
-    }// конструктор контроллера
+    }
 
     @GetMapping("/scores")
     public ResponseEntity<List<ResponseOtherUserInfo>> getAllUsers() {
@@ -74,15 +73,5 @@ public class UserController {
     public ResponseEntity<HttpStatus> deleteUser(Principal principal) {
         userService.deleteUser(principal);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @PostMapping("/game/{user_id},{game_id}")
-    public ResponseEntity<HttpStatus> addGameToUser(@PathVariable int user_id, @PathVariable int game_id) {
-        User user = new User();
-        Game game = new Game();
-        user.setId(user_id);
-        game.setId(game_id);
-        userService.addGameToUser(user, game);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
+    }//TODO DELETE for Admin
 }

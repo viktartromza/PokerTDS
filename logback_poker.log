@@ -726,3 +726,180 @@ java.lang.IllegalArgumentException: Invalid character found in method name [0x16
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
 	at java.base/java.lang.Thread.run(Thread.java:1589) ~[na:na]
 
+2023-05-03 22:49:53.387  INFO 16588 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-03 22:49:53.426  INFO 16588 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-03 22:49:53.426  INFO 16588 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-03 22:54:17.510  INFO 16588 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-05-03 22:54:22.810  INFO 7896 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 7896 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-05-03 22:54:22.811  INFO 7896 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-05-03 22:54:23.323  INFO 7896 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-03 22:54:23.372  INFO 7896 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 7 JPA repository interfaces.
+2023-05-03 22:54:23.920  INFO 7896 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-05-03 22:54:23.926  INFO 7896 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-03 22:54:23.927  INFO 7896 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-05-03 22:54:24.096  INFO 7896 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-05-03 22:54:24.100  INFO 7896 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-05-03 22:54:24.101  INFO 7896 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1264 ms
+2023-05-03 22:54:24.448  INFO 7896 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-03 22:54:24.478  INFO 7896 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-05-03 22:54:24.573  INFO 7896 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-05-03 22:54:24.689  INFO 7896 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-05-03 22:54:25.133  INFO 7896 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-03 22:54:25.138  INFO 7896 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-03 22:54:25.903  INFO 7896 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@44a25dc7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3fc064cb, org.springframework.security.web.context.SecurityContextPersistenceFilter@40b7e68c, org.springframework.security.web.header.HeaderWriterFilter@639d808a, org.springframework.security.web.authentication.logout.LogoutFilter@522fc988, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@39336f5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@a23b96b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@32dc895e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4bacabc4, org.springframework.security.web.session.SessionManagementFilter@30b5f974, org.springframework.security.web.access.ExceptionTranslationFilter@1a345c6c, org.springframework.security.web.access.intercept.AuthorizationFilter@5982255e]
+2023-05-03 22:54:25.987  WARN 7896 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-03 22:54:27.034  INFO 7896 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-05-03 22:54:27.077  INFO 7896 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-05-03 22:54:27.089  INFO 7896 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 4.497 seconds (JVM running for 4.863)
+2023-05-03 22:54:27.089  INFO 7896 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-03 22:54:27.174  INFO 7896 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-03 22:54:27.175  INFO 7896 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-03 22:54:27.372  INFO 7896 --- [RMI TCP Connection(1)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-03 22:54:27.372  INFO 7896 --- [RMI TCP Connection(1)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-03 22:54:27.373  INFO 7896 --- [RMI TCP Connection(1)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-05-03 22:56:09.139  INFO 7896 --- [http-nio-8080-exec-1] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x020x000x010x000x010xfc0x030x030xe70xa7&70xf30xfd0x1e0xb90xfa0x9fNH0x1d0xdd0x000x0aqN0x1a0xc50xb0_0x16}0xc10x9a<0xe7>\0xa70x98 ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:407) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:262) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.base/java.lang.Thread.run(Thread.java:1589) ~[na:na]
+
+2023-05-03 22:59:27.101  INFO 7896 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-03 22:59:27.139  INFO 7896 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-03 22:59:27.139  INFO 7896 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-03 23:02:34.658  INFO 7896 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-05-03 23:09:27.581  INFO 14616 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 14616 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-05-03 23:09:27.582  INFO 14616 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-05-03 23:09:28.113  INFO 14616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-03 23:09:28.159  INFO 14616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 7 JPA repository interfaces.
+2023-05-03 23:09:28.697  INFO 14616 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-05-03 23:09:28.702  INFO 14616 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-03 23:09:28.702  INFO 14616 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-05-03 23:09:28.865  INFO 14616 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-05-03 23:09:28.869  INFO 14616 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-05-03 23:09:28.869  INFO 14616 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1263 ms
+2023-05-03 23:09:29.223  INFO 14616 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-03 23:09:29.253  INFO 14616 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-05-03 23:09:29.350  INFO 14616 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-05-03 23:09:29.465  INFO 14616 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-05-03 23:09:29.909  INFO 14616 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-03 23:09:29.915  INFO 14616 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-03 23:09:30.581  INFO 14616 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@13231e7b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@55b7f0d, org.springframework.security.web.context.SecurityContextPersistenceFilter@22025464, org.springframework.security.web.header.HeaderWriterFilter@760b9444, org.springframework.security.web.authentication.logout.LogoutFilter@4458887d, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7e113065, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@326489c4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@62b8dd6a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@e0faed6, org.springframework.security.web.session.SessionManagementFilter@7c7d83ff, org.springframework.security.web.access.ExceptionTranslationFilter@7959fbe3, org.springframework.security.web.access.intercept.AuthorizationFilter@581f1f40]
+2023-05-03 23:09:30.665  WARN 14616 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-03 23:09:31.771  INFO 14616 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-05-03 23:09:31.814  INFO 14616 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-05-03 23:09:31.826  INFO 14616 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 4.459 seconds (JVM running for 4.834)
+2023-05-03 23:09:31.826  INFO 14616 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-03 23:09:31.911  INFO 14616 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-03 23:09:31.911  INFO 14616 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-03 23:09:32.140  INFO 14616 --- [RMI TCP Connection(1)-169.254.123.93] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-03 23:09:32.140  INFO 14616 --- [RMI TCP Connection(1)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-03 23:09:32.141  INFO 14616 --- [RMI TCP Connection(1)-169.254.123.93] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-05-03 23:10:04.481  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.createTexasHoldem(Principal)started!
+2023-05-03 23:10:04.483  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.TexasHoldemService.createTexasHoldemGameForUser(Principal)started!
+2023-05-03 23:10:04.484  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-03 23:10:04.522  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-03 23:10:04.523  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.GameService.findTexasHoldemGameInProcess(int)started!
+2023-05-03 23:10:04.528  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.GameService.findTexasHoldemGameInProcess(int)finished!
+2023-05-03 23:10:04.529  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.WalletService.getWalletByUserId(Integer)started!
+2023-05-03 23:10:04.534  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.WalletService.getWalletByUserId(Integer)finished!
+2023-05-03 23:10:04.535  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodGame com.tromza.pokertds.service.GameService.createGame(Game)started!
+2023-05-03 23:10:04.563  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodGame com.tromza.pokertds.service.GameService.createGame(Game)finished!
+2023-05-03 23:10:04.564  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.UserService.addGameToUser(User,Game)started!
+2023-05-03 23:10:04.568  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.UserService.addGameToUser(User,Game)finished!
+2023-05-03 23:10:04.569  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodWallet com.tromza.pokertds.service.WalletService.updateWallet(UserMoneyAmount)started!
+2023-05-03 23:10:04.576  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodWallet com.tromza.pokertds.service.WalletService.updateWallet(UserMoneyAmount)finished!
+2023-05-03 23:10:04.581  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.TexasHoldemService.createTexasHoldemGameForUser(Principal)finished!
+2023-05-03 23:10:04.583  INFO 14616 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.createTexasHoldem(Principal)finished!
+2023-05-03 23:10:15.353  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.playingGame(Principal,BetPoker,BindingResult)started!
+2023-05-03 23:10:15.355  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodTexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal)started!
+2023-05-03 23:10:15.356  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-03 23:10:15.395  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-03 23:10:15.395  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.GameService.findTexasHoldemGameInProcess(int)started!
+2023-05-03 23:10:15.397  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.GameService.findTexasHoldemGameInProcess(int)finished!
+2023-05-03 23:10:15.397  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-03 23:10:15.398  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-03 23:10:15.401  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.WalletService.getWalletForUser(Principal)started!
+2023-05-03 23:10:15.403  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.WalletService.getWalletForUser(Principal)finished!
+2023-05-03 23:10:15.403  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodWallet com.tromza.pokertds.service.WalletService.updateWallet(UserMoneyAmount)started!
+2023-05-03 23:10:15.408  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodWallet com.tromza.pokertds.service.WalletService.updateWallet(UserMoneyAmount)finished!
+2023-05-03 23:10:15.895  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodTexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal)finished!
+2023-05-03 23:10:15.895  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : Method TexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal) worked 540 millisecond
+2023-05-03 23:10:15.896  INFO 14616 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.playingGame(Principal,BetPoker,BindingResult)finished!
+2023-05-03 23:10:33.417  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.playingGame(Principal,BetPoker,BindingResult)started!
+2023-05-03 23:10:33.417  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodTexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal)started!
+2023-05-03 23:10:33.417  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-03 23:10:33.454  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-03 23:10:33.454  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.GameService.findTexasHoldemGameInProcess(int)started!
+2023-05-03 23:10:33.455  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.GameService.findTexasHoldemGameInProcess(int)finished!
+2023-05-03 23:10:33.455  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-03 23:10:33.456  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-03 23:10:33.458  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.WalletService.getWalletForUser(Principal)started!
+2023-05-03 23:10:33.460  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.WalletService.getWalletForUser(Principal)finished!
+2023-05-03 23:10:33.460  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodWallet com.tromza.pokertds.service.WalletService.updateWallet(UserMoneyAmount)started!
+2023-05-03 23:10:33.463  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodWallet com.tromza.pokertds.service.WalletService.updateWallet(UserMoneyAmount)finished!
+2023-05-03 23:10:33.727  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodTexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal)finished!
+2023-05-03 23:10:33.728  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : Method TexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal) worked 311 millisecond
+2023-05-03 23:10:33.728  INFO 14616 --- [http-nio-8080-exec-4] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.playingGame(Principal,BetPoker,BindingResult)finished!
+2023-05-03 23:10:43.187  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.playingGame(Principal,BetPoker,BindingResult)started!
+2023-05-03 23:10:43.188  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodTexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal)started!
+2023-05-03 23:10:43.188  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-03 23:10:43.225  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-03 23:10:43.225  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.GameService.findTexasHoldemGameInProcess(int)started!
+2023-05-03 23:10:43.227  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.GameService.findTexasHoldemGameInProcess(int)finished!
+2023-05-03 23:10:43.227  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-03 23:10:43.228  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-03 23:10:43.230  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.WalletService.getWalletForUser(Principal)started!
+2023-05-03 23:10:43.232  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.WalletService.getWalletForUser(Principal)finished!
+2023-05-03 23:10:43.232  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodWallet com.tromza.pokertds.service.WalletService.updateWallet(UserMoneyAmount)started!
+2023-05-03 23:10:43.237  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodWallet com.tromza.pokertds.service.WalletService.updateWallet(UserMoneyAmount)finished!
+2023-05-03 23:10:43.241  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodTexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal)finished!
+2023-05-03 23:10:43.241  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : Method TexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal) worked 53 millisecond
+2023-05-03 23:10:43.241  INFO 14616 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.playingGame(Principal,BetPoker,BindingResult)finished!
+2023-05-03 23:10:58.135  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.playingGame(Principal,BetPoker,BindingResult)started!
+2023-05-03 23:10:58.136  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodTexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal)started!
+2023-05-03 23:10:58.136  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-03 23:10:58.175  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-03 23:10:58.175  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.GameService.findTexasHoldemGameInProcess(int)started!
+2023-05-03 23:10:58.176  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.GameService.findTexasHoldemGameInProcess(int)finished!
+2023-05-03 23:10:58.176  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-03 23:10:58.177  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-03 23:10:58.178  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.WalletService.getWalletForUser(Principal)started!
+2023-05-03 23:10:58.180  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.WalletService.getWalletForUser(Principal)finished!
+2023-05-03 23:10:58.181  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodWallet com.tromza.pokertds.service.WalletService.updateWallet(UserMoneyAmount)started!
+2023-05-03 23:10:58.186  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodWallet com.tromza.pokertds.service.WalletService.updateWallet(UserMoneyAmount)finished!
+2023-05-03 23:10:58.192  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodTexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal)finished!
+2023-05-03 23:10:58.193  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : Method TexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal) worked 57 millisecond
+2023-05-03 23:10:58.193  INFO 14616 --- [http-nio-8080-exec-3] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.playingGame(Principal,BetPoker,BindingResult)finished!
+2023-05-03 23:11:17.146  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.playingGame(Principal,BetPoker,BindingResult)started!
+2023-05-03 23:11:17.146  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodTexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal)started!
+2023-05-03 23:11:17.146  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-03 23:11:17.184  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-03 23:11:17.184  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.GameService.findTexasHoldemGameInProcess(int)started!
+2023-05-03 23:11:17.186  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.GameService.findTexasHoldemGameInProcess(int)finished!
+2023-05-03 23:11:17.186  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-03 23:11:17.187  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-03 23:11:17.188  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.WalletService.getWalletForUser(Principal)started!
+2023-05-03 23:11:17.190  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.WalletService.getWalletForUser(Principal)finished!
+2023-05-03 23:11:17.191  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodWallet com.tromza.pokertds.service.WalletService.updateWallet(UserMoneyAmount)started!
+2023-05-03 23:11:17.194  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodWallet com.tromza.pokertds.service.WalletService.updateWallet(UserMoneyAmount)finished!
+2023-05-03 23:11:17.408  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-03 23:11:17.410  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-03 23:11:17.411  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.GameService.findTexasHoldemGameInProcess(int)started!
+2023-05-03 23:11:17.412  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.GameService.findTexasHoldemGameInProcess(int)finished!
+2023-05-03 23:11:17.413  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.GameService.finishGame(Game)started!
+2023-05-03 23:11:17.417  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.GameService.finishGame(Game)finished!
+2023-05-03 23:11:17.417  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.UserService.saveUser(User)started!
+2023-05-03 23:11:17.420  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.UserService.saveUser(User)finished!
+2023-05-03 23:11:17.425  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodTexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal)finished!
+2023-05-03 23:11:17.425  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : Method TexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal) worked 279 millisecond
+2023-05-03 23:11:17.425  INFO 14616 --- [http-nio-8080-exec-7] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.playingGame(Principal,BetPoker,BindingResult)finished!
+2023-05-03 23:12:20.615  INFO 14616 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
