@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/games")
 public class GameController {
-    GameService gameService;
+    private final GameService gameService;
 
     @Autowired
     public GameController(GameService gameService) {

@@ -16,6 +16,7 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -53,14 +54,14 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity createUser(@RequestBody @Valid RequestUserRegistration userRegistration, BindingResult bindingResult) {
+    public ResponseEntity<?> createUser(@RequestBody @Valid RequestUserRegistration userRegistration, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             List<String> errors = new ArrayList<>();
             for (ObjectError o : bindingResult.getAllErrors()) {
                 log.warn("We have validation error: " + o);
                 errors.add(o.getDefaultMessage());
             }
-            return new ResponseEntity<>(errors,HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(errors, HttpStatus.NOT_ACCEPTABLE);
         } else {
             return new ResponseEntity<>(userService.createUser(userRegistration), HttpStatus.CREATED);
         }
@@ -75,7 +76,6 @@ public class UserController {
     @DeleteMapping("")
     public ResponseEntity<HttpStatus> deleteUser(Principal principal) {
         userService.deleteUser(principal);
-        SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
