@@ -6,16 +6,20 @@ import com.tromza.pokertds.domain.User;
 import com.tromza.pokertds.repository.UserRepository;
 import com.tromza.pokertds.request.RequestUserRegistration;
 import com.tromza.pokertds.request.RequestUserUpdate;
+import com.tromza.pokertds.response.Response;
 import com.tromza.pokertds.response.ResponseOtherUserInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 import java.security.Principal;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -25,9 +29,11 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+
     @Value("${defaultRole}")
     private String ROLE;
 
+    @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -44,10 +50,9 @@ public class UserService {
 
     public List<ResponseOtherUserInfo> getAllUsersForUser() {
         List<User> users = userRepository.findAll();
-        return users.stream().filter(user -> !user.isDeleted()).map(user->new ResponseOtherUserInfo(user.getId(), user.getLogin(), user.getScore())).collect(Collectors.toList());
+        return users.stream().filter(user -> !user.isDeleted()).filter(user->user.getRole().equals("USER")).map(user -> new ResponseOtherUserInfo(user.getId(), user.getLogin(), user.getScore())).collect(Collectors.toList());
     }
 
-    @Transactional
     public User createUser(RequestUserRegistration userRegistration) {
         User user = new User();
         user.setLogin(userRegistration.getLogin());
@@ -60,9 +65,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    @Transactional
-    public User updateUser(RequestUserUpdate requestUserUpdate, Principal principal) {
-       User user = getUserByLogin(principal.getName()).get();
+       public User updateUser(RequestUserUpdate requestUserUpdate, Principal principal) {
+        User user = getUserByLogin(principal.getName()).get();
         user.setChanged(new Timestamp(System.currentTimeMillis()));
         user.setFirstName(requestUserUpdate.getFirstName());
         user.setLastName(requestUserUpdate.getLastName());
@@ -72,10 +76,20 @@ public class UserService {
         return userRepository.saveAndFlush(user);
     }
 
-    public void deleteUser (Principal principal){
-        User user = getUserByLogin(principal.getName()).orElseThrow(()->new UsernameNotFoundException("User with login " + principal.getName() + " not found!"));
+    public void deleteUser(Principal principal) {
+        User user = getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!"));
         user.setDeleted(true);
         userRepository.saveAndFlush(user);
+    }
+
+    public void deleteUserByIdForAdmin(int id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("User with id " + id + " not found!"));
+        if (user.isDeleted()) {
+            throw new UnsupportedOperationException("User with id " + id + " is already deleted");
+        } else {
+            user.setDeleted(true);
+            userRepository.saveAndFlush(user);
+        }
     }
 
     public void addGameToUser(User user, Game game) {

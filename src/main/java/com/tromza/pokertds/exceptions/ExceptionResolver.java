@@ -1,5 +1,6 @@
 package com.tromza.pokertds.exceptions;
 
+import com.tromza.pokertds.response.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -15,26 +16,37 @@ public class ExceptionResolver {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @ExceptionHandler({NoSuchElementException.class, UsernameNotFoundException.class})
-    public ResponseEntity ExceptionHandlerNotFound(Exception e) {
-        log.warn(e.getClass() + e.getMessage());
-        return new ResponseEntity(e.getClass() + "\n" + e.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<Response> exceptionHandlerNotFound(Exception e) {
+        log.warn(e.getClass() +" "+ e.getMessage());
+        Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
+        return new ResponseEntity<>(responseException, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler({UnsupportedOperationException.class})
-    public ResponseEntity ExceptionHandlerUnsupported(Exception e) {
-        log.warn(e.getClass() + e.getMessage());
-        return new ResponseEntity(e.getClass() + "\n" + e.getMessage(), HttpStatus.CONFLICT);
+    public ResponseEntity<Response> exceptionHandlerUnsupported(Exception e) {
+        log.warn(e.getClass() +" "+ e.getMessage());
+        Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
+        return new ResponseEntity<>(responseException, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler({SecurityException.class})
-    public ResponseEntity ExceptionHandlerSecurity(Exception e) {
-        log.warn(e.getClass() + e.getMessage());
-        return new ResponseEntity(e.getClass() + "\n" + e.getMessage(), HttpStatus.FORBIDDEN);
+    public ResponseEntity<Response> exceptionHandlerSecurity(Exception e) {
+        log.warn(e.getClass() +" "+ e.getMessage());
+        Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
+        return new ResponseEntity<>(responseException, HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler({SQLException.class})
-    public ResponseEntity ExceptionHandlerSQL(Exception e) {
-        log.warn(e.getClass() + e.getMessage());
-        return new ResponseEntity(e.getClass() + "\n" + e.getMessage(), HttpStatus.CONFLICT);
+    public ResponseEntity<Response> exceptionHandlerSQL(Exception e) {
+        log.warn(e.getClass() +" "+ e.getMessage());
+        Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
+        return new ResponseEntity<>(responseException, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler({InterruptedException.class})
+    public ResponseEntity<Response> exceptionInterruptedException(Exception e) {
+        log.warn(e.getClass() +" "+ e.getMessage());
+        Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
+        return new ResponseEntity<>(responseException, HttpStatus.CONFLICT);
     }
 }

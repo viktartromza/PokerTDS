@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/game/roulette")
+@RequestMapping("/games/roulette")
 public class RouletteController {
 
     Logger log = LoggerFactory.getLogger(this.getClass());

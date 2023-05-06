@@ -328,14 +328,15 @@ public class TexasHoldemService {
                 try {
                     Thread.sleep(180000);
                 } catch (InterruptedException e) {
+                    log.warn("We have InterruptedException in findNoPlayedTexasHoldemGames");
                     throw new RuntimeException(e);
                 }
-                finishNoPlayedRouletteGames(game);
+                finishNoPlayedTexasHoldemGames(game);
             }).start());
         }
     }
 
-   public void finishNoPlayedRouletteGames(TexasHoldemGame texasHoldemGame) {
+   public void finishNoPlayedTexasHoldemGames(TexasHoldemGame texasHoldemGame) {
        Game game = gameService.getGameById(texasHoldemGame.getGameId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
        User user = userRepository.findUserIdByGameId(texasHoldemGame.getGameId()).map(userId -> userRepository.findById(userId)).orElseThrow(() -> new NoSuchElementException("User not found")).orElseThrow(() -> new NoSuchElementException("User not found"));
        texasHoldemGame.setStatus(GameStatus.COMPLETED);

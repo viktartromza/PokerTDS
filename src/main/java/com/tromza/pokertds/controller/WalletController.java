@@ -31,15 +31,9 @@ public class WalletController {
         return wallet.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Wallet> createWalletForUser(Principal principal){
 
             return new ResponseEntity<>(walletService.createWalletForPrincipal(principal), HttpStatus.CREATED);
-
-    }
-    @PutMapping("/")
-    public ResponseEntity<Wallet> transferWallet(@RequestBody UserMoneyAmount userMoney) {
-        Wallet wallet = walletService.updateWallet(userMoney);
-        return new ResponseEntity<>(wallet, HttpStatus.OK);
     }
 }

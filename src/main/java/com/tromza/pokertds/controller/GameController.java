@@ -24,7 +24,7 @@ public class GameController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<ArrayList<Game>> getGamesForAnotherUser(@RequestParam(value = "userId") int id) {
+    public ResponseEntity<ArrayList<Game>> getGamesFromOtherUser(@RequestParam(value = "userId") int id) {
         ArrayList<Game> games = gameService.getGamesForSingleUserById(id);
         return new ResponseEntity<>(games, HttpStatus.ALREADY_REPORTED);
     }

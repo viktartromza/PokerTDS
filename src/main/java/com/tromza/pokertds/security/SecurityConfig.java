@@ -7,14 +7,19 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-private final UserDetailsService userDetailsService;
-@Autowired
+    private final UserDetailsService userDetailsService;
+
+
+    @Autowired
     public SecurityConfig(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
@@ -23,14 +28,14 @@ private final UserDetailsService userDetailsService;
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers(HttpMethod.POST,"/auth").permitAll()
-                .antMatchers(HttpMethod.POST,"/users/registration").permitAll()
-                .antMatchers(HttpMethod.GET, "users/info").hasRole("USER")
-                .antMatchers(HttpMethod.GET, "users/{id}").hasRole("USER")
-                .antMatchers(HttpMethod.PUT, "users/update").hasRole("USER")
-                .antMatchers(HttpMethod.DELETE, "users/").hasRole("USER")
-                .antMatchers(HttpMethod.PUT, "/*").permitAll()//TODO permissions
-                .antMatchers(HttpMethod.POST, "/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .antMatchers(HttpMethod.POST, "/users/registration").permitAll()
+                .antMatchers( "/users/**").hasAnyRole("ADMIN","USER")
+                .antMatchers(HttpMethod.DELETE, "/users").hasRole("USER")
+                .antMatchers( "/wallets").hasRole("USER")
+                .antMatchers( "/wallets/**").hasRole("USER")
+                .antMatchers( "/games/**").hasAnyRole("ADMIN","USER")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().userDetailsService(userDetailsService)

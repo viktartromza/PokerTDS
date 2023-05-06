@@ -3,6 +3,7 @@ package com.tromza.pokertds.controller;
 import com.tromza.pokertds.domain.User;
 import com.tromza.pokertds.request.RequestUserRegistration;
 import com.tromza.pokertds.request.RequestUserUpdate;
+import com.tromza.pokertds.response.Response;
 import com.tromza.pokertds.response.ResponseOtherUserInfo;
 import com.tromza.pokertds.service.UserService;
 import org.slf4j.Logger;
@@ -10,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
@@ -69,9 +72,10 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("")
     public ResponseEntity<HttpStatus> deleteUser(Principal principal) {
         userService.deleteUser(principal);
+        SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }//TODO DELETE for Admin
+    }
 }

@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/game/poker/texas")
+@RequestMapping("/games/poker/texas")
 public class TexasHoldemController {
 Logger log = LoggerFactory.getLogger(this.getClass());
     private final TexasHoldemService texasHoldemService;
@@ -28,13 +28,13 @@ Logger log = LoggerFactory.getLogger(this.getClass());
         this.texasHoldemService = texasHoldemService;
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<TexasHoldemGame> createTexasHoldem(Principal principal) {
         Optional<TexasHoldemGame> texasHoldemGame = texasHoldemService.createTexasHoldemGameForUser(principal);
         return texasHoldemGame.map(value -> new ResponseEntity<>(value, HttpStatus.CREATED)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
-    @PutMapping("/")
+    @PutMapping
     public ResponseEntity playingGame(Principal principal, @RequestBody @Valid BetPoker bet, BindingResult bindingResult) throws InterruptedException {
         if (bindingResult.hasErrors()) {
             List<String> errors = new ArrayList<>();
