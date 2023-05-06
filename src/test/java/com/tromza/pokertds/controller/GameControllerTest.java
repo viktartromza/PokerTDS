@@ -1,10 +1,6 @@
 package com.tromza.pokertds.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.tromza.pokertds.domain.User;
-import com.tromza.pokertds.request.RequestUserUpdate;
-import com.tromza.pokertds.response.ResponseOtherUserInfo;
+import com.tromza.pokertds.response.ResponseGameInfo;
 import com.tromza.pokertds.service.GameService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,10 +10,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -34,7 +28,6 @@ public class GameControllerTest {
     @InjectMocks
     private GameController gameController;
     private MockMvc mockMvc;
-    private final ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
     private final Integer id = 1;
     private final Principal principal = () -> "";
 
@@ -50,7 +43,7 @@ public class GameControllerTest {
     public void getGamesFromOtherUserTest() throws Exception {
         when(gameService.getGamesForSingleUserById(id)).thenReturn(new ArrayList<>());
         mockMvc.perform(get("/games/")
-                .param("userId", String.valueOf(id)))
+                        .param("userId", String.valueOf(id)))
                 .andExpect(status().isAlreadyReported())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
@@ -66,5 +59,15 @@ public class GameControllerTest {
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
         verify(gameService, times(1)).getGamesForSingleUser(principal);
+    }
+
+    @Test
+    public void getGameInfoTest() throws Exception {
+        when(gameService.getGameInfoById(id)).thenReturn(new ResponseGameInfo());
+        mockMvc.perform(get("/games/info/" + id))
+                .andExpect(status().isAlreadyReported())
+                .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
+                .andReturn();
+        verify(gameService, times(1)).getGameInfoById(id);
     }
 }

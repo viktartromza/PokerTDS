@@ -1,10 +1,7 @@
 package com.tromza.pokertds.controller;
 
 import com.tromza.pokertds.domain.Wallet;
-import com.tromza.pokertds.request.UserMoneyAmount;
 import com.tromza.pokertds.service.WalletService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +13,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/wallets")
 public class WalletController {
-    Logger log = LoggerFactory.getLogger(this.getClass());
-
     private final WalletService walletService;
 
     @Autowired
@@ -32,8 +27,7 @@ public class WalletController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Wallet> createWalletForUser(Principal principal){
-
-            return new ResponseEntity<>(walletService.createWalletForPrincipal(principal), HttpStatus.CREATED);
+    public ResponseEntity<Wallet> createWalletForUser(Principal principal) {
+        return new ResponseEntity<>(walletService.createWalletForPrincipal(principal), HttpStatus.CREATED);
     }
 }

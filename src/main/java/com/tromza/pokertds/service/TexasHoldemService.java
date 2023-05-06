@@ -18,10 +18,12 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -41,7 +43,8 @@ public class TexasHoldemService {
     private final GameRepository gameRepository;
     private final PokerBetRepository pokerBetRepository;
     private final EmailService emailService;
-@Autowired
+
+    @Autowired
     public TexasHoldemService(WalletService walletService, GameService gameService, UserService userService, UserRepository userRepository, TexasHoldemRepository texasHoldemRepository, GameRepository gameRepository, PokerBetRepository pokerBetRepository, EmailService emailService) {
         this.walletService = walletService;
         this.gameService = gameService;
@@ -80,7 +83,8 @@ public class TexasHoldemService {
             }
         }
     }
-@GetTimeAnnotation
+
+    @GetTimeAnnotation
     public TexasHoldemGameWithBetPoker playingTexasHoldem(BetPoker bet, Principal principal) throws InterruptedException {
         Game game = gameService.findTexasHoldemGameInProcess(userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!")).getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
         User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!"));
@@ -166,7 +170,13 @@ public class TexasHoldemService {
                 AtomicReference<Double> chansesCasino = new AtomicReference<>((double) 0);
                 AtomicReference<Double> chansesPlayer = new AtomicReference<>((double) 0);
                 var threadFirst = new Thread(() -> chansesCasino.set(Chanses.compCombinations(ourHand, null)));
-                var threadSecond = new Thread(() -> chansesPlayer.set(Chanses.compCombinationsPlayer(ourHand, null)));
+                var threadSecond = new Thread(() -> {
+                    try {
+                        chansesPlayer.set(Chanses.compCombinationsPlayer(ourHand, null));
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
                 threadFirst.start();
                 threadFirst.join();
                 threadSecond.start();
@@ -200,7 +210,13 @@ public class TexasHoldemService {
                 AtomicReference<Double> chansesCasino = new AtomicReference<>((double) 0);
                 AtomicReference<Double> chansesPlayer = new AtomicReference<>((double) 0);
                 var threadFirst = new Thread(() -> chansesCasino.set(Chanses.compCombinations(ourHand, board)));
-                var threadSecond = new Thread(() -> chansesPlayer.set(Chanses.compCombinationsPlayer(ourHand, board)));
+                var threadSecond = new Thread(() -> {
+                    try {
+                        chansesPlayer.set(Chanses.compCombinationsPlayer(ourHand, board));
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
                 threadFirst.start();
                 threadFirst.join();
                 threadSecond.start();
@@ -235,7 +251,13 @@ public class TexasHoldemService {
                 AtomicReference<Double> chansesCasino = new AtomicReference<>((double) 0);
                 AtomicReference<Double> chansesPlayer = new AtomicReference<>((double) 0);
                 var threadFirst = new Thread(() -> chansesCasino.set(Chanses.compCombinations(ourHand, board)));
-                var threadSecond = new Thread(() -> chansesPlayer.set(Chanses.compCombinationsPlayer(ourHand, board)));
+                var threadSecond = new Thread(() -> {
+                    try {
+                        chansesPlayer.set(Chanses.compCombinationsPlayer(ourHand, board));
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
                 threadFirst.start();
                 threadFirst.join();
                 threadSecond.start();
@@ -267,10 +289,14 @@ public class TexasHoldemService {
             }
             board[3] = texasHoldemGame.getTern();
             board[4] = texasHoldemGame.getRiver();
-            double resultCasino = Chanses.evalCombinationByHandAndBoard(ourHand, board);
+            Map.Entry<String,Double> casinoResult = Chanses.evalCombinationByHandAndBoard(ourHand, board);
+            Map.Entry<String,Double> playerResult = Chanses.evalCombinationByHandAndBoard(playerHand, board);
+            double resultCasino = casinoResult.getValue();
+            String bestCombCasino = casinoResult.getKey();
             double resultBoard = Chanses.evalCombination(board);
             double chansesPlayer = Chanses.compCombinationsPlayer(ourHand, board);
-            double resultPlayer = Chanses.evalCombinationByHandAndBoard(playerHand, board);
+            double resultPlayer = playerResult.getValue();
+            String bestCombPlayer = playerResult.getKey();
             if (bet.getTypePlayer().equals(BetPokerType.BET)) {
                 if (resultCasino > 3 && chansesPlayer < 2.5 && resultCasino > resultBoard) {
                     bet.setTypeCasino(BetPokerType.RISE);
@@ -278,29 +304,37 @@ public class TexasHoldemService {
                     texasHoldemGame.setBank(texasHoldemGame.getBank() + bet.getPlayerAmount().doubleValue() + bet.getCasinoAmount().doubleValue());
                     return new TexasHoldemGameWithBetPoker(updateTexasHoldemGame(texasHoldemGame), saveBetPoker(bet));
                 } else {
+                    String winCombination;
                     bet.setTypeCasino(BetPokerType.CALL);
                     bet.setCasinoAmount(bet.getPlayerAmount());
                     texasHoldemGame.setBank(texasHoldemGame.getBank() + bet.getPlayerAmount().doubleValue() + bet.getCasinoAmount().doubleValue());
                     if (resultPlayer > resultCasino) {
                         texasHoldemGame.setWinner(Winner.PLAYER);
+                        winCombination = bestCombPlayer;
                     } else if (resultPlayer < resultCasino) {
                         texasHoldemGame.setWinner(Winner.CASINO);
+                        winCombination = bestCombCasino;
                     } else {
                         texasHoldemGame.setWinner(Winner.DRAW);
+                        winCombination = bestCombPlayer;
                     }
-                    return new TexasHoldemGameWithBetPoker(finishTexasHoldemGame(texasHoldemGame, principal), saveBetPoker(bet), texasHoldemGame.getCasinoPreflop());
+                    return new TexasHoldemGameWithBetPoker(finishTexasHoldemGame(texasHoldemGame, principal), saveBetPoker(bet), texasHoldemGame.getCasinoPreflop(),winCombination);
                 }
             }
             if (bet.getTypePlayer().equals(BetPokerType.CALL)) {
                 texasHoldemGame.setBank(texasHoldemGame.getBank() + bet.getPlayerAmount().doubleValue());
+                String winCombination;
                 if (resultPlayer > resultCasino) {
                     texasHoldemGame.setWinner(Winner.PLAYER);
+                    winCombination = bestCombPlayer;
                 } else if (resultPlayer < resultCasino) {
                     texasHoldemGame.setWinner(Winner.CASINO);
+                    winCombination = bestCombCasino;
                 } else {
                     texasHoldemGame.setWinner(Winner.DRAW);
+                    winCombination = bestCombPlayer;
                 }
-                return new TexasHoldemGameWithBetPoker(finishTexasHoldemGame(texasHoldemGame, principal), saveBetPoker(bet), texasHoldemGame.getCasinoPreflop());
+                return new TexasHoldemGameWithBetPoker(finishTexasHoldemGame(texasHoldemGame, principal), saveBetPoker(bet), texasHoldemGame.getCasinoPreflop(),winCombination);
             }
         }
         throw new UnsupportedOperationException("Something wrong");
@@ -336,23 +370,23 @@ public class TexasHoldemService {
         }
     }
 
-   public void finishNoPlayedTexasHoldemGames(TexasHoldemGame texasHoldemGame) {
-       Game game = gameService.getGameById(texasHoldemGame.getGameId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
-       User user = userRepository.findUserIdByGameId(texasHoldemGame.getGameId()).map(userId -> userRepository.findById(userId)).orElseThrow(() -> new NoSuchElementException("User not found")).orElseThrow(() -> new NoSuchElementException("User not found"));
-       texasHoldemGame.setStatus(GameStatus.COMPLETED);
-       texasHoldemGame.setWinner(Winner.CASINO);
-       texasHoldemGame.setResult(-texasHoldemGame.getPlayerDeposit());
-       game.setResult(texasHoldemGame.getResult());
-       user.setScore(user.getScore() + texasHoldemGame.getResult());
-       gameService.finishGame(game);
-       userService.saveUser(user);
-       updateTexasHoldemGame(texasHoldemGame);
-       log.info("TexasHoldem-game " + texasHoldemGame.getId() + " was finished automatically");
-       String email = gameRepository.findEmailByGameId(texasHoldemGame.getGameId());
-       SimpleMailMessage mailMessage = new SimpleMailMessage();
-       mailMessage.setTo(email);
-       mailMessage.setSubject("Your game was finished automatically");
-       mailMessage.setText("Dear player, your texasHoldem-game was finished automatically");
-       emailService.sendEmail(mailMessage);
+    public void finishNoPlayedTexasHoldemGames(TexasHoldemGame texasHoldemGame) {
+        Game game = gameService.getGameById(texasHoldemGame.getGameId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
+        User user = userRepository.findUserIdByGameId(texasHoldemGame.getGameId()).map(userId -> userRepository.findById(userId)).orElseThrow(() -> new NoSuchElementException("User not found")).orElseThrow(() -> new NoSuchElementException("User not found"));
+        texasHoldemGame.setStatus(GameStatus.COMPLETED);
+        texasHoldemGame.setWinner(Winner.CASINO);
+        texasHoldemGame.setResult(-texasHoldemGame.getPlayerDeposit());
+        game.setResult(texasHoldemGame.getResult());
+        user.setScore(user.getScore() + texasHoldemGame.getResult());
+        gameService.finishGame(game);
+        userService.saveUser(user);
+        updateTexasHoldemGame(texasHoldemGame);
+        log.info("TexasHoldem-game " + texasHoldemGame.getId() + " was finished automatically");
+        String email = gameRepository.findEmailByGameId(texasHoldemGame.getGameId());
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(email);
+        mailMessage.setSubject("Your game was finished automatically");
+        mailMessage.setText("Dear player, your texasHoldem-game was finished automatically");
+        emailService.sendEmail(mailMessage);
     }
 }

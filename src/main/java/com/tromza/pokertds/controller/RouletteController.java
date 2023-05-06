@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class RouletteController {
     }
 
     @PutMapping("/")
-    public ResponseEntity playingGame(Principal principal, @RequestBody @Valid BetRoulette bet, BindingResult bindingResult) {
+    public ResponseEntity<?> playingGame(Principal principal, @RequestBody @Valid BetRoulette bet, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             List<String> errors = new ArrayList<>();
             for (ObjectError o : bindingResult.getAllErrors()) {
@@ -56,6 +55,6 @@ public class RouletteController {
 
     @PutMapping("/finish/{id}")
     public ResponseEntity<RouletteGame> finishRouletteGameById(@PathVariable int id, Principal principal) {
-        return new ResponseEntity<>(rouletteService.finishRouletteGameById(id, principal), HttpStatus.CREATED);
+        return new ResponseEntity<>(rouletteService.finishRouletteGameById(id, principal), HttpStatus.OK);
     }
 }

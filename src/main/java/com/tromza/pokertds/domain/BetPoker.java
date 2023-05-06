@@ -1,8 +1,15 @@
 package com.tromza.pokertds.domain;
 
 import lombok.Data;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
@@ -29,7 +36,7 @@ public class BetPoker {
     @DecimalMax(message = "Bet can not exceed 1000 $",
             value = "1000.00")
     @DecimalMin(message = "Minimal bet is 1 $",
-            value = "1.00", inclusive = false)
+            value = "1.00")
     private BigDecimal playerAmount;
     @Column(name = "casino_amount")
     private BigDecimal casinoAmount;

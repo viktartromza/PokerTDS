@@ -3,11 +3,14 @@ package com.tromza.pokertds.pokerLogic;
 import com.tromza.pokertds.annotation.GetTimeAnnotation;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 
 
 public class Chanses {
     static final int QUANTITYALLCOMBINATIONS = 2598960;
     static final double AVERAGEPOWER = 0.43505781564375623;
+
     @GetTimeAnnotation
     static int[] genCombinations(int[] arr, int k, int n) {//3 из 5, k=3, n=5
         if (arr == null) {
@@ -27,6 +30,7 @@ public class Chanses {
         }
         return null;
     }
+
     @GetTimeAnnotation
     public static double compCombinations(String[] hand, String[] board) {
         Deck deck = new Deck();
@@ -41,7 +45,6 @@ public class Chanses {
             ArrayList<Double> handValue = new ArrayList<>();
             while ((arr = genCombinations(arr, 3, thisDeck.size())) != null) {
                 combination = deckArr[(arr[0] - 1)] + deckArr[(arr[1] - 1)] + deckArr[(arr[2] - 1)] + hand[0] + hand[1];
-                //System.out.println(combination +" result: " + FiveCardDraw.process(combination));
                 handValue.add(FiveCardDraw.process(combination));
             }
             return handValue.stream().mapToDouble(x -> x).average().getAsDouble();
@@ -67,7 +70,6 @@ public class Chanses {
                 } else if (handWithBoard.length == 6) {
                     futureHandWithTable[6] = deckArr[(arr[0] - 1)];
                 }
-                //System.out.println(combination +" result: " + FiveCardDraw.process(combination));
                 handValue.add(evalCombination(futureHandWithTable));
             }
             long count = handValue.size();
@@ -76,35 +78,89 @@ public class Chanses {
             return max * up / count;
         }
     }
-    @GetTimeAnnotation
+
     public static double evalCombination(String[] handWithBoard) {
         String combination;
         int[] arr = null;
         ArrayList<Double> handValue = new ArrayList<>();
         while ((arr = genCombinations(arr, 5, handWithBoard.length)) != null) {
             combination = handWithBoard[(arr[0] - 1)] + handWithBoard[(arr[1] - 1)] + handWithBoard[(arr[2] - 1)] + handWithBoard[(arr[3] - 1)] + handWithBoard[(arr[4] - 1)];
-            //System.out.println(combination +" result: " + FiveCardDraw.process(combination));
             handValue.add(FiveCardDraw.process(combination));
         }
         return handValue.stream().mapToDouble(x -> x).max().getAsDouble();
     }
-    @GetTimeAnnotation
-    public static double evalCombinationByHandAndBoard(String[] hand, String[] board) {
-        String[] handWithBoard = new String[hand.length + board.length];
-        System.arraycopy(hand, 0, handWithBoard, 0, 2);
-        System.arraycopy(board, 0, handWithBoard, 2, board.length);
-        String combination;
-        int[] arr = null;
-        ArrayList<Double> handValue = new ArrayList<>();
-        while ((arr = genCombinations(arr, 5, handWithBoard.length)) != null) {
-            combination = handWithBoard[(arr[0] - 1)] + handWithBoard[(arr[1] - 1)] + handWithBoard[(arr[2] - 1)] + handWithBoard[(arr[3] - 1)] + handWithBoard[(arr[4] - 1)];
-            //System.out.println(combination + " result: " + FiveCardDraw.process(combination));
-            handValue.add(FiveCardDraw.process(combination));
+
+    public static Map.Entry<String, Double> evalCombinationByHandAndBoard(String[] hand, String[] board) throws InterruptedException {
+        Double maxVal;
+        Map<String, Double> resultOfHands = new TreeMap<>();
+        if (board.length == 5) {
+            var threadFirst = new Thread(() -> {
+                String combination;
+                int[] arr = null;
+                while ((arr = genCombinations(arr, 3, board.length)) != null) {
+                    combination = board[(arr[0] - 1)] + board[(arr[1] - 1)] + board[(arr[2] - 1)] + hand[0] + hand[1];
+                    resultOfHands.put(combination, FiveCardDraw.process(combination));
+                }
+            }
+            );
+            var threadSecond = new Thread(() -> {
+                String combination;
+                int[] arr = null;
+                while ((arr = genCombinations(arr, 4, board.length)) != null) {
+                    combination = board[(arr[0] - 1)] + board[(arr[1] - 1)] + board[(arr[2] - 1)] + board[(arr[3] - 1)] + hand[0];
+                    resultOfHands.put(combination, FiveCardDraw.process(combination));
+                }
+            }
+            );
+            var threadThird = new Thread(() -> {
+                String combination;
+                int[] arr = null;
+                while ((arr = genCombinations(arr, 4, board.length)) != null) {
+                    combination = board[(arr[0] - 1)] + board[(arr[1] - 1)] + board[(arr[2] - 1)] + board[(arr[3] - 1)] + hand[1];
+                    resultOfHands.put(combination, FiveCardDraw.process(combination));
+                }
+            }
+            );
+            threadFirst.start();
+            threadFirst.join();
+            threadSecond.start();
+            threadSecond.join();
+            threadThird.start();
+            threadThird.join();
         }
-        return handValue.stream().mapToDouble(x -> x).max().getAsDouble();
+        if (board.length == 4) {
+            var threadFirst = new Thread(() -> {
+                String combination;
+                int[] arr = null;
+                while ((arr = genCombinations(arr, 3, board.length)) != null) {
+                    combination = board[(arr[0] - 1)] + board[(arr[1] - 1)] + board[(arr[2] - 1)] + hand[0] + hand[1];
+                    resultOfHands.put(combination, FiveCardDraw.process(combination));
+                }
+            }
+            );
+            var threadSecond = new Thread(() -> {
+                for (String s : hand) {
+                    String combination = board[0] + board[1] + board[2] + board[3] + s;
+                    resultOfHands.put(combination, FiveCardDraw.process(combination));
+                }
+            }
+            );
+            threadFirst.start();
+            threadFirst.join();
+            threadSecond.start();
+            threadSecond.join();
+        }
+        if (board.length == 3) {
+            String combination = board[0] + board[1] + board[2] + hand[0] + hand[1];
+            resultOfHands.put(combination, FiveCardDraw.process(combination));
+        }
+        maxVal = resultOfHands.values().stream().max(Double::compareTo).get();
+        return resultOfHands.entrySet().stream()
+                .filter(entry -> maxVal.equals(entry.getValue()))
+                .findFirst().get();
     }
-    @GetTimeAnnotation
-    public static double compCombinationsPlayer(String[] hand, String[] board) {
+
+    public static double compCombinationsPlayer(String[] hand, String[] board) throws InterruptedException {
         Deck deck = new Deck();
         ArrayList<String> thisDeck = deck.get();
         thisDeck.remove(hand[0]);
@@ -117,7 +173,6 @@ public class Chanses {
             ArrayList<Double> handValue = new ArrayList<>();
             while ((arr = genCombinations(arr, 3, thisDeck.size())) != null) {
                 combination = deckArr[(arr[0] - 1)] + deckArr[(arr[1] - 1)] + deckArr[(arr[2] - 1)] + hand[0] + hand[1];
-                //System.out.println(combination +" result: " + FiveCardDraw.process(combination));
                 handValue.add(FiveCardDraw.process(combination));
             }
             return (QUANTITYALLCOMBINATIONS * AVERAGEPOWER - handValue.stream().mapToDouble(x -> x).average().getAsDouble() * handValue.size()) / (QUANTITYALLCOMBINATIONS - handValue.size());
@@ -133,8 +188,7 @@ public class Chanses {
             while ((arr = genCombinations(arr, 2, thisDeck.size())) != null) {
                 optionalHand[0] = deckArr[(arr[0] - 1)];
                 optionalHand[1] = deckArr[(arr[1] - 1)];
-                //System.out.println(combination +" result: " + FiveCardDraw.process(combination));
-                handValue.add(evalCombinationByHandAndBoard(optionalHand, board));
+                handValue.add(evalCombinationByHandAndBoard(optionalHand, board).getValue());
             }
             return handValue.stream().mapToDouble(x -> x).average().getAsDouble();
         }

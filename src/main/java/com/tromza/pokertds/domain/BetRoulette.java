@@ -1,10 +1,6 @@
 package com.tromza.pokertds.domain;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.EnvironmentAware;
-import org.springframework.core.env.Environment;
-
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -28,7 +24,7 @@ public class BetRoulette {
     @DecimalMax(message = "Bet can not exceed 1000 $",
             value = "1000.00")
     @DecimalMin(message = "Minimal bet is 1 $",
-            value = "1.00", inclusive = false)
+            value = "1.00")
     private BigDecimal amount;
     @Column(name = "roulette_number")
     private int rouletteNumber;
@@ -36,5 +32,4 @@ public class BetRoulette {
     private String playerChoice;
     @Column(name ="winning_amount")
     private double winAmount;
-
 }
