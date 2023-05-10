@@ -2862,3 +2862,6 @@ Caused by: java.lang.IllegalArgumentException: roles cannot be empty
 2023-05-06 23:06:35.485  INFO 24340 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
 2023-05-06 23:06:35.485  INFO 24340 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
 2023-05-06 23:11:35.451  INFO 24340 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-06 23:11:35.491  INFO 24340 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-06 23:11:35.491  INFO 24340 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-06 23:12:18.042  INFO 24340 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'

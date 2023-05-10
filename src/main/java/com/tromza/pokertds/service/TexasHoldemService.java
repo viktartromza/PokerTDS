@@ -148,7 +148,7 @@ public class TexasHoldemService {
     }
 
     public TexasHoldemGameWithBetPoker playTexasHoldem(TexasHoldemGame texasHoldemGame, BetPoker bet, Principal principal) throws InterruptedException {
-        Pattern card = Pattern.compile("[0-9,TJQKA]{1,2}[hcds]");
+        Pattern card = Pattern.compile("[2-9,TJQKA][hcds]");
         Matcher ourHandMatcher = card.matcher(texasHoldemGame.getCasinoPreflop());
         String[] ourHand = new String[2];
         int i = 0;

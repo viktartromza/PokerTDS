@@ -1,29 +1,67 @@
 # PokerTDS application
 
 This project is a simple version of online-casino. Customers have the opportunity to play European roulette and Texas
-Hold'em. By default, application
-have an admin account with username 'root' and password 'root'.
+Hold'em.
 
 ## Database
 
 Application use PostgreSQL database. For start the application you need Postgres server (jdbc:postgresql://localhost:
-5432/storage) with created database 'storage'. Database contains eight tables.
+5432) with created database 'PokerAppDB'. Database contains nine tables.
 
-* Table _users_ - contains information about application users;
-* Table _authorities_ - contains authorities and roles available for application users;
-* Table _users_authorities_ - link table between users and authorities;
-* Table _plans_ - contains plans available users (for the future application scale);
-* Table _subscriptions_ - contains information about users plan, issue and expiry date (for the future application
-  scale); Now upon registration user get a free plan unit 2050-01-01;
-* Table _photos_ - contains information about uploaded users photos;
-* Table _albums_ - contains information about created users albums;
-* Table _albums_photos_ - link table between albums and photos.
+* Table _users_ - contains application users data, that is directly related to the application;
+* Table _users_data_ - contains personal users data, which is necessary due to the commercial nature of the application;
+* Table _wallets_ - contains information about users money balances;
+* Table _games_ - contains common information about games, that are finished or ongoing;
+* Table _users_games_ - link table between users and games;
+* Table _roulette_games_ - contains information about roulette-games, that are finished or ongoing;
+* Table _bets_roulette_ - contains information about bets in roulette-games;
+* Table _texasholdem_games_ - contains information about Texas Hold'em games, that are finished or ongoing;
+* Table _bets_poker_ - contains information about bets in poker-games.
 
-## Storage
+## Roulette rules
 
-  Application use MinIO object storage for store files. All MinIO properties store in storage.properties. For start the
-  application you need MinIO server (localhost:9000), access and secret key for application, created buckets for photos
-  and thumbnails.
+The application implements a simplified version of European roulette. The player can bet on any of the 37 pockets from
+0 to 36 (Straight Bet). The payout is 35:1. Another type of bet offered is ODD/EVEN. The payout is 1:1, also known as 
+even money. Zero-pocket neither applies to even nor odd.
+
+
+## Poker rules
+
+The application implements only one type of poker - Texas Hold'em.
+To transfer information between the frontend and backend about cards, the following order is used:
+Card is a 2 character string with the first character representing the rank
+(one of `A`, `K`, `Q`, `J`, `T`, `9`, `8`, `7`, `6`, `5`, `4`, `3`, `2`) and the second character representing
+the suit (one of `h`, `d`, `c`, `s`). Jokers are not used.
+
+A value of a Texas Hold'em hand is the best possible value out of all possible subsets of
+5 cards from the 7 cards which are formed by 5 board cards and 2 hand cards.
+See [Texas Hold'em rules](https://en.wikipedia.org/wiki/Texas_hold_%27em).
+
+### Hand Value
+
+The hand values for 5 cards are as follows (in descending order - from strongest to weakest):
+
+* `Straight Flush` - a `Straight` (see below) which is also a `Flush` (see below)
+* `Four of a kind` - Four cards of the same rank
+* `Full House` - a combination of `Three of a kind` and a `Pair`
+* `Flush` - 5 cards of the same suit
+* `Straight` - a sequence of 5 cards of consecutive rank (note an exception - `A` can both precede `2` and follow `K`)
+* `Three of a kind` - three cards with the same rank
+* `Two pairs` - two `Pair`-s
+* `Pair` - two cards of the same rank
+* `High card` - the "fallback" in case no other hand value rule applies
+
+In case of ties the ranks of the cards forming the combinations decide the highest value.
+
+In case of further ties, the ranks of the remaining cards decide the highest value.
+
+All suits are considered equal in strength.
+
+When comparing `Full House`-s, the `Three of a kind` rank comparison is more important than the `Pair` rank
+comparison, for example, `QQQ88 > 999KK`, `KKK77 > QQQJJ` and `KKK77 > KKK66`.
+
+When comparing `Straight`-s, the `A2345` `Straight` is the weakest one and the `TJQKA` one the strongest one,
+for example, `23456 > A2345` and `TJQKA > 9TJQK`.
 
 ## Available endpoints for users
 

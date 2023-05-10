@@ -3,7 +3,7 @@ package com.tromza.pokertds.pokerLogic;
 import java.util.ArrayList;
 
 public class Deck {
-    private final String[] RANKS = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+    private final String[] RANKS = {"2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"};
     private final String[] SUITS = {"h", "d", "c", "s"};
 
     public ArrayList<String> get (){
