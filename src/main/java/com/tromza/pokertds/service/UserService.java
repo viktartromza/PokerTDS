@@ -6,7 +6,6 @@ import com.tromza.pokertds.domain.User;
 import com.tromza.pokertds.repository.UserRepository;
 import com.tromza.pokertds.request.RequestUserRegistration;
 import com.tromza.pokertds.request.RequestUserUpdate;
-import com.tromza.pokertds.response.Response;
 import com.tromza.pokertds.response.ResponseOtherUserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +13,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.security.Principal;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -47,6 +45,9 @@ public class UserService {
     public Optional<User> getUserByLogin(String login) {
         return userRepository.findUserByLogin(login);
     }
+    public Optional<User> getUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
 
     public List<ResponseOtherUserInfo> getAllUsersForUser() {
         List<User> users = userRepository.findAll();
@@ -54,6 +55,12 @@ public class UserService {
     }
 
     public User createUser(RequestUserRegistration userRegistration) {
+        if (getUserByLogin(userRegistration.getLogin()).isPresent()){
+            throw new UnsupportedOperationException("Such login is already used!");
+        }
+        if(getUserByEmail(userRegistration.getEmail()).isPresent()){
+            throw new UnsupportedOperationException("User with such email is already registered!");
+        }
         User user = new User();
         user.setLogin(userRegistration.getLogin());
         user.setPassword(passwordEncoder.encode(userRegistration.getPassword()));
@@ -90,6 +97,9 @@ public class UserService {
             user.setDeleted(true);
             userRepository.saveAndFlush(user);
         }
+    }
+    public boolean isUserNotDeleted (String login){
+       return !getUserByLogin(login).orElseThrow(() -> new UsernameNotFoundException("User with login " + login + " not found!")).isDeleted();
     }
 
     public void addGameToUser(User user, Game game) {

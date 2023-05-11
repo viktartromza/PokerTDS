@@ -15,15 +15,13 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    @Query(value = "SELECT g.id, g.type, g.time_create, g.finish, g.status FROM users_games JOIN games as g ON users_games.game_id = g.id WHERE users_games.user_id=:userId", nativeQuery = true)
-    Optional<ArrayList<Game>> getGamesForSingleUser(@Param("userId") int id);
-
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO users_games (id, game_id, user_id) VALUES (DEFAULT, :gameId, :userId)", nativeQuery = true)
     void addGameToUser(@Param("gameId") int gameId, @Param("userId") int userId);
 
     Optional<User> findUserByLogin(String login);
+    Optional<User> findUserByEmail(String email);
 
     @Query(value = "SELECT user_id FROM users_games WHERE users_games.game_id=:gameId", nativeQuery = true)
     Optional<Integer> findUserIdByGameId(@Param("gameId") int gameId);
