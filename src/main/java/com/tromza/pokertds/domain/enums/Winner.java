@@ -1,4 +1,4 @@
-package com.tromza.pokertds.domain;
+package com.tromza.pokertds.domain.enums;
 
 public enum Winner {
     PLAYER,

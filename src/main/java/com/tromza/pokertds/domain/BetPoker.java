@@ -1,6 +1,8 @@
 package com.tromza.pokertds.domain;
 
+import com.tromza.pokertds.domain.enums.BetPokerType;
 import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -22,22 +24,28 @@ public class BetPoker {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bets_poker_id_seq_gen")
     @SequenceGenerator(name = "bets_poker_id_seq_gen", sequenceName = "bets_poker_id_seq", allocationSize = 1)
     private Integer id;
+
     @Column(name = "game_id")
     private int gameId;
+
     @Column(name = "round")
     private int round;
+
     @Column(name = "type_player")
     @Enumerated(EnumType.STRING)
     private BetPokerType typePlayer;
+
     @Column(name = "type_casino")
     @Enumerated(EnumType.STRING)
     private BetPokerType typeCasino;
+
     @Column(name = "player_amount")
     @DecimalMax(message = "Bet can not exceed 1000 $",
             value = "1000.00")
     @DecimalMin(message = "Minimal bet is 1 $",
             value = "1.00")
     private BigDecimal playerAmount;
+
     @Column(name = "casino_amount")
     private BigDecimal casinoAmount;
 }

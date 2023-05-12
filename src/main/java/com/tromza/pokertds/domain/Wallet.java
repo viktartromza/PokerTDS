@@ -1,22 +1,22 @@
 package com.tromza.pokertds.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 
 @Data
 @Entity
-//@ToString(exclude = {"user"})
-//@EqualsAndHashCode(exclude = {"user"})
 @Table(name = "wallets")
 public class Wallet {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "wallets_id_seq_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "wallets_id_seq_gen")
     @SequenceGenerator(name = "wallets_id_seq_gen", sequenceName = "wallets_id_seq", allocationSize = 1)
     private int id;
 

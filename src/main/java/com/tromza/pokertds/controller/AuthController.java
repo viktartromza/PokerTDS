@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthController {
     private final AuthService authService;
-@Autowired
+
+    @Autowired
     public AuthController(AuthService authService) {
         this.authService = authService;
     }
-@PostMapping
+
+    @PostMapping
     public ResponseEntity<AuthResponse> auth(@RequestBody AuthRequest authRequest) {
         String token = authService.getTokenFromAuthRequest(authRequest);
         return new ResponseEntity<>(new AuthResponse(token), HttpStatus.CREATED);

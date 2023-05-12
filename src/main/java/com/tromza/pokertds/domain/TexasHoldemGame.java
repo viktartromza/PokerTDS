@@ -1,10 +1,19 @@
 package com.tromza.pokertds.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tromza.pokertds.domain.enums.GameStatus;
+import com.tromza.pokertds.domain.enums.Winner;
 import lombok.Data;
 
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 
 @Data
@@ -19,30 +28,40 @@ public class TexasHoldemGame {
 
     @Column(name = "game_id")
     private int gameId;
+
     @Column(name = "bank")
     private double bank;
+
     @Column(name = "player_deposit")
     private double playerDeposit;
+
     @Column(name = "player_preflop")
     private String playerPreflop;
+
     @Column(name = "casino_preflop")
     @JsonIgnore
     private String casinoPreflop;
+
     @Column(name = "flop")
     private String flop;
+
     @Column(name = "tern")
     private String tern;
+
     @Column(name = "river")
     private String river;
+
     @Column(name = "result")
     private double result;
+
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private GameStatus status;
+
     @Column(name = "changed")
     private Timestamp changed;
+
     @Column(name = "winner")
     @Enumerated(EnumType.STRING)
     private Winner winner;
-
 }

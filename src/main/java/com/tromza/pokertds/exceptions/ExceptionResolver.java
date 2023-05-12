@@ -1,5 +1,6 @@
 package com.tromza.pokertds.exceptions;
 
+import com.sun.jdi.InternalException;
 import com.tromza.pokertds.response.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,5 +51,19 @@ public class ExceptionResolver {
         log.warn(e.getClass() + " " + e.getMessage());
         Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
         return new ResponseEntity<>(responseException, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler({InternalException.class})
+    public ResponseEntity<Response> customExceptionHandler(InternalException e) {
+        log.warn(e.getClass() + " " + e.getMessage());
+        Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
+        return new ResponseEntity<>(responseException, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler({Exception.class})
+    public ResponseEntity<Response> exceptionHandler(Exception e) {
+        log.warn(e.getClass() + " " + e.getMessage());
+        Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
+        return new ResponseEntity<>(responseException, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

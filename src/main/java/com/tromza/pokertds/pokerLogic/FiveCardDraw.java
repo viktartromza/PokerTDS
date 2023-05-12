@@ -1,12 +1,23 @@
 package com.tromza.pokertds.pokerLogic;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+/**
+ * This class implements methods
+ * that evaluate the strength of a poker hand.
+ */
 public class FiveCardDraw {
+
+    /**
+     * @param combination is a 10 character string where each 2 characters encode a card
+     * @return power of a poker hand in scale on a scale from 0.00 to 7.99
+     */
     static double process(String combination) {
 
         double fourOfAKind = 0, fullHouse = 0, threeOfAKind = 0, twoPairs = 0, pair = 0, handCards = 0;
@@ -55,147 +66,67 @@ public class FiveCardDraw {
     }
 
     public static int cardToPoints(String s) {
-        Function<String, Integer> ranks = x -> {
-            switch (x) {
-                case "T":
-                    return 10;
-                case "J":
-                    return 11;
-                case "Q":
-                    return 12;
-                case "K":
-                    return 13;
-                case "A":
-                    return 14;
-                default:
-                    return Integer.parseInt(x);
-            }
+        Function<String, Integer> ranks = x -> switch (x) {
+            case "T" -> 10;
+            case "J" -> 11;
+            case "Q" -> 12;
+            case "K" -> 13;
+            case "A" -> 14;
+            default -> Integer.parseInt(x);
         };
         return ranks.apply(s);
     }
 
     public static int cardToPointsA(String s) {
-        Function<String, Integer> ranks = x -> {
-            switch (x) {
-                case "T":
-                    return 10;
-                case "J":
-                    return 11;
-                case "Q":
-                    return 12;
-                case "K":
-                    return 13;
-                case "A":
-                    return 1;
-                default:
-                    return Integer.parseInt(x);
-            }
+        Function<String, Integer> ranks = x -> switch (x) {
+            case "T" -> 10;
+            case "J" -> 11;
+            case "Q" -> 12;
+            case "K" -> 13;
+            case "A" -> 1;
+            default -> Integer.parseInt(x);
         };
         return ranks.apply(s);
     }
 
-    static boolean isStraigtFlush(String cardsAll, char suit) {//TODO
-        boolean a = false;
-        Pattern patternSuit = Pattern.compile("[2-9TJQKA]" + suit);
-        Matcher matcherSuit = patternSuit.matcher(cardsAll);
-        List<Integer> cards = new ArrayList<>();
-        while (matcherSuit.find()) {
-            cards.add(cardToPoints(matcherSuit.group().replaceAll(String.valueOf(suit), "")));
-        }
-        List<Integer> cardsA = new ArrayList<>();
-        while (matcherSuit.find()) {
-            cardsA.add(cardToPointsA(matcherSuit.group().replaceAll(String.valueOf(suit), "")));
-        }
-        Integer[] isStraight = cards.stream().distinct().sorted().toArray(Integer[]::new);
-        Integer[] isStraightA = cardsA.stream().distinct().sorted().toArray(Integer[]::new);
-        if (isStraight.length >= 5) {
-            for (int j = 0; j <= (isStraight.length - 5); j++) {
-                if ((isStraight[j + 4] - isStraight[j]) == 4) {
-                    a = true;
-                    break;
-                }
-            }
-        }
-        if (isStraightA.length >= 5) {
-            for (int j = 0; j <= (isStraightA.length - 5); j++) {
-                if ((isStraightA[j + 4] - isStraightA[j]) == 4) {
-                    a = true;
-                    break;
-                }
-            }
-        }
-        return a;
-    }
-
-    static double resultFlushOrStraightFlush(String s) {//TODO
+    static double resultFlushOrStraightFlush(String s) {
         double res = 0;
         char[] suits = {'h', 'd', 'c', 's'};
         for (char i : suits) {
             int quantOfSuits = (int) s.chars().filter(n -> (n == i)).count();// Flush
             if (quantOfSuits == 5) {
-                if (isStraigtFlush(s, i)) {
-                    res = 7.0 + RankOfStraigtFlush(s, i);
+                if (isStraightFlush(s, i)) {
+                    res = 4.0 + resultStraight(s);
                 } else {
-                    res = 4.0 + RankCardOfFlush(s, i);
+                    res = 4.0 + resultHandCards(s);
                 }
             }
         }
         return res;
     }
 
-    static double RankOfStraigtFlush(String cardsAll, char suit) {//TODO
-        Pattern patternSuit = Pattern.compile("[2-9TJQKA]" + suit);
-        Matcher matcherSuit = patternSuit.matcher(cardsAll);
-        List<Integer> cards = new ArrayList<>();
-        while (matcherSuit.find()) {
-            cards.add(cardToPoints(matcherSuit.group().replaceAll(String.valueOf(suit), "")));
+    static boolean isStraightFlush(String cards, char suit) {
+        boolean a = false;
+        List<Integer> ranks = Arrays.stream(cards.split(String.valueOf(suit))).map(FiveCardDraw::cardToPoints).distinct().sorted().toList();
+        List<Integer> ranksA = Arrays.stream(cards.split(String.valueOf(suit))).map(FiveCardDraw::cardToPointsA).distinct().sorted().toList();
+        if (ranks.size() == 5 && (ranks.stream().max(Integer::compareTo).get() - ranks.stream().min(Integer::compareTo).get()) == 4) {
+            a = true;
         }
-        List<Integer> cardsA = new ArrayList<>();
-        while (matcherSuit.find()) {
-            cardsA.add(cardToPointsA(matcherSuit.group().replaceAll(String.valueOf(suit), "")));
+        if (ranks.size() == 5 && (ranksA.stream().max(Integer::compareTo).get() - ranksA.stream().min(Integer::compareTo).get()) == 4) {
+            a = true;
         }
-        double rank = 0.0;
-        Integer[] isStraight = cards.stream().distinct().sorted().toArray(Integer[]::new);
-        Integer[] isStraightA = cardsA.stream().distinct().sorted().toArray(Integer[]::new);
-        if (isStraightA.length >= 5) {
-            for (int j = 0; j <= (isStraightA.length - 5); j++) {
-                if ((isStraightA[j + 4] - isStraightA[j]) == 4) {
-                    rank = isStraightA[j + 4] * 0.01;
-                }
-            }
-        }
-        if (isStraight.length >= 5) {
-            for (int j = 0; j <= (isStraight.length - 5); j++) {
-                if ((isStraight[j + 4] - isStraight[j]) == 4) {
-                    rank = isStraight[j + 4] * 0.01;
-                }
-            }
-        }
-        return rank;
+        return a;
     }
 
-    static double RankCardOfFlush(String comb, char suit) {
-        Integer[] ranks = Arrays.stream(comb.split(String.valueOf(suit))).map(FiveCardDraw::cardToPoints).sorted().toArray(Integer[]::new);
-        double sum = 0;
-        for (int i = 1; i <= 5; i++) {
-            sum = sum + ranks[i - 1] * Math.pow(0.01, i);
-        }
-        return sum;
-    }
-
-    static double resultStraight(String s) {//TODO
+    static double resultStraight(String cards) {
         double res = 0;
-        Integer[] cardsSuitOf = Arrays.stream(s.split("[hdcs]")).map(FiveCardDraw::cardToPoints).sorted().distinct().toArray(Integer[]::new);
-        Integer[] cardsSuitOfA = Arrays.stream(s.split("[hdcs]")).map(FiveCardDraw::cardToPointsA).sorted().distinct().toArray(Integer[]::new);
-        if (cardsSuitOf.length >= 5) {
-            for (int j = 0; j <= (cardsSuitOf.length - 5); j++) {
-                if ((cardsSuitOfA[j + 4] - cardsSuitOfA[j]) == 4) {
-                    res = 3.0 + cardsSuitOfA[j + 4] * 0.01;
-                }
-                if ((cardsSuitOf[j + 4] - cardsSuitOf[j]) == 4) {
-                    res = 3.0 + cardsSuitOf[j + 4] * 0.01;
-                }
-            }
+        List<Integer> ranks = Arrays.stream(cards.split("[hdcs]")).map(FiveCardDraw::cardToPoints).distinct().sorted().toList();
+        List<Integer> ranksA = Arrays.stream(cards.split("[hdcs]")).map(FiveCardDraw::cardToPointsA).distinct().sorted().toList();
+        if (ranks.size() == 5 && (ranks.stream().max(Integer::compareTo).get() - ranks.stream().min(Integer::compareTo).get()) == 4) {
+            res = 3.0 + resultHandCards(cards);
+        }
+        if (ranks.size() == 5 && (ranksA.stream().max(Integer::compareTo).get() - ranksA.stream().min(Integer::compareTo).get()) == 4) {
+            res = 3.0 + resultHandCardsA(cards);
         }
         return res;
     }
@@ -203,6 +134,15 @@ public class FiveCardDraw {
     static double resultHandCards(String hand) {
         double res = 0;
         Integer[] ranks = Arrays.stream(hand.split("[hdcs]")).map(FiveCardDraw::cardToPoints).sorted(Comparator.reverseOrder()).toArray(Integer[]::new);
+        for (int i = 1; i <= 5; i++) {
+            res = res + ranks[i - 1] * Math.pow(0.01, i);
+        }
+        return res;
+    }
+
+    static double resultHandCardsA(String hand) {
+        double res = 0;
+        Integer[] ranks = Arrays.stream(hand.split("[hdcs]")).map(FiveCardDraw::cardToPointsA).sorted(Comparator.reverseOrder()).toArray(Integer[]::new);
         for (int i = 1; i <= 5; i++) {
             res = res + ranks[i - 1] * Math.pow(0.01, i);
         }

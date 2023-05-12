@@ -1,7 +1,7 @@
 package com.tromza.pokertds.service;
 
 import com.tromza.pokertds.domain.Game;
-import com.tromza.pokertds.domain.GameStatus;
+import com.tromza.pokertds.domain.enums.GameStatus;
 import com.tromza.pokertds.repository.GameRepository;
 import com.tromza.pokertds.repository.RouletteRepository;
 import com.tromza.pokertds.repository.TexasHoldemRepository;
@@ -41,14 +41,13 @@ public class GameService {
 
     public ResponseGameInfo getGameInfoById(int id) {
         Game game = getGameById(id).orElseThrow(() -> new NoSuchElementException("Game not found!"));
-        switch (game.getType()) {
-            case ROULETTE_EU:
-                return new ResponseGameInfo(rouletteRepository.findRouletteGameByGameId(id).orElseThrow(() -> new NoSuchElementException("Roulette-game not found!")));
-            case TEXAS_HOLDEM:
-                return new ResponseGameInfo(texasHoldemRepository.findTexasHoldemGameByGameId(id).orElseThrow(() -> new NoSuchElementException("TexasHoldem-game not found!")));
-            default:
-                throw new NoSuchElementException("Game not found!");
-        }
+        return switch (game.getType()) {
+            case ROULETTE_EU ->
+                    new ResponseGameInfo(rouletteRepository.findRouletteGameByGameId(id).orElseThrow(() -> new NoSuchElementException("Roulette-game not found!")));
+            case TEXAS_HOLDEM ->
+                    new ResponseGameInfo(texasHoldemRepository.findTexasHoldemGameByGameId(id).orElseThrow(() -> new NoSuchElementException("TexasHoldem-game not found!")));
+            default -> throw new NoSuchElementException("Game not found!");
+        };
     }
 
     public void finishGame(Game game) {

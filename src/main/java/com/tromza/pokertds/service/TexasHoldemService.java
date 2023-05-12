@@ -2,6 +2,10 @@ package com.tromza.pokertds.service;
 
 import com.tromza.pokertds.annotation.GetTimeAnnotation;
 import com.tromza.pokertds.domain.*;
+import com.tromza.pokertds.domain.enums.BetPokerType;
+import com.tromza.pokertds.domain.enums.GameStatus;
+import com.tromza.pokertds.domain.enums.GameType;
+import com.tromza.pokertds.domain.enums.Winner;
 import com.tromza.pokertds.pokerLogic.Chanses;
 import com.tromza.pokertds.pokerLogic.PokerGame;
 import com.tromza.pokertds.repository.GameRepository;
@@ -18,6 +22,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.security.Principal;
@@ -55,7 +60,7 @@ public class TexasHoldemService {
         this.pokerBetRepository = pokerBetRepository;
         this.emailService = emailService;
     }
-
+@Transactional
     public Optional<TexasHoldemGame> createTexasHoldemGameForUser(Principal principal) {
         User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new NoSuchElementException("User with login not found!"));
         if (gameService.findTexasHoldemGameInProcess(user.getId()).isPresent()) {
@@ -83,7 +88,7 @@ public class TexasHoldemService {
             }
         }
     }
-
+@Transactional
     @GetTimeAnnotation
     public TexasHoldemGameWithBetPoker playingTexasHoldem(BetPoker bet, Principal principal) throws InterruptedException {
         Game game = gameService.findTexasHoldemGameInProcess(userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!")).getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
@@ -116,7 +121,7 @@ public class TexasHoldemService {
             }
         }
     }
-
+@Transactional
     public TexasHoldemGame finishTexasHoldemGame(TexasHoldemGame texasHoldemGame, Principal principal) {
         User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!"));
         Game game = gameService.findTexasHoldemGameInProcess(user.getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
@@ -146,7 +151,7 @@ public class TexasHoldemService {
         texasHoldemGame.setChanged(new Timestamp(System.currentTimeMillis()));
         return texasHoldemRepository.saveAndFlush(texasHoldemGame);
     }
-
+@Transactional
     public TexasHoldemGameWithBetPoker playTexasHoldem(TexasHoldemGame texasHoldemGame, BetPoker bet, Principal principal) throws InterruptedException {
         Pattern card = Pattern.compile("[2-9,TJQKA][hcds]");
         Matcher ourHandMatcher = card.matcher(texasHoldemGame.getCasinoPreflop());
@@ -369,7 +374,7 @@ public class TexasHoldemService {
             }).start());
         }
     }
-
+@Transactional
     public void finishNoPlayedTexasHoldemGames(TexasHoldemGame texasHoldemGame) {
         Game game = gameService.getGameById(texasHoldemGame.getGameId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
         User user = userRepository.findUserIdByGameId(texasHoldemGame.getGameId()).map(userId -> userRepository.findById(userId)).orElseThrow(() -> new NoSuchElementException("User not found")).orElseThrow(() -> new NoSuchElementException("User not found"));

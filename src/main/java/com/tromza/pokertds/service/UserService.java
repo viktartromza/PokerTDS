@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
 import java.sql.Date;
@@ -53,7 +54,7 @@ public class UserService {
         List<User> users = userRepository.findAll();
         return users.stream().filter(user -> !user.isDeleted()).filter(user->user.getRole().equals("USER")).map(user -> new ResponseOtherUserInfo(user.getId(), user.getLogin(), user.getScore())).collect(Collectors.toList());
     }
-
+@Transactional
     public User createUser(RequestUserRegistration userRegistration) {
         if (getUserByLogin(userRegistration.getLogin()).isPresent()){
             throw new UnsupportedOperationException("Such login is already used!");
