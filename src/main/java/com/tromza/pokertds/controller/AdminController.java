@@ -5,6 +5,8 @@ import com.tromza.pokertds.domain.Wallet;
 import com.tromza.pokertds.request.UserMoneyAmount;
 import com.tromza.pokertds.service.UserService;
 import com.tromza.pokertds.service.WalletService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name="Admin", description="The Admin API")
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -26,11 +29,13 @@ public class AdminController {
         this.walletService = walletService;
     }
 
+    @Operation(summary = "Change isDeleted status of user with selected id")
     @DeleteMapping("/users/{id}")
     public ResponseEntity<HttpStatus> deleteUserByIdForAdmin(@PathVariable int id) {
         userService.deleteUserByIdForAdmin(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @Operation(summary = "Withdraw or refill wallet of selected user")
     @PutMapping("/wallets")
     public ResponseEntity<Wallet> transferWallet(@RequestBody UserMoneyAmount userMoney) {
         Wallet wallet = walletService.updateWallet(userMoney);

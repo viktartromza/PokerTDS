@@ -639,3 +639,219 @@ This generated password is for development use only. Your security configuration
 2023-05-13 19:11:52.037  INFO 14560 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : Method TexasHoldemGameWithBetPoker com.tromza.pokertds.service.TexasHoldemService.playingTexasHoldem(BetPoker,Principal) worked 17 millisecond
 2023-05-13 19:11:52.038  INFO 14560 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.TexasHoldemController.playingGame(Principal,BetPoker,BindingResult)finished!
 2023-05-13 19:12:39.088  INFO 14560 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-05-13 20:01:02.377  INFO 24472 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 24472 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-05-13 20:01:02.379  INFO 24472 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-05-13 20:01:03.080  INFO 24472 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-13 20:01:03.121  INFO 24472 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 7 JPA repository interfaces.
+2023-05-13 20:01:03.669  INFO 24472 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-05-13 20:01:03.674  INFO 24472 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-13 20:01:03.674  INFO 24472 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-05-13 20:01:03.746  INFO 24472 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-05-13 20:01:03.747  INFO 24472 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1344 ms
+2023-05-13 20:01:04.148  INFO 24472 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-13 20:01:04.179  INFO 24472 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-05-13 20:01:04.275  INFO 24472 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-05-13 20:01:04.391  INFO 24472 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-05-13 20:01:04.830  INFO 24472 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-13 20:01:04.835  INFO 24472 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-13 20:01:05.472  WARN 24472 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 86f7b3e6-3c8c-42cb-b03b-b06f13b6c620
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2023-05-13 20:01:05.574  INFO 24472 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@20f94e9a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3f213e97, org.springframework.security.web.context.SecurityContextPersistenceFilter@54af9cce, org.springframework.security.web.header.HeaderWriterFilter@5122387, org.springframework.security.web.authentication.logout.LogoutFilter@53b81a55, com.tromza.pokertds.security.JwtFilter@47b71556, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7926d092, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@49e8548d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@9214725, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@693c7741, org.springframework.security.web.session.SessionManagementFilter@383d2e2d, org.springframework.security.web.access.ExceptionTranslationFilter@2fe152aa, org.springframework.security.web.access.intercept.AuthorizationFilter@5bbf8daa]
+2023-05-13 20:01:05.578  WARN 24472 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/swagger-ui']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-05-13 20:01:05.578  INFO 24472 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/swagger-ui']
+2023-05-13 20:01:05.578  WARN 24472 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/swagger-resources/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-05-13 20:01:05.578  INFO 24472 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/swagger-resources/**']
+2023-05-13 20:01:05.578  WARN 24472 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-05-13 20:01:05.578  INFO 24472 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/swagger-ui/**']
+2023-05-13 20:01:05.578  WARN 24472 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-05-13 20:01:05.579  INFO 24472 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/v3/api-docs/**']
+2023-05-13 20:01:05.579  WARN 24472 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/webjars/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-05-13 20:01:05.579  INFO 24472 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/webjars/**']
+2023-05-13 20:01:05.745  WARN 24472 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-13 20:01:07.159  INFO 24472 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-05-13 20:01:07.199  INFO 24472 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-05-13 20:01:07.212  INFO 24472 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 5.049 seconds (JVM running for 5.419)
+2023-05-13 20:01:07.213  INFO 24472 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 20:01:07.304  INFO 24472 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 20:01:07.304  INFO 24472 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 20:01:07.431  INFO 24472 --- [RMI TCP Connection(1)-169.254.123.78] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-13 20:01:07.431  INFO 24472 --- [RMI TCP Connection(1)-169.254.123.78] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-13 20:01:07.432  INFO 24472 --- [RMI TCP Connection(1)-169.254.123.78] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-05-13 20:01:19.442  INFO 24472 --- [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 203 ms
+2023-05-13 20:06:07.218  INFO 24472 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 20:06:07.267  INFO 24472 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 20:06:07.267  INFO 24472 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 20:08:15.652  INFO 24472 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-05-13 20:08:21.244  INFO 22224 --- [main] com.tromza.pokertds.PokerTdsApplication  : Starting PokerTdsApplication using Java 19.0.2 on Mara with PID 22224 (C:\Users\V\IdeaProjects\PokerTDS\target\classes started by Viktar in C:\Users\V\IdeaProjects\PokerTDS)
+2023-05-13 20:08:21.246  INFO 22224 --- [main] com.tromza.pokertds.PokerTdsApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-05-13 20:08:21.891  INFO 22224 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-13 20:08:21.934  INFO 22224 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 7 JPA repository interfaces.
+2023-05-13 20:08:22.497  INFO 22224 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-05-13 20:08:22.503  INFO 22224 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-13 20:08:22.503  INFO 22224 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2023-05-13 20:08:22.577  INFO 22224 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-05-13 20:08:22.578  INFO 22224 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1298 ms
+2023-05-13 20:08:22.996  INFO 22224 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-13 20:08:23.029  INFO 22224 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-05-13 20:08:23.133  INFO 22224 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-05-13 20:08:23.253  INFO 22224 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-05-13 20:08:23.714  INFO 22224 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-13 20:08:23.719  INFO 22224 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-13 20:08:24.336  WARN 22224 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 11c629dc-0dc6-4151-828a-00fdcfe036f7
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2023-05-13 20:08:24.440  INFO 22224 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@31773d5b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5bbf8daa, org.springframework.security.web.context.SecurityContextPersistenceFilter@3577e37c, org.springframework.security.web.header.HeaderWriterFilter@5ec921f1, org.springframework.security.web.authentication.logout.LogoutFilter@441d3ddf, com.tromza.pokertds.security.JwtFilter@12a7515b, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1784d711, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@29b61bb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@60a4595e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@33c5e52f, org.springframework.security.web.session.SessionManagementFilter@17796f47, org.springframework.security.web.access.ExceptionTranslationFilter@6567de86, org.springframework.security.web.access.intercept.AuthorizationFilter@678c0310]
+2023-05-13 20:08:24.455  WARN 22224 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/swagger-ui']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-05-13 20:08:24.455  INFO 22224 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/swagger-ui']
+2023-05-13 20:08:24.455  WARN 22224 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/swagger-resources/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-05-13 20:08:24.455  INFO 22224 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/swagger-resources/**']
+2023-05-13 20:08:24.455  WARN 22224 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-05-13 20:08:24.455  INFO 22224 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/swagger-ui/**']
+2023-05-13 20:08:24.455  WARN 22224 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-05-13 20:08:24.456  INFO 22224 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/v3/api-docs/**']
+2023-05-13 20:08:24.456  WARN 22224 --- [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/webjars/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-05-13 20:08:24.456  INFO 22224 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/webjars/**']
+2023-05-13 20:08:24.628  WARN 22224 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-13 20:08:26.079  INFO 22224 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2023-05-13 20:08:26.122  INFO 22224 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-05-13 20:08:26.136  INFO 22224 --- [main] com.tromza.pokertds.PokerTdsApplication  : Started PokerTdsApplication in 5.215 seconds (JVM running for 5.696)
+2023-05-13 20:08:26.136  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 20:08:26.229  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 20:08:26.229  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 20:08:26.384  INFO 22224 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-05-13 20:08:26.384  INFO 22224 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-05-13 20:08:26.385  INFO 22224 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-05-13 20:08:26.735  INFO 22224 --- [http-nio-8080-exec-3] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 255 ms
+2023-05-13 20:09:06.059  WARN 22224 --- [http-nio-8080-exec-6] c.t.p.exceptions.ExceptionResolver       : class org.springframework.web.HttpRequestMethodNotSupportedException Request method 'DELETE' not supported
+2023-05-13 20:10:18.765  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : Methodboolean com.tromza.pokertds.service.UserService.isUserNotDeleted(String)started!
+2023-05-13 20:10:18.948  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : Methodboolean com.tromza.pokertds.service.UserService.isUserNotDeleted(String)finished!
+2023-05-13 20:10:18.949  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-13 20:10:18.988  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-13 20:10:18.990  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.deleteUser(Principal)started!
+2023-05-13 20:10:18.993  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.UserService.deleteUser(Principal)started!
+2023-05-13 20:10:19.077  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.UserService.deleteUser(Principal)finished!
+2023-05-13 20:10:19.077  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.deleteUser(Principal)finished!
+2023-05-13 20:11:12.725  INFO 22224 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.AuthController.auth(AuthRequest)started!
+2023-05-13 20:11:12.727  INFO 22224 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodString com.tromza.pokertds.service.AuthService.getTokenFromAuthRequest(AuthRequest)started!
+2023-05-13 20:11:12.729  INFO 22224 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-13 20:11:12.766  INFO 22224 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-13 20:11:12.840  INFO 22224 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodString com.tromza.pokertds.service.AuthService.getTokenFromAuthRequest(AuthRequest)finished!
+2023-05-13 20:11:12.840  INFO 22224 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.AuthController.auth(AuthRequest)finished!
+2023-05-13 20:11:12.841  WARN 22224 --- [http-nio-8080-exec-1] c.t.p.exceptions.ExceptionResolver       : class org.springframework.security.authentication.BadCredentialsException Login or password is incorrect
+2023-05-13 20:11:26.875  INFO 22224 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : Methodboolean com.tromza.pokertds.service.UserService.isUserNotDeleted(String)started!
+2023-05-13 20:11:26.918  INFO 22224 --- [http-nio-8080-exec-2] com.tromza.pokertds.aspect.LoggerAspect  : Methodboolean com.tromza.pokertds.service.UserService.isUserNotDeleted(String)finished!
+2023-05-13 20:13:01.830  INFO 22224 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : Methodboolean com.tromza.pokertds.service.UserService.isUserNotDeleted(String)started!
+2023-05-13 20:13:01.868  INFO 22224 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : Methodboolean com.tromza.pokertds.service.UserService.isUserNotDeleted(String)finished!
+2023-05-13 20:13:01.869  INFO 22224 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-13 20:13:02.007  INFO 22224 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-13 20:13:02.009  INFO 22224 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.anotherUserInfo(int)started!
+2023-05-13 20:13:02.009  INFO 22224 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.otherUserInfo(int)started!
+2023-05-13 20:13:02.058  INFO 22224 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.otherUserInfo(int)finished!
+2023-05-13 20:13:02.058  INFO 22224 --- [http-nio-8080-exec-5] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.anotherUserInfo(int)finished!
+2023-05-13 20:13:11.575  INFO 22224 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : Methodboolean com.tromza.pokertds.service.UserService.isUserNotDeleted(String)started!
+2023-05-13 20:13:11.611  INFO 22224 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : Methodboolean com.tromza.pokertds.service.UserService.isUserNotDeleted(String)finished!
+2023-05-13 20:13:11.612  INFO 22224 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-13 20:13:11.650  INFO 22224 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-13 20:13:11.651  INFO 22224 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.anotherUserInfo(int)started!
+2023-05-13 20:13:11.651  INFO 22224 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.otherUserInfo(int)started!
+2023-05-13 20:13:11.687  INFO 22224 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.otherUserInfo(int)finished!
+2023-05-13 20:13:11.687  INFO 22224 --- [http-nio-8080-exec-6] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.anotherUserInfo(int)finished!
+2023-05-13 20:13:26.139  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 20:13:26.178  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 20:13:26.179  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 20:13:50.844  WARN 22224 --- [http-nio-8080-exec-7] c.t.p.exceptions.ExceptionResolver       : class org.springframework.web.HttpRequestMethodNotSupportedException Request method 'DELETE' not supported
+2023-05-13 20:13:51.881  WARN 22224 --- [http-nio-8080-exec-10] c.t.p.exceptions.ExceptionResolver       : class org.springframework.web.HttpRequestMethodNotSupportedException Request method 'DELETE' not supported
+2023-05-13 20:13:52.342  WARN 22224 --- [http-nio-8080-exec-2] c.t.p.exceptions.ExceptionResolver       : class org.springframework.web.HttpRequestMethodNotSupportedException Request method 'DELETE' not supported
+2023-05-13 20:13:52.564  WARN 22224 --- [http-nio-8080-exec-3] c.t.p.exceptions.ExceptionResolver       : class org.springframework.web.HttpRequestMethodNotSupportedException Request method 'DELETE' not supported
+2023-05-13 20:13:52.756  WARN 22224 --- [http-nio-8080-exec-6] c.t.p.exceptions.ExceptionResolver       : class org.springframework.web.HttpRequestMethodNotSupportedException Request method 'DELETE' not supported
+2023-05-13 20:13:52.957  WARN 22224 --- [http-nio-8080-exec-7] c.t.p.exceptions.ExceptionResolver       : class org.springframework.web.HttpRequestMethodNotSupportedException Request method 'DELETE' not supported
+2023-05-13 20:14:07.137  WARN 22224 --- [http-nio-8080-exec-10] c.t.p.exceptions.ExceptionResolver       : class org.springframework.web.HttpRequestMethodNotSupportedException Request method 'GET' not supported
+2023-05-13 20:14:20.887  WARN 22224 --- [http-nio-8080-exec-4] c.t.p.exceptions.ExceptionResolver       : class org.springframework.web.HttpRequestMethodNotSupportedException Request method 'GET' not supported
+2023-05-13 20:15:02.420  WARN 22224 --- [http-nio-8080-exec-5] c.t.p.exceptions.ExceptionResolver       : class org.springframework.web.HttpRequestMethodNotSupportedException Request method 'GET' not supported
+2023-05-13 20:15:03.810  WARN 22224 --- [http-nio-8080-exec-8] c.t.p.exceptions.ExceptionResolver       : class org.springframework.web.HttpRequestMethodNotSupportedException Request method 'GET' not supported
+2023-05-13 20:16:00.005  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.RouletteService.findNoPlayedRouletteGames()started!
+2023-05-13 20:16:00.052  INFO 22224 --- [scheduling-1] c.t.pokertds.service.RouletteService     : There aren't roulette that not changed more than 1 hour!
+2023-05-13 20:16:00.052  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.RouletteService.findNoPlayedRouletteGames()finished!
+2023-05-13 20:17:00.991  INFO 22224 --- [http-nio-8080-exec-9] com.tromza.pokertds.aspect.LoggerAspect  : Methodboolean com.tromza.pokertds.service.UserService.isUserNotDeleted(String)started!
+2023-05-13 20:17:01.029  INFO 22224 --- [http-nio-8080-exec-9] com.tromza.pokertds.aspect.LoggerAspect  : Methodboolean com.tromza.pokertds.service.UserService.isUserNotDeleted(String)finished!
+2023-05-13 20:17:01.030  INFO 22224 --- [http-nio-8080-exec-9] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-13 20:17:01.067  INFO 22224 --- [http-nio-8080-exec-9] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-13 20:17:01.068  INFO 22224 --- [http-nio-8080-exec-9] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.anotherUserInfo(int)started!
+2023-05-13 20:17:01.068  INFO 22224 --- [http-nio-8080-exec-9] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.otherUserInfo(int)started!
+2023-05-13 20:17:01.104  INFO 22224 --- [http-nio-8080-exec-9] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.otherUserInfo(int)finished!
+2023-05-13 20:17:01.104  INFO 22224 --- [http-nio-8080-exec-9] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.anotherUserInfo(int)finished!
+2023-05-13 20:17:20.764  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : Methodboolean com.tromza.pokertds.service.UserService.isUserNotDeleted(String)started!
+2023-05-13 20:17:20.806  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : Methodboolean com.tromza.pokertds.service.UserService.isUserNotDeleted(String)finished!
+2023-05-13 20:17:20.807  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-13 20:17:20.845  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-13 20:17:20.846  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.anotherUserInfo(int)started!
+2023-05-13 20:17:20.846  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.otherUserInfo(int)started!
+2023-05-13 20:17:20.882  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.otherUserInfo(int)finished!
+2023-05-13 20:17:20.882  INFO 22224 --- [http-nio-8080-exec-10] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.anotherUserInfo(int)finished!
+2023-05-13 20:17:52.934  INFO 22224 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodboolean com.tromza.pokertds.service.UserService.isUserNotDeleted(String)started!
+2023-05-13 20:17:52.975  INFO 22224 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodboolean com.tromza.pokertds.service.UserService.isUserNotDeleted(String)finished!
+2023-05-13 20:17:52.975  INFO 22224 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)started!
+2023-05-13 20:17:53.012  INFO 22224 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodOptional com.tromza.pokertds.service.UserService.getUserByLogin(String)finished!
+2023-05-13 20:17:53.013  INFO 22224 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.getAllUsers()started!
+2023-05-13 20:17:53.013  INFO 22224 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodList com.tromza.pokertds.service.UserService.getAllUsersForUser()started!
+2023-05-13 20:17:53.052  INFO 22224 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodList com.tromza.pokertds.service.UserService.getAllUsersForUser()finished!
+2023-05-13 20:17:53.052  INFO 22224 --- [http-nio-8080-exec-1] com.tromza.pokertds.aspect.LoggerAspect  : MethodResponseEntity com.tromza.pokertds.controller.UserController.getAllUsers()finished!
+2023-05-13 20:18:26.141  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 20:18:26.191  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 20:18:26.191  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 20:23:26.140  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 20:23:26.184  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 20:23:26.184  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 20:28:26.145  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 20:28:26.183  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 20:28:26.184  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 20:33:26.142  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 20:33:26.186  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 20:33:26.187  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 20:34:41.080  WARN 22224 --- [http-nio-8080-exec-8] c.t.p.exceptions.ExceptionResolver       : class org.springframework.web.HttpRequestMethodNotSupportedException Request method 'GET' not supported
+2023-05-13 20:38:26.148  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 20:38:26.186  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 20:38:26.186  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 20:43:26.144  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 20:43:26.283  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 20:43:26.283  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 20:46:00.039  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.RouletteService.finishNoPlayedRouletteGames()started!
+2023-05-13 20:46:00.042  INFO 22224 --- [scheduling-1] c.t.pokertds.service.RouletteService     : There aren't roulette that not changed more than 1,5 hour!
+2023-05-13 20:46:00.042  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.RouletteService.finishNoPlayedRouletteGames()finished!
+2023-05-13 20:48:26.145  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 20:48:26.182  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 20:48:26.183  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 20:53:26.134  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 20:53:26.174  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 20:53:26.174  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 20:58:26.136  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 20:58:26.174  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 20:58:26.175  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 21:03:26.135  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 21:03:26.173  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 21:03:26.174  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 21:08:26.149  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 21:08:26.189  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 21:08:26.189  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 21:13:26.143  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 21:13:26.184  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 21:13:26.184  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 21:16:00.003  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.RouletteService.findNoPlayedRouletteGames()started!
+2023-05-13 21:16:00.042  INFO 22224 --- [scheduling-1] c.t.pokertds.service.RouletteService     : There aren't roulette that not changed more than 1 hour!
+2023-05-13 21:16:00.042  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.RouletteService.findNoPlayedRouletteGames()finished!
+2023-05-13 21:18:26.149  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 21:18:26.186  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 21:18:26.186  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 21:23:26.142  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 21:23:26.185  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 21:23:26.185  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-13 21:28:26.145  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
+2023-05-13 21:28:26.188  INFO 22224 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
+2023-05-13 21:28:26.188  INFO 22224 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
