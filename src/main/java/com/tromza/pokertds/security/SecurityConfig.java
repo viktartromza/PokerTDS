@@ -18,8 +18,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
     private final JwtFilter jwtFilter;
     private static final String[] AUTH_WHITELIST = {
+            "/swagger-ui",
+            "/swagger-resources/**",
+            "/swagger-ui/**",
             "/v3/api-docs/**",
-            "/swagger-ui/**"
+            "/webjars/**"
     };
 
     @Bean
@@ -37,14 +40,7 @@ public class SecurityConfig {
         return http.httpBasic().disable()
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers("/swagger-ui/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/auth").permitAll()
-                .antMatchers(HttpMethod.POST, "/users/registration").permitAll()
-                .antMatchers("/users/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.DELETE, "/users").hasRole("USER")
-                .antMatchers("/wallets").hasRole("USER")
-                .antMatchers("/wallets/**").hasRole("USER")
-                .antMatchers("/games/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/swagger-ui/**", "/auth", "/users/registration").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
