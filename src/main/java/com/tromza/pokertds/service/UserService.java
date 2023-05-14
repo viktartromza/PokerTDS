@@ -46,20 +46,31 @@ public class UserService {
     public Optional<User> getUserByLogin(String login) {
         return userRepository.findUserByLogin(login);
     }
+
     public Optional<User> getUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
 
+    public List<User> getAllPresentUsersForAdmin() {
+        List<User> users = userRepository.findAll();
+        return users.stream().filter(user -> !user.isDeleted()).filter(user -> user.getRole().equals("USER")).collect(Collectors.toList());
+    }
+
+    public List<User> getAllDeletedUsersForAdmin() {
+        return userRepository.findAllByIsDeletedTrue();
+    }
+
     public List<ResponseOtherUserInfo> getAllUsersForUser() {
         List<User> users = userRepository.findAll();
-        return users.stream().filter(user -> !user.isDeleted()).filter(user->user.getRole().equals("USER")).map(user -> new ResponseOtherUserInfo(user.getId(), user.getLogin(), user.getScore())).collect(Collectors.toList());
+        return users.stream().filter(user -> !user.isDeleted()).filter(user -> user.getRole().equals("USER")).map(user -> new ResponseOtherUserInfo(user.getId(), user.getLogin(), user.getScore())).collect(Collectors.toList());
     }
-@Transactional
+
+    @Transactional
     public User createUser(RequestUserRegistration userRegistration) {
-        if (getUserByLogin(userRegistration.getLogin()).isPresent()){
+        if (getUserByLogin(userRegistration.getLogin()).isPresent()) {
             throw new UnsupportedOperationException("Such login is already used!");
         }
-        if(getUserByEmail(userRegistration.getEmail()).isPresent()){
+        if (getUserByEmail(userRegistration.getEmail()).isPresent()) {
             throw new UnsupportedOperationException("User with such email is already registered!");
         }
         User user = new User();
@@ -73,7 +84,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-       public User updateUser(RequestUserUpdate requestUserUpdate, Principal principal) {
+    public User updateUser(RequestUserUpdate requestUserUpdate, Principal principal) {
         User user = getUserByLogin(principal.getName()).get();
         user.setChanged(new Timestamp(System.currentTimeMillis()));
         user.setFirstName(requestUserUpdate.getFirstName());
@@ -99,8 +110,9 @@ public class UserService {
             userRepository.saveAndFlush(user);
         }
     }
-    public boolean isUserNotDeleted (String login){
-       return !getUserByLogin(login).orElseThrow(() -> new UsernameNotFoundException("User with login " + login + " not found!")).isDeleted();
+
+    public boolean isUserNotDeleted(String login) {
+        return !getUserByLogin(login).orElseThrow(() -> new UsernameNotFoundException("User with login " + login + " not found!")).isDeleted();
     }
 
     public void addGameToUser(User user, Game game) {

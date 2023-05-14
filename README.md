@@ -2,6 +2,7 @@
 
 This project is a simple version of online-casino. Customers have the opportunity to play European roulette and Texas
 Hold'em.
+By default, application have an admin account with username 'admin' and password 'admin'.
 
 ## Database
 
@@ -100,6 +101,8 @@ The user is notified via email from `onlinecasinotds@gmail.com` 3 minutes before
 
 ## Available endpoints for admins
 
+* http://localhost:8080/admin/users - GET method, show all user's
+* http://localhost:8080/admin/delusers - GET method, show all deleted user's
 * http://localhost:8080/admin/wallets - PUT method, withdraw or refill wallet of selected user
 * http://localhost:8080/admin/users/{id} - DELETE method, delete selected user's account
 

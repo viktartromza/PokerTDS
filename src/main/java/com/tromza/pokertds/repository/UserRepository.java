@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -20,6 +21,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findUserByLogin(String login);
 
     Optional<User> findUserByEmail(String email);
+
+    List<User> findAllByIsDeletedTrue();
 
     @Query(value = "SELECT user_id FROM users_games WHERE users_games.game_id=:gameId", nativeQuery = true)
     Optional<Integer> findUserIdByGameId(@Param("gameId") int gameId);
