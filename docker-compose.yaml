@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: db
+    ports:
+    - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=PokerAppDB
+      - PGDATA=/var/lib/postgresql/data/db_files/
+    image: postgres:latest
+    networks:
+      - pokertds_network
+
+  app:
+    container_name: pokertds
+    image: viktartromza/pokertds:v3
+    ports:
+    - "8080:8080"
+    environment:
+     - DB_HOST=db
+    depends_on:
+      - db
+    networks:
+      - pokertds_network
+
+networks:
+  pokertds_network:
+    driver: bridge
+
+
