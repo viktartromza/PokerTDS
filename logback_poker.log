@@ -3740,3 +3740,6 @@ This generated password is for development use only. Your security configuration
 2023-05-14 17:44:07.238  INFO 12604 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()started!
 2023-05-14 17:44:07.274  INFO 12604 --- [scheduling-1] c.t.pokertds.service.TexasHoldemService  : There aren't texasHoldem-games that not changed more than 5 minutes
 2023-05-14 17:44:07.274  INFO 12604 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.TexasHoldemService.findNoPlayedTexasHoldemGames()finished!
+2023-05-14 17:46:00.043  INFO 12604 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.RouletteService.finishNoPlayedRouletteGames()started!
+2023-05-14 17:46:00.048  INFO 12604 --- [scheduling-1] c.t.pokertds.service.RouletteService     : There aren't roulette that not changed more than 1,5 hour!
+2023-05-14 17:46:00.049  INFO 12604 --- [scheduling-1] com.tromza.pokertds.aspect.LoggerAspect  : Methodvoid com.tromza.pokertds.service.RouletteService.finishNoPlayedRouletteGames()finished!
