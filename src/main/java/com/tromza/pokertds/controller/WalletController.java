@@ -31,7 +31,7 @@ public class WalletController {
     }
 
     @Operation(summary = "Create wallet for current user")
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<Wallet> createWalletForUser(Principal principal) {
         return new ResponseEntity<>(walletService.createWalletForPrincipal(principal), HttpStatus.CREATED);
     }

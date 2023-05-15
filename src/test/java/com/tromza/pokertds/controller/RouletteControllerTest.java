@@ -52,7 +52,7 @@ public class RouletteControllerTest {
     @Test
     public void createRouletteTest() throws Exception {
         when(rouletteService.createRouletteGameForUser(principal)).thenReturn(Optional.of(rouletteGame));
-        mockMvc.perform(post("/games/roulette/").principal(principal))
+        mockMvc.perform(post("/games/roulette").principal(principal))
                 .andExpect(status().isCreated())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
@@ -63,7 +63,7 @@ public class RouletteControllerTest {
     public void playingGameTest() throws Exception {
         bet.setAmount(BigDecimal.valueOf(1100.00));
         when(rouletteService.playingRoulette(bet, principal)).thenReturn(rouletteWithBet);
-        mockMvc.perform(put("/games/roulette/")
+        mockMvc.perform(put("/games/roulette")
                         .principal(principal)
                         .contentType(APPLICATION_JSON)
                         .content(objectWriter.writeValueAsString(bet)))
@@ -72,7 +72,7 @@ public class RouletteControllerTest {
                 .andReturn();
         bet.setAmount(BigDecimal.valueOf(100.00));
         when(rouletteService.playingRoulette(bet, principal)).thenReturn(rouletteWithBet);
-        mockMvc.perform(put("/games/roulette/")
+        mockMvc.perform(put("/games/roulette")
                         .principal(principal)
                         .contentType(APPLICATION_JSON)
                         .content(objectWriter.writeValueAsString(bet)))

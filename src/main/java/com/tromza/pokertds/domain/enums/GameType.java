@@ -5,5 +5,4 @@ public enum GameType {
     TEXAS_HOLDEM,
     FIVE_CARD_DRAW,
     ROULETTE_EU
-
 }

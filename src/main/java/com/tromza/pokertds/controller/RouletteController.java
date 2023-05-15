@@ -1,6 +1,7 @@
 package com.tromza.pokertds.controller;
 
-import com.tromza.pokertds.domain.*;
+import com.tromza.pokertds.domain.BetRoulette;
+import com.tromza.pokertds.domain.RouletteGame;
 import com.tromza.pokertds.response.RouletteWithBet;
 import com.tromza.pokertds.service.RouletteService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,18 +14,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Tag(name="Roulette", description="The Roulette API")
+@Tag(name = "Roulette", description = "The Roulette API")
 @RestController
 @RequestMapping("/games/roulette")
 public class RouletteController {
 
-    Logger log = LoggerFactory.getLogger(this.getClass());
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final RouletteService rouletteService;
 
     @Autowired
@@ -33,14 +35,14 @@ public class RouletteController {
     }
 
     @Operation(summary = "Create new roulette game for current user")
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<RouletteGame> createRoulette(Principal principal) {
         Optional<RouletteGame> rouletteGame = rouletteService.createRouletteGameForUser(principal);
         return rouletteGame.map(value -> new ResponseEntity<>(value, HttpStatus.CREATED)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
     @Operation(summary = "Adding a bet for current roulette game. Return info about result")
-    @PutMapping("/")
+    @PutMapping
     public ResponseEntity<?> playingGame(Principal principal, @RequestBody @Valid BetRoulette bet, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             List<String> errors = new ArrayList<>();
@@ -54,6 +56,7 @@ public class RouletteController {
             return new ResponseEntity<>(updRouletteWithBet, HttpStatus.ACCEPTED);
         }
     }
+
     @Operation(summary = "Finish current roulette game (leaving the table)")
     @PutMapping("/finish/{id}")
     public ResponseEntity<RouletteGame> finishRouletteGameById(@PathVariable int id, Principal principal) {

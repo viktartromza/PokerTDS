@@ -42,7 +42,7 @@ public class GameControllerTest {
     @Test
     public void getGamesFromOtherUserTest() throws Exception {
         when(gameService.getGamesForSingleUserById(id)).thenReturn(new ArrayList<>());
-        mockMvc.perform(get("/games/")
+        mockMvc.perform(get("/games")
                         .param("userId", String.valueOf(id)))
                 .andExpect(status().isAlreadyReported())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))

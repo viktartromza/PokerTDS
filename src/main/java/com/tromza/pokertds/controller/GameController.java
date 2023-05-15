@@ -1,6 +1,5 @@
 package com.tromza.pokertds.controller;
 
-
 import com.tromza.pokertds.domain.Game;
 import com.tromza.pokertds.response.ResponseGameInfo;
 import com.tromza.pokertds.service.GameService;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.ArrayList;
 
-@Tag(name="Game", description="The Game API")
+@Tag(name = "Game", description = "The Game API")
 @RestController
 @RequestMapping("/games")
 public class GameController {
@@ -26,7 +25,7 @@ public class GameController {
     }
 
     @Operation(summary = "Return list of games belong to user with current id")
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<ArrayList<Game>> getGamesFromOtherUser(@RequestParam(value = "userId") int id) {
         ArrayList<Game> games = gameService.getGamesForSingleUserById(id);
         return new ResponseEntity<>(games, HttpStatus.ALREADY_REPORTED);

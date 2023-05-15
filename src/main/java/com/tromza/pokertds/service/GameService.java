@@ -9,6 +9,7 @@ import com.tromza.pokertds.response.ResponseGameInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
 import java.security.Principal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -21,7 +22,8 @@ public class GameService {
     private final UserService userService;
     private final RouletteRepository rouletteRepository;
     private final TexasHoldemRepository texasHoldemRepository;
-@Autowired
+
+    @Autowired
     public GameService(GameRepository gameRepository, UserService userService, RouletteRepository rouletteRepository, TexasHoldemRepository texasHoldemRepository) {
         this.gameRepository = gameRepository;
         this.userService = userService;

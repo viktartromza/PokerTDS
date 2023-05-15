@@ -31,7 +31,6 @@ public class User {
 
     @JsonIgnore
     @Column(name = "password", updatable = false)
-    //@JsonIgnore
     private String password;
 
     @Column(name = "registration_date", updatable = false)

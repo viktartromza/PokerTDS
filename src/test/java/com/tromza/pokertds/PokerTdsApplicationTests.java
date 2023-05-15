@@ -9,5 +9,4 @@ class PokerTdsApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }

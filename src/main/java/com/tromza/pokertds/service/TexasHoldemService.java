@@ -1,7 +1,11 @@
 package com.tromza.pokertds.service;
 
 import com.tromza.pokertds.annotation.GetTimeAnnotation;
-import com.tromza.pokertds.domain.*;
+import com.tromza.pokertds.domain.BetPoker;
+import com.tromza.pokertds.domain.Game;
+import com.tromza.pokertds.domain.TexasHoldemGame;
+import com.tromza.pokertds.domain.User;
+import com.tromza.pokertds.domain.Wallet;
 import com.tromza.pokertds.domain.enums.BetPokerType;
 import com.tromza.pokertds.domain.enums.GameStatus;
 import com.tromza.pokertds.domain.enums.GameType;
@@ -60,7 +64,8 @@ public class TexasHoldemService {
         this.pokerBetRepository = pokerBetRepository;
         this.emailService = emailService;
     }
-@Transactional
+
+    @Transactional
     public Optional<TexasHoldemGame> createTexasHoldemGameForUser(Principal principal) {
         User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new NoSuchElementException("User with login not found!"));
         if (gameService.findTexasHoldemGameInProcess(user.getId()).isPresent()) {
@@ -88,7 +93,8 @@ public class TexasHoldemService {
             }
         }
     }
-@Transactional
+
+    @Transactional
     @GetTimeAnnotation
     public TexasHoldemGameWithBetPoker playingTexasHoldem(BetPoker bet, Principal principal) throws InterruptedException {
         Game game = gameService.findTexasHoldemGameInProcess(userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!")).getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
@@ -121,7 +127,8 @@ public class TexasHoldemService {
             }
         }
     }
-@Transactional
+
+    @Transactional
     public TexasHoldemGame finishTexasHoldemGame(TexasHoldemGame texasHoldemGame, Principal principal) {
         User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!"));
         Game game = gameService.findTexasHoldemGameInProcess(user.getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
@@ -151,7 +158,8 @@ public class TexasHoldemService {
         texasHoldemGame.setChanged(new Timestamp(System.currentTimeMillis()));
         return texasHoldemRepository.saveAndFlush(texasHoldemGame);
     }
-@Transactional
+
+    @Transactional
     public TexasHoldemGameWithBetPoker playTexasHoldem(TexasHoldemGame texasHoldemGame, BetPoker bet, Principal principal) throws InterruptedException {
         Pattern card = Pattern.compile("[2-9,TJQKA][hcds]");
         Matcher ourHandMatcher = card.matcher(texasHoldemGame.getCasinoPreflop());
@@ -294,8 +302,8 @@ public class TexasHoldemService {
             }
             board[3] = texasHoldemGame.getTern();
             board[4] = texasHoldemGame.getRiver();
-            Map.Entry<String,Double> casinoResult = Chanses.evalCombinationByHandAndBoard(ourHand, board);
-            Map.Entry<String,Double> playerResult = Chanses.evalCombinationByHandAndBoard(playerHand, board);
+            Map.Entry<String, Double> casinoResult = Chanses.evalCombinationByHandAndBoard(ourHand, board);
+            Map.Entry<String, Double> playerResult = Chanses.evalCombinationByHandAndBoard(playerHand, board);
             double resultCasino = casinoResult.getValue();
             String bestCombCasino = casinoResult.getKey();
             double resultBoard = Chanses.evalCombination(board);
@@ -323,7 +331,7 @@ public class TexasHoldemService {
                         texasHoldemGame.setWinner(Winner.DRAW);
                         winCombination = bestCombPlayer;
                     }
-                    return new TexasHoldemGameWithBetPoker(finishTexasHoldemGame(texasHoldemGame, principal), saveBetPoker(bet), texasHoldemGame.getCasinoPreflop(),winCombination);
+                    return new TexasHoldemGameWithBetPoker(finishTexasHoldemGame(texasHoldemGame, principal), saveBetPoker(bet), texasHoldemGame.getCasinoPreflop(), winCombination);
                 }
             }
             if (bet.getTypePlayer().equals(BetPokerType.CALL)) {
@@ -339,7 +347,7 @@ public class TexasHoldemService {
                     texasHoldemGame.setWinner(Winner.DRAW);
                     winCombination = bestCombPlayer;
                 }
-                return new TexasHoldemGameWithBetPoker(finishTexasHoldemGame(texasHoldemGame, principal), saveBetPoker(bet), texasHoldemGame.getCasinoPreflop(),winCombination);
+                return new TexasHoldemGameWithBetPoker(finishTexasHoldemGame(texasHoldemGame, principal), saveBetPoker(bet), texasHoldemGame.getCasinoPreflop(), winCombination);
             }
         }
         throw new UnsupportedOperationException("Something wrong");
@@ -374,7 +382,8 @@ public class TexasHoldemService {
             }).start());
         }
     }
-@Transactional
+
+    @Transactional
     public void finishNoPlayedTexasHoldemGames(TexasHoldemGame texasHoldemGame) {
         Game game = gameService.getGameById(texasHoldemGame.getGameId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
         User user = userRepository.findUserIdByGameId(texasHoldemGame.getGameId()).map(userId -> userRepository.findById(userId)).orElseThrow(() -> new NoSuchElementException("User not found")).orElseThrow(() -> new NoSuchElementException("User not found"));

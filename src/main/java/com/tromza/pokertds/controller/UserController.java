@@ -22,11 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Tag(name="User", description="The User API")
+@Tag(name = "User", description = "The User API")
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    Logger log = LoggerFactory.getLogger(this.getClass());
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final UserService userService;
 
     @Autowired
@@ -76,8 +76,9 @@ public class UserController {
         User user = userService.updateUser(requestUserUpdate, principal);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
     @Operation(summary = "Change isDeleted status of authenticated user")
-    @DeleteMapping("")
+    @DeleteMapping
     public ResponseEntity<HttpStatus> deleteUser(Principal principal) {
         userService.deleteUser(principal);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

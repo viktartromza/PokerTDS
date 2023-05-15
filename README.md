@@ -85,12 +85,12 @@ The user is notified via email from `onlinecasinotds@gmail.com` 3 minutes before
 * http://localhost:8080/users/update - PUT method, update current user data
 * http://localhost:8080/user - DELETE method, delete current user's account
 
-* http://localhost:8080/games/ - GET method, show games belong to selected user
+* http://localhost:8080/games - GET method, show games belong to selected user
 * http://localhost:8080/games/info - GET method, info about all games of current user
 * http://localhost:8080/games/info/{id} - GET method, info about selected game
 
-* http://localhost:8080/games/roulette/ - POST method, create new roulette game for current user
-* http://localhost:8080/games/roulette/ - PUT method, make bet for current roulette game and return result
+* http://localhost:8080/games/roulette - POST method, create new roulette game for current user
+* http://localhost:8080/games/roulette - PUT method, make bet for current roulette game and return result
 * http://localhost:8080/games/roulette/finish/{id} - PUT method, finish current roulette game (leaving the table)
 
 * http://localhost:8080/games/poker/texas - POST method, create new texas hold'em for current user

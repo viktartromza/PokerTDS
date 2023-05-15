@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class JwtService {
-    Logger log = LoggerFactory.getLogger(this.getClass());
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private final UserService userService;
 

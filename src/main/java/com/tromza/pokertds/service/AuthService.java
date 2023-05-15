@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class AuthService {
     private final UserService userService;
@@ -25,10 +24,10 @@ public class AuthService {
 
     public String getTokenFromAuthRequest(AuthRequest authRequest) {
         User user = userService.getUserByLogin(authRequest.getLogin()).orElseThrow(() -> new UsernameNotFoundException("User with login " + authRequest.getLogin() + " not found!"));
-        if (passwordEncoder.matches(authRequest.getPassword(), user.getPassword())&& !user.isDeleted()) {
+        if (passwordEncoder.matches(authRequest.getPassword(), user.getPassword()) && !user.isDeleted()) {
             return jwtService.createJwtToken(authRequest.getLogin());
         } else {
-throw new BadCredentialsException("Login or password is incorrect");
+            throw new BadCredentialsException("Login or password is incorrect");
         }
     }
 }

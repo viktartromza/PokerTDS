@@ -25,5 +25,4 @@ public class Wallet {
 
     @Column(name = "user_id")
     private int userId;
-
 }

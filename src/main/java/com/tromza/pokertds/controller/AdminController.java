@@ -1,6 +1,5 @@
 package com.tromza.pokertds.controller;
 
-
 import com.tromza.pokertds.domain.User;
 import com.tromza.pokertds.domain.Wallet;
 import com.tromza.pokertds.request.UserMoneyAmount;
@@ -21,13 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name="Admin", description="The Admin API")
+@Tag(name = "Admin", description = "The Admin API")
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
     private final UserService userService;
     private final WalletService walletService;
-@Autowired
+
+    @Autowired
     public AdminController(UserService userService, WalletService walletService) {
         this.userService = userService;
         this.walletService = walletService;
@@ -51,6 +51,7 @@ public class AdminController {
         userService.deleteUserByIdForAdmin(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
     @Operation(summary = "Withdraw or refill wallet of selected user")
     @PutMapping("/wallets")
     public ResponseEntity<Wallet> transferWallet(@RequestBody UserMoneyAmount userMoney) {

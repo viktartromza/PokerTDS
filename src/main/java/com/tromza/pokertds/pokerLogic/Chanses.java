@@ -1,7 +1,5 @@
 package com.tromza.pokertds.pokerLogic;
 
-import com.tromza.pokertds.annotation.GetTimeAnnotation;
-
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
@@ -11,7 +9,6 @@ public class Chanses {
     static final int QUANTITYALLCOMBINATIONS = 2598960;
     static final double AVERAGEPOWER = 0.43505781564375623;
 
-    @GetTimeAnnotation
     static int[] genCombinations(int[] arr, int k, int n) {//3 из 5, k=3, n=5
         if (arr == null) {
             arr = new int[k];
@@ -31,7 +28,6 @@ public class Chanses {
         return null;
     }
 
-    @GetTimeAnnotation
     public static double compCombinations(String[] hand, String[] board) {
         Deck deck = new Deck();
         ArrayList<String> thisDeck = deck.get();

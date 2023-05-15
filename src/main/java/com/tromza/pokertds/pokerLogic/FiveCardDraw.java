@@ -16,10 +16,9 @@ public class FiveCardDraw {
 
     /**
      * @param combination is a 10 character string where each 2 characters encode a card
-     * @return power of a poker hand in scale on a scale from 0.00 to 7.99
+     * @return power of a poker hand on a scale from 0.00 to 7.99
      */
     static double process(String combination) {
-
         double fourOfAKind = 0, fullHouse = 0, threeOfAKind = 0, twoPairs = 0, pair = 0, handCards = 0;
         double straightFlush = resultFlushOrStraightFlush(combination);
         double straight = resultStraight(combination);

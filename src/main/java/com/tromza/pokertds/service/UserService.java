@@ -1,6 +1,5 @@
 package com.tromza.pokertds.service;
 
-
 import com.tromza.pokertds.domain.Game;
 import com.tromza.pokertds.domain.User;
 import com.tromza.pokertds.repository.UserRepository;
@@ -24,10 +23,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService {
-
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
 
     @Value("${defaultRole}")
     private String ROLE;

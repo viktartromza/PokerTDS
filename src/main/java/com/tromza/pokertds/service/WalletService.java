@@ -58,7 +58,8 @@ public class WalletService {
             return walletRepository.save(wallet);
         }
     }
-@Transactional
+
+    @Transactional
     public Wallet updateWallet(UserMoneyAmount userMoney) {
         if (userRepository.findById(userMoney.getUserId()).isPresent()) {
             if (userMoney.getAmount().compareTo(BigDecimal.valueOf(0)) < 0) {
@@ -70,7 +71,8 @@ public class WalletService {
             throw new NoSuchElementException("User with id " + userMoney.getUserId() + " not found!");
         }
     }
-@Transactional
+
+    @Transactional
     public Wallet refillWallet(UserMoneyAmount userMoney) {
         Optional<Wallet> optionalWallet = getWalletByUserId(userMoney.getUserId());
         Wallet wallet;

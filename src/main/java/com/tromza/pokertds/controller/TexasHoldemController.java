@@ -14,19 +14,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Tag(name="TexasHoldem", description="The TexasHoldem API")
+@Tag(name = "TexasHoldem", description = "The TexasHoldem API")
 @RestController
 @RequestMapping("/games/poker/texas")
 public class TexasHoldemController {
-Logger log = LoggerFactory.getLogger(this.getClass());
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final TexasHoldemService texasHoldemService;
-@Autowired
+
+    @Autowired
     public TexasHoldemController(TexasHoldemService texasHoldemService) {
         this.texasHoldemService = texasHoldemService;
     }

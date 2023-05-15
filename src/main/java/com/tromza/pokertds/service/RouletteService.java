@@ -1,6 +1,10 @@
 package com.tromza.pokertds.service;
 
-import com.tromza.pokertds.domain.*;
+import com.tromza.pokertds.domain.BetRoulette;
+import com.tromza.pokertds.domain.Game;
+import com.tromza.pokertds.domain.RouletteGame;
+import com.tromza.pokertds.domain.User;
+import com.tromza.pokertds.domain.Wallet;
 import com.tromza.pokertds.domain.enums.BetType;
 import com.tromza.pokertds.domain.enums.GameStatus;
 import com.tromza.pokertds.domain.enums.GameType;
@@ -26,7 +30,7 @@ import java.util.*;
 
 @Service
 public class RouletteService {
-    Logger log = LoggerFactory.getLogger(this.getClass());
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final BetRepository betRepository;
     private final GameRepository gameRepository;
     private final RouletteRepository rouletteRepository;
@@ -55,11 +59,8 @@ public class RouletteService {
     public Optional<RouletteGame> getRouletteGameByGameId(int id) {
         return rouletteRepository.findRouletteGameByGameId(id);
     }
-@Transactional
-    /*
-      Return new roulette-game.
-      If user already has roulette in process, return old game.
-     */
+
+    @Transactional
     public Optional<RouletteGame> createRouletteGameForUser(Principal principal) {
         User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new NoSuchElementException("User with login not found!"));
         if (gameService.findRouletteGameInProcess(user.getId()).isPresent()) {
@@ -89,7 +90,8 @@ public class RouletteService {
     public RouletteGame updateRouletteGame(RouletteGame rouletteGame) {
         return rouletteRepository.saveAndFlush(rouletteGame);
     }
-@Transactional
+
+    @Transactional
     public RouletteWithBet playingRoulette(BetRoulette bet, Principal principal) {
         Game game = gameService.findRouletteGameInProcess(userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!")).getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
         if (game.getId() != bet.getGameId()) {
@@ -121,7 +123,8 @@ public class RouletteService {
     public void updateBetRoulette(BetRoulette betRoulette) {
         betRepository.saveAndFlush(betRoulette);
     }
-@Transactional
+
+    @Transactional
     public RouletteGame finishRouletteGame(RouletteGame rouletteGame, Principal principal) {
         User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!"));
         Game game = gameService.findRouletteGameInProcess(user.getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
@@ -138,11 +141,13 @@ public class RouletteService {
             return updateRouletteGame(rouletteGame);
         }
     }
+
     @Transactional
     public RouletteGame finishRouletteGameById(int rouletteGameId, Principal principal) {
         RouletteGame rouletteGame = getRouletteGameById(rouletteGameId).orElseThrow(() -> new NoSuchElementException("Game not found!"));
         return finishRouletteGame(rouletteGame, principal);
     }
+
     @Transactional
     public void finishRouletteGameAutomatically(RouletteGame rouletteGame) {
         Game game = gameService.getGameById(rouletteGame.getGameId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
@@ -182,6 +187,7 @@ public class RouletteService {
             });
         }
     }
+
     @Transactional
     @Scheduled(cron = "${interval-in-cron-finish}")
     public void finishNoPlayedRouletteGames() {
