@@ -6,6 +6,9 @@ import com.tromza.pokertds.request.RequestUserUpdate;
 import com.tromza.pokertds.response.ResponseOtherUserInfo;
 import com.tromza.pokertds.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +59,7 @@ public class UserController {
     }
 
     @Operation(summary = "Create new user")
+    @ApiResponse(content = @Content(schema = @Schema(implementation = User.class)))
     @PostMapping("/registration")
     public ResponseEntity<?> createUser(@RequestBody @Valid RequestUserRegistration userRegistration, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

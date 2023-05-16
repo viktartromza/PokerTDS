@@ -5,6 +5,9 @@ import com.tromza.pokertds.domain.TexasHoldemGame;
 import com.tromza.pokertds.response.TexasHoldemGameWithBetPoker;
 import com.tromza.pokertds.service.TexasHoldemService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +44,7 @@ public class TexasHoldemController {
     }
 
     @Operation(summary = "Adding a bet for current texas hold'em. Return info about current state and casino decision")
+    @ApiResponse(content=@Content(schema = @Schema(implementation = TexasHoldemGameWithBetPoker.class)))
     @PutMapping
     public ResponseEntity<?> playingGame(Principal principal, @RequestBody @Valid BetPoker bet, BindingResult bindingResult) throws InterruptedException {
         if (bindingResult.hasErrors()) {

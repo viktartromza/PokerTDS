@@ -5,6 +5,9 @@ import com.tromza.pokertds.domain.RouletteGame;
 import com.tromza.pokertds.response.RouletteWithBet;
 import com.tromza.pokertds.service.RouletteService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +45,7 @@ public class RouletteController {
     }
 
     @Operation(summary = "Adding a bet for current roulette game. Return info about result")
+    @ApiResponse(content = @Content(schema = @Schema(implementation = RouletteWithBet.class)))
     @PutMapping
     public ResponseEntity<?> playingGame(Principal principal, @RequestBody @Valid BetRoulette bet, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
