@@ -41,7 +41,7 @@ public class Chanses {
             ArrayList<Double> handValue = new ArrayList<>();
             while ((arr = genCombinations(arr, 3, thisDeck.size())) != null) {
                 combination = deckArr[(arr[0] - 1)] + deckArr[(arr[1] - 1)] + deckArr[(arr[2] - 1)] + hand[0] + hand[1];
-                handValue.add(FiveCardDraw.process(combination));
+                handValue.add(FiveCardDraw.powerOfCards(combination));
             }
             return handValue.stream().mapToDouble(x -> x).average().getAsDouble();
         } else {
@@ -81,7 +81,7 @@ public class Chanses {
         ArrayList<Double> handValue = new ArrayList<>();
         while ((arr = genCombinations(arr, 5, handWithBoard.length)) != null) {
             combination = handWithBoard[(arr[0] - 1)] + handWithBoard[(arr[1] - 1)] + handWithBoard[(arr[2] - 1)] + handWithBoard[(arr[3] - 1)] + handWithBoard[(arr[4] - 1)];
-            handValue.add(FiveCardDraw.process(combination));
+            handValue.add(FiveCardDraw.powerOfCards(combination));
         }
         return handValue.stream().mapToDouble(x -> x).max().getAsDouble();
     }
@@ -95,7 +95,7 @@ public class Chanses {
                 int[] arr = null;
                 while ((arr = genCombinations(arr, 3, board.length)) != null) {
                     combination = board[(arr[0] - 1)] + board[(arr[1] - 1)] + board[(arr[2] - 1)] + hand[0] + hand[1];
-                    resultOfHands.put(combination, FiveCardDraw.process(combination));
+                    resultOfHands.put(combination, FiveCardDraw.powerOfCards(combination));
                 }
             }
             );
@@ -104,7 +104,7 @@ public class Chanses {
                 int[] arr = null;
                 while ((arr = genCombinations(arr, 4, board.length)) != null) {
                     combination = board[(arr[0] - 1)] + board[(arr[1] - 1)] + board[(arr[2] - 1)] + board[(arr[3] - 1)] + hand[0];
-                    resultOfHands.put(combination, FiveCardDraw.process(combination));
+                    resultOfHands.put(combination, FiveCardDraw.powerOfCards(combination));
                 }
             }
             );
@@ -113,7 +113,7 @@ public class Chanses {
                 int[] arr = null;
                 while ((arr = genCombinations(arr, 4, board.length)) != null) {
                     combination = board[(arr[0] - 1)] + board[(arr[1] - 1)] + board[(arr[2] - 1)] + board[(arr[3] - 1)] + hand[1];
-                    resultOfHands.put(combination, FiveCardDraw.process(combination));
+                    resultOfHands.put(combination, FiveCardDraw.powerOfCards(combination));
                 }
             }
             );
@@ -130,14 +130,14 @@ public class Chanses {
                 int[] arr = null;
                 while ((arr = genCombinations(arr, 3, board.length)) != null) {
                     combination = board[(arr[0] - 1)] + board[(arr[1] - 1)] + board[(arr[2] - 1)] + hand[0] + hand[1];
-                    resultOfHands.put(combination, FiveCardDraw.process(combination));
+                    resultOfHands.put(combination, FiveCardDraw.powerOfCards(combination));
                 }
             }
             );
             var threadSecond = new Thread(() -> {
                 for (String s : hand) {
                     String combination = board[0] + board[1] + board[2] + board[3] + s;
-                    resultOfHands.put(combination, FiveCardDraw.process(combination));
+                    resultOfHands.put(combination, FiveCardDraw.powerOfCards(combination));
                 }
             }
             );
@@ -148,7 +148,7 @@ public class Chanses {
         }
         if (board.length == 3) {
             String combination = board[0] + board[1] + board[2] + hand[0] + hand[1];
-            resultOfHands.put(combination, FiveCardDraw.process(combination));
+            resultOfHands.put(combination, FiveCardDraw.powerOfCards(combination));
         }
         maxVal = resultOfHands.values().stream().max(Double::compareTo).get();
         return resultOfHands.entrySet().stream()
@@ -169,7 +169,7 @@ public class Chanses {
             ArrayList<Double> handValue = new ArrayList<>();
             while ((arr = genCombinations(arr, 3, thisDeck.size())) != null) {
                 combination = deckArr[(arr[0] - 1)] + deckArr[(arr[1] - 1)] + deckArr[(arr[2] - 1)] + hand[0] + hand[1];
-                handValue.add(FiveCardDraw.process(combination));
+                handValue.add(FiveCardDraw.powerOfCards(combination));
             }
             return (QUANTITYALLCOMBINATIONS * AVERAGEPOWER - handValue.stream().mapToDouble(x -> x).average().getAsDouble() * handValue.size()) / (QUANTITYALLCOMBINATIONS - handValue.size());
         } else {

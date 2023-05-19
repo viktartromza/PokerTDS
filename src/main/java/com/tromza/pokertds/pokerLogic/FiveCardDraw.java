@@ -18,50 +18,61 @@ public class FiveCardDraw {
      * @param combination is a 10 character string where each 2 characters encode a card
      * @return power of a poker hand on a scale from 0.00 to 7.99
      */
-    static double process(String combination) {
-        double fourOfAKind = 0, fullHouse = 0, threeOfAKind = 0, twoPairs = 0, pair = 0, handCards = 0;
-        double straightFlush = resultFlushOrStraightFlush(combination);
-        double straight = resultStraight(combination);
-        Integer[] cardsSuitOfAll = Arrays.stream(combination.split("[hdcs]")).map(FiveCardDraw::cardToPoints).sorted().toArray(Integer[]::new);
-        Map<Integer, Integer> matches = new HashMap<>();
-        for (int c = 2; c <= 14; c++) {
-            matches.put(c, 0);
-            for (Integer integer : cardsSuitOfAll) {
-                if (c == integer) {
-                    matches.put(c, matches.get(c) + 1);
-                }
-            }
-        }
-        if (matches.containsValue(4)) {// Four Of A Kind
-            double fourOfAKindValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 4).findAny().get();
-            double lastCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).findAny().get();
-            fourOfAKind = 6.0 + fourOfAKindValue * 0.01 + lastCard * 0.0001;
-        } else if (matches.containsValue(3)) {// Three Of A Kind
-            double threeOfAKindValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 3).findAny().get();
-            if (matches.containsValue(2)) {// Full House
-                double pairValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 2).findAny().get();
-                fullHouse = 5.0 + threeOfAKindValue * 0.01 + pairValue * 0.0001;
+    static double powerOfCards(String combination) {
+        double power, fourOfAKind = 0, fullHouse = 0, threeOfAKind = 0, twoPairs = 0, pair = 0, handCards = 0;
+        if (isStraight(combination)) {
+            if (isFlush(combination)) {
+                power = 4.0 + resultStraight(combination);
             } else {
-                double highCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).max(Integer::compareTo).get();
-                double lastCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).min(Integer::compareTo).get();
-                threeOfAKind = 2.0 + threeOfAKindValue * 0.01 + highCard * 0.0001 + lastCard * 0.000001;
+                power = resultStraight(combination);
             }
-        } else if (matches.containsValue(2)) {// Pair
-            if (matches.keySet().stream().filter(key -> matches.get(key) == 2).count() > 1) {// Two pairs
-                double pairStrongValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 2).max(Integer::compareTo).get();
-                double pairSecondValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 2).min(Integer::compareTo).get();
-                double lastCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).findAny().get();
-                twoPairs = 1.0 + pairStrongValue * 0.01 + pairSecondValue * 0.0001 + lastCard * 0.000001;
-            }
-            double pairValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 2).findAny().get();
-            double highCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).max(Integer::compareTo).get();
-            double mediumCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).max(Integer::compareTo).get();
-            double lastCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).min(Integer::compareTo).get();
-            pair = 0.5 + pairValue * 0.01 + highCard * 0.0001 + mediumCard * 0.000001 + lastCard * 0.00000001;
         } else {
-            handCards = resultHandCards(combination);
+            if (isFlush(combination)) {
+                power = 4.0 + resultHandCards(combination);
+            } else {
+                Integer[] cardsSuitOfAll = Arrays.stream(combination.split("[hdcs]")).map(FiveCardDraw::cardToPoints).sorted().toArray(Integer[]::new);
+                Map<Integer, Integer> matches = new HashMap<>();
+                for (int c = 2; c <= 14; c++) {
+                    matches.put(c, 0);
+                    for (Integer integer : cardsSuitOfAll) {
+                        if (c == integer) {
+                            matches.put(c, matches.get(c) + 1);
+                        }
+                    }
+                }
+                if (matches.containsValue(4)) {// Four Of A Kind
+                    double fourOfAKindValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 4).findAny().get();
+                    double lastCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).findAny().get();
+                    fourOfAKind = 6.0 + fourOfAKindValue * 0.01 + lastCard * 0.0001;
+                } else if (matches.containsValue(3)) {// Three Of A Kind
+                    double threeOfAKindValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 3).findAny().get();
+                    if (matches.containsValue(2)) {// Full House
+                        double pairValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 2).findAny().get();
+                        fullHouse = 5.0 + threeOfAKindValue * 0.01 + pairValue * 0.0001;
+                    } else {
+                        double highCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).max(Integer::compareTo).get();
+                        double lastCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).min(Integer::compareTo).get();
+                        threeOfAKind = 2.0 + threeOfAKindValue * 0.01 + highCard * 0.0001 + lastCard * 0.000001;
+                    }
+                } else if (matches.containsValue(2)) {// Pair
+                    if (matches.keySet().stream().filter(key -> matches.get(key) == 2).count() > 1) {// Two pairs
+                        double pairStrongValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 2).max(Integer::compareTo).get();
+                        double pairSecondValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 2).min(Integer::compareTo).get();
+                        double lastCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).findAny().get();
+                        twoPairs = 1.0 + pairStrongValue * 0.01 + pairSecondValue * 0.0001 + lastCard * 0.000001;
+                    }
+                    double pairValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 2).findAny().get();
+                    double highCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).max(Integer::compareTo).get();
+                    double mediumCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).max(Integer::compareTo).get();
+                    double lastCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).min(Integer::compareTo).get();
+                    pair = 0.5 + pairValue * 0.01 + highCard * 0.0001 + mediumCard * 0.000001 + lastCard * 0.00000001;
+                } else {
+                    handCards = resultHandCards(combination);
+                }
+                power = Stream.of(threeOfAKind, fullHouse, fourOfAKind, twoPairs, pair, handCards).max(Double::compareTo).get();
+            }
         }
-        return Stream.of(straightFlush, threeOfAKind, fullHouse, straight, fourOfAKind, twoPairs, pair, handCards).max(Double::compareTo).get();
+        return power;
     }
 
     public static int cardToPoints(String s) {
@@ -88,44 +99,37 @@ public class FiveCardDraw {
         return ranks.apply(s);
     }
 
-    static double resultFlushOrStraightFlush(String s) {
-        double res = 0;
-        char[] suits = {'h', 'd', 'c', 's'};
-        for (char i : suits) {
-            int quantOfSuits = (int) s.chars().filter(n -> (n == i)).count();// Flush
-            if (quantOfSuits == 5) {
-                if (isStraightFlush(s, i)) {
-                    res = 4.0 + resultStraight(s);
-                } else {
-                    res = 4.0 + resultHandCards(s);
-                }
-            }
-        }
-        return res;
-    }
-
-    static boolean isStraightFlush(String cards, char suit) {
+    static boolean isStraight(String cards) {
         boolean a = false;
-        List<Integer> ranks = Arrays.stream(cards.split(String.valueOf(suit))).map(FiveCardDraw::cardToPoints).distinct().sorted().toList();
-        List<Integer> ranksA = Arrays.stream(cards.split(String.valueOf(suit))).map(FiveCardDraw::cardToPointsA).distinct().sorted().toList();
+        List<Integer> ranks = Arrays.stream(cards.split("[hdcs]")).map(FiveCardDraw::cardToPoints).distinct().sorted().toList();
+        List<Integer> ranksA = Arrays.stream(cards.split("[hdcs]")).map(FiveCardDraw::cardToPointsA).distinct().sorted().toList();
         if (ranks.size() == 5 && (ranks.stream().max(Integer::compareTo).get() - ranks.stream().min(Integer::compareTo).get()) == 4) {
             a = true;
         }
-        if (ranks.size() == 5 && (ranksA.stream().max(Integer::compareTo).get() - ranksA.stream().min(Integer::compareTo).get()) == 4) {
+        if (ranksA.size() == 5 && (ranksA.stream().max(Integer::compareTo).get() - ranksA.stream().min(Integer::compareTo).get()) == 4) {
             a = true;
         }
         return a;
     }
 
-    static double resultStraight(String cards) {
-        double res = 0;
-        List<Integer> ranks = Arrays.stream(cards.split("[hdcs]")).map(FiveCardDraw::cardToPoints).distinct().sorted().toList();
-        List<Integer> ranksA = Arrays.stream(cards.split("[hdcs]")).map(FiveCardDraw::cardToPointsA).distinct().sorted().toList();
-        if (ranks.size() == 5 && (ranks.stream().max(Integer::compareTo).get() - ranks.stream().min(Integer::compareTo).get()) == 4) {
-            res = 3.0 + resultHandCards(cards);
+    static boolean isFlush(String cards) {
+        boolean a = false;
+        char[] suits = {'h', 'd', 'c', 's'};
+        for (char i : suits) {
+            int quantOfSuits = (int) cards.chars().filter(n -> (n == i)).count();// Flush
+            if (quantOfSuits == 5) {
+                a = true;
+            }
         }
-        if (ranks.size() == 5 && (ranksA.stream().max(Integer::compareTo).get() - ranksA.stream().min(Integer::compareTo).get()) == 4) {
+        return a;
+    }
+
+    static double resultStraight(String cards) {
+        double res;
+        if (cards.contains("A") && cards.contains("2")) {
             res = 3.0 + resultHandCardsA(cards);
+        } else {
+            res = 3.0 + resultHandCards(cards);
         }
         return res;
     }
