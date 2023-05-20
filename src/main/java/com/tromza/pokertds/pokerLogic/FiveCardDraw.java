@@ -2,11 +2,9 @@ package com.tromza.pokertds.pokerLogic;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Stream;
 
 /**
  * This class implements methods
@@ -19,57 +17,62 @@ public class FiveCardDraw {
      * @return power of a poker hand on a scale from 0.00 to 7.99
      */
     static double powerOfCards(String combination) {
-        double power, fourOfAKind = 0, fullHouse = 0, threeOfAKind = 0, twoPairs = 0, pair = 0, handCards = 0;
-        if (isStraight(combination)) {
-            if (isFlush(combination)) {
-                power = 4.0 + resultStraight(combination);
-            } else {
-                power = resultStraight(combination);
-            }
-        } else {
-            if (isFlush(combination)) {
-                power = 4.0 + resultHandCards(combination);
-            } else {
-                Integer[] cardsSuitOfAll = Arrays.stream(combination.split("[hdcs]")).map(FiveCardDraw::cardToPoints).sorted().toArray(Integer[]::new);
-                Map<Integer, Integer> matches = new HashMap<>();
-                for (int c = 2; c <= 14; c++) {
-                    matches.put(c, 0);
-                    for (Integer integer : cardsSuitOfAll) {
-                        if (c == integer) {
-                            matches.put(c, matches.get(c) + 1);
-                        }
-                    }
-                }
-                if (matches.containsValue(4)) {// Four Of A Kind
-                    double fourOfAKindValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 4).findAny().get();
-                    double lastCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).findAny().get();
-                    fourOfAKind = 6.0 + fourOfAKindValue * 0.01 + lastCard * 0.0001;
-                } else if (matches.containsValue(3)) {// Three Of A Kind
-                    double threeOfAKindValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 3).findAny().get();
-                    if (matches.containsValue(2)) {// Full House
-                        double pairValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 2).findAny().get();
-                        fullHouse = 5.0 + threeOfAKindValue * 0.01 + pairValue * 0.0001;
-                    } else {
-                        double highCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).max(Integer::compareTo).get();
-                        double lastCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).min(Integer::compareTo).get();
-                        threeOfAKind = 2.0 + threeOfAKindValue * 0.01 + highCard * 0.0001 + lastCard * 0.000001;
-                    }
-                } else if (matches.containsValue(2)) {// Pair
-                    if (matches.keySet().stream().filter(key -> matches.get(key) == 2).count() > 1) {// Two pairs
-                        double pairStrongValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 2).max(Integer::compareTo).get();
-                        double pairSecondValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 2).min(Integer::compareTo).get();
-                        double lastCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).findAny().get();
-                        twoPairs = 1.0 + pairStrongValue * 0.01 + pairSecondValue * 0.0001 + lastCard * 0.000001;
-                    }
-                    double pairValue = (double) matches.keySet().stream().filter(key -> matches.get(key) == 2).findAny().get();
-                    double highCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).max(Integer::compareTo).get();
-                    double mediumCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).max(Integer::compareTo).get();
-                    double lastCard = (double) matches.keySet().stream().filter(key -> matches.get(key) == 1).min(Integer::compareTo).get();
-                    pair = 0.5 + pairValue * 0.01 + highCard * 0.0001 + mediumCard * 0.000001 + lastCard * 0.00000001;
+        double power = 0;
+        List<Integer> ranges = Arrays.stream(combination.split("[hdcs]")).map(FiveCardDraw::cardToPoints).sorted().toList();
+        List<Integer> rangesDistinct = ranges.stream().distinct().toList();
+        int countOfRanges = rangesDistinct.size();
+        if (countOfRanges == 5) { // only High Card
+            if (isStraight(combination)) {
+                if (isFlush(combination)) {
+                    power = 4.0 + resultStraight(combination);
                 } else {
-                    handCards = resultHandCards(combination);
+                    power = resultStraight(combination);
                 }
-                power = Stream.of(threeOfAKind, fullHouse, fourOfAKind, twoPairs, pair, handCards).max(Double::compareTo).get();
+            } else {
+                if (isFlush(combination)) {
+                    power = 4.0 + resultHandCards(combination);
+                } else {
+                    power = resultHandCards(combination);
+                }
+            }
+        } else if (countOfRanges == 4) {// One Pair
+            for (Integer range : rangesDistinct) {
+                int countOfMatches = (int) ranges.stream().filter(x -> x == range).count();
+                if (countOfMatches == 2) {
+                    power = 0.5 + range * 0.01 + resultRangesCards(ranges.stream().filter(x -> x != range).toList());
+                }
+                break;
+            }
+        } else if (countOfRanges == 2) {// Four Of A Kind or Full House
+            for (Integer range : rangesDistinct) {
+                int countOfMatches = (int) ranges.stream().filter(x -> x == range).count();
+                if (countOfMatches == 4) {// Four Of A Kind
+                    power = 6.0 + range * 0.01 + ranges.stream().filter(x -> x != range).findFirst().orElse(0) * 0.0001;
+                    break;
+                }
+                if (countOfMatches == 3) {// Full House
+                    power = 5.0 + range * 0.01 + ranges.stream().filter(x -> x != range).findFirst().orElse(0) * 0.0001;
+                    break;
+                }
+            }
+        } else { // Three Of A Kind or Two Pair
+            power = 1.0;
+            int firstPairRange = 0;
+            for (Integer range : rangesDistinct) {
+                int countOfMatches = (int) ranges.stream().filter(x -> Objects.equals(x, range)).count();
+                if (countOfMatches == 3) {// Three Of A Kind
+                    power = 2.0 + range * 0.01 + resultRangesCards(ranges.stream().filter(x -> !Objects.equals(x, range)).toList());
+                    break;
+                }
+                if (countOfMatches == 2) {// Two Pair
+                    if (power == 1.0) {
+                        firstPairRange = range;
+                        power = power + range * 0.0001;
+                    } else {
+                        int finalFirstPairRange = firstPairRange;
+                        power = power + range * 0.01 + ranges.stream().filter(x -> (!Objects.equals(x, range) && x != finalFirstPairRange)).findFirst().orElse(0) * 0.000001;
+                    }
+                }
             }
         }
         return power;
@@ -148,6 +151,17 @@ public class FiveCardDraw {
         Integer[] ranks = Arrays.stream(hand.split("[hdcs]")).map(FiveCardDraw::cardToPointsA).sorted(Comparator.reverseOrder()).toArray(Integer[]::new);
         for (int i = 1; i <= 5; i++) {
             res = res + ranks[i - 1] * Math.pow(0.01, i);
+        }
+        return res;
+    }
+
+    static double resultRangesCards(List<Integer> ranges) {
+        double res = 0;
+        Integer[] sortedRanges = ranges.stream().sorted().toArray(Integer[]::new);
+        int count = 2;
+        for (int i = sortedRanges.length - 1; i >= 0; i--) {
+            res += sortedRanges[i] * Math.pow(0.01, count);
+            count++;
         }
         return res;
     }

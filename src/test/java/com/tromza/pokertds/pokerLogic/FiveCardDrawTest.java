@@ -2,6 +2,7 @@ package com.tromza.pokertds.pokerLogic;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FiveCardDrawTest {
@@ -60,4 +61,10 @@ public class FiveCardDrawTest {
         assertTrue(power > 4.00 && power < 4.99);
     }
 
+    @Test
+    public void process2h2dJhJdAhVs2c2sJcJsKh() {
+        double power2h2dJhJdAh = FiveCardDraw.powerOfCards("2h2dJhJdAh");
+        double power2c2sJcJsKh = FiveCardDraw.powerOfCards("2c2sJcJsKh");
+        assertTrue(power2h2dJhJdAh > power2c2sJcJsKh);
+    }
 }

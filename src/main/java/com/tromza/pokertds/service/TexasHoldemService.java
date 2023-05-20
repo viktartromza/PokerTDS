@@ -86,8 +86,9 @@ public class TexasHoldemService {
                 texasHoldemGame.setStatus(GameStatus.IN_PROCESS);
                 texasHoldemGame.setPlayerDeposit(BLIND);
                 texasHoldemGame.setBank(2 * BLIND);
-                texasHoldemGame.setPlayerPreflop(PokerGame.getPreflops().get(0));
-                texasHoldemGame.setCasinoPreflop(PokerGame.getPreflops().get(1));
+                ArrayList<String> preflops = PokerGame.getPreflops();
+                texasHoldemGame.setPlayerPreflop(preflops.get(0));
+                texasHoldemGame.setCasinoPreflop(preflops.get(1));
                 texasHoldemGame.setChanged(new Timestamp(System.currentTimeMillis()));
                 return Optional.of(texasHoldemRepository.save(texasHoldemGame));
             }
