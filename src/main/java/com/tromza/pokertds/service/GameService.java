@@ -6,6 +6,7 @@ import com.tromza.pokertds.repository.GameRepository;
 import com.tromza.pokertds.repository.RouletteRepository;
 import com.tromza.pokertds.repository.TexasHoldemRepository;
 import com.tromza.pokertds.response.ResponseGameInfo;
+import com.tromza.pokertds.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -19,14 +20,14 @@ import java.util.Optional;
 @Service
 public class GameService {
     private final GameRepository gameRepository;
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
     private final RouletteRepository rouletteRepository;
     private final TexasHoldemRepository texasHoldemRepository;
 
     @Autowired
-    public GameService(GameRepository gameRepository, UserService userService, RouletteRepository rouletteRepository, TexasHoldemRepository texasHoldemRepository) {
+    public GameService(GameRepository gameRepository, UserServiceImpl userServiceImpl, RouletteRepository rouletteRepository, TexasHoldemRepository texasHoldemRepository) {
         this.gameRepository = gameRepository;
-        this.userService = userService;
+        this.userServiceImpl = userServiceImpl;
         this.rouletteRepository = rouletteRepository;
         this.texasHoldemRepository = texasHoldemRepository;
     }
@@ -63,7 +64,7 @@ public class GameService {
     }
 
     public ArrayList<Game> getGamesForSingleUser(Principal principal) {
-        return gameRepository.getGamesForSingleUser(userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!")).getId());
+        return gameRepository.getGamesForSingleUser(userServiceImpl.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!")).getId());
     }
 
     public Optional<Game> findRouletteGameInProcess(int userId) {

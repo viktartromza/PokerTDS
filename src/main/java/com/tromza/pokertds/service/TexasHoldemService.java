@@ -18,6 +18,8 @@ import com.tromza.pokertds.repository.TexasHoldemRepository;
 import com.tromza.pokertds.repository.UserRepository;
 import com.tromza.pokertds.request.UserMoneyAmount;
 import com.tromza.pokertds.response.TexasHoldemGameWithBetPoker;
+import com.tromza.pokertds.service.impl.UserServiceImpl;
+import com.tromza.pokertds.service.impl.WalletServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +46,9 @@ public class TexasHoldemService {
     @Value("${blind}")
     private Double BLIND;
     Logger log = LoggerFactory.getLogger(this.getClass());
-    private final WalletService walletService;
+    private final WalletServiceImpl walletService;
     private final GameService gameService;
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
     private final UserRepository userRepository;
     private final TexasHoldemRepository texasHoldemRepository;
     private final GameRepository gameRepository;
@@ -54,10 +56,10 @@ public class TexasHoldemService {
     private final EmailService emailService;
 
     @Autowired
-    public TexasHoldemService(WalletService walletService, GameService gameService, UserService userService, UserRepository userRepository, TexasHoldemRepository texasHoldemRepository, GameRepository gameRepository, PokerBetRepository pokerBetRepository, EmailService emailService) {
+    public TexasHoldemService(WalletServiceImpl walletService, GameService gameService, UserServiceImpl userServiceImpl, UserRepository userRepository, TexasHoldemRepository texasHoldemRepository, GameRepository gameRepository, PokerBetRepository pokerBetRepository, EmailService emailService) {
         this.walletService = walletService;
         this.gameService = gameService;
-        this.userService = userService;
+        this.userServiceImpl = userServiceImpl;
         this.userRepository = userRepository;
         this.texasHoldemRepository = texasHoldemRepository;
         this.gameRepository = gameRepository;
@@ -67,7 +69,7 @@ public class TexasHoldemService {
 
     @Transactional
     public Optional<TexasHoldemGame> createTexasHoldemGameForUser(Principal principal) {
-        User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new NoSuchElementException("User with login not found!"));
+        User user = userServiceImpl.getUserByLogin(principal.getName()).orElseThrow(() -> new NoSuchElementException("User with login not found!"));
         if (gameService.findTexasHoldemGameInProcess(user.getId()).isPresent()) {
             log.info("User with id: " + user.getId() + " has texas holdem in process");
             return texasHoldemRepository.findTexasHoldemGameByGameId(gameService.findTexasHoldemGameInProcess(user.getId()).get().getId());
@@ -79,7 +81,7 @@ public class TexasHoldemService {
                 Game game = new Game();
                 game.setType(GameType.TEXAS_HOLDEM);
                 game = gameService.createGame(game);
-                userService.addGameToUser(user, game);
+                userServiceImpl.addGameToUser(user, game);
                 walletService.updateWallet(new UserMoneyAmount(user.getId(), BigDecimal.valueOf(BLIND).negate()));
                 TexasHoldemGame texasHoldemGame = new TexasHoldemGame();
                 texasHoldemGame.setGameId(game.getId());
@@ -98,8 +100,8 @@ public class TexasHoldemService {
     @Transactional
     @GetTimeAnnotation
     public TexasHoldemGameWithBetPoker playingTexasHoldem(BetPoker bet, Principal principal) throws InterruptedException {
-        Game game = gameService.findTexasHoldemGameInProcess(userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!")).getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
-        User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!"));
+        Game game = gameService.findTexasHoldemGameInProcess(userServiceImpl.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!")).getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
+        User user = userServiceImpl.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!"));
         if (game.getId() != bet.getGameId()) {
             throw new UnsupportedOperationException("User with login " + principal.getName() + " hasn't game with id " + bet.getGameId() + " in process");
         } else {
@@ -131,7 +133,7 @@ public class TexasHoldemService {
 
     @Transactional
     public TexasHoldemGame finishTexasHoldemGame(TexasHoldemGame texasHoldemGame, Principal principal) {
-        User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!"));
+        User user = userServiceImpl.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!"));
         Game game = gameService.findTexasHoldemGameInProcess(user.getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
         if (game.getId() != texasHoldemGame.getGameId()) {
             throw new UnsupportedOperationException("User with login " + principal.getName() + " hasn't game with id " + texasHoldemGame.getGameId() + " in process");
@@ -150,7 +152,7 @@ public class TexasHoldemService {
             game.setResult(texasHoldemGame.getResult());
             user.setScore(user.getScore() + texasHoldemGame.getResult());
             gameService.finishGame(game);
-            userService.saveUser(user);
+            userServiceImpl.saveUser(user);
             return updateTexasHoldemGame(texasHoldemGame);
         }
     }
@@ -394,7 +396,7 @@ public class TexasHoldemService {
         game.setResult(texasHoldemGame.getResult());
         user.setScore(user.getScore() + texasHoldemGame.getResult());
         gameService.finishGame(game);
-        userService.saveUser(user);
+        userServiceImpl.saveUser(user);
         updateTexasHoldemGame(texasHoldemGame);
         log.info("TexasHoldem-game " + texasHoldemGame.getId() + " was finished automatically");
         String email = gameRepository.findEmailByGameId(texasHoldemGame.getGameId());

@@ -1,7 +1,7 @@
 package com.tromza.pokertds.security;
 
 import com.tromza.pokertds.domain.User;
-import com.tromza.pokertds.service.UserService;
+import com.tromza.pokertds.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,12 +20,12 @@ import java.io.IOException;
 @Component
 public class JwtFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
     @Autowired
-    public JwtFilter(JwtService jwtService, UserService userService) {
+    public JwtFilter(JwtService jwtService, UserServiceImpl userServiceImpl) {
         this.jwtService = jwtService;
-        this.userService = userService;
+        this.userServiceImpl = userServiceImpl;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class JwtFilter extends OncePerRequestFilter {
         if (header != null && header.startsWith(prefix)) {
             String token = header.substring(prefix.length());
             if (jwtService.isValid(token)) {
-                User user = userService.getUserByLogin(jwtService.getLoginFromToken(token)).orElseThrow(() -> new UsernameNotFoundException("User with login " + jwtService.getLoginFromToken(token) + " not found!"));
+                User user = userServiceImpl.getUserByLogin(jwtService.getLoginFromToken(token)).orElseThrow(() -> new UsernameNotFoundException("User with login " + jwtService.getLoginFromToken(token) + " not found!"));
                 UserDetails securityUser = org.springframework.security.core.userdetails.User
                         .builder()
                         .username(user.getLogin())

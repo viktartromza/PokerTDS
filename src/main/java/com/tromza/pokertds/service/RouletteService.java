@@ -14,6 +14,8 @@ import com.tromza.pokertds.repository.RouletteRepository;
 import com.tromza.pokertds.repository.UserRepository;
 import com.tromza.pokertds.response.RouletteWithBet;
 import com.tromza.pokertds.request.UserMoneyAmount;
+import com.tromza.pokertds.service.impl.UserServiceImpl;
+import com.tromza.pokertds.service.impl.WalletServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,20 +36,20 @@ public class RouletteService {
     private final BetRepository betRepository;
     private final GameRepository gameRepository;
     private final RouletteRepository rouletteRepository;
-    private final WalletService walletService;
+    private final WalletServiceImpl walletService;
     private final GameService gameService;
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
     private final UserRepository userRepository;
     private final EmailService emailService;
 
     @Autowired
-    public RouletteService(BetRepository betRepository, GameRepository gameRepository, RouletteRepository rouletteRepository, WalletService walletService, GameService gameService, UserService userService, UserRepository userRepository, EmailService emailService) {
+    public RouletteService(BetRepository betRepository, GameRepository gameRepository, RouletteRepository rouletteRepository, WalletServiceImpl walletService, GameService gameService, UserServiceImpl userServiceImpl, UserRepository userRepository, EmailService emailService) {
         this.betRepository = betRepository;
         this.gameRepository = gameRepository;
         this.rouletteRepository = rouletteRepository;
         this.walletService = walletService;
         this.gameService = gameService;
-        this.userService = userService;
+        this.userServiceImpl = userServiceImpl;
         this.userRepository = userRepository;
         this.emailService = emailService;
     }
@@ -62,7 +64,7 @@ public class RouletteService {
 
     @Transactional
     public Optional<RouletteGame> createRouletteGameForUser(Principal principal) {
-        User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new NoSuchElementException("User with login not found!"));
+        User user = userServiceImpl.getUserByLogin(principal.getName()).orElseThrow(() -> new NoSuchElementException("User with login not found!"));
         if (gameService.findRouletteGameInProcess(user.getId()).isPresent()) {
             log.info("User with id: " + user.getId() + " has roulette in process");
             return rouletteRepository.findRouletteGameByGameId(gameService.findRouletteGameInProcess(user.getId()).get().getId());
@@ -77,7 +79,7 @@ public class RouletteService {
                 RouletteGame rouletteGame = new RouletteGame();
                 rouletteGame.setGameId(game.getId());
                 rouletteGame.setStatus(GameStatus.IN_PROCESS);
-                userService.addGameToUser(user, game);
+                userServiceImpl.addGameToUser(user, game);
                 rouletteGame.setSpin(0);
                 rouletteGame.setWins(0);
                 rouletteGame.setLosses(0);
@@ -93,7 +95,7 @@ public class RouletteService {
 
     @Transactional
     public RouletteWithBet playingRoulette(BetRoulette bet, Principal principal) {
-        Game game = gameService.findRouletteGameInProcess(userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!")).getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
+        Game game = gameService.findRouletteGameInProcess(userServiceImpl.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!")).getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
         if (game.getId() != bet.getGameId()) {
             throw new UnsupportedOperationException("User with login " + principal.getName() + " hasn't game with id " + bet.getGameId() + " in process");
         } else {
@@ -126,7 +128,7 @@ public class RouletteService {
 
     @Transactional
     public RouletteGame finishRouletteGame(RouletteGame rouletteGame, Principal principal) {
-        User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!"));
+        User user = userServiceImpl.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!"));
         Game game = gameService.findRouletteGameInProcess(user.getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
         if (game.getId() != rouletteGame.getGameId()) {
             throw new UnsupportedOperationException("User with login " + principal.getName() + " hasn't game with id " + rouletteGame.getGameId() + " in process");
@@ -136,7 +138,7 @@ public class RouletteService {
             game.setResult(rouletteGame.getResult());
             user.setScore(user.getScore() + rouletteGame.getResult());
             gameService.finishGame(game);
-            userService.saveUser(user);
+            userServiceImpl.saveUser(user);
             walletService.updateWallet(new UserMoneyAmount(user.getId(), BigDecimal.valueOf(rouletteGame.getResult())));
             return updateRouletteGame(rouletteGame);
         }
@@ -157,7 +159,7 @@ public class RouletteService {
         game.setResult(rouletteGame.getResult());
         user.setScore(user.getScore() + rouletteGame.getResult());
         gameService.finishGame(game);
-        userService.saveUser(user);
+        userServiceImpl.saveUser(user);
         walletService.updateWallet(new UserMoneyAmount(user.getId(), BigDecimal.valueOf(rouletteGame.getResult())));
         updateRouletteGame(rouletteGame);
         log.info("Roulette-game" + rouletteGame.getId() + "was finished automatically");

@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.tromza.pokertds.domain.Wallet;
 import com.tromza.pokertds.request.UserMoneyAmount;
-import com.tromza.pokertds.service.UserService;
-import com.tromza.pokertds.service.WalletService;
+import com.tromza.pokertds.service.impl.UserServiceImpl;
+import com.tromza.pokertds.service.impl.WalletServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,9 +34,9 @@ public class AdminControllerTest {
     private final ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
     @Mock
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
     @Mock
-    private WalletService walletService;
+    private WalletServiceImpl walletService;
     @InjectMocks
     private AdminController adminController;
     private Integer id;
@@ -56,7 +56,7 @@ public class AdminControllerTest {
         mockMvc.perform(delete("/admin/users/" + id))
                 .andExpect(status().isNoContent())
                 .andReturn();
-        verify(userService, times(1)).deleteUserByIdForAdmin(id);
+        verify(userServiceImpl, times(1)).deleteUserById(id);
     }
     @Test
     public void transferWalletTest() throws Exception {

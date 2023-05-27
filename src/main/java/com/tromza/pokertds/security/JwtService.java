@@ -1,6 +1,6 @@
 package com.tromza.pokertds.security;
 
-import com.tromza.pokertds.service.UserService;
+import com.tromza.pokertds.service.impl.UserServiceImpl;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -17,11 +17,11 @@ import java.util.concurrent.TimeUnit;
 public class JwtService {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
     @Autowired
-    public JwtService(UserService userService) {
-        this.userService = userService;
+    public JwtService(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
 
     @Value("${jwt-expire-time}")
@@ -52,7 +52,7 @@ public class JwtService {
             Jwts.parser()
                     .setSigningKey(key)
                     .parseClaimsJws(token);
-            if (userService.isUserNotDeleted(getLoginFromToken(token))) {
+            if (userServiceImpl.isUserNotDeleted(getLoginFromToken(token))) {
                 return true;
             }
         } catch (JwtException e) {

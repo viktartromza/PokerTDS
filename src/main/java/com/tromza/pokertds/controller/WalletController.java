@@ -1,7 +1,7 @@
 package com.tromza.pokertds.controller;
 
 import com.tromza.pokertds.domain.Wallet;
-import com.tromza.pokertds.service.WalletService;
+import com.tromza.pokertds.service.impl.WalletServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/wallets")
 public class WalletController {
-    private final WalletService walletService;
+    private final WalletServiceImpl walletService;
 
     @Autowired
-    public WalletController(WalletService walletService) {
+    public WalletController(WalletServiceImpl walletService) {
         this.walletService = walletService;
     }
 

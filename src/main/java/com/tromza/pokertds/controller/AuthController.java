@@ -1,8 +1,8 @@
 package com.tromza.pokertds.controller;
 
+import com.tromza.pokertds.facades.AuthFacade;
 import com.tromza.pokertds.request.AuthRequest;
 import com.tromza.pokertds.response.AuthResponse;
-import com.tromza.pokertds.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    private final AuthService authService;
+    private final AuthFacade authFacade;
 
     @Autowired
-    public AuthController(AuthService authService) {
-        this.authService = authService;
+    public AuthController(AuthFacade authFacade) {
+        this.authFacade = authFacade;
     }
 
     @Operation(summary = "Return a token for user")
     @PostMapping
     public ResponseEntity<AuthResponse> auth(@RequestBody AuthRequest authRequest) {
-        String token = authService.getTokenFromAuthRequest(authRequest);
+        String token = authFacade.getTokenForUser(authRequest);
         return new ResponseEntity<>(new AuthResponse(token), HttpStatus.CREATED);
     }
 }
-
-

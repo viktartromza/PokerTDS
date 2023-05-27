@@ -1,7 +1,7 @@
 package com.tromza.pokertds.controller;
 
 import com.tromza.pokertds.domain.Wallet;
-import com.tromza.pokertds.service.WalletService;
+import com.tromza.pokertds.service.impl.WalletServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class WalletControllerTest {
     private MockMvc mockMvc;
     @Mock
-    private WalletService walletService;
+    private WalletServiceImpl walletService;
     @InjectMocks
     private WalletController walletController;
     private final Principal principal = () -> "";

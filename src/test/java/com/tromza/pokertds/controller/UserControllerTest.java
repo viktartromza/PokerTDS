@@ -7,7 +7,7 @@ import com.tromza.pokertds.domain.User;
 import com.tromza.pokertds.request.RequestUserRegistration;
 import com.tromza.pokertds.request.RequestUserUpdate;
 import com.tromza.pokertds.response.ResponseOtherUserInfo;
-import com.tromza.pokertds.service.UserService;
+import com.tromza.pokertds.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,7 +38,7 @@ public class UserControllerTest {
     private MockMvc mockMvc;
     private final ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
     @Mock
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
     @InjectMocks
     private UserController userController;
     private Integer id;
@@ -62,23 +62,23 @@ public class UserControllerTest {
 
     @Test
     public void getAllUsersTest() throws Exception {
-        when(userService.getAllUsersForUser()).thenReturn(users);
+        when(userServiceImpl.getAllUsersForUser()).thenReturn(users);
         mockMvc.perform(get("/users/scores"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(userService, times(1)).getAllUsersForUser();
+        verify(userServiceImpl, times(1)).getAllUsersForUser();
     }
 
     @Test
     public void anotherUserInfo() throws Exception {
-        when(userService.otherUserInfo(id)).thenReturn(Optional.of(responseOtherUserInfo));
+        when(userServiceImpl.otherUserInfo(id)).thenReturn(Optional.of(responseOtherUserInfo));
         mockMvc.perform(get("/users/" + id.toString()))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(userService, times(1)).otherUserInfo(id);
-        when(userService.otherUserInfo(id)).thenReturn(Optional.empty());
+        verify(userServiceImpl, times(1)).otherUserInfo(id);
+        when(userServiceImpl.otherUserInfo(id)).thenReturn(Optional.empty());
         mockMvc.perform(get("/users/" + id.toString()))
                 .andExpect(status().isNotFound())
                 .andReturn();
@@ -86,13 +86,13 @@ public class UserControllerTest {
 
     @Test
     public void getSelfUserInfoTest() throws Exception {
-        when(userService.getUserByLogin(principal.getName())).thenReturn(Optional.of(user));
+        when(userServiceImpl.getUserByLogin(principal.getName())).thenReturn(Optional.of(user));
         mockMvc.perform(get("/users/info").principal(principal))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(userService, times(1)).getUserByLogin(principal.getName());
-        when(userService.getUserByLogin(principal.getName())).thenReturn(Optional.empty());
+        verify(userServiceImpl, times(1)).getUserByLogin(principal.getName());
+        when(userServiceImpl.getUserByLogin(principal.getName())).thenReturn(Optional.empty());
         mockMvc.perform(get("/users/info").principal(principal))
                 .andExpect(status().isNotFound())
                 .andReturn();
@@ -102,14 +102,14 @@ public class UserControllerTest {
     public void createUserTest() throws Exception {
         RequestUserRegistration requestUserRegistrationValid = new RequestUserRegistration("testUser", "testpassword", "testemail@mail.ru");
         RequestUserRegistration requestUserRegistrationNotValid = new RequestUserRegistration("testUser", "abc", "testemail@mail.ru");
-        when(userService.createUser(requestUserRegistrationValid)).thenReturn(user);
+        when(userServiceImpl.createUser(requestUserRegistrationValid)).thenReturn(user);
         mockMvc.perform(post("/users/registration")
                         .contentType(APPLICATION_JSON)
                         .content(objectWriter.writeValueAsString(requestUserRegistrationValid)))
                 .andExpect(status().isCreated())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(userService, times(1)).createUser(requestUserRegistrationValid);
+        verify(userServiceImpl, times(1)).createUser(requestUserRegistrationValid);
         mockMvc.perform(post("/users/registration")
                         .contentType(APPLICATION_JSON)
                         .content(objectWriter.writeValueAsString(requestUserRegistrationNotValid)))
@@ -120,14 +120,14 @@ public class UserControllerTest {
 
     @Test
     public void updateUserTest() throws Exception {
-        when(userService.updateUser(requestUserUpdate, principal)).thenReturn(user);
+        when(userServiceImpl.updateUser(requestUserUpdate, principal)).thenReturn(user);
         mockMvc.perform(put("/users/update").principal(principal)
                         .contentType(APPLICATION_JSON)
                         .content(objectWriter.writeValueAsString(requestUserUpdate)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(userService, times(1)).updateUser(requestUserUpdate, principal);
+        verify(userServiceImpl, times(1)).updateUser(requestUserUpdate, principal);
     }
 
     @Test
@@ -135,7 +135,7 @@ public class UserControllerTest {
         mockMvc.perform(delete("/users").principal(principal))
                 .andExpect(status().isNoContent())
                 .andReturn();
-        verify(userService, times(1)).deleteUser(principal);
+        verify(userServiceImpl, times(1)).deleteUser(principal);
     }
 }
 
