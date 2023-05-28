@@ -1,5 +1,8 @@
 package com.tromza.pokertds.pokerLogic;
 
+import com.tromza.pokertds.gamesLogic.pokerLogic.Chanses;
+import com.tromza.pokertds.gamesLogic.pokerLogic.Deck;
+import com.tromza.pokertds.gamesLogic.pokerLogic.FiveCardDraw;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

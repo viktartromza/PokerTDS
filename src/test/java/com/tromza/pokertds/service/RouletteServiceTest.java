@@ -3,6 +3,7 @@ package com.tromza.pokertds.service;
 import com.tromza.pokertds.domain.BetRoulette;
 import com.tromza.pokertds.domain.RouletteGame;
 import com.tromza.pokertds.response.RouletteWithBet;
+import com.tromza.pokertds.service.impl.RouletteServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(MockitoExtension.class)
 public class RouletteServiceTest {
     @InjectMocks
-    private RouletteService rouletteService;
+    private RouletteServiceImpl rouletteService;
     private final RouletteGame rouletteGame = new RouletteGame();
     private final BetRoulette bet = new BetRoulette();
 

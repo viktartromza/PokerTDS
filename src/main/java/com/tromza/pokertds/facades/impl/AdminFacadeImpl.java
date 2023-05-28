@@ -1,5 +1,7 @@
 package com.tromza.pokertds.facades.impl;
 
+import com.tromza.pokertds.domain.User;
+import com.tromza.pokertds.domain.Wallet;
 import com.tromza.pokertds.facades.AdminFacade;
 import com.tromza.pokertds.mapper.UserMapper;
 import com.tromza.pokertds.mapper.WalletMapper;
@@ -10,8 +12,11 @@ import com.tromza.pokertds.service.UserService;
 import com.tromza.pokertds.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class AdminFacadeImpl implements AdminFacade {
@@ -21,7 +26,7 @@ public class AdminFacadeImpl implements AdminFacade {
     private final UserMapper userMapper;
     private final WalletMapper walletMapper;
 
-@Autowired
+    @Autowired
     public AdminFacadeImpl(UserService userService, WalletService walletService, UserMapper userMapper, WalletMapper walletMapper) {
         this.userService = userService;
         this.walletService = walletService;
@@ -39,11 +44,15 @@ public class AdminFacadeImpl implements AdminFacade {
         return deletedUsers;
     }
 
-       public void deleteUserById(int id) {
+    public void deleteUserById(int id) {
         userService.deleteUserById(id);
     }
 
+    @Transactional
     public WalletResponse transferWallet(UserMoneyAmount userMoneyAmount) {
-        return walletMapper.walletResponse(walletService.updateWallet(userMoneyAmount));
+        User user = userService.getUserById(userMoneyAmount.getUserId()).orElseThrow(() -> new NoSuchElementException("User with id: " + userMoneyAmount.getUserId() + " not found!"));
+        Wallet wallet = walletService.getWalletForUser(user).orElse(walletService.createWalletForUser(user));
+        BigDecimal amount = userMoneyAmount.getAmount();
+        return walletMapper.walletResponse(walletService.updateWallet(wallet, amount));
     }
 }

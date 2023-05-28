@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.tromza.pokertds.domain.BetRoulette;
 import com.tromza.pokertds.domain.RouletteGame;
 import com.tromza.pokertds.response.RouletteWithBet;
-import com.tromza.pokertds.service.RouletteService;
+import com.tromza.pokertds.service.impl.RouletteServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,7 +34,7 @@ public class RouletteControllerTest {
     private MockMvc mockMvc;
     private final ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
     @Mock
-    private RouletteService rouletteService;
+    private RouletteServiceImpl rouletteService;
     @InjectMocks
     private RouletteController rouletteController;
     private final Principal principal = () -> "";

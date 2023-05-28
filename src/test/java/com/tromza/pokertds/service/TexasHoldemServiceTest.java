@@ -1,7 +1,7 @@
 package com.tromza.pokertds.service;
 
 import com.tromza.pokertds.domain.TexasHoldemGame;
-import com.tromza.pokertds.pokerLogic.Chanses;
+import com.tromza.pokertds.gamesLogic.pokerLogic.Chanses;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;

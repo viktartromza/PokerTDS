@@ -1,7 +1,7 @@
 package com.tromza.pokertds.controller;
 
-import com.tromza.pokertds.domain.Wallet;
-import com.tromza.pokertds.service.impl.WalletServiceImpl;
+import com.tromza.pokertds.facades.WalletFacade;
+import com.tromza.pokertds.response.WalletResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,29 +10,28 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.Optional;
 
 @Tag(name="Wallet", description="The Wallet API")
 @RestController
 @RequestMapping("/wallets")
 public class WalletController {
-    private final WalletServiceImpl walletService;
+    private final WalletFacade walletFacade;
 
     @Autowired
-    public WalletController(WalletServiceImpl walletService) {
-        this.walletService = walletService;
+    public WalletController(WalletFacade walletFacade) {
+        this.walletFacade = walletFacade;
     }
 
     @Operation(summary = "Get info about wallet balance of current user")
     @GetMapping("/info")
-    public ResponseEntity<Wallet> getWalletForUser(Principal principal) {
-        Optional<Wallet> wallet = walletService.getWalletForUser(principal);
-        return wallet.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<WalletResponse> getWalletForUser(Principal principal) {
+        WalletResponse wallet = walletFacade.getWalletForUser(principal);
+        return new ResponseEntity<>(wallet, HttpStatus.OK);
     }
 
     @Operation(summary = "Create wallet for current user")
     @PostMapping
-    public ResponseEntity<Wallet> createWalletForUser(Principal principal) {
-        return new ResponseEntity<>(walletService.createWalletForPrincipal(principal), HttpStatus.CREATED);
+    public ResponseEntity<WalletResponse> createWalletForUser(Principal principal) {
+        return new ResponseEntity<>(walletFacade.createWalletForUser(principal), HttpStatus.CREATED);
     }
 }

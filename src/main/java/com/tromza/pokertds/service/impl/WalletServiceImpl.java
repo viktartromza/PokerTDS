@@ -2,40 +2,29 @@ package com.tromza.pokertds.service.impl;
 
 import com.tromza.pokertds.domain.User;
 import com.tromza.pokertds.domain.Wallet;
-import com.tromza.pokertds.repository.UserRepository;
 import com.tromza.pokertds.repository.WalletRepository;
-import com.tromza.pokertds.request.UserMoneyAmount;
 import com.tromza.pokertds.service.WalletService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.security.Principal;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
 public class WalletServiceImpl implements WalletService {
     private final WalletRepository walletRepository;
-    private final UserRepository userRepository;
 
-    public WalletServiceImpl(WalletRepository walletRepository, UserRepository userRepository) {
+
+    public WalletServiceImpl(WalletRepository walletRepository) {
         this.walletRepository = walletRepository;
-        this.userRepository = userRepository;
     }
 
     public Optional<Wallet> getWalletByUserId(Integer userId) {
         return walletRepository.findWalletByUserId(userId);
     }
 
-    public Optional<Wallet> getWalletForUser(Principal principal) {
-        Optional<User> user = userRepository.findUserByLogin(principal.getName());
-        if (user.isEmpty()) {
-            return Optional.empty();
-        } else {
-            return walletRepository.findWalletByUserId(user.get().getId());
-        }
+    public Optional<Wallet> getWalletForUser(User user) {
+        return walletRepository.findWalletByUserId(user.getId());
     }
 
     public Wallet createWallet(Integer userId) {
@@ -44,56 +33,39 @@ public class WalletServiceImpl implements WalletService {
         return walletRepository.save(wallet);
     }
 
-    public Wallet createWalletForPrincipal(Principal principal) {
-        Optional<User> user = userRepository.findUserByLogin(principal.getName());
-        if (user.isEmpty()) {
-            throw new UsernameNotFoundException("User with login " + principal.getName() + " not found!");
-        } else if (walletRepository.findWalletByUserId(user.get().getId()).isPresent()) {
+    public Wallet createWalletForUser(User user) {
+        if (walletRepository.findWalletByUserId(user.getId()).isPresent()) {
             throw new UnsupportedOperationException("Wallet has already been!");
-        } else if (user.get().getFirstName() == null || user.get().getLastName() == null || user.get().getCountry() == null || user.get().getTelephone() == null) {
+        } else if (user.getFirstName() == null || user.getLastName() == null || user.getCountry() == null || user.getTelephone() == null) {
             throw new SecurityException("User data isn't enough");
         } else {
             Wallet wallet = new Wallet();
-            wallet.setUserId(user.get().getId());
+            wallet.setUserId(user.getId());
             wallet.setBalance(BigDecimal.valueOf(0));
             return walletRepository.save(wallet);
         }
     }
 
     @Transactional
-    public Wallet updateWallet(UserMoneyAmount userMoney) {
-        if (userRepository.findById(userMoney.getUserId()).isPresent()) {
-            if (userMoney.getAmount().compareTo(BigDecimal.valueOf(0)) < 0) {
-                return withdrawWallet(userMoney);
-            } else {
-                return refillWallet(userMoney);
-            }
+    public Wallet updateWallet(Wallet wallet, BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.valueOf(0)) < 0) {
+            return withdrawWallet(wallet, amount);
         } else {
-            throw new NoSuchElementException("User with id " + userMoney.getUserId() + " not found!");
+            return refillWallet(wallet, amount);
         }
     }
 
-    @Transactional
-    public Wallet refillWallet(UserMoneyAmount userMoney) {
-        Optional<Wallet> optionalWallet = getWalletByUserId(userMoney.getUserId());
-        Wallet wallet;
-        if (optionalWallet.isPresent()) {
-            wallet = optionalWallet.get();
-            wallet.setBalance(wallet.getBalance().add(userMoney.getAmount()));
-        } else {
-            wallet = createWallet(userMoney.getUserId());
-            wallet.setBalance(userMoney.getAmount());
-        }
+    public Wallet refillWallet(Wallet wallet, BigDecimal amount) {
+        wallet.setBalance(wallet.getBalance().add(amount));
         return walletRepository.saveAndFlush(wallet);
     }
 
-    public Wallet withdrawWallet(UserMoneyAmount userMoney) {
-        Wallet wallet = getWalletByUserId(userMoney.getUserId()).orElseThrow(() -> new NoSuchElementException("User hasn't wallet!!!"));
+    public Wallet withdrawWallet(Wallet wallet, BigDecimal amount) {
         BigDecimal oldBalance = wallet.getBalance();
-        if (oldBalance.compareTo(userMoney.getAmount().negate()) < 0) {
+        if (oldBalance.compareTo(amount.negate()) < 0) {
             throw new UnsupportedOperationException("Wallet has only " + oldBalance + "$");
         } else {
-            wallet.setBalance(oldBalance.add(userMoney.getAmount()));
+            wallet.setBalance(oldBalance.add(amount));
             return walletRepository.saveAndFlush(wallet);
         }
     }

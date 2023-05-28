@@ -1,7 +1,6 @@
 package com.tromza.pokertds.response;
 
 import com.tromza.pokertds.domain.enums.GameStatus;
-import com.tromza.pokertds.domain.enums.GameType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,18 +8,15 @@ import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class GameResponse {
-    private Integer id;
-
-    private GameType type;
-
-    private Timestamp create;
-
-    private Timestamp finish;
-
+@NoArgsConstructor
+public class RouletteResponse {
+    private int id;
+    private int gameId;
+    private int spin;
+    private int wins;
+    private int losses;
+    private double result;
     private GameStatus status;
-
-    private Double result;
+    private Timestamp changed;
 }

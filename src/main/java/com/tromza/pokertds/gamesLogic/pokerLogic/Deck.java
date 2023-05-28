@@ -1,4 +1,4 @@
-package com.tromza.pokertds.pokerLogic;
+package com.tromza.pokertds.gamesLogic.pokerLogic;
 
 import java.util.ArrayList;
 
