@@ -1,6 +1,6 @@
 package com.tromza.pokertds.controller;
 
-import com.tromza.pokertds.response.ResponseGameInfo;
+import com.tromza.pokertds.response.GameInfoResponse;
 import com.tromza.pokertds.service.GameService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -63,7 +63,7 @@ public class GameControllerTest {
 
     @Test
     public void getGameInfoTest() throws Exception {
-        when(gameService.getGameInfoById(id)).thenReturn(new ResponseGameInfo());
+        when(gameService.getGameInfoById(id)).thenReturn(new GameInfoResponse());
         mockMvc.perform(get("/games/info/" + id))
                 .andExpect(status().isAlreadyReported())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))

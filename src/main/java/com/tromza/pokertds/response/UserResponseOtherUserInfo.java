@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseOtherUserInfo {
+public class UserResponseOtherUserInfo {
     int id;
     String login;
     double score;

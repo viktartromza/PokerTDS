@@ -1,8 +1,8 @@
 package com.tromza.pokertds.controller;
 
-import com.tromza.pokertds.domain.Game;
-import com.tromza.pokertds.response.ResponseGameInfo;
-import com.tromza.pokertds.service.GameService;
+import com.tromza.pokertds.facades.GameFacade;
+import com.tromza.pokertds.response.GameInfoResponse;
+import com.tromza.pokertds.response.GameResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,35 +12,36 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 
 @Tag(name = "Game", description = "The Game API")
 @RestController
 @RequestMapping("/games")
 public class GameController {
-    private final GameService gameService;
+    private final GameFacade gameFacade;
 
     @Autowired
-    public GameController(GameService gameService) {
-        this.gameService = gameService;
+    public GameController(GameFacade gameFacade) {
+        this.gameFacade = gameFacade;
     }
 
     @Operation(summary = "Return list of games belong to user with current id")
     @GetMapping
-    public ResponseEntity<ArrayList<Game>> getGamesFromOtherUser(@RequestParam(value = "userId") int id) {
-        ArrayList<Game> games = gameService.getGamesForSingleUserById(id);
+    public ResponseEntity<List<GameResponse>> getGamesFromOtherUser(@RequestParam(value = "userId") int id) {
+        List<GameResponse> games = gameFacade.getGamesByUserId(id);
         return new ResponseEntity<>(games, HttpStatus.ALREADY_REPORTED);
     }
 
     @Operation(summary = "Return list of games belong to current user")
     @GetMapping("/info")
-    public ResponseEntity<ArrayList<Game>> getGamesForUser(Principal principal) {
-        ArrayList<Game> games = gameService.getGamesForSingleUser(principal);
+    public ResponseEntity<List<GameResponse>> getGamesForUser(Principal principal) {
+        List<GameResponse> games = gameFacade.getGamesForPrincipal(principal);
         return new ResponseEntity<>(games, HttpStatus.ALREADY_REPORTED);
     }
 
     @Operation(summary = "Return info about game with current id")
     @GetMapping("/info/{id}")
-    public ResponseEntity<ResponseGameInfo> getGameInfo(@PathVariable int id) {
-        return new ResponseEntity<>(gameService.getGameInfoById(id), HttpStatus.ALREADY_REPORTED);
+    public ResponseEntity<GameInfoResponse> getGameInfo(@PathVariable int id) {
+        return new ResponseEntity<>(gameFacade.getGameInfoByGameId(id), HttpStatus.ALREADY_REPORTED);
     }
 }

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.tromza.pokertds.domain.User;
 import com.tromza.pokertds.request.RequestUserRegistration;
 import com.tromza.pokertds.request.RequestUserUpdate;
-import com.tromza.pokertds.response.ResponseOtherUserInfo;
+import com.tromza.pokertds.response.UserResponseOtherUserInfo;
 import com.tromza.pokertds.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,17 +44,17 @@ public class UserControllerTest {
     private Integer id;
     private User user;
     private RequestUserUpdate requestUserUpdate;
-    private List<ResponseOtherUserInfo> users;
-    private ResponseOtherUserInfo responseOtherUserInfo;
+    private List<UserResponseOtherUserInfo> users;
+    private UserResponseOtherUserInfo userResponseOtherUserInfo;
     private final Principal principal = () -> "";
 
     @BeforeEach
     public void init() {
         id = 1;
         requestUserUpdate = new RequestUserUpdate();
-        responseOtherUserInfo = new ResponseOtherUserInfo(id, null, 0);
+        userResponseOtherUserInfo = new UserResponseOtherUserInfo(id, null, 0);
         user = new User();
-        users = List.of(new ResponseOtherUserInfo());
+        users = List.of(new UserResponseOtherUserInfo());
         mockMvc = MockMvcBuilders
                 .standaloneSetup(userController)
                 .build();
@@ -72,7 +72,7 @@ public class UserControllerTest {
 
     @Test
     public void anotherUserInfo() throws Exception {
-        when(userServiceImpl.otherUserInfo(id)).thenReturn(Optional.of(responseOtherUserInfo));
+        when(userServiceImpl.otherUserInfo(id)).thenReturn(Optional.of(userResponseOtherUserInfo));
         mockMvc.perform(get("/users/" + id.toString()))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))

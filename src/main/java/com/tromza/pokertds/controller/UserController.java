@@ -1,9 +1,11 @@
 package com.tromza.pokertds.controller;
 
 import com.tromza.pokertds.domain.User;
+import com.tromza.pokertds.facades.UserFacade;
 import com.tromza.pokertds.request.RequestUserRegistration;
 import com.tromza.pokertds.request.RequestUserUpdate;
-import com.tromza.pokertds.response.ResponseOtherUserInfo;
+import com.tromza.pokertds.response.UserResponse;
+import com.tromza.pokertds.response.UserResponseOtherUserInfo;
 import com.tromza.pokertds.service.impl.UserServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -30,36 +32,36 @@ import java.util.Optional;
 @RequestMapping("/users")
 public class UserController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-    private final UserServiceImpl userServiceImpl;
+    private final UserFacade userFacade;
 
     @Autowired
-    public UserController(UserServiceImpl userServiceImpl) {
-        this.userServiceImpl = userServiceImpl;
+    public UserController(UserFacade userFacade) {
+        this.userFacade = userFacade;
     }
 
     @Operation(summary = "Return list of usernames with id and score")
     @GetMapping("/scores")
-    public ResponseEntity<List<ResponseOtherUserInfo>> getAllUsers() {
-        List<ResponseOtherUserInfo> allUsers = userServiceImpl.getAllUsersForUser();
+    public ResponseEntity<List<UserResponseOtherUserInfo>> getAllUsers() {
+        List<UserResponseOtherUserInfo> allUsers = userFacade.getAllUsers();
         return new ResponseEntity<>(allUsers, HttpStatus.OK);
     }
 
     @Operation(summary = "Return info about username and score of user with given id")
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseOtherUserInfo> anotherUserInfo(@PathVariable int id) {
-        Optional<ResponseOtherUserInfo> user = userServiceImpl.otherUserInfo(id);
-        return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<UserResponseOtherUserInfo> anotherUserInfo(@PathVariable int id) {
+       UserResponseOtherUserInfo user = userFacade.anotherUserInfoById(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @Operation(summary = "Return info about authenticated user, which made request")
     @GetMapping("/info")
-    public ResponseEntity<User> selfUserInfo(Principal principal) {
-        Optional<User> user = userServiceImpl.getUserByLogin(principal.getName());
-        return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<UserResponse> selfUserInfo(Principal principal) {
+        UserResponse user = userFacade.selfUserInfo(principal);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @Operation(summary = "Create new user")
-    @ApiResponse(content = @Content(schema = @Schema(implementation = User.class)))
+    @ApiResponse(content = @Content(schema = @Schema(implementation = UserResponse.class)))
     @PostMapping("/registration")
     public ResponseEntity<?> createUser(@RequestBody @Valid RequestUserRegistration userRegistration, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -70,21 +72,21 @@ public class UserController {
             }
             return new ResponseEntity<>(errors, HttpStatus.NOT_ACCEPTABLE);
         } else {
-            return new ResponseEntity<>(userServiceImpl.createUser(userRegistration), HttpStatus.CREATED);
+            return new ResponseEntity<>(userFacade.createUser(userRegistration), HttpStatus.CREATED);
         }
     }
 
     @Operation(summary = "Update information about authenticated user")
     @PutMapping("/update")
-    public ResponseEntity<User> updateUser(@RequestBody RequestUserUpdate requestUserUpdate, Principal principal) {
-        User user = userServiceImpl.updateUser(requestUserUpdate, principal);
+    public ResponseEntity<UserResponse> updateUser(@RequestBody RequestUserUpdate requestUserUpdate, Principal principal) {
+        UserResponse user = userFacade.updateUser(requestUserUpdate, principal);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @Operation(summary = "Change isDeleted status of authenticated user")
     @DeleteMapping
     public ResponseEntity<HttpStatus> deleteUser(Principal principal) {
-        userServiceImpl.deleteUser(principal);
+        userFacade.deleteUser(principal);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

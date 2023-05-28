@@ -7,15 +7,15 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ResponseGameInfo {
+public class GameInfoResponse {
     private RouletteGame rouletteGame;
     private TexasHoldemGame texasHoldemGame;
 
-    public ResponseGameInfo(RouletteGame rouletteGame) {
+    public GameInfoResponse(RouletteGame rouletteGame) {
         this.rouletteGame = rouletteGame;
     }
 
-    public ResponseGameInfo(TexasHoldemGame texasHoldemGame) {
+    public GameInfoResponse(TexasHoldemGame texasHoldemGame) {
         this.texasHoldemGame = texasHoldemGame;
     }
 }

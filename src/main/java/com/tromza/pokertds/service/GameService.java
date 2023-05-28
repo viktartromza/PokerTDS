@@ -5,8 +5,7 @@ import com.tromza.pokertds.domain.enums.GameStatus;
 import com.tromza.pokertds.repository.GameRepository;
 import com.tromza.pokertds.repository.RouletteRepository;
 import com.tromza.pokertds.repository.TexasHoldemRepository;
-import com.tromza.pokertds.response.ResponseGameInfo;
-import com.tromza.pokertds.service.impl.UserServiceImpl;
+import com.tromza.pokertds.response.GameInfoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -14,20 +13,21 @@ import org.springframework.stereotype.Service;
 import java.security.Principal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
 public class GameService {
     private final GameRepository gameRepository;
-    private final UserServiceImpl userServiceImpl;
+    private final UserService userService;
     private final RouletteRepository rouletteRepository;
     private final TexasHoldemRepository texasHoldemRepository;
 
     @Autowired
-    public GameService(GameRepository gameRepository, UserServiceImpl userServiceImpl, RouletteRepository rouletteRepository, TexasHoldemRepository texasHoldemRepository) {
+    public GameService(GameRepository gameRepository, UserService userService, RouletteRepository rouletteRepository, TexasHoldemRepository texasHoldemRepository) {
         this.gameRepository = gameRepository;
-        this.userServiceImpl = userServiceImpl;
+        this.userService = userService;
         this.rouletteRepository = rouletteRepository;
         this.texasHoldemRepository = texasHoldemRepository;
     }
@@ -42,13 +42,13 @@ public class GameService {
         return gameRepository.getGameById(id);
     }
 
-    public ResponseGameInfo getGameInfoById(int id) {
+    public GameInfoResponse getGameInfoById(int id) {
         Game game = getGameById(id).orElseThrow(() -> new NoSuchElementException("Game not found!"));
         return switch (game.getType()) {
             case ROULETTE_EU ->
-                    new ResponseGameInfo(rouletteRepository.findRouletteGameByGameId(id).orElseThrow(() -> new NoSuchElementException("Roulette-game not found!")));
+                    new GameInfoResponse(rouletteRepository.findRouletteGameByGameId(id).orElseThrow(() -> new NoSuchElementException("Roulette-game not found!")));
             case TEXAS_HOLDEM ->
-                    new ResponseGameInfo(texasHoldemRepository.findTexasHoldemGameByGameId(id).orElseThrow(() -> new NoSuchElementException("TexasHoldem-game not found!")));
+                    new GameInfoResponse(texasHoldemRepository.findTexasHoldemGameByGameId(id).orElseThrow(() -> new NoSuchElementException("TexasHoldem-game not found!")));
             default -> throw new NoSuchElementException("Game not found!");
         };
     }
@@ -59,12 +59,12 @@ public class GameService {
         gameRepository.saveAndFlush(game);
     }
 
-    public ArrayList<Game> getGamesForSingleUserById(int id) {
+    public List<Game> getGamesForSingleUserById(int id) {
         return gameRepository.getGamesForSingleUser(id);
     }
 
-    public ArrayList<Game> getGamesForSingleUser(Principal principal) {
-        return gameRepository.getGamesForSingleUser(userServiceImpl.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!")).getId());
+    public List<Game> getGamesForSingleUser(Principal principal) {
+        return gameRepository.getGamesForSingleUser(userService.getUserByLogin(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User with login " + principal.getName() + " not found!")).getId());
     }
 
     public Optional<Game> findRouletteGameInProcess(int userId) {
