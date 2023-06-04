@@ -9,7 +9,7 @@ public class Chanses {
     static final int QUANTITYALLCOMBINATIONS = 2598960;
     static final double AVERAGEPOWER = 0.43505781564375623;
 
-    static int[] genCombinations(int[] arr, int k, int n) {//3 из 5, k=3, n=5
+    public static int[] genCombinations(int[] arr, int k, int n) {//3 из 5, k=3, n=5
         if (arr == null) {
             arr = new int[k];
             for (int i = 0; i < k; i++)

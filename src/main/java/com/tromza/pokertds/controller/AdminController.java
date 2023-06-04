@@ -1,10 +1,9 @@
 package com.tromza.pokertds.controller;
 
-import com.tromza.pokertds.domain.Wallet;
 import com.tromza.pokertds.facades.AdminFacade;
-import com.tromza.pokertds.request.UserMoneyAmount;
-import com.tromza.pokertds.response.UserResponse;
-import com.tromza.pokertds.response.WalletResponse;
+import com.tromza.pokertds.model.request.UserMoneyAmountRequest;
+import com.tromza.pokertds.model.response.UserResponse;
+import com.tromza.pokertds.model.response.WalletResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -52,7 +51,7 @@ public class AdminController {
 
     @Operation(summary = "Withdraw or refill wallet of selected user")
     @PutMapping("/wallets")
-    public ResponseEntity<WalletResponse> transferWallet(@RequestBody UserMoneyAmount userMoney) {
+    public ResponseEntity<WalletResponse> transferWallet(@RequestBody UserMoneyAmountRequest userMoney) {
         WalletResponse walletResponse = adminFacade.transferWallet(userMoney);
         return new ResponseEntity<>(walletResponse, HttpStatus.OK);
     }

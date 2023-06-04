@@ -1,12 +1,10 @@
 package com.tromza.pokertds.controller;
 
-import com.tromza.pokertds.domain.User;
 import com.tromza.pokertds.facades.UserFacade;
-import com.tromza.pokertds.request.RequestUserRegistration;
-import com.tromza.pokertds.request.RequestUserUpdate;
-import com.tromza.pokertds.response.UserResponse;
-import com.tromza.pokertds.response.UserResponseOtherUserInfo;
-import com.tromza.pokertds.service.impl.UserServiceImpl;
+import com.tromza.pokertds.model.request.UserRegistrationRequest;
+import com.tromza.pokertds.model.request.UserUpdateRequest;
+import com.tromza.pokertds.model.response.UserResponse;
+import com.tromza.pokertds.model.response.UserToOtherUserInfoResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -25,7 +23,6 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Tag(name = "User", description = "The User API")
 @RestController
@@ -41,15 +38,15 @@ public class UserController {
 
     @Operation(summary = "Return list of usernames with id and score")
     @GetMapping("/scores")
-    public ResponseEntity<List<UserResponseOtherUserInfo>> getAllUsers() {
-        List<UserResponseOtherUserInfo> allUsers = userFacade.getAllUsers();
+    public ResponseEntity<List<UserToOtherUserInfoResponse>> getAllUsers() {
+        List<UserToOtherUserInfoResponse> allUsers = userFacade.getAllUsers();
         return new ResponseEntity<>(allUsers, HttpStatus.OK);
     }
 
     @Operation(summary = "Return info about username and score of user with given id")
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponseOtherUserInfo> anotherUserInfo(@PathVariable int id) {
-       UserResponseOtherUserInfo user = userFacade.anotherUserInfoById(id);
+    public ResponseEntity<UserToOtherUserInfoResponse> anotherUserInfo(@PathVariable int id) {
+       UserToOtherUserInfoResponse user = userFacade.anotherUserInfoById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
@@ -63,7 +60,7 @@ public class UserController {
     @Operation(summary = "Create new user")
     @ApiResponse(content = @Content(schema = @Schema(implementation = UserResponse.class)))
     @PostMapping("/registration")
-    public ResponseEntity<?> createUser(@RequestBody @Valid RequestUserRegistration userRegistration, BindingResult bindingResult) {
+    public ResponseEntity<?> createUser(@RequestBody @Valid UserRegistrationRequest userRegistration, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             List<String> errors = new ArrayList<>();
             for (ObjectError o : bindingResult.getAllErrors()) {
@@ -78,8 +75,8 @@ public class UserController {
 
     @Operation(summary = "Update information about authenticated user")
     @PutMapping("/update")
-    public ResponseEntity<UserResponse> updateUser(@RequestBody RequestUserUpdate requestUserUpdate, Principal principal) {
-        UserResponse user = userFacade.updateUser(requestUserUpdate, principal);
+    public ResponseEntity<UserResponse> updateUser(@RequestBody UserUpdateRequest userUpdateRequest, Principal principal) {
+        UserResponse user = userFacade.updateUser(userUpdateRequest, principal);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

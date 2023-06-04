@@ -1,7 +1,7 @@
 package com.tromza.pokertds.service;
 
-import com.tromza.pokertds.domain.User;
-import com.tromza.pokertds.domain.Wallet;
+import com.tromza.pokertds.model.domain.User;
+import com.tromza.pokertds.model.domain.Wallet;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -12,8 +12,6 @@ public interface WalletService {
 
     Optional<Wallet> getWalletForUser(User user);
 
-    Wallet createWallet(Integer userId);
-
     Wallet createWalletForUser(User user);
 
     Wallet updateWallet(Wallet wallet, BigDecimal amount);
@@ -21,4 +19,4 @@ public interface WalletService {
     Wallet refillWallet(Wallet wallet, BigDecimal amount);
 
     Wallet withdrawWallet(Wallet wallet, BigDecimal amount);
-    }
+}

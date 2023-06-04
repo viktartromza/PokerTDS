@@ -3,10 +3,9 @@ package com.tromza.pokertds.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.tromza.pokertds.domain.Wallet;
-import com.tromza.pokertds.request.UserMoneyAmount;
-import com.tromza.pokertds.service.impl.UserServiceImpl;
-import com.tromza.pokertds.service.impl.WalletServiceImpl;
+import com.tromza.pokertds.facades.impl.AdminFacadeImpl;
+import com.tromza.pokertds.model.request.UserMoneyAmountRequest;
+import com.tromza.pokertds.model.response.WalletResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,14 +33,14 @@ public class AdminControllerTest {
     private final ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
     @Mock
-    private UserServiceImpl userServiceImpl;
-    @Mock
-    private WalletServiceImpl walletService;
+    private AdminFacadeImpl adminFacade;
+
     @InjectMocks
     private AdminController adminController;
     private Integer id;
-    private final UserMoneyAmount userMoney = new UserMoneyAmount(1, BigDecimal.ONE);
-    private final Wallet wallet = new Wallet();
+    private final UserMoneyAmountRequest userMoney = new UserMoneyAmountRequest(1, BigDecimal.ONE);
+    private final WalletResponse walletResponse = new WalletResponse();
+
 
     @BeforeEach
     public void init() {
@@ -56,17 +55,18 @@ public class AdminControllerTest {
         mockMvc.perform(delete("/admin/users/" + id))
                 .andExpect(status().isNoContent())
                 .andReturn();
-        verify(userServiceImpl, times(1)).deleteUserById(id);
+        verify(adminFacade, times(1)).deleteUserById(id);
     }
+
     @Test
     public void transferWalletTest() throws Exception {
-        when(walletService.updateWallet(userMoney)).thenReturn(wallet);
+        when(adminFacade.transferWallet(userMoney)).thenReturn(walletResponse);
         mockMvc.perform(put("/admin/wallets")
                         .contentType(APPLICATION_JSON)
                         .content(objectWriter.writeValueAsString(userMoney)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(walletService, times(1)).updateWallet(userMoney);
+        verify(adminFacade, times(1)).transferWallet(userMoney);
     }
 }

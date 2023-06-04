@@ -1,7 +1,7 @@
 package com.tromza.pokertds.service;
 
-import com.tromza.pokertds.domain.Game;
-import com.tromza.pokertds.domain.User;
+import com.tromza.pokertds.model.domain.Game;
+import com.tromza.pokertds.model.domain.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,5 +29,5 @@ public interface UserService {
 
     void addGameToUser(User user, Game game);
 
-    public void saveUser(User user);
+    void saveUser(User user);
 }

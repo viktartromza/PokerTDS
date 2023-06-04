@@ -1,8 +1,8 @@
 package com.tromza.pokertds.facades;
 
-import com.tromza.pokertds.request.UserMoneyAmount;
-import com.tromza.pokertds.response.UserResponse;
-import com.tromza.pokertds.response.WalletResponse;
+import com.tromza.pokertds.model.request.UserMoneyAmountRequest;
+import com.tromza.pokertds.model.response.UserResponse;
+import com.tromza.pokertds.model.response.WalletResponse;
 
 import java.util.List;
 
@@ -14,5 +14,5 @@ public interface AdminFacade {
 
     void deleteUserById(int id);
 
-    WalletResponse transferWallet(UserMoneyAmount userMoneyAmount);
+    WalletResponse transferWallet(UserMoneyAmountRequest userMoneyAmountRequest);
 }

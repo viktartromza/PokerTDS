@@ -16,7 +16,7 @@ public class FiveCardDraw {
      * @param combination is a 10 character string where each 2 characters encode a card
      * @return power of a poker hand on a scale from 0.00 to 7.99
      */
-    static double powerOfCards(String combination) {
+    public static double powerOfCards(String combination) {
         double power = 0;
         List<Integer> ranges = Arrays.stream(combination.split("[hdcs]")).map(FiveCardDraw::cardToPoints).sorted().toList();
         List<Integer> rangesDistinct = ranges.stream().distinct().toList();

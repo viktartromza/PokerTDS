@@ -1,12 +1,12 @@
 package com.tromza.pokertds.facades.impl;
 
-import com.tromza.pokertds.domain.User;
+import com.tromza.pokertds.model.domain.User;
 import com.tromza.pokertds.facades.UserFacade;
 import com.tromza.pokertds.mapper.UserMapper;
-import com.tromza.pokertds.request.RequestUserRegistration;
-import com.tromza.pokertds.request.RequestUserUpdate;
-import com.tromza.pokertds.response.UserResponse;
-import com.tromza.pokertds.response.UserResponseOtherUserInfo;
+import com.tromza.pokertds.model.request.UserRegistrationRequest;
+import com.tromza.pokertds.model.request.UserUpdateRequest;
+import com.tromza.pokertds.model.response.UserResponse;
+import com.tromza.pokertds.model.response.UserToOtherUserInfoResponse;
 import com.tromza.pokertds.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +26,11 @@ public class UserFacadeImpl implements UserFacade {
         this.userMapper = userMapper;
     }
 
-    public List<UserResponseOtherUserInfo> getAllUsers() {
+    public List<UserToOtherUserInfoResponse> getAllUsers() {
         return userService.getAllPresentUsers().stream().map(userMapper::fromUserForUser).collect(Collectors.toList());
     }
 
-    public UserResponseOtherUserInfo anotherUserInfoById(int id) {
+    public UserToOtherUserInfoResponse anotherUserInfoById(int id) {
         return userMapper.fromUserForUser(userService.getUserById(id).orElseThrow(() -> new NoSuchElementException("User with id " + id + " not found!")));
     }
 
@@ -38,12 +38,12 @@ public class UserFacadeImpl implements UserFacade {
         return userMapper.fromUserForAdmin(userService.getUserByLogin(principal.getName()).orElseThrow(() -> new NoSuchElementException("User with login " + principal.getName() + " not found!")));
     }
 
-    public UserResponse createUser(RequestUserRegistration userRegistration) {
+    public UserResponse createUser(UserRegistrationRequest userRegistration) {
         User user = userMapper.fromRequestUserRegistrationToUser(userRegistration);
         return userMapper.fromUserForAdmin(userService.createUser(user));
     }
 
-     public UserResponse updateUser(RequestUserUpdate userUpdate, Principal principal) {
+     public UserResponse updateUser(UserUpdateRequest userUpdate, Principal principal) {
         User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new NoSuchElementException("User with login " + principal.getName() + " not found!"));
         User updUser = userMapper.fromRequestUserUpdateToUser(user,userUpdate);
         return userMapper.fromUserForAdmin(userService.updateUser(updUser));

@@ -1,13 +1,12 @@
 package com.tromza.pokertds.controller;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.tromza.pokertds.domain.User;
-import com.tromza.pokertds.request.RequestUserRegistration;
-import com.tromza.pokertds.request.RequestUserUpdate;
-import com.tromza.pokertds.response.UserResponseOtherUserInfo;
-import com.tromza.pokertds.service.impl.UserServiceImpl;
+import com.tromza.pokertds.facades.UserFacade;
+import com.tromza.pokertds.model.request.UserRegistrationRequest;
+import com.tromza.pokertds.model.request.UserUpdateRequest;
+import com.tromza.pokertds.model.response.UserResponse;
+import com.tromza.pokertds.model.response.UserToOtherUserInfoResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,8 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.security.Principal;
-import java.util.List;
-import java.util.Optional;
+import java.util.ArrayList;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -38,81 +36,65 @@ public class UserControllerTest {
     private MockMvc mockMvc;
     private final ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
     @Mock
-    private UserServiceImpl userServiceImpl;
+    private UserFacade userFacade;
     @InjectMocks
     private UserController userController;
-    private Integer id;
-    private User user;
-    private RequestUserUpdate requestUserUpdate;
-    private List<UserResponseOtherUserInfo> users;
-    private UserResponseOtherUserInfo userResponseOtherUserInfo;
+    private final UserUpdateRequest userUpdateRequest = new UserUpdateRequest();
     private final Principal principal = () -> "";
 
     @BeforeEach
     public void init() {
-        id = 1;
-        requestUserUpdate = new RequestUserUpdate();
-        userResponseOtherUserInfo = new UserResponseOtherUserInfo(id, null, 0);
-        user = new User();
-        users = List.of(new UserResponseOtherUserInfo());
         mockMvc = MockMvcBuilders
                 .standaloneSetup(userController)
                 .build();
     }
 
     @Test
-    public void getAllUsersTest() throws Exception {
-        when(userServiceImpl.getAllUsersForUser()).thenReturn(users);
+    public void getAllPresentUsersTest() throws Exception {
+        when(userFacade.getAllUsers()).thenReturn(new ArrayList<>());
         mockMvc.perform(get("/users/scores"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(userServiceImpl, times(1)).getAllUsersForUser();
+        verify(userFacade, times(1)).getAllUsers();
     }
 
     @Test
     public void anotherUserInfo() throws Exception {
-        when(userServiceImpl.otherUserInfo(id)).thenReturn(Optional.of(userResponseOtherUserInfo));
-        mockMvc.perform(get("/users/" + id.toString()))
+        int id = 1;
+        when(userFacade.anotherUserInfoById(id)).thenReturn(new UserToOtherUserInfoResponse());
+        mockMvc.perform(get("/users/" + id))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(userServiceImpl, times(1)).otherUserInfo(id);
-        when(userServiceImpl.otherUserInfo(id)).thenReturn(Optional.empty());
-        mockMvc.perform(get("/users/" + id.toString()))
-                .andExpect(status().isNotFound())
-                .andReturn();
+        verify(userFacade, times(1)).anotherUserInfoById(id);
     }
 
     @Test
     public void getSelfUserInfoTest() throws Exception {
-        when(userServiceImpl.getUserByLogin(principal.getName())).thenReturn(Optional.of(user));
+        when(userFacade.selfUserInfo(principal)).thenReturn(new UserResponse());
         mockMvc.perform(get("/users/info").principal(principal))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(userServiceImpl, times(1)).getUserByLogin(principal.getName());
-        when(userServiceImpl.getUserByLogin(principal.getName())).thenReturn(Optional.empty());
-        mockMvc.perform(get("/users/info").principal(principal))
-                .andExpect(status().isNotFound())
-                .andReturn();
+        verify(userFacade, times(1)).selfUserInfo(principal);
     }
 
     @Test
     public void createUserTest() throws Exception {
-        RequestUserRegistration requestUserRegistrationValid = new RequestUserRegistration("testUser", "testpassword", "testemail@mail.ru");
-        RequestUserRegistration requestUserRegistrationNotValid = new RequestUserRegistration("testUser", "abc", "testemail@mail.ru");
-        when(userServiceImpl.createUser(requestUserRegistrationValid)).thenReturn(user);
+        UserRegistrationRequest userRegistrationRequestValid = new UserRegistrationRequest("testUser", "testpassword", "testemail@mail.ru");
+        UserRegistrationRequest userRegistrationRequestNotValid = new UserRegistrationRequest("testUser", "abc", "testemail@mail.ru");
+        when(userFacade.createUser(userRegistrationRequestValid)).thenReturn(new UserResponse());
         mockMvc.perform(post("/users/registration")
                         .contentType(APPLICATION_JSON)
-                        .content(objectWriter.writeValueAsString(requestUserRegistrationValid)))
+                        .content(objectWriter.writeValueAsString(userRegistrationRequestValid)))
                 .andExpect(status().isCreated())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(userServiceImpl, times(1)).createUser(requestUserRegistrationValid);
+        verify(userFacade, times(1)).createUser(userRegistrationRequestValid);
         mockMvc.perform(post("/users/registration")
                         .contentType(APPLICATION_JSON)
-                        .content(objectWriter.writeValueAsString(requestUserRegistrationNotValid)))
+                        .content(objectWriter.writeValueAsString(userRegistrationRequestNotValid)))
                 .andExpect(status().isNotAcceptable())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
@@ -120,14 +102,14 @@ public class UserControllerTest {
 
     @Test
     public void updateUserTest() throws Exception {
-        when(userServiceImpl.updateUser(requestUserUpdate, principal)).thenReturn(user);
+        when(userFacade.updateUser(userUpdateRequest, principal)).thenReturn(new UserResponse());
         mockMvc.perform(put("/users/update").principal(principal)
                         .contentType(APPLICATION_JSON)
-                        .content(objectWriter.writeValueAsString(requestUserUpdate)))
+                        .content(objectWriter.writeValueAsString(userUpdateRequest)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(userServiceImpl, times(1)).updateUser(requestUserUpdate, principal);
+        verify(userFacade, times(1)).updateUser(userUpdateRequest, principal);
     }
 
     @Test
@@ -135,7 +117,7 @@ public class UserControllerTest {
         mockMvc.perform(delete("/users").principal(principal))
                 .andExpect(status().isNoContent())
                 .andReturn();
-        verify(userServiceImpl, times(1)).deleteUser(principal);
+        verify(userFacade, times(1)).deleteUser(principal);
     }
 }
 

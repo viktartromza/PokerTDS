@@ -1,7 +1,7 @@
 package com.tromza.pokertds.controller;
 
 import com.tromza.pokertds.facades.WalletFacade;
-import com.tromza.pokertds.response.WalletResponse;
+import com.tromza.pokertds.model.response.WalletResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;

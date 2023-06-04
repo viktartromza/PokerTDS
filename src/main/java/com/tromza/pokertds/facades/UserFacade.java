@@ -1,23 +1,23 @@
 package com.tromza.pokertds.facades;
 
-import com.tromza.pokertds.request.RequestUserRegistration;
-import com.tromza.pokertds.request.RequestUserUpdate;
-import com.tromza.pokertds.response.UserResponse;
-import com.tromza.pokertds.response.UserResponseOtherUserInfo;
+import com.tromza.pokertds.model.request.UserRegistrationRequest;
+import com.tromza.pokertds.model.request.UserUpdateRequest;
+import com.tromza.pokertds.model.response.UserResponse;
+import com.tromza.pokertds.model.response.UserToOtherUserInfoResponse;
 
 import java.security.Principal;
 import java.util.List;
 
 public interface UserFacade {
-    List<UserResponseOtherUserInfo> getAllUsers();
+    List<UserToOtherUserInfoResponse> getAllUsers();
 
-    UserResponseOtherUserInfo anotherUserInfoById (int id);
+    UserToOtherUserInfoResponse anotherUserInfoById (int id);
 
     UserResponse selfUserInfo(Principal principal);
 
-    UserResponse createUser (RequestUserRegistration userRegistration);
+    UserResponse createUser (UserRegistrationRequest userRegistration);
 
-    UserResponse updateUser (RequestUserUpdate userUpdate, Principal principal);
+    UserResponse updateUser (UserUpdateRequest userUpdate, Principal principal);
 
     void deleteUser(Principal principal);
 }

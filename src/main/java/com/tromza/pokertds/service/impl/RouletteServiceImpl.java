@@ -1,18 +1,18 @@
 package com.tromza.pokertds.service.impl;
 
-import com.tromza.pokertds.domain.BetRoulette;
-import com.tromza.pokertds.domain.Game;
-import com.tromza.pokertds.domain.RouletteGame;
-import com.tromza.pokertds.domain.User;
-import com.tromza.pokertds.domain.Wallet;
-import com.tromza.pokertds.domain.enums.GameStatus;
-import com.tromza.pokertds.domain.enums.GameType;
+import com.tromza.pokertds.model.domain.BetRoulette;
+import com.tromza.pokertds.model.domain.Game;
+import com.tromza.pokertds.model.domain.RouletteGame;
+import com.tromza.pokertds.model.domain.User;
+import com.tromza.pokertds.model.domain.Wallet;
+import com.tromza.pokertds.model.enums.BetType;
+import com.tromza.pokertds.model.enums.GameStatus;
+import com.tromza.pokertds.model.enums.GameType;
+import com.tromza.pokertds.model.pairs.RouletteWithBet;
 import com.tromza.pokertds.repository.BetRepository;
 import com.tromza.pokertds.repository.GameRepository;
 import com.tromza.pokertds.repository.RouletteRepository;
 import com.tromza.pokertds.repository.UserRepository;
-import com.tromza.pokertds.service.EmailService;
-import com.tromza.pokertds.service.GameService;
 import com.tromza.pokertds.service.RouletteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +27,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Random;
 
 
 @Service
@@ -36,13 +37,13 @@ public class RouletteServiceImpl implements RouletteService {
     private final GameRepository gameRepository;
     private final RouletteRepository rouletteRepository;
     private final WalletServiceImpl walletService;
-    private final GameService gameService;
+    private final GameServiceImpl gameService;
     private final UserServiceImpl userServiceImpl;
     private final UserRepository userRepository;
-    private final EmailService emailService;
+    private final EmailServiceImpl emailService;
 
     @Autowired
-    public RouletteServiceImpl(BetRepository betRepository, GameRepository gameRepository, RouletteRepository rouletteRepository, WalletServiceImpl walletService, GameService gameService, UserServiceImpl userServiceImpl, UserRepository userRepository, EmailService emailService) {
+    public RouletteServiceImpl(BetRepository betRepository, GameRepository gameRepository, RouletteRepository rouletteRepository, WalletServiceImpl walletService, GameServiceImpl gameService, UserServiceImpl userServiceImpl, UserRepository userRepository, EmailServiceImpl emailService) {
         this.betRepository = betRepository;
         this.gameRepository = gameRepository;
         this.rouletteRepository = rouletteRepository;
@@ -85,6 +86,47 @@ public class RouletteServiceImpl implements RouletteService {
                 return rouletteRepository.save(rouletteGame);
             }
         }
+    }
+    public RouletteWithBet play (RouletteWithBet rouletteWithBet) {
+        Random generator = new Random();
+        int rouletteNumber = generator.nextInt(37);
+        rouletteWithBet.getBetRoulette().setRouletteNumber(rouletteNumber);
+        rouletteWithBet.getRouletteGame().setSpin(rouletteWithBet.getRouletteGame().getSpin() + 1);
+        double amount = rouletteWithBet.getBetRoulette().getAmount().doubleValue();
+        double result = rouletteWithBet.getRouletteGame().getResult();
+        int wins = rouletteWithBet.getRouletteGame().getWins();
+        int losses = rouletteWithBet.getRouletteGame().getLosses();
+        if (rouletteWithBet.getBetRoulette().getType() == BetType.NUMBER) {
+            if (rouletteNumber == Integer.parseInt(rouletteWithBet.getBetRoulette().getPlayerChoice())) {
+                rouletteWithBet.getBetRoulette().setWinAmount(36 * amount);
+                rouletteWithBet.getRouletteGame().setWins(wins + 1);
+                rouletteWithBet.getRouletteGame().setResult(result + 35 * amount);
+            } else {
+                rouletteWithBet.getBetRoulette().setWinAmount(0.00);
+                rouletteWithBet.getRouletteGame().setLosses(losses + 1);
+                rouletteWithBet.getRouletteGame().setResult(result - amount);
+            }
+        } else if (rouletteWithBet.getBetRoulette().getType() == BetType.EVEN) {
+            if (rouletteNumber == 0 || rouletteNumber % 2 != 0) {
+                rouletteWithBet.getBetRoulette().setWinAmount(0.00);
+                rouletteWithBet.getRouletteGame().setLosses(losses + 1);
+                rouletteWithBet.getRouletteGame().setResult(result - amount);
+            } else {
+                rouletteWithBet.getBetRoulette().setWinAmount(2 * amount);
+                rouletteWithBet.getRouletteGame().setWins(wins + 1);
+                rouletteWithBet.getRouletteGame().setResult(result + amount);
+            }
+        } else if (rouletteNumber % 2 == 0) {
+            rouletteWithBet.getBetRoulette().setWinAmount(0.00);
+            rouletteWithBet.getRouletteGame().setLosses(losses + 1);
+            rouletteWithBet.getRouletteGame().setResult(result - amount);
+        } else {
+            rouletteWithBet.getBetRoulette().setWinAmount(2 * amount);
+            rouletteWithBet.getRouletteGame().setWins(wins + 1);
+            rouletteWithBet.getRouletteGame().setResult(result + amount);
+        }
+        rouletteWithBet.getRouletteGame().setChanged(new Timestamp(System.currentTimeMillis()));
+        return rouletteWithBet;
     }
 
     public RouletteGame updateRouletteGame(RouletteGame rouletteGame) {

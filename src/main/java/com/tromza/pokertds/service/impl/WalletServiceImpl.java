@@ -1,7 +1,7 @@
 package com.tromza.pokertds.service.impl;
 
-import com.tromza.pokertds.domain.User;
-import com.tromza.pokertds.domain.Wallet;
+import com.tromza.pokertds.model.domain.User;
+import com.tromza.pokertds.model.domain.Wallet;
 import com.tromza.pokertds.repository.WalletRepository;
 import com.tromza.pokertds.service.WalletService;
 import org.springframework.stereotype.Service;
@@ -25,12 +25,6 @@ public class WalletServiceImpl implements WalletService {
 
     public Optional<Wallet> getWalletForUser(User user) {
         return walletRepository.findWalletByUserId(user.getId());
-    }
-
-    public Wallet createWallet(Integer userId) {
-        Wallet wallet = new Wallet();
-        wallet.setUserId(userId);
-        return walletRepository.save(wallet);
     }
 
     public Wallet createWalletForUser(User user) {

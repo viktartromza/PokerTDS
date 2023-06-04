@@ -1,8 +1,9 @@
 package com.tromza.pokertds.facades.impl;
 
-import com.tromza.pokertds.domain.User;
+import com.tromza.pokertds.model.domain.User;
 import com.tromza.pokertds.facades.AuthFacade;
-import com.tromza.pokertds.request.AuthRequest;
+import com.tromza.pokertds.model.request.AuthRequest;
+import com.tromza.pokertds.model.response.AuthResponse;
 import com.tromza.pokertds.security.JwtService;
 
 import com.tromza.pokertds.service.UserService;
@@ -25,10 +26,10 @@ public class AuthFacadeImpl implements AuthFacade {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public String getTokenForUser(AuthRequest authRequest) {
+    public AuthResponse getTokenForUser(AuthRequest authRequest) {
         User user = userService.getUserByLogin(authRequest.getLogin()).orElseThrow(() -> new UsernameNotFoundException("User with login " + authRequest.getLogin() + " not found!"));
         if (passwordEncoder.matches(authRequest.getPassword(), user.getPassword()) && !user.isDeleted()) {
-            return jwtService.createJwtToken(authRequest.getLogin());
+            return new AuthResponse(jwtService.createJwtToken(authRequest.getLogin()));
         } else {
             throw new BadCredentialsException("Login or password is incorrect");
         }

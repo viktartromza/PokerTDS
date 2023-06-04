@@ -1,7 +1,8 @@
 package com.tromza.pokertds.facades;
 
-import com.tromza.pokertds.request.AuthRequest;
+import com.tromza.pokertds.model.request.AuthRequest;
+import com.tromza.pokertds.model.response.AuthResponse;
 
 public interface AuthFacade {
-    String getTokenForUser(AuthRequest authRequest);
+    AuthResponse getTokenForUser(AuthRequest authRequest);
 }

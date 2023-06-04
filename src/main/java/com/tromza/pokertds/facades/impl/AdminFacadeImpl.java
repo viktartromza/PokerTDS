@@ -1,13 +1,13 @@
 package com.tromza.pokertds.facades.impl;
 
-import com.tromza.pokertds.domain.User;
-import com.tromza.pokertds.domain.Wallet;
+import com.tromza.pokertds.model.domain.User;
+import com.tromza.pokertds.model.domain.Wallet;
 import com.tromza.pokertds.facades.AdminFacade;
 import com.tromza.pokertds.mapper.UserMapper;
 import com.tromza.pokertds.mapper.WalletMapper;
-import com.tromza.pokertds.request.UserMoneyAmount;
-import com.tromza.pokertds.response.UserResponse;
-import com.tromza.pokertds.response.WalletResponse;
+import com.tromza.pokertds.model.request.UserMoneyAmountRequest;
+import com.tromza.pokertds.model.response.UserResponse;
+import com.tromza.pokertds.model.response.WalletResponse;
 import com.tromza.pokertds.service.UserService;
 import com.tromza.pokertds.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class AdminFacadeImpl implements AdminFacade {
@@ -49,10 +50,11 @@ public class AdminFacadeImpl implements AdminFacade {
     }
 
     @Transactional
-    public WalletResponse transferWallet(UserMoneyAmount userMoneyAmount) {
-        User user = userService.getUserById(userMoneyAmount.getUserId()).orElseThrow(() -> new NoSuchElementException("User with id: " + userMoneyAmount.getUserId() + " not found!"));
-        Wallet wallet = walletService.getWalletForUser(user).orElse(walletService.createWalletForUser(user));
-        BigDecimal amount = userMoneyAmount.getAmount();
+    public WalletResponse transferWallet(UserMoneyAmountRequest userMoneyAmountRequest) {
+        User user = userService.getUserById(userMoneyAmountRequest.getUserId()).orElseThrow(() -> new NoSuchElementException("User with id: " + userMoneyAmountRequest.getUserId() + " not found!"));
+        Optional<Wallet> optionalWallet = walletService.getWalletForUser(user);
+        Wallet wallet = optionalWallet.orElseGet(() -> walletService.createWalletForUser(user));
+        BigDecimal amount = userMoneyAmountRequest.getAmount();
         return walletMapper.walletResponse(walletService.updateWallet(wallet, amount));
     }
 }

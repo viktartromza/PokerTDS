@@ -1,9 +1,9 @@
 package com.tromza.pokertds.facades.impl;
 
-import com.tromza.pokertds.domain.User;
+import com.tromza.pokertds.model.domain.User;
 import com.tromza.pokertds.facades.WalletFacade;
 import com.tromza.pokertds.mapper.WalletMapper;
-import com.tromza.pokertds.response.WalletResponse;
+import com.tromza.pokertds.model.response.WalletResponse;
 import com.tromza.pokertds.service.UserService;
 import com.tromza.pokertds.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;

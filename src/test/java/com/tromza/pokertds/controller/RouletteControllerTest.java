@@ -2,10 +2,11 @@ package com.tromza.pokertds.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.tromza.pokertds.domain.BetRoulette;
-import com.tromza.pokertds.domain.RouletteGame;
-import com.tromza.pokertds.response.RouletteWithBet;
-import com.tromza.pokertds.service.impl.RouletteServiceImpl;
+import com.tromza.pokertds.model.enums.BetType;
+import com.tromza.pokertds.facades.RouletteFacade;
+import com.tromza.pokertds.model.request.BetRouletteRequest;
+import com.tromza.pokertds.model.response.RouletteResponse;
+import com.tromza.pokertds.model.response.RouletteWithBetResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,7 +18,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.math.BigDecimal;
 import java.security.Principal;
-import java.util.Optional;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -34,13 +34,13 @@ public class RouletteControllerTest {
     private MockMvc mockMvc;
     private final ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
     @Mock
-    private RouletteServiceImpl rouletteService;
+    private RouletteFacade rouletteFacade;
     @InjectMocks
     private RouletteController rouletteController;
     private final Principal principal = () -> "";
-    private final RouletteGame rouletteGame = new RouletteGame();
-    private final BetRoulette bet = new BetRoulette();
-    private final RouletteWithBet rouletteWithBet = new RouletteWithBet();
+    private final BetRouletteRequest betRouletteRequest = new BetRouletteRequest(1, BetType.NUMBER, BigDecimal.valueOf(50.0), "0");
+    private final RouletteResponse rouletteResponse = new RouletteResponse();
+    private final RouletteWithBetResponse rouletteWithBetResponse = new RouletteWithBetResponse();
 
     @BeforeEach
     public void init() {
@@ -51,46 +51,46 @@ public class RouletteControllerTest {
 
     @Test
     public void createRouletteTest() throws Exception {
-        when(rouletteService.createRouletteGameForUser(principal)).thenReturn(Optional.of(rouletteGame));
+        when(rouletteFacade.createRoulette(principal)).thenReturn(rouletteResponse);
         mockMvc.perform(post("/games/roulette").principal(principal))
                 .andExpect(status().isCreated())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(rouletteService, times(1)).createRouletteGameForUser(principal);
+        verify(rouletteFacade, times(1)).createRoulette(principal);
     }
 
     @Test
     public void playingGameTest() throws Exception {
-        bet.setAmount(BigDecimal.valueOf(1100.00));
-        when(rouletteService.playingRoulette(bet, principal)).thenReturn(rouletteWithBet);
+        betRouletteRequest.setAmount(BigDecimal.valueOf(1100.00));
+        when(rouletteFacade.playingGame(principal, betRouletteRequest)).thenReturn(rouletteWithBetResponse);
         mockMvc.perform(put("/games/roulette")
                         .principal(principal)
                         .contentType(APPLICATION_JSON)
-                        .content(objectWriter.writeValueAsString(bet)))
+                        .content(objectWriter.writeValueAsString(betRouletteRequest)))
                 .andExpect(status().isNotAcceptable())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        bet.setAmount(BigDecimal.valueOf(100.00));
-        when(rouletteService.playingRoulette(bet, principal)).thenReturn(rouletteWithBet);
+        betRouletteRequest.setAmount(BigDecimal.valueOf(100.00));
+        when(rouletteFacade.playingGame(principal, betRouletteRequest)).thenReturn(rouletteWithBetResponse);
         mockMvc.perform(put("/games/roulette")
                         .principal(principal)
                         .contentType(APPLICATION_JSON)
-                        .content(objectWriter.writeValueAsString(bet)))
+                        .content(objectWriter.writeValueAsString(betRouletteRequest)))
                 .andExpect(status().isAccepted())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(rouletteService, times(1)).playingRoulette(bet, principal);
+        verify(rouletteFacade, times(1)).playingGame(principal, betRouletteRequest);
     }
 
     @Test
     public void finishRouletteGameByIdTest() throws Exception {
-        Integer id = 1;
-        when(rouletteService.finishRouletteGameById(id, principal)).thenReturn(rouletteGame);
-        mockMvc.perform(put("/games/roulette/finish/"+ id)
+        int id = 1;
+        when(rouletteFacade.finishRouletteGameById(id, principal)).thenReturn(rouletteResponse);
+        mockMvc.perform(put("/games/roulette/finish/" + id)
                         .principal(principal))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(rouletteService, times(1)).finishRouletteGameById(id, principal);
+        verify(rouletteFacade, times(1)).finishRouletteGameById(id, principal);
     }
 }

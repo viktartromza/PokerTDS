@@ -1,7 +1,7 @@
 package com.tromza.pokertds.mapper;
 
-import com.tromza.pokertds.domain.RouletteGame;
-import com.tromza.pokertds.response.RouletteResponse;
+import com.tromza.pokertds.model.domain.RouletteGame;
+import com.tromza.pokertds.model.response.RouletteResponse;
 import org.springframework.stereotype.Component;
 
 @Component

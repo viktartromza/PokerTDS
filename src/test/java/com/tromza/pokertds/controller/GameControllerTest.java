@@ -1,7 +1,7 @@
 package com.tromza.pokertds.controller;
 
-import com.tromza.pokertds.response.GameInfoResponse;
-import com.tromza.pokertds.service.GameService;
+import com.tromza.pokertds.facades.impl.GameFacadeImpl;
+import com.tromza.pokertds.model.response.GameInfoResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,16 +24,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(MockitoExtension.class)
 public class GameControllerTest {
     @Mock
-    private GameService gameService;
+    private GameFacadeImpl gameFacade;
     @InjectMocks
     private GameController gameController;
     private MockMvc mockMvc;
     private final Integer id = 1;
     private final Principal principal = () -> "";
 
+
     @BeforeEach
     public void init() {
-
         mockMvc = MockMvcBuilders
                 .standaloneSetup(gameController)
                 .build();
@@ -41,33 +41,33 @@ public class GameControllerTest {
 
     @Test
     public void getGamesFromOtherUserTest() throws Exception {
-        when(gameService.getGamesForSingleUserById(id)).thenReturn(new ArrayList<>());
+        when(gameFacade.getGamesByUserId(id)).thenReturn(new ArrayList<>());
         mockMvc.perform(get("/games")
                         .param("userId", String.valueOf(id)))
-                .andExpect(status().isAlreadyReported())
+                .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(gameService, times(1)).getGamesForSingleUserById(id);
+        verify(gameFacade, times(1)).getGamesByUserId(id);
     }
 
     @Test
     public void getGamesForUserTest() throws Exception {
-        when(gameService.getGamesForSingleUser(principal)).thenReturn(new ArrayList<>());
+        when(gameFacade.getGamesForPrincipal(principal)).thenReturn(new ArrayList<>());
         mockMvc.perform(get("/games/info")
                         .principal(principal))
-                .andExpect(status().isAlreadyReported())
+                .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(gameService, times(1)).getGamesForSingleUser(principal);
+        verify(gameFacade, times(1)).getGamesForPrincipal(principal);
     }
 
     @Test
     public void getGameInfoTest() throws Exception {
-        when(gameService.getGameInfoById(id)).thenReturn(new GameInfoResponse());
+        when(gameFacade.getGameInfoByGameId(id)).thenReturn(new GameInfoResponse());
         mockMvc.perform(get("/games/info/" + id))
-                .andExpect(status().isAlreadyReported())
+                .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(APPLICATION_JSON))
                 .andReturn();
-        verify(gameService, times(1)).getGameInfoById(id);
+        verify(gameFacade, times(1)).getGameInfoByGameId(id);
     }
 }

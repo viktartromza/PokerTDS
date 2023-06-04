@@ -1,10 +1,10 @@
 package com.tromza.pokertds.mapper;
 
-import com.tromza.pokertds.domain.User;
-import com.tromza.pokertds.request.RequestUserRegistration;
-import com.tromza.pokertds.request.RequestUserUpdate;
-import com.tromza.pokertds.response.UserResponse;
-import com.tromza.pokertds.response.UserResponseOtherUserInfo;
+import com.tromza.pokertds.model.domain.User;
+import com.tromza.pokertds.model.request.UserRegistrationRequest;
+import com.tromza.pokertds.model.request.UserUpdateRequest;
+import com.tromza.pokertds.model.response.UserResponse;
+import com.tromza.pokertds.model.response.UserToOtherUserInfoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -42,15 +42,15 @@ public class UserMapper {
         return userResponse;
     }
 
-    public UserResponseOtherUserInfo fromUserForUser(User user) {
-        UserResponseOtherUserInfo userResponse = new UserResponseOtherUserInfo();
+    public UserToOtherUserInfoResponse fromUserForUser(User user) {
+        UserToOtherUserInfoResponse userResponse = new UserToOtherUserInfoResponse();
         userResponse.setId(user.getId());
         userResponse.setLogin(user.getLogin());
         userResponse.setScore(user.getScore());
         return userResponse;
     }
 
-    public User fromRequestUserRegistrationToUser(RequestUserRegistration userRegistration) {
+    public User fromRequestUserRegistrationToUser(UserRegistrationRequest userRegistration) {
         User user = new User();
         user.setLogin(userRegistration.getLogin());
         user.setPassword(passwordEncoder.encode(userRegistration.getPassword()));
@@ -62,7 +62,7 @@ public class UserMapper {
         return user;
     }
 
-    public User fromRequestUserUpdateToUser(User user, RequestUserUpdate userUpdate) {
+    public User fromRequestUserUpdateToUser(User user, UserUpdateRequest userUpdate) {
         user.setChanged(new Timestamp(System.currentTimeMillis()));
         user.setFirstName(userUpdate.getFirstName());
         user.setLastName(userUpdate.getLastName());

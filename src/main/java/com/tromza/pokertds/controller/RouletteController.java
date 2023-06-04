@@ -1,12 +1,9 @@
 package com.tromza.pokertds.controller;
 
-import com.tromza.pokertds.domain.BetRoulette;
-import com.tromza.pokertds.domain.RouletteGame;
 import com.tromza.pokertds.facades.RouletteFacade;
-import com.tromza.pokertds.request.BetRouletteRequest;
-import com.tromza.pokertds.response.RouletteResponse;
-import com.tromza.pokertds.response.RouletteWithBet;
-import com.tromza.pokertds.service.impl.RouletteServiceImpl;
+import com.tromza.pokertds.model.request.BetRouletteRequest;
+import com.tromza.pokertds.model.response.RouletteResponse;
+import com.tromza.pokertds.model.response.RouletteWithBetResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -25,7 +22,7 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @Tag(name = "Roulette", description = "The Roulette API")
 @RestController
@@ -48,7 +45,7 @@ public class RouletteController {
     }
 
     @Operation(summary = "Adding a bet for current roulette game. Return info about result")
-    @ApiResponse(content = @Content(schema = @Schema(implementation = RouletteWithBet.class)))
+    @ApiResponse(content = @Content(schema = @Schema(implementation = RouletteWithBetResponse.class)))
     @PutMapping
     public ResponseEntity<?> playingGame(Principal principal, @RequestBody @Valid BetRouletteRequest bet, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -59,8 +56,8 @@ public class RouletteController {
             }
             return new ResponseEntity<>(errors, HttpStatus.NOT_ACCEPTABLE);
         } else {
-            RouletteWithBet updRouletteWithBet = rouletteFacade.playingGame(principal, bet);
-            return new ResponseEntity<>(updRouletteWithBet, HttpStatus.ACCEPTED);
+            RouletteWithBetResponse updRouletteWithBetResponse = rouletteFacade.playingGame(principal, bet);
+            return new ResponseEntity<>(updRouletteWithBetResponse, HttpStatus.ACCEPTED);
         }
     }
 

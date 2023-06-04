@@ -1,7 +1,7 @@
 package com.tromza.pokertds.service.impl;
 
-import com.tromza.pokertds.domain.Game;
-import com.tromza.pokertds.domain.User;
+import com.tromza.pokertds.model.domain.Game;
+import com.tromza.pokertds.model.domain.User;
 import com.tromza.pokertds.repository.UserRepository;
 import com.tromza.pokertds.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,18 +1,19 @@
 package com.tromza.pokertds.facades.impl;
 
-import com.tromza.pokertds.domain.BetRoulette;
-import com.tromza.pokertds.domain.Game;
-import com.tromza.pokertds.domain.RouletteGame;
-import com.tromza.pokertds.domain.User;
-import com.tromza.pokertds.domain.Wallet;
+import com.tromza.pokertds.mapper.RouletteWithBetMapper;
+import com.tromza.pokertds.model.domain.BetRoulette;
+import com.tromza.pokertds.model.domain.Game;
+import com.tromza.pokertds.model.domain.RouletteGame;
+import com.tromza.pokertds.model.domain.User;
+import com.tromza.pokertds.model.domain.Wallet;
 import com.tromza.pokertds.facades.RouletteFacade;
-import com.tromza.pokertds.gamesLogic.rouletteLogic.RoulettePlay;
 import com.tromza.pokertds.mapper.BetMapper;
 import com.tromza.pokertds.mapper.RouletteMapper;
-import com.tromza.pokertds.request.BetRouletteRequest;
-import com.tromza.pokertds.response.RouletteResponse;
-import com.tromza.pokertds.response.RouletteWithBet;
-import com.tromza.pokertds.service.GameService;
+import com.tromza.pokertds.model.pairs.RouletteWithBet;
+import com.tromza.pokertds.model.request.BetRouletteRequest;
+import com.tromza.pokertds.model.response.RouletteResponse;
+import com.tromza.pokertds.model.response.RouletteWithBetResponse;
+import com.tromza.pokertds.service.impl.GameServiceImpl;
 import com.tromza.pokertds.service.RouletteService;
 import com.tromza.pokertds.service.UserService;
 import com.tromza.pokertds.service.WalletService;
@@ -29,15 +30,17 @@ public class RouletteFacadeImpl implements RouletteFacade {
     private final UserService userService;
     private final RouletteService rouletteService;
     private final RouletteMapper rouletteMapper;
+    private final RouletteWithBetMapper rouletteWithBetMapper;
     private final BetMapper betMapper;
     private final WalletService walletService;
-    private final GameService gameService;
+    private final GameServiceImpl gameService;
 
-@Autowired
-    public RouletteFacadeImpl(UserService userService, RouletteService rouletteService, RouletteMapper rouletteMapper, BetMapper betMapper, WalletService walletService, GameService gameService) {
+    @Autowired
+    public RouletteFacadeImpl(UserService userService, RouletteService rouletteService, RouletteMapper rouletteMapper, RouletteWithBetMapper rouletteWithBetMapper, BetMapper betMapper, WalletService walletService, GameServiceImpl gameService) {
         this.userService = userService;
         this.rouletteService = rouletteService;
         this.rouletteMapper = rouletteMapper;
+        this.rouletteWithBetMapper = rouletteWithBetMapper;
         this.betMapper = betMapper;
         this.walletService = walletService;
         this.gameService = gameService;
@@ -54,9 +57,9 @@ public class RouletteFacadeImpl implements RouletteFacade {
     }
 
     @Transactional
-    public RouletteWithBet playingGame(Principal principal, BetRouletteRequest betRouletteRequest) {
+    public RouletteWithBetResponse playingGame(Principal principal, BetRouletteRequest betRouletteRequest) {
         User user = userService.getUserByLogin(principal.getName()).orElseThrow(() -> new NoSuchElementException("User with login " + principal.getName() + " not found!"));
-        BetRoulette bet = betMapper.fromBetRequestToBet(betRouletteRequest);
+        BetRoulette bet = betMapper.fromBetRouletteRequestToBet(betRouletteRequest);
         Game game = gameService.findRouletteGameInProcess(user.getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
         if (game.getId() != bet.getGameId()) {
             throw new UnsupportedOperationException("User with login " + principal.getName() + " hasn't game with id " + bet.getGameId() + " in process");
@@ -67,15 +70,15 @@ public class RouletteFacadeImpl implements RouletteFacade {
                 throw new UnsupportedOperationException("Bet amount can't be more than " + (wallet.getBalance().doubleValue() + rouletteGame.getResult()) + " $.");
             } else {
                 rouletteService.saveBetRoulette(bet);
-                RouletteWithBet rouletteWithBet = new RouletteWithBet(rouletteGame, bet);
-                RouletteWithBet updRouletteWithBet = RoulettePlay.play(rouletteWithBet);
+                RouletteWithBet rouletteWithBet = new RouletteWithBet(rouletteGame,bet);
+                RouletteWithBet updRouletteWithBet = rouletteService.play(rouletteWithBet);
                 if ((wallet.getBalance().doubleValue() + updRouletteWithBet.getRouletteGame().getResult()) <= 0) {
                     updRouletteWithBet.setRouletteGame(rouletteService.finishRouletteGame(updRouletteWithBet.getRouletteGame(), user, game));
                 } else {
                     rouletteService.updateRouletteGame(updRouletteWithBet.getRouletteGame());
                 }
                 rouletteService.updateBetRoulette(updRouletteWithBet.getBetRoulette());
-                return updRouletteWithBet;
+                return rouletteWithBetMapper.fromRouletteWithBetToResponse(updRouletteWithBet);
             }
         }
     }

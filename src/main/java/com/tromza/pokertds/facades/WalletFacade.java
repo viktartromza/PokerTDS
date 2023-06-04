@@ -1,6 +1,6 @@
 package com.tromza.pokertds.facades;
 
-import com.tromza.pokertds.response.WalletResponse;
+import com.tromza.pokertds.model.response.WalletResponse;
 
 import java.security.Principal;
 

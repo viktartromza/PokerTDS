@@ -1,7 +1,7 @@
 package com.tromza.pokertds.exceptions;
 
 import com.sun.jdi.InternalException;
-import com.tromza.pokertds.response.Response;
+import com.tromza.pokertds.model.response.MessageResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -19,51 +19,51 @@ public class ExceptionResolver {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @ExceptionHandler({NoSuchElementException.class, UsernameNotFoundException.class, BadCredentialsException.class})
-    public ResponseEntity<Response> exceptionHandlerNotFound(Exception e) {
+    public ResponseEntity<MessageResponse> exceptionHandlerNotFound(Exception e) {
         log.warn(e.getClass() + " " + e.getMessage());
-        Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
-        return new ResponseEntity<>(responseException, HttpStatus.NOT_FOUND);
+        MessageResponse messageResponseException = new MessageResponse(e.getClass().toString() + " : " + e.getMessage());
+        return new ResponseEntity<>(messageResponseException, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler({UnsupportedOperationException.class})
-    public ResponseEntity<Response> exceptionHandlerUnsupported(Exception e) {
+    public ResponseEntity<MessageResponse> exceptionHandlerUnsupported(Exception e) {
         log.warn(e.getClass() + " " + e.getMessage());
-        Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
-        return new ResponseEntity<>(responseException, HttpStatus.CONFLICT);
+        MessageResponse messageResponseException = new MessageResponse(e.getClass().toString() + " : " + e.getMessage());
+        return new ResponseEntity<>(messageResponseException, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler({SecurityException.class})
-    public ResponseEntity<Response> exceptionHandlerSecurity(Exception e) {
+    public ResponseEntity<MessageResponse> exceptionHandlerSecurity(Exception e) {
         log.warn(e.getClass() + " " + e.getMessage());
-        Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
-        return new ResponseEntity<>(responseException, HttpStatus.FORBIDDEN);
+        MessageResponse messageResponseException = new MessageResponse(e.getClass().toString() + " : " + e.getMessage());
+        return new ResponseEntity<>(messageResponseException, HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler({SQLException.class})
-    public ResponseEntity<Response> exceptionHandlerSQL(Exception e) {
+    public ResponseEntity<MessageResponse> exceptionHandlerSQL(Exception e) {
         log.warn(e.getClass() + " " + e.getMessage());
-        Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
-        return new ResponseEntity<>(responseException, HttpStatus.CONFLICT);
+        MessageResponse messageResponseException = new MessageResponse(e.getClass().toString() + " : " + e.getMessage());
+        return new ResponseEntity<>(messageResponseException, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler({InterruptedException.class})
-    public ResponseEntity<Response> exceptionInterruptedException(Exception e) {
+    public ResponseEntity<MessageResponse> exceptionInterruptedException(Exception e) {
         log.warn(e.getClass() + " " + e.getMessage());
-        Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
-        return new ResponseEntity<>(responseException, HttpStatus.CONFLICT);
+        MessageResponse messageResponseException = new MessageResponse(e.getClass().toString() + " : " + e.getMessage());
+        return new ResponseEntity<>(messageResponseException, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler({InternalException.class})
-    public ResponseEntity<Response> customExceptionHandler(InternalException e) {
+    public ResponseEntity<MessageResponse> customExceptionHandler(InternalException e) {
         log.warn(e.getClass() + " " + e.getMessage());
-        Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
-        return new ResponseEntity<>(responseException, HttpStatus.INTERNAL_SERVER_ERROR);
+        MessageResponse messageResponseException = new MessageResponse(e.getClass().toString() + " : " + e.getMessage());
+        return new ResponseEntity<>(messageResponseException, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler({Exception.class})
-    public ResponseEntity<Response> exceptionHandler(Exception e) {
+    public ResponseEntity<MessageResponse> exceptionHandler(Exception e) {
         log.warn(e.getClass() + " " + e.getMessage());
-        Response responseException = new Response(e.getClass().toString() + " : " + e.getMessage());
-        return new ResponseEntity<>(responseException, HttpStatus.INTERNAL_SERVER_ERROR);
+        MessageResponse messageResponseException = new MessageResponse(e.getClass().toString() + " : " + e.getMessage());
+        return new ResponseEntity<>(messageResponseException, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

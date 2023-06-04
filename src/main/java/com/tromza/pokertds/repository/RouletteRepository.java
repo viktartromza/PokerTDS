@@ -1,6 +1,6 @@
 package com.tromza.pokertds.repository;
 
-import com.tromza.pokertds.domain.RouletteGame;
+import com.tromza.pokertds.model.domain.RouletteGame;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

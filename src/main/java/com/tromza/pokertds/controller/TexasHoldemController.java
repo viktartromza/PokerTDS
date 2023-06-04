@@ -1,9 +1,9 @@
 package com.tromza.pokertds.controller;
 
-import com.tromza.pokertds.domain.BetPoker;
-import com.tromza.pokertds.domain.TexasHoldemGame;
-import com.tromza.pokertds.response.TexasHoldemGameWithBetPoker;
-import com.tromza.pokertds.service.TexasHoldemService;
+import com.tromza.pokertds.facades.TexasHoldemFacade;
+import com.tromza.pokertds.model.request.BetPokerRequest;
+import com.tromza.pokertds.model.response.TexasHoldemResponse;
+import com.tromza.pokertds.model.response.TexasHoldemWihtBetResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -22,31 +22,31 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @Tag(name = "TexasHoldem", description = "The TexasHoldem API")
 @RestController
 @RequestMapping("/games/poker/texas")
 public class TexasHoldemController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-    private final TexasHoldemService texasHoldemService;
+    private final TexasHoldemFacade texasHoldemFacade;
 
     @Autowired
-    public TexasHoldemController(TexasHoldemService texasHoldemService) {
-        this.texasHoldemService = texasHoldemService;
+    public TexasHoldemController(TexasHoldemFacade texasHoldemFacade) {
+        this.texasHoldemFacade = texasHoldemFacade;
     }
 
     @Operation(summary = "Create new texas hold'em for current user")
     @PostMapping
-    public ResponseEntity<TexasHoldemGame> createTexasHoldem(Principal principal) {
-        Optional<TexasHoldemGame> texasHoldemGame = texasHoldemService.createTexasHoldemGameForUser(principal);
-        return texasHoldemGame.map(value -> new ResponseEntity<>(value, HttpStatus.CREATED)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
+    public ResponseEntity<TexasHoldemResponse> createTexasHoldem(Principal principal) {
+        TexasHoldemResponse texasHoldemGame = texasHoldemFacade.createTexasHoldem(principal);
+        return new ResponseEntity<>(texasHoldemGame, HttpStatus.CREATED);
     }
 
     @Operation(summary = "Adding a bet for current texas hold'em. Return info about current state and casino decision")
-    @ApiResponse(content=@Content(schema = @Schema(implementation = TexasHoldemGameWithBetPoker.class)))
+    @ApiResponse(content=@Content(schema = @Schema(implementation = TexasHoldemWihtBetResponse.class)))
     @PutMapping
-    public ResponseEntity<?> playingGame(Principal principal, @RequestBody @Valid BetPoker bet, BindingResult bindingResult) throws InterruptedException {
+    public ResponseEntity<?> playingGame(Principal principal, @RequestBody @Valid BetPokerRequest bet, BindingResult bindingResult) throws InterruptedException {
         if (bindingResult.hasErrors()) {
             List<String> errors = new ArrayList<>();
             for (ObjectError o : bindingResult.getAllErrors()) {
@@ -55,8 +55,8 @@ public class TexasHoldemController {
             }
             return new ResponseEntity<>(errors, HttpStatus.NOT_ACCEPTABLE);
         } else {
-            TexasHoldemGameWithBetPoker texasHoldemGameWithBetPoker = texasHoldemService.playingTexasHoldem(bet, principal);
-            return new ResponseEntity<>(texasHoldemGameWithBetPoker, HttpStatus.ACCEPTED);
+            TexasHoldemWihtBetResponse texasHoldemWihtBetResponse = texasHoldemFacade.playingGame(principal, bet);
+            return new ResponseEntity<>(texasHoldemWihtBetResponse, HttpStatus.ACCEPTED);
         }
     }
 }

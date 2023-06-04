@@ -1,6 +1,6 @@
 package com.tromza.pokertds.security;
 
-import com.tromza.pokertds.domain.User;
+import com.tromza.pokertds.model.domain.User;
 import com.tromza.pokertds.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
