@@ -3,9 +3,11 @@ package com.tromza.pokertds.restassuredtests;
 import com.tromza.pokertds.model.request.AuthRequest;
 
 import com.tromza.pokertds.model.request.UserMoneyAmountRequest;
+import com.tromza.pokertds.model.response.UserResponse;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.Ignore;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -58,7 +60,7 @@ public class AdminControllerTests {
 
     @Test
     @Ignore
-    public void checkDeleteUserByIdForAdmin() {
+    public void checkDeleteAndCancelDeleteUserByIdForAdmin() {
         RestAssured
                 .given()
                 .when()
@@ -68,6 +70,29 @@ public class AdminControllerTests {
                 .then()
                 .log().all()
                 .statusCode(204);
+
+        UserResponse deletedUser = RestAssured
+                .given()
+                .when()
+                .log().all()
+                .header("Authorization", token)
+                .get(URL + "/delusers")
+                .then()
+                .log().all()
+                .statusCode(200)
+                .extract().body().jsonPath().getList("", UserResponse.class).get(0);
+
+        Assertions.assertEquals("testUser", deletedUser.getLogin());
+
+        RestAssured
+                .given()
+                .when()
+                .log().all()
+                .header("Authorization", token)
+                .put(URL + "/delusers" + "/1")
+                .then()
+                .log().all()
+                .statusCode(200);
     }
 
     @Test

@@ -25,6 +25,8 @@ public interface UserService {
 
     void deleteUserById(int id);
 
+    void cancelDeleteUserById(int id);
+
     boolean isUserNotDeleted(String login);
 
     void addGameToUser(User user, Game game);

@@ -48,6 +48,12 @@ public class AdminController {
         adminFacade.deleteUserById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @Operation(summary = "Change isDeleted status of deleted user with selected id")
+    @PutMapping("/delusers/{id}")
+    public ResponseEntity<HttpStatus> cancelDeleteUserByIdForAdmin(@PathVariable int id) {
+        adminFacade.cancelDeleteUserById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     @Operation(summary = "Withdraw or refill wallet of selected user")
     @PutMapping("/wallets")

@@ -74,6 +74,16 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public void cancelDeleteUserById (int id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("User with id " + id + " not found!"));
+        if (!user.isDeleted()) {
+            throw new UnsupportedOperationException("User with id " + id + " is not deleted");
+        } else {
+            user.setDeleted(false);
+            userRepository.saveAndFlush(user);
+        }
+    }
+
     public boolean isUserNotDeleted(String login) {
         return !getUserByLogin(login).orElseThrow(() -> new UsernameNotFoundException("User with login " + login + " not found!")).isDeleted();
     }

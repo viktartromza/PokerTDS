@@ -13,6 +13,7 @@ public interface AdminFacade {
     List<UserResponse> getAllDeletedUsers();
 
     void deleteUserById(int id);
+    void cancelDeleteUserById(int id);
 
     WalletResponse transferWallet(UserMoneyAmountRequest userMoneyAmountRequest);
 }

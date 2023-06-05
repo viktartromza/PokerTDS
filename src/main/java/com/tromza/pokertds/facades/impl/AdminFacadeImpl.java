@@ -49,6 +49,8 @@ public class AdminFacadeImpl implements AdminFacade {
         userService.deleteUserById(id);
     }
 
+    public void cancelDeleteUserById(int id){ userService.cancelDeleteUserById(id);}
+
     @Transactional
     public WalletResponse transferWallet(UserMoneyAmountRequest userMoneyAmountRequest) {
         User user = userService.getUserById(userMoneyAmountRequest.getUserId()).orElseThrow(() -> new NoSuchElementException("User with id: " + userMoneyAmountRequest.getUserId() + " not found!"));
