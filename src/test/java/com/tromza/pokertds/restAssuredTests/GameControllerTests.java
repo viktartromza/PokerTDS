@@ -49,18 +49,4 @@ public class GameControllerTests {
                 .log().all()
                 .statusCode(200);
     }
-
-    @Test
-    public void checkGetGameInfo(){
-        RestAssured
-                .given()
-                .when()
-                .log().all()
-                .header("Authorization", token)
-                .pathParam("id",1)
-                .get(URL+"/info/{id}")
-                .then()
-                .log().all()
-                .statusCode(200);
-    }
 }

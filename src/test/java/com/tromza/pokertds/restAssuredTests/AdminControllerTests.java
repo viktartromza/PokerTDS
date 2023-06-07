@@ -103,7 +103,7 @@ public class AdminControllerTests {
                 .log().all()
                 .header("Authorization", token)
                 .contentType(ContentType.JSON)
-                .body(new UserMoneyAmountRequest(1, BigDecimal.valueOf(100)))
+                .body(new UserMoneyAmountRequest(1, BigDecimal.valueOf(200)))
                 .put(URL + "/wallets")
                 .then()
                 .log().all()

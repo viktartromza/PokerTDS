@@ -2,7 +2,8 @@
 
 This project is a simple version of online-casino. Customers have the opportunity to play European roulette and Texas
 Hold'em.
-By default, application have an admin account with username 'admin' and password 'admin'.
+By default, application have an admin account with username 'admin' and password 'admin', and user for test with 
+username 'testUser' and password 'testpass'
 
 ## Database
 
