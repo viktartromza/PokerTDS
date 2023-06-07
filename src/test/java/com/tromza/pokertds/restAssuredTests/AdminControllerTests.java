@@ -1,4 +1,4 @@
-package com.tromza.pokertds.restassuredtests;
+package com.tromza.pokertds.restAssuredTests;
 
 import com.tromza.pokertds.model.request.AuthRequest;
 

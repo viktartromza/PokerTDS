@@ -1,4 +1,4 @@
-package com.tromza.pokertds.restassuredtests;
+package com.tromza.pokertds.restAssuredTests;
 
 import com.tromza.pokertds.model.request.AuthRequest;
 import io.restassured.RestAssured;
@@ -6,8 +6,8 @@ import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class RouletteControllerTests {
-    private final static String URL = "http://localhost:8080/games/roulette";
+public class TexasHoldemControllerTests {
+    private final static String URL = "http://localhost:8080/games/poker/texas";
     private final static String AUTHURL = "http://localhost:8080/auth";
     private String token;
 
@@ -23,7 +23,7 @@ public class RouletteControllerTests {
     }
 
     @Test
-    public void checkCreateRoulette() {
+    public void checkCreateTexasHoldem(){
         RestAssured
                 .given()
                 .when()
