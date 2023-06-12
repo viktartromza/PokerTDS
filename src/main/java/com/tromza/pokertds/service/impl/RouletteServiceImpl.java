@@ -13,10 +13,13 @@ import com.tromza.pokertds.repository.BetRepository;
 import com.tromza.pokertds.repository.GameRepository;
 import com.tromza.pokertds.repository.RouletteRepository;
 import com.tromza.pokertds.repository.UserRepository;
+import com.tromza.pokertds.service.EmailService;
+import com.tromza.pokertds.service.GameService;
 import com.tromza.pokertds.service.RouletteService;
+import com.tromza.pokertds.service.UserService;
+import com.tromza.pokertds.service.WalletService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -36,20 +39,20 @@ public class RouletteServiceImpl implements RouletteService {
     private final BetRepository betRepository;
     private final GameRepository gameRepository;
     private final RouletteRepository rouletteRepository;
-    private final WalletServiceImpl walletService;
-    private final GameServiceImpl gameService;
-    private final UserServiceImpl userServiceImpl;
+    private final WalletService walletService;
+    private final GameService gameService;
+    private final UserService userService;
     private final UserRepository userRepository;
-    private final EmailServiceImpl emailService;
+    private final EmailService emailService;
 
-    @Autowired
-    public RouletteServiceImpl(BetRepository betRepository, GameRepository gameRepository, RouletteRepository rouletteRepository, WalletServiceImpl walletService, GameServiceImpl gameService, UserServiceImpl userServiceImpl, UserRepository userRepository, EmailServiceImpl emailService) {
+
+    public RouletteServiceImpl(BetRepository betRepository, GameRepository gameRepository, RouletteRepository rouletteRepository, WalletService walletService, GameService gameService, UserService userService, UserRepository userRepository, EmailService emailService) {
         this.betRepository = betRepository;
         this.gameRepository = gameRepository;
         this.rouletteRepository = rouletteRepository;
         this.walletService = walletService;
         this.gameService = gameService;
-        this.userServiceImpl = userServiceImpl;
+        this.userService = userService;
         this.userRepository = userRepository;
         this.emailService = emailService;
     }
@@ -78,7 +81,7 @@ public class RouletteServiceImpl implements RouletteService {
                 RouletteGame rouletteGame = new RouletteGame();
                 rouletteGame.setGameId(game.getId());
                 rouletteGame.setStatus(GameStatus.IN_PROCESS);
-                userServiceImpl.addGameToUser(user, game);
+                userService.addGameToUser(user, game);
                 rouletteGame.setSpin(0);
                 rouletteGame.setWins(0);
                 rouletteGame.setLosses(0);
@@ -149,7 +152,7 @@ public class RouletteServiceImpl implements RouletteService {
             game.setResult(rouletteGame.getResult());
             user.setScore(user.getScore() + rouletteGame.getResult());
             gameService.finishGame(game);
-            userServiceImpl.saveUser(user);
+            userService.saveUser(user);
             walletService.updateWallet(walletService.getWalletForUser(user).get(), BigDecimal.valueOf(rouletteGame.getResult()));
             return updateRouletteGame(rouletteGame);
         }
@@ -164,7 +167,7 @@ public class RouletteServiceImpl implements RouletteService {
         game.setResult(rouletteGame.getResult());
         user.setScore(user.getScore() + rouletteGame.getResult());
         gameService.finishGame(game);
-        userServiceImpl.saveUser(user);
+        userService.saveUser(user);
         walletService.updateWallet(walletService.getWalletForUser(user).get(), BigDecimal.valueOf(rouletteGame.getResult()));
         updateRouletteGame(rouletteGame);
         log.info("Roulette-game" + rouletteGame.getId() + "was finished automatically");

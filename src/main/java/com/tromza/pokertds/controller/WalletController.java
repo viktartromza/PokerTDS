@@ -4,7 +4,6 @@ import com.tromza.pokertds.facades.WalletFacade;
 import com.tromza.pokertds.model.response.WalletResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,6 @@ import java.security.Principal;
 public class WalletController {
     private final WalletFacade walletFacade;
 
-    @Autowired
     public WalletController(WalletFacade walletFacade) {
         this.walletFacade = walletFacade;
     }

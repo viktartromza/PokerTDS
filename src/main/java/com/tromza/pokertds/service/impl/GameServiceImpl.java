@@ -5,7 +5,6 @@ import com.tromza.pokertds.model.domain.User;
 import com.tromza.pokertds.model.enums.GameStatus;
 import com.tromza.pokertds.repository.GameRepository;
 import com.tromza.pokertds.service.GameService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -17,7 +16,6 @@ public class GameServiceImpl implements GameService {
     private final GameRepository gameRepository;
 
 
-    @Autowired
     public GameServiceImpl(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
     }

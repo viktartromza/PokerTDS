@@ -13,11 +13,10 @@ import com.tromza.pokertds.model.pairs.RouletteWithBet;
 import com.tromza.pokertds.model.request.BetRouletteRequest;
 import com.tromza.pokertds.model.response.RouletteResponse;
 import com.tromza.pokertds.model.response.RouletteWithBetResponse;
-import com.tromza.pokertds.service.impl.GameServiceImpl;
+import com.tromza.pokertds.service.GameService;
 import com.tromza.pokertds.service.RouletteService;
 import com.tromza.pokertds.service.UserService;
 import com.tromza.pokertds.service.WalletService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,10 +32,9 @@ public class RouletteFacadeImpl implements RouletteFacade {
     private final RouletteWithBetMapper rouletteWithBetMapper;
     private final BetMapper betMapper;
     private final WalletService walletService;
-    private final GameServiceImpl gameService;
+    private final GameService gameService;
 
-    @Autowired
-    public RouletteFacadeImpl(UserService userService, RouletteService rouletteService, RouletteMapper rouletteMapper, RouletteWithBetMapper rouletteWithBetMapper, BetMapper betMapper, WalletService walletService, GameServiceImpl gameService) {
+    public RouletteFacadeImpl(UserService userService, RouletteService rouletteService, RouletteMapper rouletteMapper, RouletteWithBetMapper rouletteWithBetMapper, BetMapper betMapper, WalletService walletService, GameService gameService) {
         this.userService = userService;
         this.rouletteService = rouletteService;
         this.rouletteMapper = rouletteMapper;

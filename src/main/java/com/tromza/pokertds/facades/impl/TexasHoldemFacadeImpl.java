@@ -12,7 +12,6 @@ import com.tromza.pokertds.model.response.TexasHoldemResponse;
 import com.tromza.pokertds.model.response.TexasHoldemWihtBetResponse;
 import com.tromza.pokertds.service.TexasHoldemService;
 import com.tromza.pokertds.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
@@ -26,7 +25,6 @@ public class TexasHoldemFacadeImpl implements TexasHoldemFacade {
     private final TexasHoldemWithBetMapper texasHoldemWithBetMapper;
     private final BetMapper betMapper;
 
-@Autowired
     public TexasHoldemFacadeImpl(UserService userService, TexasHoldemService texasHoldemService, TexasHoldemMapper texasHoldemMapper, TexasHoldemWithBetMapper texasHoldemWithBetMapper, BetMapper betMapper) {
         this.userService = userService;
         this.texasHoldemService = texasHoldemService;

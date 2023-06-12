@@ -14,7 +14,6 @@ import java.util.Optional;
 public class WalletServiceImpl implements WalletService {
     private final WalletRepository walletRepository;
 
-
     public WalletServiceImpl(WalletRepository walletRepository) {
         this.walletRepository = walletRepository;
     }

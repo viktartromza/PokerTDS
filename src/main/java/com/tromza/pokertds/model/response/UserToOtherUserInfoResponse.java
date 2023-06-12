@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserToOtherUserInfoResponse {
-    int id;
-    String login;
-    double score;
+    private int id;
+    private String login;
+    private double score;
 }

@@ -2,7 +2,6 @@ package com.tromza.pokertds.security;
 
 import com.tromza.pokertds.model.domain.User;
 import com.tromza.pokertds.service.impl.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,8 +21,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final UserServiceImpl userServiceImpl;
 
-    @Autowired
-    public JwtFilter(JwtService jwtService, UserServiceImpl userServiceImpl) {
+      public JwtFilter(JwtService jwtService, UserServiceImpl userServiceImpl) {
         this.jwtService = jwtService;
         this.userServiceImpl = userServiceImpl;
     }

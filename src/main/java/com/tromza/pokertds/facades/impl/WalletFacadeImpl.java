@@ -6,7 +6,6 @@ import com.tromza.pokertds.mapper.WalletMapper;
 import com.tromza.pokertds.model.response.WalletResponse;
 import com.tromza.pokertds.service.UserService;
 import com.tromza.pokertds.service.WalletService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
@@ -18,7 +17,7 @@ public class WalletFacadeImpl implements WalletFacade {
     private final UserService userService;
     private final WalletMapper walletMapper;
 
-    @Autowired
+
     public WalletFacadeImpl(WalletService walletService, UserService userService, WalletMapper walletMapper) {
         this.walletService = walletService;
         this.userService = userService;

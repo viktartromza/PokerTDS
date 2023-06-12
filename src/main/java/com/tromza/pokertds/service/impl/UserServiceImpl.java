@@ -4,7 +4,6 @@ import com.tromza.pokertds.model.domain.Game;
 import com.tromza.pokertds.model.domain.User;
 import com.tromza.pokertds.repository.UserRepository;
 import com.tromza.pokertds.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
-    @Autowired
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -74,7 +72,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public void cancelDeleteUserById (int id) {
+    public void cancelDeleteUserById(int id) {
         User user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("User with id " + id + " not found!"));
         if (!user.isDeleted()) {
             throw new UnsupportedOperationException("User with id " + id + " is not deleted");

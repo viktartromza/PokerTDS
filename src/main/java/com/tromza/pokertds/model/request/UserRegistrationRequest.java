@@ -19,9 +19,9 @@ import javax.validation.constraints.Size;
 public class UserRegistrationRequest {
     @NotNull
     @Pattern(regexp = "[A-z0-9_-]*")
-    String login;
+    private String login;
     @Size(min = 5)
-    String password;
+    private String password;
     @Email
-    String email;
+    private String email;
 }

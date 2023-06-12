@@ -7,7 +7,6 @@ import com.tromza.pokertds.model.response.AuthResponse;
 import com.tromza.pokertds.security.JwtService;
 
 import com.tromza.pokertds.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,7 +18,6 @@ public class AuthFacadeImpl implements AuthFacade {
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
 
-    @Autowired
     public AuthFacadeImpl(UserService userService, JwtService jwtService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.jwtService = jwtService;

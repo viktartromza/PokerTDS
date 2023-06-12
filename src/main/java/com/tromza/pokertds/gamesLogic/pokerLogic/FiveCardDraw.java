@@ -102,7 +102,7 @@ public class FiveCardDraw {
         return ranks.apply(s);
     }
 
-    static boolean isStraight(String cards) {
+    public static boolean isStraight(String cards) {
         boolean a = false;
         List<Integer> ranks = Arrays.stream(cards.split("[hdcs]")).map(FiveCardDraw::cardToPoints).distinct().sorted().toList();
         List<Integer> ranksA = Arrays.stream(cards.split("[hdcs]")).map(FiveCardDraw::cardToPointsA).distinct().sorted().toList();
@@ -115,7 +115,7 @@ public class FiveCardDraw {
         return a;
     }
 
-    static boolean isFlush(String cards) {
+    public static boolean isFlush(String cards) {
         boolean a = false;
         char[] suits = {'h', 'd', 'c', 's'};
         for (char i : suits) {
@@ -127,7 +127,7 @@ public class FiveCardDraw {
         return a;
     }
 
-    static double resultStraight(String cards) {
+    public static double resultStraight(String cards) {
         double res;
         if (cards.contains("A") && cards.contains("2")) {
             res = 3.0 + resultHandCardsA(cards);
@@ -137,7 +137,7 @@ public class FiveCardDraw {
         return res;
     }
 
-    static double resultHandCards(String hand) {
+    public static double resultHandCards(String hand) {
         double res = 0;
         Integer[] ranks = Arrays.stream(hand.split("[hdcs]")).map(FiveCardDraw::cardToPoints).sorted(Comparator.reverseOrder()).toArray(Integer[]::new);
         for (int i = 1; i <= 5; i++) {
@@ -146,7 +146,7 @@ public class FiveCardDraw {
         return res;
     }
 
-    static double resultHandCardsA(String hand) {
+    public static double resultHandCardsA(String hand) {
         double res = 0;
         Integer[] ranks = Arrays.stream(hand.split("[hdcs]")).map(FiveCardDraw::cardToPointsA).sorted(Comparator.reverseOrder()).toArray(Integer[]::new);
         for (int i = 1; i <= 5; i++) {
@@ -155,7 +155,7 @@ public class FiveCardDraw {
         return res;
     }
 
-    static double resultRangesCards(List<Integer> ranges) {
+    public static double resultRangesCards(List<Integer> ranges) {
         double res = 0;
         Integer[] sortedRanges = ranges.stream().sorted().toArray(Integer[]::new);
         int count = 2;

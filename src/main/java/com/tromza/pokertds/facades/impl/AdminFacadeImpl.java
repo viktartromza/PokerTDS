@@ -10,7 +10,6 @@ import com.tromza.pokertds.model.response.UserResponse;
 import com.tromza.pokertds.model.response.WalletResponse;
 import com.tromza.pokertds.service.UserService;
 import com.tromza.pokertds.service.WalletService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +26,7 @@ public class AdminFacadeImpl implements AdminFacade {
     private final UserMapper userMapper;
     private final WalletMapper walletMapper;
 
-    @Autowired
+
     public AdminFacadeImpl(UserService userService, WalletService walletService, UserMapper userMapper, WalletMapper walletMapper) {
         this.userService = userService;
         this.walletService = walletService;

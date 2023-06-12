@@ -8,11 +8,10 @@ import com.tromza.pokertds.facades.GameFacade;
 import com.tromza.pokertds.mapper.GameMapper;
 import com.tromza.pokertds.model.response.GameInfoResponse;
 import com.tromza.pokertds.model.response.GameResponse;
+import com.tromza.pokertds.service.GameService;
 import com.tromza.pokertds.service.RouletteService;
 import com.tromza.pokertds.service.TexasHoldemService;
 import com.tromza.pokertds.service.UserService;
-import com.tromza.pokertds.service.impl.GameServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
@@ -22,7 +21,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class GameFacadeImpl implements GameFacade {
-    private final GameServiceImpl gameService;
+    private final GameService gameService;
     private final GameMapper gameMapper;
     private final RouletteMapper rouletteMapper;
     private final TexasHoldemMapper texasHoldemMapper;
@@ -30,8 +29,7 @@ public class GameFacadeImpl implements GameFacade {
     private final RouletteService rouletteService;
     private final TexasHoldemService texasHoldemService;
 
-    @Autowired
-    public GameFacadeImpl(GameServiceImpl gameService, GameMapper gameMapper, RouletteMapper rouletteMapper, TexasHoldemMapper texasHoldemMapper, UserService userService, RouletteService rouletteService, TexasHoldemService texasHoldemService) {
+    public GameFacadeImpl(GameService gameService, GameMapper gameMapper, RouletteMapper rouletteMapper, TexasHoldemMapper texasHoldemMapper, UserService userService, RouletteService rouletteService, TexasHoldemService texasHoldemService) {
         this.gameService = gameService;
         this.gameMapper = gameMapper;
         this.rouletteMapper = rouletteMapper;

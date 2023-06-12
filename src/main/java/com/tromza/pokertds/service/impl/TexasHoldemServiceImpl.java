@@ -17,13 +17,13 @@ import com.tromza.pokertds.repository.PokerBetRepository;
 import com.tromza.pokertds.repository.TexasHoldemRepository;
 import com.tromza.pokertds.repository.UserRepository;
 import com.tromza.pokertds.model.pairs.TexasHoldemGameWithBetPoker;
+import com.tromza.pokertds.service.EmailService;
 import com.tromza.pokertds.service.GameService;
 import com.tromza.pokertds.service.TexasHoldemService;
 import com.tromza.pokertds.service.UserService;
 import com.tromza.pokertds.service.WalletService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -44,7 +44,7 @@ import java.util.regex.Pattern;
 public class TexasHoldemServiceImpl implements TexasHoldemService {
     @Value("${blind}")
     private Double BLIND;
-    Logger log = LoggerFactory.getLogger(this.getClass());
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final WalletService walletService;
     private final GameService gameService;
     private final UserService userService;
@@ -52,10 +52,9 @@ public class TexasHoldemServiceImpl implements TexasHoldemService {
     private final TexasHoldemRepository texasHoldemRepository;
     private final GameRepository gameRepository;
     private final PokerBetRepository pokerBetRepository;
-    private final EmailServiceImpl emailService;
+    private final EmailService emailService;
 
-    @Autowired
-    public TexasHoldemServiceImpl(WalletService walletService, GameService gameService, UserService userService, UserRepository userRepository, TexasHoldemRepository texasHoldemRepository, GameRepository gameRepository, PokerBetRepository pokerBetRepository, EmailServiceImpl emailService) {
+    public TexasHoldemServiceImpl(WalletService walletService, GameService gameService, UserService userService, UserRepository userRepository, TexasHoldemRepository texasHoldemRepository, GameRepository gameRepository, PokerBetRepository pokerBetRepository, EmailService emailService) {
         this.walletService = walletService;
         this.gameService = gameService;
         this.userService = userService;
@@ -65,9 +64,11 @@ public class TexasHoldemServiceImpl implements TexasHoldemService {
         this.pokerBetRepository = pokerBetRepository;
         this.emailService = emailService;
     }
-    public Optional<TexasHoldemGame> getTexasHoldemGameByGameId (int id){
+
+    public Optional<TexasHoldemGame> getTexasHoldemGameByGameId(int id) {
         return texasHoldemRepository.findTexasHoldemGameByGameId(id);
     }
+
     @Transactional
     public TexasHoldemGame createTexasHoldemGameForUser(User user) {
         if (gameService.findTexasHoldemGameInProcess(user.getId()).isPresent()) {

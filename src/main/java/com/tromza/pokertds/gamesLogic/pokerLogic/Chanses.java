@@ -6,8 +6,8 @@ import java.util.TreeMap;
 
 
 public class Chanses {
-    static final int QUANTITYALLCOMBINATIONS = 2598960;
-    static final double AVERAGEPOWER = 0.43505781564375623;
+    private static final int QUANTITYALLCOMBINATIONS = 2598960;
+    private static final double AVERAGEPOWER = 0.43505781564375623;
 
     public static int[] genCombinations(int[] arr, int k, int n) {//3 из 5, k=3, n=5
         if (arr == null) {
