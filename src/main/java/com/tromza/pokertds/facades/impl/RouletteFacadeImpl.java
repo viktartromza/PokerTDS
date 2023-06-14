@@ -67,16 +67,14 @@ public class RouletteFacadeImpl implements RouletteFacade {
             if (wallet.getBalance().doubleValue() + rouletteGame.getResult() - bet.getAmount().doubleValue() < 0) {
                 throw new UnsupportedOperationException("Bet amount can't be more than " + (wallet.getBalance().doubleValue() + rouletteGame.getResult()) + " $.");
             } else {
-                rouletteService.saveBetRoulette(bet);
-                RouletteWithBet rouletteWithBet = new RouletteWithBet(rouletteGame,bet);
-                RouletteWithBet updRouletteWithBet = rouletteService.play(rouletteWithBet);
-                if ((wallet.getBalance().doubleValue() + updRouletteWithBet.getRouletteGame().getResult()) <= 0) {
-                    updRouletteWithBet.setRouletteGame(rouletteService.finishRouletteGame(updRouletteWithBet.getRouletteGame(), user, game));
+                BetRoulette updBetRoulette = rouletteService.saveBetRoulette(bet);
+
+                RouletteGame updRouletteGame = rouletteService.play(rouletteGame, updBetRoulette);
+                if ((wallet.getBalance().doubleValue() + updRouletteGame.getResult()) <= 0) {
+                    return rouletteWithBetMapper.fromRouletteWithBetToResponse(new RouletteWithBet(rouletteService.finishRouletteGame(updRouletteGame, user, game),rouletteService.findBetRouletteById(updBetRoulette.getId()).orElseThrow(() -> new NoSuchElementException("Bet not found!"))));
                 } else {
-                    rouletteService.updateRouletteGame(updRouletteWithBet.getRouletteGame());
+                    return rouletteWithBetMapper.fromRouletteWithBetToResponse(new RouletteWithBet(rouletteService.updateRouletteGame(updRouletteGame),rouletteService.findBetRouletteById(updBetRoulette.getId()).orElseThrow(() -> new NoSuchElementException("Bet not found!"))));
                 }
-                rouletteService.updateBetRoulette(updRouletteWithBet.getBetRoulette());
-                return rouletteWithBetMapper.fromRouletteWithBetToResponse(updRouletteWithBet);
             }
         }
     }

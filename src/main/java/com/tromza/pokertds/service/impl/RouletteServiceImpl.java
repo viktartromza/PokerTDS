@@ -8,8 +8,7 @@ import com.tromza.pokertds.model.domain.Wallet;
 import com.tromza.pokertds.model.enums.BetType;
 import com.tromza.pokertds.model.enums.GameStatus;
 import com.tromza.pokertds.model.enums.GameType;
-import com.tromza.pokertds.model.pairs.RouletteWithBet;
-import com.tromza.pokertds.repository.BetRepository;
+import com.tromza.pokertds.repository.RouletteBetRepository;
 import com.tromza.pokertds.repository.GameRepository;
 import com.tromza.pokertds.repository.RouletteRepository;
 import com.tromza.pokertds.repository.UserRepository;
@@ -36,7 +35,7 @@ import java.util.Random;
 @Service
 public class RouletteServiceImpl implements RouletteService {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-    private final BetRepository betRepository;
+    private final RouletteBetRepository rouletteBetRepository;
     private final GameRepository gameRepository;
     private final RouletteRepository rouletteRepository;
     private final WalletService walletService;
@@ -46,8 +45,8 @@ public class RouletteServiceImpl implements RouletteService {
     private final EmailService emailService;
 
 
-    public RouletteServiceImpl(BetRepository betRepository, GameRepository gameRepository, RouletteRepository rouletteRepository, WalletService walletService, GameService gameService, UserService userService, UserRepository userRepository, EmailService emailService) {
-        this.betRepository = betRepository;
+    public RouletteServiceImpl(RouletteBetRepository rouletteBetRepository, GameRepository gameRepository, RouletteRepository rouletteRepository, WalletService walletService, GameService gameService, UserService userService, UserRepository userRepository, EmailService emailService) {
+        this.rouletteBetRepository = rouletteBetRepository;
         this.gameRepository = gameRepository;
         this.rouletteRepository = rouletteRepository;
         this.walletService = walletService;
@@ -90,58 +89,60 @@ public class RouletteServiceImpl implements RouletteService {
             }
         }
     }
-    public RouletteWithBet play (RouletteWithBet rouletteWithBet) {
+
+    public RouletteGame play(RouletteGame rouletteGame, BetRoulette bet) {
         Random generator = new Random();
         int rouletteNumber = generator.nextInt(37);
-        rouletteWithBet.getBetRoulette().setRouletteNumber(rouletteNumber);
-        rouletteWithBet.getRouletteGame().setSpin(rouletteWithBet.getRouletteGame().getSpin() + 1);
-        double amount = rouletteWithBet.getBetRoulette().getAmount().doubleValue();
-        double result = rouletteWithBet.getRouletteGame().getResult();
-        int wins = rouletteWithBet.getRouletteGame().getWins();
-        int losses = rouletteWithBet.getRouletteGame().getLosses();
-        if (rouletteWithBet.getBetRoulette().getType() == BetType.NUMBER) {
-            if (rouletteNumber == Integer.parseInt(rouletteWithBet.getBetRoulette().getPlayerChoice())) {
-                rouletteWithBet.getBetRoulette().setWinAmount(36 * amount);
-                rouletteWithBet.getRouletteGame().setWins(wins + 1);
-                rouletteWithBet.getRouletteGame().setResult(result + 35 * amount);
+        bet.setRouletteNumber(rouletteNumber);
+        rouletteGame.setSpin(rouletteGame.getSpin() + 1);
+        double amount = bet.getAmount().doubleValue();
+        double result = rouletteGame.getResult();
+        int wins = rouletteGame.getWins();
+        int losses = rouletteGame.getLosses();
+        if (bet.getType() == BetType.NUMBER) {
+            if (rouletteNumber == Integer.parseInt(bet.getPlayerChoice())) {
+                bet.setWinAmount(36 * amount);
+                rouletteGame.setWins(wins + 1);
+                rouletteGame.setResult(result + 35 * amount);
             } else {
-                rouletteWithBet.getBetRoulette().setWinAmount(0.00);
-                rouletteWithBet.getRouletteGame().setLosses(losses + 1);
-                rouletteWithBet.getRouletteGame().setResult(result - amount);
+                bet.setWinAmount(0.00);
+                rouletteGame.setLosses(losses + 1);
+                rouletteGame.setResult(result - amount);
             }
-        } else if (rouletteWithBet.getBetRoulette().getType() == BetType.EVEN) {
+        } else if (bet.getType() == BetType.EVEN) {
             if (rouletteNumber == 0 || rouletteNumber % 2 != 0) {
-                rouletteWithBet.getBetRoulette().setWinAmount(0.00);
-                rouletteWithBet.getRouletteGame().setLosses(losses + 1);
-                rouletteWithBet.getRouletteGame().setResult(result - amount);
+                bet.setWinAmount(0.00);
+                rouletteGame.setLosses(losses + 1);
+                rouletteGame.setResult(result - amount);
             } else {
-                rouletteWithBet.getBetRoulette().setWinAmount(2 * amount);
-                rouletteWithBet.getRouletteGame().setWins(wins + 1);
-                rouletteWithBet.getRouletteGame().setResult(result + amount);
+                bet.setWinAmount(2 * amount);
+                rouletteGame.setWins(wins + 1);
+                rouletteGame.setResult(result + amount);
             }
         } else if (rouletteNumber % 2 == 0) {
-            rouletteWithBet.getBetRoulette().setWinAmount(0.00);
-            rouletteWithBet.getRouletteGame().setLosses(losses + 1);
-            rouletteWithBet.getRouletteGame().setResult(result - amount);
+            bet.setWinAmount(0.00);
+            rouletteGame.setLosses(losses + 1);
+            rouletteGame.setResult(result - amount);
         } else {
-            rouletteWithBet.getBetRoulette().setWinAmount(2 * amount);
-            rouletteWithBet.getRouletteGame().setWins(wins + 1);
-            rouletteWithBet.getRouletteGame().setResult(result + amount);
+            bet.setWinAmount(2 * amount);
+            rouletteGame.setWins(wins + 1);
+            rouletteGame.setResult(result + amount);
         }
-        rouletteWithBet.getRouletteGame().setChanged(new Timestamp(System.currentTimeMillis()));
-        return rouletteWithBet;
+        updateBetRoulette(bet);
+        rouletteGame.setChanged(new Timestamp(System.currentTimeMillis()));
+        return rouletteGame;
     }
 
     public RouletteGame updateRouletteGame(RouletteGame rouletteGame) {
         return rouletteRepository.saveAndFlush(rouletteGame);
     }
 
-    public void saveBetRoulette(BetRoulette betRoulette) {
-        betRepository.save(betRoulette);
+    public BetRoulette saveBetRoulette(BetRoulette betRoulette) {
+        return rouletteBetRepository.save(betRoulette);
     }
 
     public void updateBetRoulette(BetRoulette betRoulette) {
-        betRepository.saveAndFlush(betRoulette);
+        rouletteBetRepository.saveAndFlush(betRoulette);
     }
 
     @Transactional
@@ -209,4 +210,10 @@ public class RouletteServiceImpl implements RouletteService {
             rouletteGames.forEach(this::finishRouletteGameAutomatically);
         }
     }
+
+    public Optional<BetRoulette> findBetRouletteById(int id) {
+        return rouletteBetRepository.findById(id);
+    }
+
+    ;
 }

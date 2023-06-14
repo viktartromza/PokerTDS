@@ -16,7 +16,6 @@ import com.tromza.pokertds.repository.GameRepository;
 import com.tromza.pokertds.repository.PokerBetRepository;
 import com.tromza.pokertds.repository.TexasHoldemRepository;
 import com.tromza.pokertds.repository.UserRepository;
-import com.tromza.pokertds.model.pairs.TexasHoldemGameWithBetPoker;
 import com.tromza.pokertds.service.EmailService;
 import com.tromza.pokertds.service.GameService;
 import com.tromza.pokertds.service.TexasHoldemService;
@@ -101,7 +100,7 @@ public class TexasHoldemServiceImpl implements TexasHoldemService {
 
     @Transactional
     @GetTimeAnnotation
-    public TexasHoldemGameWithBetPoker playingTexasHoldem(BetPoker bet, User user) throws InterruptedException {
+    public TexasHoldemGame playingTexasHoldem(BetPoker bet, User user) throws InterruptedException {
         Game game = gameService.findTexasHoldemGameInProcess(user.getId()).orElseThrow(() -> new NoSuchElementException("Game not found!"));
         if (game.getId() != bet.getGameId()) {
             throw new UnsupportedOperationException("User with login " + user.getLogin() + " hasn't game with id " + bet.getGameId() + " in process");
@@ -119,7 +118,7 @@ public class TexasHoldemServiceImpl implements TexasHoldemService {
                 }
                 saveBetPoker(bet);
                 texasHoldemGame.setWinner(Winner.CASINO);
-                return new TexasHoldemGameWithBetPoker(finishTexasHoldemGame(texasHoldemGame, user), bet, texasHoldemGame.getCasinoPreflop());
+                return finishTexasHoldemGame(texasHoldemGame, user);
             } else {
                 Wallet wallet = walletService.getWalletForUser(user).get();
                 if (wallet.getBalance().doubleValue() - bet.getPlayerAmount().doubleValue() < 0) {
@@ -163,7 +162,7 @@ public class TexasHoldemServiceImpl implements TexasHoldemService {
     }
 
     @Transactional
-    public TexasHoldemGameWithBetPoker playTexasHoldem(TexasHoldemGame texasHoldemGame, BetPoker bet, User user) throws InterruptedException {
+    public TexasHoldemGame playTexasHoldem(TexasHoldemGame texasHoldemGame, BetPoker bet, User user) throws InterruptedException {
         Pattern card = Pattern.compile("[2-9,TJQKA][hcds]");
         Matcher ourHandMatcher = card.matcher(texasHoldemGame.getCasinoPreflop());
         String[] ourHand = new String[2];
@@ -206,12 +205,14 @@ public class TexasHoldemServiceImpl implements TexasHoldemService {
                     texasHoldemGame.setFlop(PokerGame.getFlop(ourHand, playerHand));
                 }
                 texasHoldemGame.setBank(texasHoldemGame.getBank() + bet.getPlayerAmount().doubleValue() + bet.getCasinoAmount().doubleValue());
-                return new TexasHoldemGameWithBetPoker(updateTexasHoldemGame(texasHoldemGame), saveBetPoker(bet));
+                saveBetPoker(bet);
+                return updateTexasHoldemGame(texasHoldemGame);
             }
             if (bet.getTypePlayer().equals(BetPokerType.CALL)) {
                 texasHoldemGame.setBank(texasHoldemGame.getBank() + bet.getPlayerAmount().doubleValue());
                 texasHoldemGame.setFlop(PokerGame.getFlop(ourHand, playerHand));
-                return new TexasHoldemGameWithBetPoker(updateTexasHoldemGame(texasHoldemGame), saveBetPoker(bet));
+                saveBetPoker(bet);
+                return updateTexasHoldemGame(texasHoldemGame);
             }
         } else if (texasHoldemGame.getTern() == null) {
             bet.setRound(2);
@@ -246,12 +247,14 @@ public class TexasHoldemServiceImpl implements TexasHoldemService {
                     texasHoldemGame.setTern(PokerGame.getTern(ourHand, playerHand, board));
                 }
                 texasHoldemGame.setBank(texasHoldemGame.getBank() + bet.getPlayerAmount().doubleValue() + bet.getCasinoAmount().doubleValue());
-                return new TexasHoldemGameWithBetPoker(updateTexasHoldemGame(texasHoldemGame), saveBetPoker(bet));
+                saveBetPoker(bet);
+                return updateTexasHoldemGame(texasHoldemGame);
             }
             if (bet.getTypePlayer().equals(BetPokerType.CALL)) {
                 texasHoldemGame.setBank(texasHoldemGame.getBank() + bet.getPlayerAmount().doubleValue());
                 texasHoldemGame.setTern(PokerGame.getTern(ourHand, playerHand, board));
-                return new TexasHoldemGameWithBetPoker(updateTexasHoldemGame(texasHoldemGame), saveBetPoker(bet));
+                saveBetPoker(bet);
+                return updateTexasHoldemGame(texasHoldemGame);
             }
         } else if (texasHoldemGame.getRiver() == null) {
             bet.setRound(3);
@@ -287,12 +290,14 @@ public class TexasHoldemServiceImpl implements TexasHoldemService {
                     texasHoldemGame.setRiver(PokerGame.getRiver(ourHand, playerHand, board));
                 }
                 texasHoldemGame.setBank(texasHoldemGame.getBank() + bet.getPlayerAmount().doubleValue() + bet.getCasinoAmount().doubleValue());
-                return new TexasHoldemGameWithBetPoker(updateTexasHoldemGame(texasHoldemGame), saveBetPoker(bet));
+                saveBetPoker(bet);
+                return updateTexasHoldemGame(texasHoldemGame);
             }
             if (bet.getTypePlayer().equals(BetPokerType.CALL)) {
                 texasHoldemGame.setBank(texasHoldemGame.getBank() + bet.getPlayerAmount().doubleValue());
                 texasHoldemGame.setRiver(PokerGame.getRiver(ourHand, playerHand, board));
-                return new TexasHoldemGameWithBetPoker(updateTexasHoldemGame(texasHoldemGame), saveBetPoker(bet));
+                saveBetPoker(bet);
+                return updateTexasHoldemGame(texasHoldemGame);
             }
         } else {
             bet.setRound(4);
@@ -308,56 +313,42 @@ public class TexasHoldemServiceImpl implements TexasHoldemService {
             Map.Entry<String, Double> casinoResult = Chanses.evalCombinationByHandAndBoard(ourHand, board);
             Map.Entry<String, Double> playerResult = Chanses.evalCombinationByHandAndBoard(playerHand, board);
             double resultCasino = casinoResult.getValue();
-            String bestCombCasino = casinoResult.getKey();
             double resultBoard = Chanses.evalCombination(board);
             double chansesPlayer = Chanses.compCombinationsPlayer(ourHand, board);
             double resultPlayer = playerResult.getValue();
-            String bestCombPlayer = playerResult.getKey();
             if (bet.getTypePlayer().equals(BetPokerType.BET)) {
                 if (resultCasino > 3 && chansesPlayer < 2.5 && resultCasino > resultBoard) {
                     bet.setTypeCasino(BetPokerType.RISE);
                     bet.setCasinoAmount(bet.getPlayerAmount().add(BigDecimal.valueOf(BLIND)));
                     texasHoldemGame.setBank(texasHoldemGame.getBank() + bet.getPlayerAmount().doubleValue() + bet.getCasinoAmount().doubleValue());
-                    return new TexasHoldemGameWithBetPoker(updateTexasHoldemGame(texasHoldemGame), saveBetPoker(bet));
+                    saveBetPoker(bet);
+                    return updateTexasHoldemGame(texasHoldemGame);
                 } else {
-                    String winCombination;
                     bet.setTypeCasino(BetPokerType.CALL);
                     bet.setCasinoAmount(bet.getPlayerAmount());
                     texasHoldemGame.setBank(texasHoldemGame.getBank() + bet.getPlayerAmount().doubleValue() + bet.getCasinoAmount().doubleValue());
                     if (resultPlayer > resultCasino) {
                         texasHoldemGame.setWinner(Winner.PLAYER);
-                        winCombination = bestCombPlayer;
                     } else if (resultPlayer < resultCasino) {
                         texasHoldemGame.setWinner(Winner.CASINO);
-                        winCombination = bestCombCasino;
                     } else {
                         texasHoldemGame.setWinner(Winner.DRAW);
-                        winCombination = bestCombPlayer;
                     }
-                    return new TexasHoldemGameWithBetPoker(finishTexasHoldemGame(texasHoldemGame, user), saveBetPoker(bet), texasHoldemGame.getCasinoPreflop(), winCombination);
+                    saveBetPoker(bet);
+                    return finishTexasHoldemGame(texasHoldemGame, user);
                 }
             }
             if (bet.getTypePlayer().equals(BetPokerType.CALL)) {
                 texasHoldemGame.setBank(texasHoldemGame.getBank() + bet.getPlayerAmount().doubleValue());
-                String winCombination;
-                if (resultPlayer > resultCasino) {
-                    texasHoldemGame.setWinner(Winner.PLAYER);
-                    winCombination = bestCombPlayer;
-                } else if (resultPlayer < resultCasino) {
-                    texasHoldemGame.setWinner(Winner.CASINO);
-                    winCombination = bestCombCasino;
-                } else {
-                    texasHoldemGame.setWinner(Winner.DRAW);
-                    winCombination = bestCombPlayer;
-                }
-                return new TexasHoldemGameWithBetPoker(finishTexasHoldemGame(texasHoldemGame, user), saveBetPoker(bet), texasHoldemGame.getCasinoPreflop(), winCombination);
+                saveBetPoker(bet);
+                return finishTexasHoldemGame(texasHoldemGame, user);
             }
         }
         throw new UnsupportedOperationException("Something wrong");
     }
 
-    public BetPoker saveBetPoker(BetPoker bet) {
-        return pokerBetRepository.saveAndFlush(bet);
+    public void saveBetPoker(BetPoker bet) {
+        pokerBetRepository.saveAndFlush(bet);
     }
 
     @Scheduled(fixedRate = 300000)//каждые 5 мин
@@ -405,5 +396,28 @@ public class TexasHoldemServiceImpl implements TexasHoldemService {
         mailMessage.setSubject("Your game was finished automatically");
         mailMessage.setText("Dear player, your texasHoldem-game was finished automatically");
         emailService.sendEmail(mailMessage);
+    }
+
+    public Optional<BetPoker> findLastBetPokerByGameId(int id) {
+        return pokerBetRepository.findLastBetPokerByGameId(id);
+    }
+
+    public String winCombination(String hand, String board) throws InterruptedException {
+        Pattern card = Pattern.compile("[2-9,TJQKA][hcds]");
+        Matcher handMatcher = card.matcher(hand);
+        String[] handArr = new String[2];
+        int i = 0;
+        while (handMatcher.find()) {
+            handArr[i] = handMatcher.group();
+            i++;
+        }
+        Matcher boardMatcher = card.matcher(board);
+        String[] boardArr = new String[5];
+        i = 0;
+        while (boardMatcher.find()) {
+            boardArr[i] = boardMatcher.group();
+            i++;
+        }
+        return Chanses.evalCombinationByHandAndBoard(handArr, boardArr).getKey();
     }
 }

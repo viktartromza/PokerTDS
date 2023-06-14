@@ -29,6 +29,7 @@ if(texasHoldemWithBet.getTexasHoldemGame().getWinner()!=null) {
 }
 response.setRound(texasHoldemWithBet.getBetPoker().getRound());
 response.setTypePlayer(texasHoldemWithBet.getBetPoker().getTypePlayer());
+response.setTypeCasino(texasHoldemWithBet.getBetPoker().getTypeCasino());
 response.setPlayerAmount(texasHoldemWithBet.getBetPoker().getPlayerAmount());
 response.setCasinoAmount(texasHoldemWithBet.getBetPoker().getCasinoAmount());
 if(texasHoldemWithBet.getCasinoCards()!=null) {
